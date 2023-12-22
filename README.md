@@ -35,7 +35,7 @@ of savegame files, which is enabled by default. You can toggle auto backups off,
 ```File``` and then look for ```Create backups```. Under the ```View``` menu, you can also change the UI theme and hide the status bar, if you desire a simpler interface.
 This savegame editor will remember your game directories, so there is no need to re-enter them each time you launch it.
 
-## Reverse engineering the Tomb Raider series
+# Reverse engineering the Tomb Raider series
 This section details the technical aspects of reverse engineering the savegame files for the classic Tomb Raider series. The offset tables for each game are included
 at the end of the README. In general, there are many similarities between the games, as they are all built on the same engine. Tomb Raider 1-3 use a very similar engine,
 and so reversing those games involve a similar process. Tomb Raider 4 and 5 use a markedly different engine than 1-3, but involve a simpler process nonetheless.
@@ -203,7 +203,7 @@ weapon byte codes for Tomb Raier III:
 Tomb Raider III also stores ammunition on a primary and secondary offset, with the same logic as the previous two titles;
 an equipped weapon stores ammo on both offsets, while a non-equipped weapon only stores ammo in the primary offset. The
 secondary ammo indices are dynamically allocated. The pattern is more consistent than Tomb Raider II, as the offsets
-are always 0x12 bytes apart. Storing the index data as a dictionary, you can use the following algorithm to determine
+are always 18 bytes apart. Storing the index data as a dictionary, you can use the following algorithm to determine
 the dynamically allocated ammo offsets:
 
 ```
@@ -296,3 +296,83 @@ bytes away from the health offset. Below is a table of the health offset ranges:
 Weapons information is also stored similar to Tomb Raider 4; each weapon is stored on its own unique offset. A value of 0x9
 indicates the weapon is present, a value of 0xD indicates the weapon is present with a LaserSight attached, and a value of 0
 indicates the weapon is not present. Ammunition data is also stored statically, and on its own individual offsets.
+
+# Offset tables
+## Tomb Raider I
+### Common
+| **File offset**       | **Type**         | **Variable**            |
+| :---                	| :---             | :---                    |
+| 0x000                 | String           | Level Name              |
+| 0x04B                 | UInt16           | Save Number             |
+| 0x18C                 | UInt16           | Magnum Ammo             |
+| 0x18E                 | UInt16           | Uzi Ammo                |
+| 0x190                 | UInt16           | Shotgun Ammo            |
+| 0x192                 | BYTE             | Small Medipack          |
+| 0x193                 | BYTE             | Large Medipack          |
+| 0x197                 | BYTE             | Weapons Config Num      |
+
+## Tomb Raider I: Unfinished Business
+### Common
+| **File Offset**       | **Type**         | **Variable**            |
+| :---                	| :---             | :---                    |
+| 0x000                 | String           | Level Name              |
+| 0x04B                 | UInt16           | Save Number             |
+| 0x09C                 | UInt16           | Magnum Ammo             |
+| 0x09E                 | UInt16           | Uzi Ammo                |
+| 0x0A0                 | UInt16           | Shotgun Ammo            |
+| 0x0A2                 | BYTE             | Small Medipack          |
+| 0x0A3                 | BYTE             | Large Medipack          |
+| 0x0A7                 | BYTE             | Weapons Config Num      |
+
+## Tomb Raider: The Last Revelation
+| **File offset**       | **Type**         | **Variable**            |
+| :---                	| :---             | :---                    |
+| 0x000                 | String           | Level Name              |
+| 0x04B                 | UInt16           | Save Number             |
+| 0x169                 | BYTE             | Pistols                 |
+| 0x16A                 | BYTE             | Uzi                     |
+| 0x16B                 | BYTE             | Shotgun                 |
+| 0x16C                 | BYTE             | Crossbow                |
+| 0x16D                 | BYTE             | Grenade Gun             |
+| 0x16E                 | BYTE             | Revolver                |
+| 0x16F                 | BYTE             | LaserSight              |
+| 0x170                 | BYTE             | Binoculars              |
+| 0x171                 | BYTE             | Crowbar                 |
+| 0x1FB                 | BYTE             | Secrets                 |
+| 0x190                 | UInt16           | Small Medipack          |
+| 0x192                 | UInt16           | Large Medipack          |
+| 0x194                 | UInt16           | Flares                  |
+| 0x198                 | UInt16           | Uzi Ammo                |
+| 0x19A                 | UInt16           | Revolver Ammo           |
+| 0x19C                 | UInt16           | Shotgun Normal Ammo     |
+| 0x1A0                 | UInt16           | Grenade Gun Normal Ammo |
+| 0x1A2                 | UInt16           | Grenade Gun Super Ammo  |
+| 0x1A4                 | UInt16           | Grenade Gun Flash Ammo  |
+| 0x1A6                 | UInt16           | Crossbow Normal Ammo    |
+| 0x1A8                 | UInt16           | Crossbow Poison Ammo    |
+| 0x1AA                 | UInt16           | Crossbow Explosive Ammo |
+
+## Tomb Raider: Chronicles
+| **File offset**       | **Type**         | **Variable**          |
+| :---                	| :---             | :---                  |
+| 0x000     	          | String      		 | Level Name            |
+| 0x04B                 | UInt16           | Save Number           |
+| 0x16F     	          | BYTE        		 | Pistols               |
+| 0x170     	          | BYTE  		       | Uzi                   |
+| 0x171     	          | BYTE  		       | Shotgun               |
+| 0x172     	          | BYTE  		       | Grappling Gun         |
+| 0x173     	          | BYTE  		       | HK Gun                |
+| 0x174     	          | BYTE  		       | Revolver/Deagle       |
+| 0x175     	          | BYTE  		       | LaserSight            |
+| 0x177     	          | BYTE  		       | Binoculars/Headset    |
+| 0x178     	          | BYTE  		       | Crowbar               |
+| 0x194     	          | UInt16  		     | Small Medipack        |
+| 0x196     	          | UInt16  		     | Large Medipack        |
+| 0x198     	          | UInt16  		     | Flares                |
+| 0x19C     	          | UInt16  		     | Uzi Ammo              |
+| 0x19E     	          | UInt16  		     | Revolver/Deagle Ammo  |
+| 0x1A0     	          | UInt16  		     | Shotgun Normal Ammo   |
+| 0x1A2     	          | UInt16  		     | Shotgun Wideshot Ammo |
+| 0x1A4     	          | UInt16  		     | HK Ammo               |
+| 0x1A6     	          | UInt16  		     | Grappling Gun Ammo    |
+| 0x1C3     	          | BYTE    		     | Secrets               |
