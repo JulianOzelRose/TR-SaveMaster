@@ -312,112 +312,111 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x0197                 | BYTE             | Weapons Config Num      |
 
 ### Caves ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x0641                   |
-| Uzi Ammo              | UInt16           | 0x064D                   |
-| Shotgun Ammo          | UInt16           | 0x0659                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x0641                   |
+| Uzi Ammo 2              | UInt16           | 0x064D                   |
+| Shotgun Ammo 2          | UInt16           | 0x0659                   |
 
 ### City of Vilcabamba ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x0C24                   |
-| Uzi Ammo              | UInt16           | 0x0C30                   |
-| Shotgun Ammo          | UInt16           | 0x0C3C                   |
+| **File offset**        | **Type**         | **Variable**             |
+| :---                   | :---             | :---                     |
+| Magnum Ammo 2          | UInt16           | 0x0C24                   |
+| Uzi Ammo 2             | UInt16           | 0x0C30                   |
+| Shotgun Ammo 2         | UInt16           | 0x0C3C                   |
 
 ### Lost Valley ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x0598                   |
-| Uzi Ammo              | UInt16           | 0x0C30                   |
-| Shotgun Ammo          | UInt16           | 0x0C3C                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x0598                   |
+| Uzi Ammo 2              | UInt16           | 0x0C30                   |
+| Shotgun Ammo 2          | UInt16           | 0x0C3C                   |
 
 ### Tomb of Qualopec ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x084A                   |
-| Uzi Ammo              | UInt16           | 0x0856                   |
-| Shotgun Ammo          | UInt16           | 0x0862                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x084A                   |
+| Uzi Ammo 2              | UInt16           | 0x0856                   |
+| Shotgun Ammo 2          | UInt16           | 0x0862                   |
 
 ### St. Francis' Folly ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x0D70                   |
-| Uzi Ammo              | UInt16           | 0x0D7C                   |
-| Shotgun Ammo          | UInt16           | 0x0D88                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x0D70                   |
+| Uzi Ammo 2              | UInt16           | 0x0D7C                   |
+| Shotgun Ammo 2          | UInt16           | 0x0D88                   |
 
 ### Colosseum ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x0A56                   |
-| Uzi Ammo              | UInt16           | 0x0A62                   |
-| Shotgun Ammo          | UInt16           | 0x0A6E                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x0A56                   |
+| Uzi Ammo 2              | UInt16           | 0x0A62                   |
+| Shotgun Ammo 2          | UInt16           | 0x0A6E                   |
 
 ### Palace Midas ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x0D48                   |
-| Uzi Ammo              | UInt16           | 0x0D54                   |
-| Shotgun Ammo          | UInt16           | 0x0D60                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x0D48                   |
+| Uzi Ammo 2              | UInt16           | 0x0D54                   |
+| Shotgun Ammo 2          | UInt16           | 0x0D60                   |
 
 ### The Cistern ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x0C8A                   |
-| Uzi Ammo              | UInt16           | 0x0C96                   |
-| Shotgun Ammo          | UInt16           | 0x0CA2                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x0C8A                   |
+| Uzi Ammo 2              | UInt16           | 0x0C96                   |
+| Shotgun Ammo 2          | UInt16           | 0x0CA2                   |
 
 ### Tomb of Tihocan ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x093D                   |
-| Uzi Ammo              | UInt16           | 0x0949                   |
-| Shotgun Ammo          | UInt16           | 0x0955                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x093D                   |
+| Uzi Ammo 2              | UInt16           | 0x0949                   |
+| Shotgun Ammo 2          | UInt16           | 0x0955                   |
 
 ### City of Khamoon ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x085D                   |
-| Uzi Ammo              | UInt16           | 0x0869                   |
-| Shotgun Ammo          | UInt16           | 0x0955                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x085D                   |
+| Uzi Ammo 2              | UInt16           | 0x0869                   |
+| Shotgun Ammo 2          | UInt16           | 0x0955                   |
 
 ### Obelisk of Khamoon ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x08A3                   |
-| Uzi Ammo              | UInt16           | 0x08AF                   |
-| Shotgun Ammo          | UInt16           | 0x08BB                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x08A3                   |
+| Uzi Ammo 2              | UInt16           | 0x08AF                   |
+| Shotgun Ammo 2          | UInt16           | 0x08BB                   |
 
 ### Sanctuary of the Scion ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x0718                   |
-| Uzi Ammo              | UInt16           | 0x0724                   |
-| Shotgun Ammo          | UInt16           | 0x0730                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x0718                   |
+| Uzi Ammo 2              | UInt16           | 0x0724                   |
+| Shotgun Ammo 2          | UInt16           | 0x0730                   |
 
 ### Natla's Mines ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x08A8                   |
-| Uzi Ammo              | UInt16           | 0x08B4                   |
-| Shotgun Ammo          | UInt16           | 0x08C0                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x08A8                   |
+| Uzi Ammo 2              | UInt16           | 0x08B4                   |
+| Shotgun Ammo 2          | UInt16           | 0x08C0                   |
 
 ### Atlantis ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x0FFA                   |
-| Uzi Ammo              | UInt16           | 0x1006                   |
-| Shotgun Ammo          | UInt16           | 0x1012                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x0FFA                   |
+| Uzi Ammo 2              | UInt16           | 0x1006                   |
+| Shotgun Ammo 2          | UInt16           | 0x1012                   |
 
 ### The Great Pyramid ###
-| **File offset**       | **Type**         | **Variable**             |
-| :---                	| :---             | :---                     |
-| Magnum Ammo           | UInt16           | 0x08D2                   |
-| Uzi Ammo              | UInt16           | 0x08DE                   |
-| Shotgun Ammo          | UInt16           | 0x08EA                   |
+| **File offset**         | **Type**         | **Variable**             |
+| :---                	  | :---             | :---                     |
+| Magnum Ammo 2           | UInt16           | 0x08D2                   |
+| Uzi Ammo 2              | UInt16           | 0x08DE                   |
+| Shotgun Ammo 2          | UInt16           | 0x08EA                   |
 
 ## Tomb Raider I: Unfinished Business
-### Common ###
 | **File Offset**       | **Type**         | **Variable**            |
 | :---                	| :---             | :---                    |
 | 0x000                 | String           | Level Name              |
@@ -428,6 +427,290 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x0A2                 | BYTE             | Small Medipack          |
 | 0x0A3                 | BYTE             | Large Medipack          |
 | 0x0A7                 | BYTE             | Weapons Config Num      |
+
+# Tomb Raider II
+### The Great Wall ###
+| **File Offset**       | **Type**         | **Variable**            |
+| :---                	| :---             | :---                    |
+| 0x000                 | String           | Level Name              |
+| 0x04B                 | UInt16           | Save Number             |
+| 0x07D                 | UInt16           | Autmatic Pistols Ammo   |
+| 0x07F                 | UInt16           | Uzi Ammo                |
+| 0x081                 | UInt16           | Shotgun Ammo            |
+| 0x083                 | UInt16           | M16 Ammo                |
+| 0x085                 | UInt16           | Grenade Launcher Ammo   |
+| 0x087                 | UInt16           | Harpoon Gun Ammo        |
+| 0x089                 | BYTE             | Small Medipack          |
+| 0x08A                 | BYTE             | Large Medipack          |
+| 0x08C                 | BYTE             | Flares                  |
+| 0x08F                 | BYTE             | Weapons Config Num      |
+
+### Venice ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x0A9           | UInt16   | Autmatic Pistols Ammo  |
+| 0x0AB           | UInt16   | Uzi Ammo               |
+| 0x0AD           | UInt16   | Shotgun Ammo           |
+| 0x0AF           | UInt16   | M16 Ammo               |
+| 0x0B1           | UInt16   | Grenade Launcher Ammo  |
+| 0x0B3           | UInt16   | Harpoon Gun Ammo       |
+| 0x0B5           | BYTE     | Small Medipack         |
+| 0x0B6           | BYTE     | Large Medipack         |
+| 0x0B8           | BYTE     | Flares                 |
+| 0x0BB           | BYTE     | Weapons Config Num     |
+
+### Bartoli's Hideout ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x0D5           | UInt16   | Autmatic Pistols Ammo  |
+| 0x0D7           | UInt16   | Uzi Ammo               |
+| 0x0D9           | UInt16   | Shotgun Ammo           |
+| 0x0DB           | UInt16   | M16 Ammo               |
+| 0x0DD           | UInt16   | Grenade Launcher Ammo  |
+| 0x0DF           | UInt16   | Harpoon Gun Ammo       |
+| 0x0E1           | BYTE     | Small Medipack         |
+| 0x0E2           | BYTE     | Large Medipack         |
+| 0x0E4           | BYTE     | Flares                 |
+| 0x0E7           | BYTE     | Weapons Config Num     |
+
+### Opera House ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x101           | UInt16   | Autmatic Pistols Ammo  |
+| 0x103           | UInt16   | Uzi Ammo               |
+| 0x105           | UInt16   | Shotgun Ammo           |
+| 0x107           | UInt16   | M16 Ammo               |
+| 0x109           | UInt16   | Grenade Launcher Ammo  |
+| 0x10B           | UInt16   | Harpoon Gun Ammo       |
+| 0x10D           | BYTE     | Small Medipack         |
+| 0x10E           | BYTE     | Large Medipack         |
+| 0x110           | BYTE     | Flares                 |
+| 0x113           | BYTE     | Weapons Config Num     |
+
+### Offshore Rig ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x12D           | UInt16   | Autmatic Pistols Ammo  |
+| 0x12F           | UInt16   | Uzi Ammo               |
+| 0x131           | UInt16   | Shotgun Ammo           |
+| 0x133           | UInt16   | M16 Ammo               |
+| 0x135           | UInt16   | Grenade Launcher Ammo  |
+| 0x137           | UInt16   | Harpoon Gun Ammo       |
+| 0x139           | BYTE     | Small Medipack         |
+| 0x13A           | BYTE     | Large Medipack         |
+| 0x13C           | BYTE     | Flares                 |
+| 0x13F           | BYTE     | Weapons Config Num     |
+
+### Diving Area ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x159           | UInt16   | Autmatic Pistols Ammo  |
+| 0x15B           | UInt16   | Uzi Ammo               |
+| 0x15D           | UInt16   | Shotgun Ammo           |
+| 0x15F           | UInt16   | M16 Ammo               |
+| 0x161           | UInt16   | Grenade Launcher Ammo  |
+| 0x163           | UInt16   | Harpoon Gun Ammo       |
+| 0x165           | BYTE     | Small Medipack         |
+| 0x166           | BYTE     | Large Medipack         |
+| 0x168           | BYTE     | Flares                 |
+| 0x16B           | BYTE     | Weapons Config Num     |
+
+### 40 Fathoms ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x185           | UInt16   | Autmatic Pistols Ammo  |
+| 0x187           | UInt16   | Uzi Ammo               |
+| 0x189           | UInt16   | Shotgun Ammo           |
+| 0x18B           | UInt16   | M16 Ammo               |
+| 0x18D           | UInt16   | Grenade Launcher Ammo  |
+| 0x18F           | UInt16   | Harpoon Gun Ammo       |
+| 0x191           | BYTE     | Small Medipack         |
+| 0x192           | BYTE     | Large Medipack         |
+| 0x194           | BYTE     | Flares                 |
+| 0x197           | BYTE     | Weapons Config Num     |
+
+### Wreck of the Maria Doria ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x1B1           | UInt16   | Autmatic Pistols Ammo  |
+| 0x1B3           | UInt16   | Uzi Ammo               |
+| 0x1B5           | UInt16   | Shotgun Ammo           |
+| 0x1B7           | UInt16   | M16 Ammo               |
+| 0x1B9           | UInt16   | Grenade Launcher Ammo  |
+| 0x1BB           | UInt16   | Harpoon Gun Ammo       |
+| 0x1BD           | BYTE     | Small Medipack         |
+| 0x1BE           | BYTE     | Large Medipack         |
+| 0x1C0           | BYTE     | Flares                 |
+| 0x1C3           | BYTE     | Weapons Config Num     |
+
+### Living Quarters ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x1DD           | UInt16   | Autmatic Pistols Ammo  |
+| 0x1DF           | UInt16   | Uzi Ammo               |
+| 0x1E1           | UInt16   | Shotgun Ammo           |
+| 0x1E3           | UInt16   | M16 Ammo               |
+| 0x1E5           | UInt16   | Grenade Launcher Ammo  |
+| 0x1E7           | UInt16   | Harpoon Gun Ammo       |
+| 0x1E9           | BYTE     | Small Medipack         |
+| 0x1EA           | BYTE     | Large Medipack         |
+| 0x1EC           | BYTE     | Flares                 |
+| 0x1EF           | BYTE     | Weapons Config Num     |
+
+### The Deck ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x209           | UInt16   | Autmatic Pistols Ammo  |
+| 0x20B           | UInt16   | Uzi Ammo               |
+| 0x20D           | UInt16   | Shotgun Ammo           |
+| 0x20F           | UInt16   | M16 Ammo               |
+| 0x211           | UInt16   | Grenade Launcher Ammo  |
+| 0x213           | UInt16   | Harpoon Gun Ammo       |
+| 0x215           | BYTE     | Small Medipack         |
+| 0x216           | BYTE     | Large Medipack         |
+| 0x218           | BYTE     | Flares                 |
+| 0x21B           | BYTE     | Weapons Config Num     |
+
+### Tibetan Foothills ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x235           | UInt16   | Autmatic Pistols Ammo  |
+| 0x237           | UInt16   | Uzi Ammo               |
+| 0x239           | UInt16   | Shotgun Ammo           |
+| 0x23B           | UInt16   | M16 Ammo               |
+| 0x23D           | UInt16   | Grenade Launcher Ammo  |
+| 0x23F           | UInt16   | Harpoon Gun Ammo       |
+| 0x241           | BYTE     | Small Medipack         |
+| 0x242           | BYTE     | Large Medipack         |
+| 0x244           | BYTE     | Flares                 |
+| 0x247           | BYTE     | Weapons Config Num     |
+
+### Barkhang Monastery ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x261           | UInt16   | Autmatic Pistols Ammo  |
+| 0x263           | UInt16   | Uzi Ammo               |
+| 0x265           | UInt16   | Shotgun Ammo           |
+| 0x267           | UInt16   | M16 Ammo               |
+| 0x269           | UInt16   | Grenade Launcher Ammo  |
+| 0x26B           | UInt16   | Harpoon Gun Ammo       |
+| 0x26D           | BYTE     | Small Medipack         |
+| 0x26E           | BYTE     | Large Medipack         |
+| 0x270           | BYTE     | Flares                 |
+| 0x273           | BYTE     | Weapons Config Num     |
+
+### Catacombs of the Talion ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x28D           | UInt16   | Autmatic Pistols Ammo  |
+| 0x28F           | UInt16   | Uzi Ammo               |
+| 0x291           | UInt16   | Shotgun Ammo           |
+| 0x293           | UInt16   | M16 Ammo               |
+| 0x295           | UInt16   | Grenade Launcher Ammo  |
+| 0x297           | UInt16   | Harpoon Gun Ammo       |
+| 0x299           | BYTE     | Small Medipack         |
+| 0x29A           | BYTE     | Large Medipack         |
+| 0x29C           | BYTE     | Flares                 |
+| 0x29F           | BYTE     | Weapons Config Num     |
+
+### Ice Palace ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x2B9           | UInt16   | Autmatic Pistols Ammo  |
+| 0x2BB           | UInt16   | Uzi Ammo               |
+| 0x2BD           | UInt16   | Shotgun Ammo           |
+| 0x2BF           | UInt16   | M16 Ammo               |
+| 0x2C1           | UInt16   | Grenade Launcher Ammo  |
+| 0x2C3           | UInt16   | Harpoon Gun Ammo       |
+| 0x2C5           | BYTE     | Small Medipack         |
+| 0x2C6           | BYTE     | Large Medipack         |
+| 0x2C8           | BYTE     | Flares                 |
+| 0x2CB           | BYTE     | Weapons Config Num     |
+
+### Temple of Xian ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x2E5           | UInt16   | Autmatic Pistols Ammo  |
+| 0x2E7           | UInt16   | Uzi Ammo               |
+| 0x2E9           | UInt16   | Shotgun Ammo           |
+| 0x2EB           | UInt16   | M16 Ammo               |
+| 0x2ED           | UInt16   | Grenade Launcher Ammo  |
+| 0x2EF           | UInt16   | Harpoon Gun Ammo       |
+| 0x2F1           | BYTE     | Small Medipack         |
+| 0x2F2           | BYTE     | Large Medipack         |
+| 0x2F4           | BYTE     | Flares                 |
+| 0x2F7           | BYTE     | Weapons Config Num     |
+
+### Floating Islands ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x311           | UInt16   | Autmatic Pistols Ammo  |
+| 0x313           | UInt16   | Uzi Ammo               |
+| 0x315           | UInt16   | Shotgun Ammo           |
+| 0x317           | UInt16   | M16 Ammo               |
+| 0x319           | UInt16   | Grenade Launcher Ammo  |
+| 0x31B           | UInt16   | Harpoon Gun Ammo       |
+| 0x31D           | BYTE     | Small Medipack         |
+| 0x31E           | BYTE     | Large Medipack         |
+| 0x320           | BYTE     | Flares                 |
+| 0x323           | BYTE     | Weapons Config Num     |
+
+### The Dragon's Lair ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x33D           | UInt16   | Autmatic Pistols Ammo  |
+| 0x33F           | UInt16   | Uzi Ammo               |
+| 0x341           | UInt16   | Shotgun Ammo           |
+| 0x343           | UInt16   | M16 Ammo               |
+| 0x345           | UInt16   | Grenade Launcher Ammo  |
+| 0x347           | UInt16   | Harpoon Gun Ammo       |
+| 0x349           | BYTE     | Small Medipack         |
+| 0x34A           | BYTE     | Large Medipack         |
+| 0x34C           | BYTE     | Flares                 |
+| 0x34F           | BYTE     | Weapons Config Num     |
+
+### Home Sweet Home ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x36D           | UInt16   | Shotgun Ammo           |
+| 0x375           | BYTE     | Small Medipack         |
+| 0x376           | BYTE     | Large Medipack         |
+| 0x378           | BYTE     | Flares                 |
+| 0x37B           | BYTE     | Weapons Config Num     |
 
 ## Tomb Raider III
 #### Jungle ####
