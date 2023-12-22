@@ -428,7 +428,7 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x0A3                 | BYTE             | Large Medipack          |
 | 0x0A7                 | BYTE             | Weapons Config Num      |
 
-# Tomb Raider II
+## Tomb Raider II
 ### The Great Wall ###
 | **File Offset**       | **Type**         | **Variable**            |
 | :---                	| :---             | :---                    |
@@ -1296,6 +1296,145 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x1035            | UInt16   | Rocket Launcher Ammo 2  |
 | 0x1039            | UInt16   | Grenade Launcher Ammo 2 |
 | 0x103D            | UInt16   | MP5 Ammo 2              |
+
+## Tomb Raider III: The Lost Artifact
+#### Highland Fling ####
+| **File offset**   | **Type** | **Variable**            |
+| :---              | :---     | :---                    |
+| 0x0000            | String   | Level Name              |
+| 0x004B            | UInt16   | Save Number             |
+| 0x00DA            | UInt16   | Uzi Ammo                |
+| 0x00DE            | UInt16   | MP5 Ammo                |
+| 0x00E0            | UInt16   | Rocket Launcher Ammo    |
+| 0x00E2            | UInt16   | Harpoon Gun Ammo        |
+| 0x00E4            | UInt16   | Grenade Launcher Ammo   |
+| 0x00E6            | BYTE     | Small Medipack          |
+| 0x00E7            | BYTE     | Large Medipack          |
+| 0x00E9            | BYTE     | Flares                  |
+| 0x00ED            | BYTE     | Weapons Config Num      |
+| 0x00EE            | BYTE     | Harpoon Gun             |
+| 0x17DF            | UInt16   | Deagle Ammo 2           |
+| 0x17E3            | UInt16   | Uzi Ammo 2              |
+| 0x17E7            | UInt16   | Shotgun Ammo 2          |
+| 0x17EB            | UInt16   | Harpoon Gun Ammo 2      |
+| 0x17EF            | UInt16   | Rocket Launcher Ammo 2  |
+| 0x17F3            | UInt16   | Grenade Launcher Ammo 2 |
+| 0x17F7            | UInt16   | MP5 Ammo 2              |
+
+#### Willard's Lair ####
+| **File offset**   | **Type** | **Variable**            |
+| :---              | :---     | :---                    |
+| 0x0000            | String   | Level Name              |
+| 0x004B            | UInt16   | Save Number             |
+| 0x010D            | UInt16   | Uzi Ammo                |
+| 0x0111            | UInt16   | MP5 Ammo                |
+| 0x0113            | UInt16   | Rocket Launcher Ammo    |
+| 0x0115            | UInt16   | Harpoon Gun Ammo        |
+| 0x0117            | UInt16   | Grenade Launcher Ammo   |
+| 0x0119            | BYTE     | Small Medipack          |
+| 0x011A            | BYTE     | Large Medipack          |
+| 0x011C            | BYTE     | Flares                  |
+| 0x0120            | BYTE     | Weapons Config Num      |
+| 0x0121            | BYTE     | Harpoon Gun             |
+| 0x1ACF            | UInt16   | Deagle Ammo 2           |
+| 0x1AD3            | UInt16   | Uzi Ammo 2              |
+| 0x1AD7            | UInt16   | Shotgun Ammo 2          |
+| 0x1ADB            | UInt16   | Harpoon Gun Ammo 2      |
+| 0x1ADF            | UInt16   | Rocket Launcher Ammo 2  |
+| 0x1AE3            | UInt16   | Grenade Launcher Ammo 2 |
+| 0x1AE7            | UInt16   | MP5 Ammo 2              |
+
+#### Shakespeare Cliff ####
+| **File offset**   | **Type** | **Variable**            |
+| :---              | :---     | :---                    |
+| 0x0000            | String   | Level Name              |
+| 0x004B            | UInt16   | Save Number             |
+| 0x0140            | UInt16   | Uzi Ammo                |
+| 0x0144            | UInt16   | MP5 Ammo                |
+| 0x0146            | UInt16   | Rocket Launcher Ammo    |
+| 0x0148            | UInt16   | Harpoon Gun Ammo        |
+| 0x014A            | UInt16   | Grenade Launcher Ammo   |
+| 0x014C            | BYTE     | Small Medipack          |
+| 0x014D            | BYTE     | Large Medipack          |
+| 0x014F            | BYTE     | Flares                  |
+| 0x0153            | BYTE     | Weapons Config Num      |
+| 0x0154            | BYTE     | Harpoon Gun             |
+| 0x1AC8            | UInt16   | Deagle Ammo 2           |
+| 0x1ACC            | UInt16   | Uzi Ammo 2              |
+| 0x1AD0            | UInt16   | Shotgun Ammo 2          |
+| 0x1AD4            | UInt16   | Harpoon Gun Ammo 2      |
+| 0x1AD8            | UInt16   | Rocket Launcher Ammo 2  |
+| 0x1ADC            | UInt16   | Grenade Launcher Ammo 2 |
+| 0x1AE0            | UInt16   | MP5 Ammo 2              |
+
+#### Sleeping with the Fishes ####
+| **File offset**   | **Type** | **Variable**            |
+| :---              | :---     | :---                    |
+| 0x0000            | String   | Level Name              |
+| 0x004B            | UInt16   | Save Number             |
+| 0x0173            | UInt16   | Uzi Ammo                |
+| 0x0177            | UInt16   | MP5 Ammo                |
+| 0x0179            | UInt16   | Rocket Launcher Ammo    |
+| 0x017B            | UInt16   | Harpoon Gun Ammo        |
+| 0x017D            | UInt16   | Grenade Launcher Ammo   |
+| 0x017F            | BYTE     | Small Medipack          |
+| 0x0180            | BYTE     | Large Medipack          |
+| 0x0182            | BYTE     | Flares                  |
+| 0x0186            | BYTE     | Weapons Config Num      |
+| 0x0187            | BYTE     | Harpoon Gun             |
+| 0x19A5            | UInt16   | Deagle Ammo 2           |
+| 0x19A9            | UInt16   | Uzi Ammo 2              |
+| 0x19AD            | UInt16   | Shotgun Ammo 2          |
+| 0x19B1            | UInt16   | Harpoon Gun Ammo 2      |
+| 0x19B5            | UInt16   | Rocket Launcher Ammo 2  |
+| 0x19B9            | UInt16   | Grenade Launcher Ammo 2 |
+| 0x19BD            | UInt16   | MP5 Ammo 2              |
+
+#### It's a Madhouse! ####
+| **File offset**   | **Type** | **Variable**            |
+| :---              | :---     | :---                    |
+| 0x0000            | String   | Level Name              |
+| 0x004B            | UInt16   | Save Number             |
+| 0x01A6            | UInt16   | Uzi Ammo                |
+| 0x01AA            | UInt16   | MP5 Ammo                |
+| 0x01AC            | UInt16   | Rocket Launcher Ammo    |
+| 0x01AE            | UInt16   | Harpoon Gun Ammo        |
+| 0x01B0            | UInt16   | Grenade Launcher Ammo   |
+| 0x01B2            | BYTE     | Small Medipack          |
+| 0x01B3            | BYTE     | Large Medipack          |
+| 0x01B5            | BYTE     | Flares                  |
+| 0x01B9            | BYTE     | Weapons Config Num      |
+| 0x01BA            | BYTE     | Harpoon Gun             |
+| 0x16EF            | UInt16   | Deagle Ammo 2           |
+| 0x16F3            | UInt16   | Uzi Ammo 2              |
+| 0x16F7            | UInt16   | Shotgun Ammo 2          |
+| 0x16FB            | UInt16   | Harpoon Gun Ammo 2      |
+| 0x16FF            | UInt16   | Rocket Launcher Ammo 2  |
+| 0x1703            | UInt16   | Grenade Launcher Ammo 2 |
+| 0x1707            | UInt16   | MP5 Ammo 2              |
+
+#### Reunion ####
+| **File offset**   | **Type** | **Variable**            |
+| :---              | :---     | :---                    |
+| 0x0000            | String   | Level Name              |
+| 0x004B            | UInt16   | Save Number             |
+| 0x01D9            | UInt16   | Uzi Ammo                |
+| 0x01DD            | UInt16   | MP5 Ammo                |
+| 0x01DF            | UInt16   | Rocket Launcher Ammo    |
+| 0x01E1            | UInt16   | Harpoon Gun Ammo        |
+| 0x01E3            | UInt16   | Grenade Launcher Ammo   |
+| 0x01E5            | BYTE     | Small Medipack          |
+| 0x01E6            | BYTE     | Large Medipack          |
+| 0x01E8            | BYTE     | Flares                  |
+| 0x01EC            | BYTE     | Weapons Config Num      |
+| 0x01ED            | BYTE     | Harpoon Gun             |
+| 0x11F9            | UInt16   | Deagle Ammo 2           |
+| 0x11FD            | UInt16   | Uzi Ammo 2              |
+| 0x1201            | UInt16   | Shotgun Ammo 2          |
+| 0x1205            | UInt16   | Harpoon Gun Ammo 2      |
+| 0x1209            | UInt16   | Rocket Launcher Ammo 2  |
+| 0x120D            | UInt16   | Grenade Launcher Ammo 2 |
+| 0x1211            | UInt16   | MP5 Ammo 2              |
 
 ## Tomb Raider: The Last Revelation
 | **File offset**       | **Type**         | **Variable**            |
