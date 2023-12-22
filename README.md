@@ -712,6 +712,87 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x378           | BYTE     | Flares                 |
 | 0x37B           | BYTE     | Weapons Config Num     |
 
+## Tomb Raider II: The Golden Mask
+### The Cold War ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x07D           | UInt16   | Automatic Pistols Ammo |
+| 0x07F           | UInt16   | Uzi Ammo               |
+| 0x081           | UInt16   | Shotgun Ammo           |
+| 0x083           | UInt16   | M16 Ammo               |
+| 0x085           | UInt16   | Grenade Launcher Ammo  |
+| 0x087           | UInt16   | Harpoon Gun Ammo       |
+| 0x089           | BYTE     | Small Medipack         |
+| 0x08A           | BYTE     | Large Medipack         |
+| 0x08C           | BYTE     | Flares                 |
+| 0x08F           | BYTE     | Weapons Config Num     |
+
+### Fool's Gold ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x0A9           | UInt16   | Automatic Pistols Ammo |
+| 0x0AB           | UInt16   | Uzi Ammo               |
+| 0x0AD           | UInt16   | Shotgun Ammo           |
+| 0x0AF           | UInt16   | M16 Ammo               |
+| 0x0B1           | UInt16   | Grenade Launcher Ammo  |
+| 0x0B3           | UInt16   | Harpoon Gun Ammo       |
+| 0x0B5           | BYTE     | Small Medipack         |
+| 0x0B6           | BYTE     | Large Medipack         |
+| 0x0B8           | BYTE     | Flares                 |
+| 0x0BB           | BYTE     | Weapons Config Num     |
+
+### Furnace of the Gods ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x0D5           | UInt16   | Automatic Pistols Ammo |
+| 0x0D7           | UInt16   | Uzi Ammo               |
+| 0x0D9           | UInt16   | Shotgun Ammo           |
+| 0x0DB           | UInt16   | M16 Ammo               |
+| 0x0DD           | UInt16   | Grenade Launcher Ammo  |
+| 0x0DF           | UInt16   | Harpoon Gun Ammo       |
+| 0x0E1           | BYTE     | Small Medipack         |
+| 0x0E2           | BYTE     | Large Medipack         |
+| 0x0E4           | BYTE     | Flares                 |
+| 0x0E7           | BYTE     | Weapons Config Num     |
+
+### Kingdom ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x101           | UInt16   | Automatic Pistols Ammo |
+| 0x103           | UInt16   | Uzi Ammo               |
+| 0x105           | UInt16   | Shotgun Ammo           |
+| 0x107           | UInt16   | M16 Ammo               |
+| 0x109           | UInt16   | Grenade Launcher Ammo  |
+| 0x10B           | UInt16   | Harpoon Gun Ammo       |
+| 0x10D           | BYTE     | Small Medipack         |
+| 0x10E           | BYTE     | Large Medipack         |
+| 0x110           | BYTE     | Flares                 |
+| 0x113           | BYTE     | Weapons Config Num     |
+
+### Nightmare In Vegas ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
+| 0x000           | String   | Level Name             |
+| 0x04B           | UInt16   | Save Number            |
+| 0x12D           | UInt16   | Automatic Pistols Ammo |
+| 0x12F           | UInt16   | Uzi Ammo               |
+| 0x131           | UInt16   | Shotgun Ammo           |
+| 0x133           | UInt16   | M16 Ammo               |
+| 0x135           | UInt16   | Grenade Launcher Ammo  |
+| 0x137           | UInt16   | Harpoon Gun Ammo       |
+| 0x139           | BYTE     | Small Medipack         |
+| 0x13A           | BYTE     | Large Medipack         |
+| 0x13C           | BYTE     | Flares                 |
+| 0x13F           | BYTE     | Weapons Config Num     |
+
 ## Tomb Raider III
 #### Jungle ####
 | **File offset** | **Type** | **Variable**            |
