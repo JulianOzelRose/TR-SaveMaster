@@ -300,16 +300,121 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 # Offset tables
 ## Tomb Raider I
 ### Common ###
-| **File offset**       | **Type**         | **Variable**            |
-| :---                	| :---             | :---                    |
-| 0x000                 | String           | Level Name              |
-| 0x04B                 | UInt16           | Save Number             |
-| 0x18C                 | UInt16           | Magnum Ammo             |
-| 0x18E                 | UInt16           | Uzi Ammo                |
-| 0x190                 | UInt16           | Shotgun Ammo            |
-| 0x192                 | BYTE             | Small Medipack          |
-| 0x193                 | BYTE             | Large Medipack          |
-| 0x197                 | BYTE             | Weapons Config Num      |
+| **File offset**        | **Type**         | **Variable**            |
+| :---                	 | :---             | :---                    |
+| 0x0000                 | String           | Level Name              |
+| 0x004B                 | UInt16           | Save Number             |
+| 0x018C                 | UInt16           | Magnum Ammo             |
+| 0x018E                 | UInt16           | Uzi Ammo                |
+| 0x0190                 | UInt16           | Shotgun Ammo            |
+| 0x0192                 | BYTE             | Small Medipack          |
+| 0x0193                 | BYTE             | Large Medipack          |
+| 0x0197                 | BYTE             | Weapons Config Num      |
+
+### Caves ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x0641                   |
+| Uzi Ammo              | UInt16           | 0x064D                   |
+| Shotgun Ammo          | UInt16           | 0x0659                   |
+
+### City of Vilcabamba ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x0C24                   |
+| Uzi Ammo              | UInt16           | 0x0C30                   |
+| Shotgun Ammo          | UInt16           | 0x0C3C                   |
+
+### Lost Valley ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x0598                   |
+| Uzi Ammo              | UInt16           | 0x0C30                   |
+| Shotgun Ammo          | UInt16           | 0x0C3C                   |
+
+### Tomb of Qualopec ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x084A                   |
+| Uzi Ammo              | UInt16           | 0x0856                   |
+| Shotgun Ammo          | UInt16           | 0x0862                   |
+
+### St. Francis' Folly ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x0D70                   |
+| Uzi Ammo              | UInt16           | 0x0D7C                   |
+| Shotgun Ammo          | UInt16           | 0x0D88                   |
+
+### Colosseum ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x0A56                   |
+| Uzi Ammo              | UInt16           | 0x0A62                   |
+| Shotgun Ammo          | UInt16           | 0x0A6E                   |
+
+### Palace Midas ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x0D48                   |
+| Uzi Ammo              | UInt16           | 0x0D54                   |
+| Shotgun Ammo          | UInt16           | 0x0D60                   |
+
+### The Cistern ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x0C8A                   |
+| Uzi Ammo              | UInt16           | 0x0C96                   |
+| Shotgun Ammo          | UInt16           | 0x0CA2                   |
+
+### Tomb of Tihocan ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x093D                   |
+| Uzi Ammo              | UInt16           | 0x0949                   |
+| Shotgun Ammo          | UInt16           | 0x0955                   |
+
+### City of Khamoon ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x085D                   |
+| Uzi Ammo              | UInt16           | 0x0869                   |
+| Shotgun Ammo          | UInt16           | 0x0955                   |
+
+### Obelisk of Khamoon ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x08A3                   |
+| Uzi Ammo              | UInt16           | 0x08AF                   |
+| Shotgun Ammo          | UInt16           | 0x08BB                   |
+
+### Sanctuary of the Scion ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x0718                   |
+| Uzi Ammo              | UInt16           | 0x0724                   |
+| Shotgun Ammo          | UInt16           | 0x0730                   |
+
+### Natla's Mines ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x08A8                   |
+| Uzi Ammo              | UInt16           | 0x08B4                   |
+| Shotgun Ammo          | UInt16           | 0x08C0                   |
+
+### Atlantis ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x0FFA                   |
+| Uzi Ammo              | UInt16           | 0x1006                   |
+| Shotgun Ammo          | UInt16           | 0x1012                   |
+
+### The Great Pyramid ###
+| **File offset**       | **Type**         | **Variable**             |
+| :---                	| :---             | :---                     |
+| Magnum Ammo           | UInt16           | 0x08D2                   |
+| Uzi Ammo              | UInt16           | 0x08DE                   |
+| Shotgun Ammo          | UInt16           | 0x08EA                   |
 
 ## Tomb Raider I: Unfinished Business
 ### Common ###
