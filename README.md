@@ -35,6 +35,10 @@ of savegame files, which is enabled by default. You can toggle auto backups off,
 ```File``` and then look for ```Create backups```. Under the ```View``` menu, you can also change the UI theme and hide the status bar, if you desire a simpler interface.
 This savegame editor will remember your game directories, so there is no need to re-enter them each time you launch it.
 
+For Tomb Raider: Chronicles and The Last Revelation, ammunition will be represented in the editor exactly as displayed in the game. However, for Tomb Raider 1-3, the
+ammunition for weapons not currently equipped may appear differently than in-game. Specifically, Harpoons are grouped in bundles of 2, Desert Eagle clips represent 5
+bullets, MP5 clips equate to 30 bullets, Uzi clips correspond to 20 bullets, and a single box of grenades is equivalent to 2 rounds of grenade launcher ammunition.
+
 # Reverse engineering the Tomb Raider series
 This section details the technical aspects of reverse engineering the savegame files for the classic Tomb Raider series. The offset tables for each game are included
 at the end of the README. In general, there are many similarities between the games, as they are all built on the same engine. Tomb Raider 1-3 use a very similar engine,
