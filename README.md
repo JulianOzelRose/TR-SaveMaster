@@ -197,7 +197,7 @@ weapon byte codes for Tomb Raier III:
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
 | Pistols                 | 2                 |
-| Deagle                  | 4                 |
+| Desert Eagle            | 4                 |
 | Uzis                    | 8                 |
 | Shotgun                 | 16                |
 | MP5                     | 32                |
