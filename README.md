@@ -5,6 +5,26 @@ please scroll down to the next section of this README. Additionally, technical d
 
 ![TR-SaveMaster-UI](https://github.com/JulianOzelRose/TR-SaveMaster/assets/95890436/d95b20d0-ea26-431f-ab39-74c9166d791b)
 
+## Table of contents
+- [Installation and use](https://github.com/JulianOzelRose/TR-SaveMaster#installation-and-use)
+- [Reverse engineering the Tomb Raider series](https://github.com/JulianOzelRose/TR-SaveMaster#reverse-engineering-the-tomb-raider-series)
+   - [Using bitwise to extract weapons information](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information)
+   - [Using heuristics to determine the health offset](https://github.com/JulianOzelRose/TR-SaveMaster#using-heuristics-to-determine-the-health-offset)
+   - [Tomb Raider I](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-i)
+   - [Tomb Raider II](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-ii)
+   - [Tomb Raider III](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-iii)
+   - [Tomb Raider: The Last Revelation](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-the-last-revelation)
+   - [Tomb Raider Chronicles](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-chronicles)
+- [Offset tables](https://github.com/JulianOzelRose/TR-SaveMaster#offset-tables)
+   - [Tomb Raider I](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-i-1)
+   - [Tomb Raider I: Unfinished Business](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-i-unfinished-business)
+   - [Tomb Raider II](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-ii-1)
+   - [Tomb Raider II: The Golden Mask](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-ii-the-golden-mask)
+   - [Tomb Raider III](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-iii-1)
+   - [Tomb Raider: The Last Revelation](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-the-last-revelation-1)
+   - [Tomb Raider Chronicles](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-chronicles-1)
+
+
 ## Installation and use
 To use this savegame editor, simply navigate to the [Release](https://github.com/JulianOzelRose/TR-SaveMaster/tree/master/TR-SaveMaster/bin/x64/Release) folder, then
 download ```TR-SaveMaster.exe```, then open it. There is no need to install anything, and it can be run from anywhere on your computer. To toggle between the different
