@@ -105,24 +105,24 @@ namespace TR_SaveMaster
         {
             string lvlName = GetLvlName();
 
-            if (lvlName.StartsWith("The Great Wall")) return "The Great Wall";
-            else if (lvlName.StartsWith("Venice")) return "Venice";
-            else if (lvlName.StartsWith("Bartoli's Hideout")) return "Bartoli's Hideout";
-            else if (lvlName.StartsWith("Opera House")) return "Opera House";
-            else if (lvlName.StartsWith("Offshore Rig")) return "Offshore Rig";
-            else if (lvlName.StartsWith("Diving Area")) return "Diving Area";
-            else if (lvlName.StartsWith("40 Fathoms")) return "40 Fathoms";
-            else if (lvlName.StartsWith("Wreck of the Maria Doria")) return "Wreck of the Maria Doria";
-            else if (lvlName.StartsWith("Living Quarters")) return "Living Quarters";
-            else if (lvlName.StartsWith("The Deck")) return "The Deck";
-            else if (lvlName.StartsWith("Tibetan Foothills")) return "Tibetan Foothills";
-            else if (lvlName.StartsWith("Barkhang Monastery")) return "Barkhang Monastery";
-            else if (lvlName.StartsWith("Catacombs of the Talion")) return "Catacombs of the Talion";
-            else if (lvlName.StartsWith("Ice Palace")) return "Ice Palace";
-            else if (lvlName.StartsWith("Temple of Xian")) return "Temple of Xian";
-            else if (lvlName.StartsWith("Floating Islands")) return "Floating Islands";
-            else if (lvlName.StartsWith("The Dragon's Lair")) return "The Dragon's Lair";
-            else if (lvlName.StartsWith("Home Sweet Home")) return "Home Sweet Home";
+            if (lvlName.StartsWith("The Great Wall") || lvlName.StartsWith("Die Gro=e Mauer")) return "The Great Wall";
+            else if (lvlName.StartsWith("Venice") || lvlName.StartsWith("Venedig")) return "Venice";
+            else if (lvlName.StartsWith("Bartoli's Hideout") || lvlName.StartsWith("Bartolis Versteck")) return "Bartoli's Hideout";
+            else if (lvlName.StartsWith("Opera House") || lvlName.StartsWith("Das Opernhaus")) return "Opera House";
+            else if (lvlName.StartsWith("Offshore Rig") || lvlName.StartsWith("Der Bohrturm")) return "Offshore Rig";
+            else if (lvlName.StartsWith("Diving Area") || lvlName.StartsWith("Die Tiefe")) return "Diving Area";
+            else if (lvlName.StartsWith("40 Fathoms") || lvlName.StartsWith("40 Faden")) return "40 Fathoms";
+            else if (lvlName.StartsWith("Wreck of the Maria Doria") || lvlName.StartsWith("Das Wrack der Maria Doria")) return "Wreck of the Maria Doria";
+            else if (lvlName.StartsWith("Living Quarters") || lvlName.StartsWith("Die Quartiere")) return "Living Quarters";
+            else if (lvlName.StartsWith("The Deck") || lvlName.StartsWith("An Deck")) return "The Deck";
+            else if (lvlName.StartsWith("Tibetan Foothills") || lvlName.StartsWith("Das tibetianische Hochland")) return "Tibetan Foothills";
+            else if (lvlName.StartsWith("Barkhang Monastery") || lvlName.StartsWith("Das Kloster von Barkhang")) return "Barkhang Monastery";
+            else if (lvlName.StartsWith("Catacombs of the Talion") || lvlName.StartsWith("Die Katakomben des Talion")) return "Catacombs of the Talion";
+            else if (lvlName.StartsWith("Ice Palace") || lvlName.StartsWith("Der Eispalast")) return "Ice Palace";
+            else if (lvlName.StartsWith("Temple of Xian") || lvlName.StartsWith("Der Tempel des Xian")) return "Temple of Xian";
+            else if (lvlName.StartsWith("Floating Islands") || lvlName.StartsWith("Die schwimmenden Inseln")) return "Floating Islands";
+            else if (lvlName.StartsWith("The Dragon's Lair") || lvlName.StartsWith("Der Hort des Drachen")) return "The Dragon's Lair";
+            else if (lvlName.StartsWith("Home Sweet Home") || lvlName.StartsWith("Zuhause")) return "Home Sweet Home";
 
             return null;
         }
