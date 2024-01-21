@@ -14,7 +14,7 @@ please scroll down to the next section of this README. Additionally, technical d
    - [Tomb Raider II](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-ii)
    - [Tomb Raider III](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-iii)
    - [Tomb Raider: The Last Revelation](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-the-last-revelation)
-   - [Tomb Raider Chronicles](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-chronicles)
+   - [Tomb Raider: Chronicles](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-chronicles)
 - [Offset tables](https://github.com/JulianOzelRose/TR-SaveMaster#offset-tables)
    - [Tomb Raider I](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-i-1)
    - [Tomb Raider I: Unfinished Business](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-i-unfinished-business)
@@ -22,7 +22,7 @@ please scroll down to the next section of this README. Additionally, technical d
    - [Tomb Raider II: The Golden Mask](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-ii-the-golden-mask)
    - [Tomb Raider III](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-iii-1)
    - [Tomb Raider: The Last Revelation](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-the-last-revelation-1)
-   - [Tomb Raider Chronicles](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-chronicles-1)
+   - [Tomb Raider: Chronicles](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-chronicles-1)
 
 
 ## Installation and use
