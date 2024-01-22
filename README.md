@@ -107,8 +107,8 @@ else
 }
 ```
 When writing a new weapons configuration, perform the same operation, but in reverse. Start with the base number of 1,
-then increment the new weapons config number based on which weapons are checkmarked in the UI. Here is an example of this
-for Tomb Raider II:
+then increment the new weapons config number based on which weapons are checkmarked in the editor's UI. Here is an example
+of how this is implemented for Tomb Raider II:
 
 ```
 byte newWeaponsConfigNum = 1;
@@ -158,8 +158,8 @@ private int GetHealthOffset()
 Reverse engineering Tomb Raider I savegames is relatively straightforward. The biggest convenience is that most of the file offsets are static. Meaning, they are the same
 across levels. The only exception is the secondary ammunition offsets, which are still static, but different on each level. Weapons information can be extracted using
 bitwise methods, as outlined in the [section above](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information).
-Here are the weapon byte codes unique to Tomb Raider I:
 
+### Weapon byte flags
 ###                                         ###
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
@@ -178,8 +178,8 @@ Reverse engineering Tomb Raider II savegames is slightly different compared to T
 differ on each level, and are dynamically allocated. Similar to Tomb Raider I, weapons information is also stored
 on a single offset in Tomb Raider II. You can use the same methodology to extract weapons information outlined in
 the [above section](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information).
-Here are the weapon byte codes:
 
+### Weapon byte flags
 ###                                         ###
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
@@ -218,8 +218,9 @@ private void SetSecondaryAmmoOffsets()
 Similar to the previous two titles, Tomb Raider III also stores weapons information on a single offset - with the exception
 of the Harpoon Gun, which is stored as a boolean on its own offset, 1 byte away from the weapons config number. Bitwise
 can be used to extract the weapons present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information)
-on how to do this. Here are the weapon byte codes for Tomb Raier III:
+on how to do this.
 
+### Weapon byte flags
 ###                                         ###
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
@@ -310,6 +311,7 @@ which is dynamically stored on a range that varies on each level. To determine t
 the heuristic algorithm outlined in the above section. For Tomb Raider 5, the character animation data is located between 6-7
 bytes away from the health offset. Below is a table of the health offset ranges:
 
+### Health offsets
 | **Level**           	   | **Offset range** |
 | :---                	   | :---             |
 | Streets of Rome     	   | 0x4F4 - 0x4F8	 |
