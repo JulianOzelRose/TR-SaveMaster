@@ -12,8 +12,11 @@ please scroll down to the next section of this README. Additionally, technical d
    - [Using heuristics to determine the health offset](https://github.com/JulianOzelRose/TR-SaveMaster#using-heuristics-to-determine-the-health-offset)
    - [Tomb Raider I](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-i)
    - [Tomb Raider II](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-ii)
+      - [Calculating secondary ammo offsets](https://github.com/JulianOzelRose/TR-SaveMaster#calculating-secondary-ammo-offsets) 
    - [Tomb Raider III](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-iii)
+      - [Calculating secondary ammo offsets](https://github.com/JulianOzelRose/TR-SaveMaster#calculating-secondary-ammo-offsets-1)
    - [Tomb Raider: The Last Revelation](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-the-last-revelation)
+      - [Checksum algorithm](https://github.com/JulianOzelRose/TR-SaveMaster#checksum-algorithm)
    - [Tomb Raider: Chronicles](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-chronicles)
 - [Offset tables](https://github.com/JulianOzelRose/TR-SaveMaster#offset-tables)
    - [Tomb Raider I](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-i-1)
@@ -155,7 +158,7 @@ private int GetHealthOffset()
 Reverse engineering Tomb Raider I savegames is relatively straightforward. The biggest convenience is that most of the file offsets are static. Meaning, they are the same
 across levels. The only exception is the secondary ammunition offsets, which are still static, but different on each level. Weapons information can be extracted using
 bitwise methods, as outlined in the [section above](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information).
-Here are the weapon codes unique to Tomb Raider I:
+Here are the weapon byte codes unique to Tomb Raider I:
 
 ###                                         ###
 | **Weapon**              | **Unique number** |
@@ -175,7 +178,7 @@ Reverse engineering Tomb Raider II savegames is slightly different compared to T
 differ on each level, and are dynamically allocated. Similar to Tomb Raider I, weapons information is also stored
 on a single offset in Tomb Raider II. You can use the same methodology to extract weapons information outlined in
 the [above section](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information).
-Here are the weapon numbers:
+Here are the weapon byte codes:
 
 ###                                         ###
 | **Weapon**              | **Unique number** |
@@ -215,7 +218,7 @@ private void SetSecondaryAmmoOffsets()
 Similar to the previous two titles, Tomb Raider III also stores weapons information on a single offset - with the exception
 of the Harpoon Gun, which is stored as a boolean on its own offset, 1 byte away from the weapons config number. Bitwise
 can be used to extract the weapons present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information)
-on how to do this. Here are the unique weapon byte codes for Tomb Raier III:
+on how to do this. Here are the weapon byte codes for Tomb Raier III:
 
 ###                                         ###
 | **Weapon**              | **Unique number** |
