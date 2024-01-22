@@ -21,6 +21,7 @@ please scroll down to the next section of this README. Additionally, technical d
    - [Tomb Raider II](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-ii-1)
    - [Tomb Raider II: The Golden Mask](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-ii-the-golden-mask)
    - [Tomb Raider III](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-iii-1)
+   - [Tomb Raider III: The Lost Artifact](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-iii-the-lost-artifact)
    - [Tomb Raider: The Last Revelation](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-the-last-revelation-1)
    - [Tomb Raider: Chronicles](https://github.com/JulianOzelRose/TR-SaveMaster#tomb-raider-chronicles-1)
 
