@@ -98,22 +98,21 @@ namespace TR_SaveMaster
         {
             string lvlName = GetLvlName();
 
-            if (lvlName.StartsWith("Caves")) return "Caves";
-            else if (lvlName.StartsWith("City of Vilcabamba")) return "City of Vilcabamba";
-            else if (lvlName.StartsWith("Lost Valley")) return "Lost Valley";
-            else if (lvlName.StartsWith("Tomb of Qualopec")) return "Tomb of Qualopec";
+            if (lvlName.StartsWith("Caves") || lvlName.StartsWith("Die Kavernen")) return "Caves";
+            else if (lvlName.StartsWith("City of Vilcabamba") || lvlName.StartsWith("Die Stadt Vilcabamba")) return "City of Vilcabamba";
+            else if (lvlName.StartsWith("Lost Valley") || lvlName.StartsWith("Das Verlorene Tal")) return "Lost Valley";
+            else if (lvlName.StartsWith("Tomb of Qualopec") || lvlName.StartsWith("Das Grab von Qualopec")) return "Tomb of Qualopec";
             else if (lvlName.StartsWith("St. Francis' Folly")) return "St. Francis' Folly";
-            else if (lvlName.StartsWith("Colosseum")) return "Colosseum";
-            else if (lvlName.StartsWith("Palace Midas")) return "Palace Midas";
-            else if (lvlName.StartsWith("The Cistern")) return "The Cistern";
-            else if (lvlName.StartsWith("Tomb of Tihocan")) return "Tomb of Tihocan";
-            else if (lvlName.StartsWith("City of Khamoon")) return "City of Khamoon";
-            else if (lvlName.StartsWith("Obelisk of Khamoon")) return "Obelisk of Khamoon";
-            else if (lvlName.StartsWith("Sanctuary of the Scion")) return "Sanctuary of the Scion";
-            else if (lvlName.StartsWith("Natla's Mines")) return "Natla's Mines";
+            else if (lvlName.StartsWith("Colosseum") || lvlName.StartsWith("Das Kolosseum")) return "Colosseum";
+            else if (lvlName.StartsWith("Palace Midas") || lvlName.StartsWith("Der Palast des Midas")) return "Palace Midas";
+            else if (lvlName.StartsWith("The Cistern") || lvlName.StartsWith("Die Zisterne")) return "The Cistern";
+            else if (lvlName.StartsWith("Tomb of Tihocan") || lvlName.StartsWith("Das Grab des Tihocan")) return "Tomb of Tihocan";
+            else if (lvlName.StartsWith("City of Khamoon") || lvlName.StartsWith("Die Stadt Khamoon")) return "City of Khamoon";
+            else if (lvlName.StartsWith("Obelisk of Khamoon") || lvlName.StartsWith("Der Obelisk von Khamoon")) return "Obelisk of Khamoon";
+            else if (lvlName.StartsWith("Sanctuary of the Scion") || lvlName.StartsWith("Das Heiligtum des Scion")) return "Sanctuary of the Scion";
+            else if (lvlName.StartsWith("Natla's Mines") || lvlName.StartsWith("Natlas Katakomben")) return "Natla's Mines";
             else if (lvlName.StartsWith("Atlantis")) return "Atlantis";
-            else if (lvlName.StartsWith("The Great Pyramid")) return "The Great Pyramid";
-            else if (lvlName.StartsWith("Natla's Mines")) return "Natla's Mines";
+            else if (lvlName.StartsWith("The Great Pyramid") || lvlName.StartsWith("Die Gro=e Pyramide")) return "The Great Pyramid";
 
             return null;
         }
@@ -248,7 +247,7 @@ namespace TR_SaveMaster
             NumericUpDown nudSaveNumber, NumericUpDown nudSmallMedipacks, NumericUpDown nudLargeMedipacks, NumericUpDown nudUziAmmo,
             NumericUpDown nudMagnumAmmo, NumericUpDown nudShotgunAmmo, TrackBar trbHealth, Label lblHealth, Label lblHealthError)
         {
-            txtLvlName.Text = GetLvlName();
+            txtLvlName.Text = GetCleanLvlName();
 
             nudSaveNumber.Value = GetSaveNumber();
             nudSmallMedipacks.Value = GetNumSmallMedipacks();
