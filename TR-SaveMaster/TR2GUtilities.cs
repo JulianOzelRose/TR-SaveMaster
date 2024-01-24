@@ -105,11 +105,11 @@ namespace TR_SaveMaster
         {
             string lvlName = GetLvlName();
 
-            if (lvlName.StartsWith("The Cold War")) return "The Cold War";
-            else if (lvlName.StartsWith("Fool's Gold")) return "Fool's Gold";
-            else if (lvlName.StartsWith("Furnace of the Gods")) return "Furnace of the Gods";
-            else if (lvlName.StartsWith("Kingdom")) return "Kingdom";
-            else if (lvlName.StartsWith("Nightmare In Vegas")) return "Nightmare In Vegas";
+            if (lvlName.StartsWith("The Cold War") || lvlName.StartsWith("Der kalte Krieg")) return "The Cold War";
+            else if (lvlName.StartsWith("Fool's Gold") || lvlName.StartsWith("Das Gold des Narren")) return "Fool's Gold";
+            else if (lvlName.StartsWith("Furnace of the Gods") || lvlName.StartsWith("Hochofen der G~otter")) return "Furnace of the Gods";
+            else if (lvlName.StartsWith("Kingdom") || lvlName.StartsWith("K~onigreich")) return "Kingdom";
+            else if (lvlName.StartsWith("Nightmare In Vegas") || lvlName.StartsWith("Alptraum in Vegas")) return "Nightmare In Vegas";
 
             return null;
         }
@@ -639,7 +639,7 @@ namespace TR_SaveMaster
             NumericUpDown nudSmallMedipacks, NumericUpDown nudLargeMedipacks, TrackBar trbHealth, Label lblHealth,
             Label lblHealthError)
         {
-            txtLvlName.Text = GetLvlName();
+            txtLvlName.Text = GetCleanLvlName();
 
             nudSaveNumber.Value = GetSaveNumber();
             nudSmallMedipacks.Value = GetNumSmallMedipacks();
@@ -652,7 +652,7 @@ namespace TR_SaveMaster
             nudGrenadeLauncherAmmo.Value = GetGrenadeLauncherAmmo();
             nudHarpoonGunAmmo.Value = GetHarpoonGunAmmo();
 
-            if (GetLvlName().StartsWith("Nightmare In Vegas"))
+            if (GetCleanLvlName() == "Nightmare In Vegas")
             {
                 chkM16.Enabled = false;
                 chkGrenadeLauncher.Enabled = false;
