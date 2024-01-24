@@ -483,19 +483,6 @@ namespace TR_SaveMaster
             return false;
         }
 
-        private static bool IsNumericExtension(string fileName)
-        {
-            string extension = Path.GetExtension(fileName);
-
-            if (extension.StartsWith("."))
-            {
-                string numericPart = extension.Substring(".".Length);
-                return int.TryParse(numericPart, out _);
-            }
-
-            return false;
-        }
-
         private class NaturalComparer : IComparer<string>
         {
             public int Compare(string x, string y)
@@ -536,7 +523,23 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
-            return GetCleanLvlName() != null;
+            return GetCleanLvlName() != null && IsSavegameFile(path);
+        }
+
+        private static bool IsSavegameFile(string path)
+        {
+            string extension = Path.GetExtension(path);
+
+            if (extension.StartsWith("."))
+            {
+                string numericPart = extension.Substring(".".Length);
+                bool isNumeric = int.TryParse(numericPart, out _);
+                bool isTxtExtension = extension.Equals(".txt", StringComparison.OrdinalIgnoreCase);
+
+                return isNumeric || isTxtExtension;
+            }
+
+            return false;
         }
 
         public List<string> GetSavegamePaths(string gameDirectory)
@@ -545,7 +548,7 @@ namespace TR_SaveMaster
 
             if (Directory.Exists(gameDirectory))
             {
-                var matchingFiles = Directory.GetFiles(gameDirectory).Where(file => IsNumericExtension(file)).ToList();
+                var matchingFiles = Directory.GetFiles(gameDirectory).Where(file => IsSavegameFile(file)).ToList();
                 matchingFiles = matchingFiles.OrderBy(file => file, new NaturalComparer()).ToList();
                 savegamePaths.AddRange(matchingFiles);
             }
