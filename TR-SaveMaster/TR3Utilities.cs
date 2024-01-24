@@ -96,11 +96,11 @@ namespace TR_SaveMaster
             if (lvlName.StartsWith("Jungle") || lvlName.StartsWith("Dschungel")) return "Jungle";
             else if (lvlName.StartsWith("Temple Ruins") || lvlName.StartsWith("Tempelruine")) return "Temple Ruins";
             else if (lvlName.StartsWith("The River Ganges") || lvlName.StartsWith("Der Ganges")) return "The River Ganges";
-            else if (lvlName.StartsWith("Caves Of Kaliya") || lvlName.StartsWith("Kaliya H~hlen")) return "Caves Of Kaliya";
-            else if (lvlName.StartsWith("Nevada Desert") || lvlName.StartsWith("W~ste von Nevada")) return "Nevada Desert";
+            else if (lvlName.StartsWith("Caves Of Kaliya") || lvlName.StartsWith("Kaliya H~ohlen")) return "Caves Of Kaliya";
+            else if (lvlName.StartsWith("Nevada Desert") || lvlName.StartsWith("W~uste von Nevada")) return "Nevada Desert";
             else if (lvlName.StartsWith("High Security Compound") || lvlName.StartsWith("Hochsicherheitstrakt")) return "High Security Compound";
             else if (lvlName.StartsWith("Area 51")) return "Area 51";
-            else if (lvlName.StartsWith("Coastal Village") || lvlName.StartsWith("K~stendorf")) return "Coastal Village";
+            else if (lvlName.StartsWith("Coastal Village") || lvlName.StartsWith("K~ustendorf")) return "Coastal Village";
             else if (lvlName.StartsWith("Crash Site") || lvlName.StartsWith("Absturzstelle")) return "Crash Site";
             else if (lvlName.StartsWith("Madubu Gorge") || lvlName.StartsWith("Madubu Schlucht")) return "Madubu Gorge";
             else if (lvlName.StartsWith("Temple Of Puna") || lvlName.StartsWith("Punatempel")) return "Temple Of Puna";
@@ -111,7 +111,7 @@ namespace TR_SaveMaster
             else if (lvlName.StartsWith("Antarctica") || lvlName.StartsWith("Antarktis")) return "Antarctica";
             else if (lvlName.StartsWith("RX-Tech Mines") || lvlName.StartsWith("RX-Techs Bergwerk")) return "RX-Tech Mines";
             else if (lvlName.StartsWith("Lost City Of Tinnos") || lvlName.StartsWith("Die vergessene Stadt Tinnos")) return "Lost City Of Tinnos";
-            else if (lvlName.StartsWith("Meteorite Cavern") || lvlName.StartsWith("H~hle des Meteoriten")) return "Meteorite Cavern";
+            else if (lvlName.StartsWith("Meteorite Cavern") || lvlName.StartsWith("H~ohle des Meteoriten")) return "Meteorite Cavern";
             else if (lvlName.StartsWith("All Hallows")) return "All Hallows";
 
             return null;
@@ -740,7 +740,7 @@ namespace TR_SaveMaster
             NumericUpDown nudRocketLauncherAmmo, NumericUpDown nudHarpoonGunAmmo, NumericUpDown nudMP5Ammo, NumericUpDown nudUziAmmo,
             TrackBar trbHealth, Label lblHealth, Label lblHealthError)
         {
-            txtLvlName.Text = GetLvlName();
+            txtLvlName.Text = GetCleanLvlName();
 
             nudSaveNumber.Value = GetSaveNumber();
             nudSmallMedipacks.Value = GetNumSmallMedipacks();
