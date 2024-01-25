@@ -30,6 +30,7 @@ namespace TR_SaveMaster
         private const int hkAmmoOffset = 0x1A4;
         private const int grapplingGunAmmoOffset = 0x1A6;
         private const int numSecretsOffset = 0x1C3;
+        private const int levelIndexOffset = 0x1EC;
 
         // Health
         private const UInt16 MIN_HEALTH_VALUE = 0;
@@ -105,36 +106,14 @@ namespace TR_SaveMaster
             }
         }
 
-        private string GetCleanLvlName()
-        {
-            string lvlName = GetLvlName();
-            lvlName = lvlName.Trim();
-
-            if (lvlName.StartsWith("Streets of Rome") || lvlName.StartsWith("Die Strassen von Rom")) return "Streets of Rome";
-            else if (lvlName.StartsWith("Trajan`s markets") || lvlName.StartsWith("Trajans M~arkte")) return "Trajan`s markets";
-            else if (lvlName.StartsWith("The Colosseum") || lvlName.StartsWith("Das Kolosseum")) return "The Colosseum";
-            else if (lvlName.StartsWith("The base") || lvlName.StartsWith("Die Basis")) return "The base";
-            else if (lvlName.StartsWith("The submarine") || lvlName.StartsWith("Das U-Boot")) return "The submarine";
-            else if (lvlName.StartsWith("Deepsea dive") || lvlName.StartsWith("Tiefseetauchen")) return "Deepsea dive";
-            else if (lvlName.StartsWith("Sinking submarine") || lvlName.StartsWith("Das U-Boot sinkt")) return "Sinking submarine";
-            else if (lvlName.StartsWith("Gallows tree") || lvlName.StartsWith("Der Galgenbaum")) return "Gallows tree";
-            else if (lvlName.StartsWith("Labyrinth")) return "Labyrinth";
-            else if (lvlName.StartsWith("Old mill") || lvlName.StartsWith("Die alte M~uhle")) return "Old mill";
-            else if (lvlName.StartsWith("The 13th floor") || lvlName.StartsWith("Der 13. Stock")) return "The 13th floor";
-            else if (lvlName.StartsWith("Escape with the iris") || lvlName.StartsWith("Flucht mit der Iris")) return "Escape with the iris";
-            else if (lvlName.StartsWith("Red alert!") || lvlName.StartsWith("Alarmstufe Rot!")) return "Red alert!";
-
-            return null;
-        }
-
         public void SetLevelParams(CheckBox chkRevolverOrDeagle, NumericUpDown nudRevolverOrDeagleAmmo, CheckBox chkUzi,
             NumericUpDown nudUziAmmo, CheckBox chkShotgun, NumericUpDown nudShotgunNormalAmmo, NumericUpDown nudShotgunWideshotAmmo,
             CheckBox chkGrapplingGun, NumericUpDown nudGrapplingGunAmmo, CheckBox chkHkGun, NumericUpDown nudHkAmmo, CheckBox chkCrowbar,
             CheckBox chkPistols, NumericUpDown nudFlares, CheckBox chkLaserSight, CheckBox chkBinocularsOrHeadset)
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
 
-            if (lvlName == "Streets of Rome")
+            if (levelIndex == 1)        // Streets of Rome
             {
                 chkRevolverOrDeagle.Enabled = true;
                 nudRevolverOrDeagleAmmo.Enabled = true;
@@ -157,7 +136,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x4F4;
                 MAX_HEALTH_OFFSET = 0x4F8;
             }
-            else if (lvlName == "Trajan`s markets")
+            else if (levelIndex == 2)   // Trajan's Markets
             {
                 chkRevolverOrDeagle.Enabled = true;
                 nudRevolverOrDeagleAmmo.Enabled = true;
@@ -180,7 +159,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x542;
                 MAX_HEALTH_OFFSET = 0x5D7;
             }
-            else if (lvlName == "The Colosseum")
+            else if (levelIndex == 3)   // The Colosseum 
             {
                 chkRevolverOrDeagle.Enabled = true;
                 nudRevolverOrDeagleAmmo.Enabled = true;
@@ -203,7 +182,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x4D2;
                 MAX_HEALTH_OFFSET = 0x7FF;
             }
-            else if (lvlName == "The base")
+            else if (levelIndex == 4)   // The Base
             {
                 chkRevolverOrDeagle.Enabled = true;
                 nudRevolverOrDeagleAmmo.Enabled = true;
@@ -226,7 +205,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x556;
                 MAX_HEALTH_OFFSET = 0x707;
             }
-            else if (lvlName == "The submarine")
+            else if (levelIndex == 5)   // The Submarine
             {
                 chkRevolverOrDeagle.Enabled = false;
                 nudRevolverOrDeagleAmmo.Enabled = false;
@@ -248,7 +227,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x520;
                 MAX_HEALTH_OFFSET = 0x5D2;
             }
-            else if (lvlName == "Deepsea dive")
+            else if (levelIndex == 6)   // Deepsea Dive
             {
                 chkRevolverOrDeagle.Enabled = false;
                 nudRevolverOrDeagleAmmo.Enabled = false;
@@ -270,7 +249,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x644;
                 MAX_HEALTH_OFFSET = 0x6DE;
             }
-            else if (lvlName == "Sinking submarine")
+            else if (levelIndex == 7)   // Sinking Submarine
             {
                 chkRevolverOrDeagle.Enabled = true;
                 nudRevolverOrDeagleAmmo.Enabled = true;
@@ -292,7 +271,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x5CC;
                 MAX_HEALTH_OFFSET = 0x66B;
             }
-            else if (lvlName == "Gallows tree")
+            else if (levelIndex == 8)   // Gallows Tree
             {
                 chkRevolverOrDeagle.Enabled = false;
                 nudRevolverOrDeagleAmmo.Enabled = false;
@@ -314,7 +293,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x4F0;
                 MAX_HEALTH_OFFSET = 0x52D;
             }
-            else if (lvlName == "Labyrinth")
+            else if (levelIndex == 9)   // Labyrinth
             {
                 chkRevolverOrDeagle.Enabled = false;
                 nudRevolverOrDeagleAmmo.Enabled = false;
@@ -336,7 +315,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x538;
                 MAX_HEALTH_OFFSET = 0x61A;
             }
-            else if (lvlName == "Old mill")
+            else if (levelIndex == 10)  // Old Mill
             {
                 chkRevolverOrDeagle.Enabled = false;
                 nudRevolverOrDeagleAmmo.Enabled = false;
@@ -358,7 +337,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x512;
                 MAX_HEALTH_OFFSET = 0x624;
             }
-            else if (lvlName == "The 13th floor")
+            else if (levelIndex == 11)  // The 13th Floor
             {
                 chkRevolverOrDeagle.Enabled = false;
                 nudRevolverOrDeagleAmmo.Enabled = false;
@@ -380,7 +359,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x52A;
                 MAX_HEALTH_OFFSET = 0x53A;
             }
-            else if (lvlName == "Escape with the iris")
+            else if (levelIndex == 12)  // Escape with the Iris
             {
                 chkRevolverOrDeagle.Enabled = false;
                 nudRevolverOrDeagleAmmo.Enabled = false;
@@ -402,7 +381,7 @@ namespace TR_SaveMaster
                 MIN_HEALTH_OFFSET = 0x6F6;
                 MAX_HEALTH_OFFSET = 0xC47;
             }
-            else if (lvlName == "Red alert!")
+            else if (levelIndex == 14)  // Red Alert!
             {
                 chkRevolverOrDeagle.Enabled = false;
                 nudRevolverOrDeagleAmmo.Enabled = false;
@@ -434,7 +413,7 @@ namespace TR_SaveMaster
             CheckBox chkShotgun, CheckBox chkUzi, CheckBox chkHkGun, CheckBox chkGrapplingGun, TrackBar trbHealth, Label lblHealth,
             Label lblHealthError)
         {
-            txtLvlName.Text = GetCleanLvlName();
+            txtLvlName.Text = GetLvlName();
 
             nudSmallMedipacks.Value = GetNumSmallMedipacks();
             nudLargeMedipacks.Value = GetNumLargeMedipacks();
@@ -634,6 +613,11 @@ namespace TR_SaveMaster
         private UInt16 GetShotgunWideshotAmmo()
         {
             return ReadUInt16(shotgunWideshotAmmoOffset);
+        }
+
+        private byte GetLevelIndex()
+        {
+            return ReadByte(levelIndexOffset);
         }
 
         private byte GetNumSecrets()
@@ -924,7 +908,8 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
-            return GetCleanLvlName() != null;
+            byte levelIndex = GetLevelIndex();
+            return (levelIndex >= 1 && levelIndex != 13 && levelIndex <= 14);
         }
 
         public List<string> GetSavegamePaths(string gameDirectory)
