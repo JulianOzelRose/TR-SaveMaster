@@ -857,19 +857,6 @@ namespace TR_SaveMaster
             }
         }
 
-        private static bool IsNumericExtension(string fileName)
-        {
-            string extension = Path.GetExtension(fileName);
-
-            if (extension.StartsWith("."))
-            {
-                string numericPart = extension.Substring(".".Length);
-                return int.TryParse(numericPart, out _);
-            }
-
-            return false;
-        }
-
         private class NaturalComparer : IComparer<string>
         {
             public int Compare(string x, string y)
