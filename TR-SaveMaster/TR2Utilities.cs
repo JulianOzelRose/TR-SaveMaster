@@ -11,6 +11,7 @@ namespace TR_SaveMaster
     {
         // Offsets
         private const int saveNumOffset = 0x4B;
+        private const int levelIndexOffset = 0x483;
         private int weaponsConfigNumOffset;
         private int smallMedipackOffset;
         private int largeMedipackOffset;
@@ -101,37 +102,11 @@ namespace TR_SaveMaster
             }
         }
 
-        private string GetCleanLvlName()
-        {
-            string lvlName = GetLvlName();
-
-            if (lvlName.StartsWith("The Great Wall") || lvlName.StartsWith("Die Gro=e Mauer")) return "The Great Wall";
-            else if (lvlName.StartsWith("Venice") || lvlName.StartsWith("Venedig")) return "Venice";
-            else if (lvlName.StartsWith("Bartoli's Hideout") || lvlName.StartsWith("Bartolis Versteck")) return "Bartoli's Hideout";
-            else if (lvlName.StartsWith("Opera House") || lvlName.StartsWith("Das Opernhaus")) return "Opera House";
-            else if (lvlName.StartsWith("Offshore Rig") || lvlName.StartsWith("Der Bohrturm")) return "Offshore Rig";
-            else if (lvlName.StartsWith("Diving Area") || lvlName.StartsWith("Die Tiefe")) return "Diving Area";
-            else if (lvlName.StartsWith("40 Fathoms") || lvlName.StartsWith("40 Faden")) return "40 Fathoms";
-            else if (lvlName.StartsWith("Wreck of the Maria Doria") || lvlName.StartsWith("Das Wrack der Maria Doria")) return "Wreck of the Maria Doria";
-            else if (lvlName.StartsWith("Living Quarters") || lvlName.StartsWith("Die Quartiere")) return "Living Quarters";
-            else if (lvlName.StartsWith("The Deck") || lvlName.StartsWith("An Deck")) return "The Deck";
-            else if (lvlName.StartsWith("Tibetan Foothills") || lvlName.StartsWith("Das tibetianische Hochland")) return "Tibetan Foothills";
-            else if (lvlName.StartsWith("Barkhang Monastery") || lvlName.StartsWith("Das Kloster von Barkhang")) return "Barkhang Monastery";
-            else if (lvlName.StartsWith("Catacombs of the Talion") || lvlName.StartsWith("Die Katakomben des Talion")) return "Catacombs of the Talion";
-            else if (lvlName.StartsWith("Ice Palace") || lvlName.StartsWith("Der Eispalast")) return "Ice Palace";
-            else if (lvlName.StartsWith("Temple of Xian") || lvlName.StartsWith("Der Tempel des Xian")) return "Temple of Xian";
-            else if (lvlName.StartsWith("Floating Islands") || lvlName.StartsWith("Die schwimmenden Inseln")) return "Floating Islands";
-            else if (lvlName.StartsWith("The Dragon's Lair") || lvlName.StartsWith("Der Hort des Drachen")) return "The Dragon's Lair";
-            else if (lvlName.StartsWith("Home Sweet Home") || lvlName.StartsWith("Zuhause")) return "Home Sweet Home";
-
-            return null;
-        }
-
         public void DetermineOffsets()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
 
-            if (lvlName == "The Great Wall")
+            if (levelIndex == 1)        // The Great Wall
             {
                 weaponsConfigNumOffset = 0x08F;
 
@@ -148,7 +123,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x778);
             }
-            else if (lvlName == "Venice")
+            else if (levelIndex == 2)   // Venice
             {
                 weaponsConfigNumOffset = 0x0BB;
 
@@ -165,7 +140,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x556);
             }
-            else if (lvlName == "Bartoli's Hideout")
+            else if (levelIndex == 3)   // Bartoli's Hideout
             {
                 weaponsConfigNumOffset = 0x0E7;
 
@@ -182,7 +157,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xE48);
             }
-            else if (lvlName == "Opera House")
+            else if (levelIndex == 4)   // Opera House
             {
                 weaponsConfigNumOffset = 0x113;
 
@@ -199,7 +174,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x12A0, 0x12AC);
             }
-            else if (lvlName == "Offshore Rig")
+            else if (levelIndex == 5)   // Offshore Rig
             {
                 weaponsConfigNumOffset = 0x013F;
 
@@ -216,7 +191,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x6F0, 0x708);
             }
-            else if (lvlName == "Diving Area")
+            else if (levelIndex == 6)   // Diving Area
             {
                 weaponsConfigNumOffset = 0x16B;
 
@@ -233,7 +208,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xBD4, 0xBE0, 0xBEC);
             }
-            else if (lvlName == "40 Fathoms")
+            else if (levelIndex == 7)   // 40 Fathoms
             {
                 weaponsConfigNumOffset = 0x197;
 
@@ -250,7 +225,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x558);
             }
-            else if (lvlName == "Wreck of the Maria Doria")
+            else if (levelIndex == 8)   // Wreck of the Maria Doria
             {
                 weaponsConfigNumOffset = 0x1C3;
 
@@ -267,7 +242,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x1612, 0x161E, 0x1642);
             }
-            else if (lvlName == "Living Quarters")
+            else if (levelIndex == 9)   // Living Quarters
             {
                 weaponsConfigNumOffset = 0x1EF;
 
@@ -284,7 +259,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x5F0);
             }
-            else if (lvlName == "The Deck")
+            else if (levelIndex == 10)  // The Deck
             {
                 weaponsConfigNumOffset = 0x21B;
 
@@ -301,7 +276,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x7C4, 0x7E8, 0x7D0);
             }
-            else if (lvlName == "Tibetan Foothills")
+            else if (levelIndex == 11)  // Tibetan Foothills
             {
                 weaponsConfigNumOffset = 0x247;
 
@@ -318,7 +293,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xC8E, 0xCBE, 0xCA6);
             }
-            else if (lvlName == "Barkhang Monastery")
+            else if (levelIndex == 12)  // Barkhang Monastery
             {
                 weaponsConfigNumOffset = 0x273;
 
@@ -335,7 +310,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x167A, 0x1686, 0x1692, 0x169E);
             }
-            else if (lvlName == "Catacombs of the Talion")
+            else if (levelIndex == 13)  // Catacombs of the Talion
             {
                 weaponsConfigNumOffset = 0x29F;
 
@@ -352,7 +327,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x554);
             }
-            else if (lvlName == "Ice Palace")
+            else if (levelIndex == 14)  // Ice Palace
             {
                 weaponsConfigNumOffset = 0x2CB;
 
@@ -369,7 +344,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x91A, 0x932);
             }
-            else if (lvlName == "Temple of Xian")
+            else if (levelIndex == 15)  // Temple of Xian
             {
                 weaponsConfigNumOffset = 0x2F7;
 
@@ -386,7 +361,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x196C, 0x1984, 0x19A8, 0x199C);
             }
-            else if (lvlName == "Floating Islands")
+            else if (levelIndex == 16)  // Floating Islands
             {
                 weaponsConfigNumOffset = 0x323;
 
@@ -403,7 +378,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x676);
             }
-            else if (lvlName == "The Dragon's Lair")
+            else if (levelIndex == 17)  // The Dragon's Lair
             {
                 weaponsConfigNumOffset = 0x34F;
 
@@ -420,7 +395,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x9F0);
             }
-            else if (lvlName == "Home Sweet Home")
+            else if (levelIndex == 18)  // Home Sweet Home
             {
                 weaponsConfigNumOffset = 0x37B;
 
@@ -436,10 +411,10 @@ namespace TR_SaveMaster
             SetSecondaryAmmoOffsets();
         }
 
-        private readonly Dictionary<string, Dictionary<int, List<int[]>>> ammoIndexData =
-            new Dictionary<string, Dictionary<int, List<int[]>>>
+        private readonly Dictionary<byte, Dictionary<int, List<int[]>>> ammoIndexData =
+            new Dictionary<byte, Dictionary<int, List<int[]>>>
             {
-                ["The Great Wall"] = new Dictionary<int, List<int[]>>
+                [1] = new Dictionary<int, List<int[]>>              // The Great Wall
                 {
                     [0xFE0] = new List<int[]>
                     {
@@ -464,7 +439,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1010, 0x1011, 0x1012, 0x1013 },
                     },
                 },
-                ["Venice"] = new Dictionary<int, List<int[]>>
+                [2] = new Dictionary<int, List<int[]>>              // Venice
                 {
                     [0x10EC] = new List<int[]>
                     {
@@ -490,7 +465,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1126, 0x1127, 0x1128, 0x1129 },
                     },
                 },
-                ["Bartoli's Hideout"] = new Dictionary<int, List<int[]>>
+                [3] = new Dictionary<int, List<int[]>>              // Bartoli's Hideout
                 {
                     [0x12B4] = new List<int[]>
                     {
@@ -513,7 +488,7 @@ namespace TR_SaveMaster
                         new int[] { 0x12E4, 0x12E5, 0x12E6, 0x12E7 },
                     },
                 },
-                ["Opera House"] = new Dictionary<int, List<int[]>>
+                [4] = new Dictionary<int, List<int[]>>              // Opera House
                 {
                     [0x19EE] = new List<int[]>
                     {
@@ -540,7 +515,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1A2A, 0x1A2B, 0x1A2C, 0x1A2D },
                     },
                 },
-                ["Offshore Rig"] = new Dictionary<int, List<int[]>>
+                [5] = new Dictionary<int, List<int[]>>              // Offshore Rig
                 {
                     [0x1020] = new List<int[]>
                     {
@@ -561,7 +536,7 @@ namespace TR_SaveMaster
                         new int[] { 0x104E, 0x104F, 0x1050, 0x1051 },
                     },
                 },
-                ["Diving Area"] = new Dictionary<int, List<int[]>>
+                [6] = new Dictionary<int, List<int[]>>              // Diving Area
                 {
                     [0x1274] = new List<int[]>
                     {
@@ -588,7 +563,7 @@ namespace TR_SaveMaster
                         new int[] { 0x12B0, 0x12B1, 0x12B2, 0x12B3 },
                     }
                 },
-                ["40 Fathoms"] = new Dictionary<int, List<int[]>>
+                [7] = new Dictionary<int, List<int[]>>              // 40 Fathoms
                 {
                     [0xC0E] = new List<int[]>
                     {
@@ -612,7 +587,7 @@ namespace TR_SaveMaster
                         new int[] { 0xC32, 0xC33, 0xC34, 0xC35 },
                     },
                 },
-                ["Wreck of the Maria Doria"] = new Dictionary<int, List<int[]>>
+                [8] = new Dictionary<int, List<int[]>>              // Wreck of the Maria Doria
                 {
                     [0x16F4] = new List<int[]>
                     {
@@ -636,7 +611,7 @@ namespace TR_SaveMaster
                         new int[] { 0x172E, 0x172F, 0x1730, 0x1731 },
                     },
                 },
-                ["Living Quarters"] = new Dictionary<int, List<int[]>>
+                [9] = new Dictionary<int, List<int[]>>              // Living Quarters
                 {
                     [0xEA4] = new List<int[]>
                     {
@@ -655,7 +630,7 @@ namespace TR_SaveMaster
                         new int[] { 0xEC8, 0xEC9, 0xECA, 0xECB },
                     },
                 },
-                ["The Deck"] = new Dictionary<int, List<int[]>>
+                [10] = new Dictionary<int, List<int[]>>             // The Deck
                 {
                     [0x11C8] = new List<int[]>
                     {
@@ -675,7 +650,7 @@ namespace TR_SaveMaster
                         new int[] { 0x11F6, 0x11F7, 0x11F8, 0x11F9 },
                     },
                 },
-                ["Tibetan Foothills"] = new Dictionary<int, List<int[]>>
+                [11] = new Dictionary<int, List<int[]>>             // Tibetan Foothills
                 {
                     [0x1402] = new List<int[]>
                     {
@@ -716,7 +691,7 @@ namespace TR_SaveMaster
                         new int[] { 0x144A, 0x144B, 0x144C, 0x144D },
                     },
                 },
-                ["Barkhang Monastery"] = new Dictionary<int, List<int[]>>
+                [12] = new Dictionary<int, List<int[]>>             // Barkhang Monastery
                 {
                     [0x1972] = new List<int[]>
                     {
@@ -740,7 +715,7 @@ namespace TR_SaveMaster
                         new int[] { 0x19AC, 0x19AD, 0x19AE, 0x19AF },
                     },
                 },
-                ["Catacombs of the Talion"] = new Dictionary<int, List<int[]>>
+                [13] = new Dictionary<int, List<int[]>>             // Catacombs of the Talion
                 {
                     [0x1522] = new List<int[]>
                     {
@@ -759,7 +734,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1546, 0x1547, 0x1548, 0x1549 },
                     },
                 },
-                ["Ice Palace"] = new Dictionary<int, List<int[]>>
+                [14] = new Dictionary<int, List<int[]>>             // Ice Palace
                 {
                     [0x122A] = new List<int[]>
                     {
@@ -788,7 +763,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1266, 0x1267, 0x1268, 0x1269 },
                     },
                 },
-                ["Temple of Xian"] = new Dictionary<int, List<int[]>>
+                [15] = new Dictionary<int, List<int[]>>             // Temple of Xian
                 {
                     [0x1A6A] = new List<int[]>
                     {
@@ -815,7 +790,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1AA6, 0x1AA7, 0x1AA8, 0x1AA9 },
                     },
                 },
-                ["Floating Islands"] = new Dictionary<int, List<int[]>>
+                [16] = new Dictionary<int, List<int[]>>             // Floating Islands
                 {
                     [0x1204] = new List<int[]>
                     {
@@ -828,7 +803,7 @@ namespace TR_SaveMaster
                         new int[] { 0x121A, 0x121B, 0x121C, 0x121D },
                     },
                 },
-                ["The Dragon's Lair"] = new Dictionary<int, List<int[]>>
+                [17] = new Dictionary<int, List<int[]>>             // The Dragon's Lair
                 {
                     [0xD30] = new List<int[]>
                     {
@@ -847,7 +822,7 @@ namespace TR_SaveMaster
                         new int[] { 0xD54, 0xD55, 0xD56, 0xD57 },
                     }
                 },
-                ["Home Sweet Home"] = new Dictionary<int, List<int[]>>
+                [18] = new Dictionary<int, List<int[]>>             // Home Sweet Home
                 {
                     [0x1020] = new List<int[]>
                     {
@@ -875,12 +850,12 @@ namespace TR_SaveMaster
 
         private int GetSecondaryAmmoIndexMarker()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
             int ammoIndexMarker = -1;
 
-            if (ammoIndexData.ContainsKey(lvlName))
+            if (ammoIndexData.ContainsKey(levelIndex))
             {
-                Dictionary<int, List<int[]>> indexData = ammoIndexData[lvlName];
+                Dictionary<int, List<int[]>> indexData = ammoIndexData[levelIndex];
                 var enumerator = indexData.GetEnumerator();
 
                 for (int index = 0; index < indexData.Count && enumerator.MoveNext(); index++)
@@ -927,7 +902,7 @@ namespace TR_SaveMaster
             nudSmallMedipacks.Value = GetNumSmallMedipacks();
             nudLargeMedipacks.Value = GetNumLargeMedipacks();
 
-            if (GetCleanLvlName() == "Home Sweet Home")
+            if (GetLevelIndex() == 18)
             {
                 chkPistols.Enabled = false;
                 chkAutomaticPistols.Enabled = false;
@@ -1045,7 +1020,7 @@ namespace TR_SaveMaster
             WriteSmallMedipacks((byte)nudSmallMedipacks.Value);
             WriteLargeMedipacks((byte)nudLargeMedipacks.Value);
 
-            if (GetCleanLvlName() != "Home Sweet Home" && GetSecondaryAmmoIndexMarker() != -1)
+            if (GetLevelIndex() != 18 && GetSecondaryAmmoIndexMarker() != -1)
             {
                 WriteAutomaticPistolsAmmo(chkAutomaticPistols.Checked, (UInt16)nudAutomaticPistolsAmmo.Value);
                 WriteUziAmmo(chkUzis.Checked, (UInt16)nudUziAmmo.Value);
@@ -1107,6 +1082,11 @@ namespace TR_SaveMaster
             if (byteFlag1 == 0x21 && byteFlag2 == 0x00 && byteFlag3 == 0x21) return true;       // On water
 
             return false;
+        }
+
+        private byte GetLevelIndex()
+        {
+            return ReadByte(levelIndexOffset);
         }
 
         private byte GetWeaponsConfigNum()
@@ -1334,7 +1314,8 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
-            return GetCleanLvlName() != null;
+            byte levelIndex = GetLevelIndex();
+            return (levelIndex >= 1 && levelIndex <= 18);
         }
 
         public List<string> GetSavegamePaths(string gameDirectory)
