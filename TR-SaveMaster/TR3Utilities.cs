@@ -11,6 +11,7 @@ namespace TR_SaveMaster
     {
         // Offsets
         private const int saveNumOffset = 0x4B;
+        private const int levelIndexOffset = 0x5C6;
         private int smallMedipackOffset;
         private int largeMedipackOffset;
         private int numFlaresOffset;
@@ -88,40 +89,11 @@ namespace TR_SaveMaster
             }
         }
 
-        private string GetCleanLvlName()
-        {
-            string lvlName = GetLvlName();
-            lvlName = lvlName.Trim();
-
-            if (lvlName.StartsWith("Jungle") || lvlName.StartsWith("Dschungel")) return "Jungle";
-            else if (lvlName.StartsWith("Temple Ruins") || lvlName.StartsWith("Tempelruine")) return "Temple Ruins";
-            else if (lvlName.StartsWith("The River Ganges") || lvlName.StartsWith("Der Ganges")) return "The River Ganges";
-            else if (lvlName.StartsWith("Caves Of Kaliya") || lvlName.StartsWith("Kaliya H~ohlen")) return "Caves Of Kaliya";
-            else if (lvlName.StartsWith("Nevada Desert") || lvlName.StartsWith("W~uste von Nevada")) return "Nevada Desert";
-            else if (lvlName.StartsWith("High Security Compound") || lvlName.StartsWith("Hochsicherheitstrakt")) return "High Security Compound";
-            else if (lvlName.StartsWith("Area 51")) return "Area 51";
-            else if (lvlName.StartsWith("Coastal Village") || lvlName.StartsWith("K~ustendorf")) return "Coastal Village";
-            else if (lvlName.StartsWith("Crash Site") || lvlName.StartsWith("Absturzstelle")) return "Crash Site";
-            else if (lvlName.StartsWith("Madubu Gorge") || lvlName.StartsWith("Madubu Schlucht")) return "Madubu Gorge";
-            else if (lvlName.StartsWith("Temple Of Puna") || lvlName.StartsWith("Punatempel")) return "Temple Of Puna";
-            else if (lvlName.StartsWith("Thames Wharf") || lvlName.StartsWith("Kai an der Themse")) return "Thames Wharf";
-            else if (lvlName.StartsWith("Aldwych")) return "Aldwych";
-            else if (lvlName.StartsWith("Lud's Gate")) return "Lud's Gate";
-            else if (lvlName.StartsWith("City") || lvlName.StartsWith("Innenstadt")) return "City";
-            else if (lvlName.StartsWith("Antarctica") || lvlName.StartsWith("Antarktis")) return "Antarctica";
-            else if (lvlName.StartsWith("RX-Tech Mines") || lvlName.StartsWith("RX-Techs Bergwerk")) return "RX-Tech Mines";
-            else if (lvlName.StartsWith("Lost City Of Tinnos") || lvlName.StartsWith("Die vergessene Stadt Tinnos")) return "Lost City Of Tinnos";
-            else if (lvlName.StartsWith("Meteorite Cavern") || lvlName.StartsWith("H~ohle des Meteoriten")) return "Meteorite Cavern";
-            else if (lvlName.StartsWith("All Hallows")) return "All Hallows";
-
-            return null;
-        }
-
         public void DetermineOffsets()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
 
-            if (lvlName == "Jungle")
+            if (levelIndex == 1)    // Jungle
             {
                 // Health offsets
                 smallMedipackOffset = 0xE6;
@@ -151,7 +123,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0xDA;
                 uziAmmoOffset2 = 0x1647;
             }
-            else if (lvlName == "Temple Ruins")
+            else if (levelIndex == 2)   // Temple Ruins
             {
                 // Health offsets
                 smallMedipackOffset = 0x119;
@@ -181,7 +153,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x10D;
                 uziAmmoOffset2 = 0x23B7;
             }
-            else if (lvlName == "The River Ganges")
+            else if (levelIndex == 3)   // The River Ganges
             {
                 // Health offsets
                 smallMedipackOffset = 0x14C;
@@ -211,7 +183,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x140;
                 uziAmmoOffset2 = 0x1800;
             }
-            else if (lvlName == "Caves Of Kaliya")
+            else if (levelIndex == 4)   // Caves Of Kaliya
             {
                 // Health offsets
                 smallMedipackOffset = 0x17F;
@@ -241,7 +213,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x173;
                 uziAmmoOffset2 = 0xD1B;
             }
-            else if (lvlName == "Nevada Desert")
+            else if (levelIndex == 13)  // Nevada Desert
             {
                 // Health offsets
                 smallMedipackOffset = 0x34A;
@@ -249,7 +221,7 @@ namespace TR_SaveMaster
                 SetHealthOffsets(0x6B5);
 
                 // Misc offsets
-                numFlaresOffset = 0x34A;
+                numFlaresOffset = 0x34D;
 
                 // Weapon offsets
                 weaponsConfigNumOffset = 0x351;
@@ -271,7 +243,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x33E;
                 uziAmmoOffset2 = 0x17A0;
             }
-            else if (lvlName == "High Security Compound")
+            else if (levelIndex == 14)  // High Security Compound
             {
                 // Health offsets
                 smallMedipackOffset = 0x37D;
@@ -301,7 +273,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x371;
                 uziAmmoOffset2 = 0x1E47;
             }
-            else if (lvlName == "Area 51")
+            else if (levelIndex == 15)  // Area 51
             {
                 // Health offsets
                 smallMedipackOffset = 0x3B0;
@@ -331,7 +303,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x3A4;
                 uziAmmoOffset2 = 0x2109;
             }
-            else if (lvlName == "Coastal Village")
+            else if (levelIndex == 5)   // Coastal Village
             {
                 // Health offsets
                 smallMedipackOffset = 0x1B2;
@@ -361,7 +333,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x1A6;
                 uziAmmoOffset2 = 0x17AD;
             }
-            else if (lvlName == "Crash Site")
+            else if (levelIndex == 6)   // Crash Site
             {
                 // Health offsets
                 smallMedipackOffset = 0x1E5;
@@ -391,7 +363,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x1D9;
                 uziAmmoOffset2 = 0x18CF;
             }
-            else if (lvlName == "Madubu Gorge")
+            else if (levelIndex == 7)   // Madubu Gorge
             {
                 // Health offsets
                 smallMedipackOffset = 0x218;
@@ -421,7 +393,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x20C;
                 uziAmmoOffset2 = 0x1419;
             }
-            else if (lvlName == "Temple Of Puna")
+            else if (levelIndex == 8)   // Temple Of Puna
             {
                 // Health offsets
                 smallMedipackOffset = 0x24B;
@@ -451,7 +423,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x23F;
                 uziAmmoOffset2 = 0x10F1;
             }
-            else if (lvlName == "Thames Wharf")
+            else if (levelIndex == 9)   // Thames Wharf
             {
                 // Health offsets
                 smallMedipackOffset = 0x27E;
@@ -481,7 +453,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x272;
                 uziAmmoOffset2 = 0x186F;
             }
-            else if (lvlName == "Aldwych")
+            else if (levelIndex == 10)  // Aldwych
             {
                 // Health offsets
                 smallMedipackOffset = 0x2B1;
@@ -511,7 +483,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x2A5;
                 uziAmmoOffset2 = 0x22FB;
             }
-            else if (lvlName == "Lud's Gate")
+            else if (levelIndex == 11)  // Lud's Gate
             {
                 // Health offsets
                 smallMedipackOffset = 0x2E4;
@@ -541,7 +513,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x2D8;
                 uziAmmoOffset2 = 0x1D73;
             }
-            else if (lvlName == "City")
+            else if (levelIndex == 12)  // City
             {
                 // Health offsets
                 smallMedipackOffset = 0x317;
@@ -571,7 +543,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x30B;
                 uziAmmoOffset2 = 0xAEF;
             }
-            else if (lvlName == "Antarctica")
+            else if (levelIndex == 16)  // Antarctica
             {
                 // Health offsets
                 smallMedipackOffset = 0x3E3;
@@ -601,7 +573,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x3D7;
                 uziAmmoOffset2 = 0x1991;
             }
-            else if (lvlName == "RX-Tech Mines")
+            else if (levelIndex == 17)  // RX-Tech Mines
             {
                 // Health offsets
                 smallMedipackOffset = 0x416;
@@ -631,7 +603,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x40A;
                 uziAmmoOffset2 = 0x1953;
             }
-            else if (lvlName == "Lost City Of Tinnos")
+            else if (levelIndex == 18)  // Lost City Of Tinnos
             {
                 // Health offsets
                 smallMedipackOffset = 0x449;
@@ -661,7 +633,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x43D;
                 uziAmmoOffset2 = 0x1D93;
             }
-            else if (lvlName == "Meteorite Cavern")
+            else if (levelIndex == 19)  // Meteorite Cavern
             {
                 // Health offsets
                 smallMedipackOffset = 0x47C;
@@ -691,7 +663,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset = 0x470;
                 uziAmmoOffset2 = 0xAE5;
             }
-            else if (lvlName == "All Hallows")
+            else if (levelIndex == 20)  // All Hallows
             {
                 // Health offsets
                 smallMedipackOffset = 0x4AF;
@@ -740,7 +712,7 @@ namespace TR_SaveMaster
             NumericUpDown nudRocketLauncherAmmo, NumericUpDown nudHarpoonGunAmmo, NumericUpDown nudMP5Ammo, NumericUpDown nudUziAmmo,
             TrackBar trbHealth, Label lblHealth, Label lblHealthError)
         {
-            txtLvlName.Text = GetCleanLvlName();
+            txtLvlName.Text = GetLvlName();
 
             nudSaveNumber.Value = GetSaveNumber();
             nudSmallMedipacks.Value = GetNumSmallMedipacks();
@@ -844,9 +816,9 @@ namespace TR_SaveMaster
             }
         }
 
-        private readonly Dictionary<string, Dictionary<int, int[]>> ammoIndexData = new Dictionary<string, Dictionary<int, int[]>>
+        private readonly Dictionary<byte, Dictionary<int, int[]>> ammoIndexData = new Dictionary<byte, Dictionary<int, int[]>>
         {
-            ["Jungle"] = new Dictionary<int, int[]>
+            [1] = new Dictionary<int, int[]>                            // Jungle
             {
                 [0] = new int[] { 0x1663, 0x1664, 0x1665, 0x1666 },
                 [1] = new int[] { 0x1675, 0x1676, 0x1677, 0x1678 },
@@ -855,29 +827,29 @@ namespace TR_SaveMaster
                 [4] = new int[] { 0x16AB, 0x16AC, 0x16AD, 0x16AE },
                 [5] = new int[] { 0x16BD, 0x16BE, 0x16BF, 0x16C0 }
             },
-            ["Temple Ruins"] = new Dictionary<int, int[]>
+            [2] = new Dictionary<int, int[]>                            // Temple Ruins
             {
                 [0] = new int[] { 0x23D3, 0x23D4, 0x23D5, 0x23D6 },
                 [1] = new int[] { 0x23E5, 0x23E6, 0x23E7, 0x23E8 },
             },
-            ["The River Ganges"] = new Dictionary<int, int[]>
+            [3] = new Dictionary<int, int[]>                            // The River Ganges
             {
                 [0] = new int[] { 0x181C, 0x181D, 0x181E, 0x181F },
                 [1] = new int[] { 0x182E, 0x182F, 0x1830, 0x1831 },
             },
-            ["Caves Of Kaliya"] = new Dictionary<int, int[]>
+            [4] = new Dictionary<int, int[]>                            // Caves Of Kaliya
             {
                 [0] = new int[] { 0xD37, 0xD38, 0xD39, 0xD3A },
                 [1] = new int[] { 0xD53, 0xD54, 0xD55, 0xD56 }
             },
-            ["Nevada Desert"] = new Dictionary<int, int[]>
+            [13] = new Dictionary<int, int[]>                            // Nevada Desert
             {
                 [0] = new int[] { 0x17BC, 0x17BD, 0x17BE, 0x17BF },
                 [1] = new int[] { 0x17CE, 0x17CF, 0x17D0, 0x17D1 },
                 [2] = new int[] { 0x17E0, 0x17E1, 0x17E2, 0x17E3 },
                 [3] = new int[] { 0x17F2, 0x17F3, 0x17F4, 0x17F5 }
             },
-            ["High Security Compound"] = new Dictionary<int, int[]>
+            [14] = new Dictionary<int, int[]>                           // High Security Compound
             {
                 [0] = new int[] { 0x1E63, 0x1E64, 0x1E65, 0x1E66 },
                 [1] = new int[] { 0x1E75, 0x1E76, 0x1E77, 0x1E78 },
@@ -887,7 +859,7 @@ namespace TR_SaveMaster
                 [5] = new int[] { 0x1EBD, 0x1EBE, 0x1EBF, 0x1EC0 },
                 [6] = new int[] { 0x1ECF, 0x1ED0, 0x1ED1, 0x1ED2 }
             },
-            ["Area 51"] = new Dictionary<int, int[]>
+            [15] = new Dictionary<int, int[]>                           // Area 51
             {
                 [0] = new int[] { 0x2125, 0x2126, 0x2127, 0x2128 },
                 [1] = new int[] { 0x2137, 0x2138, 0x2139, 0x213A },
@@ -900,13 +872,13 @@ namespace TR_SaveMaster
                 [8] = new int[] { 0x21BF, 0x21C0, 0x21C1, 0x21C2 },
                 [9] = new int[] { 0x21C7, 0x21C8, 0x21C9, 0x21CA }
             },
-            ["Coastal Village"] = new Dictionary<int, int[]>
+            [5] = new Dictionary<int, int[]>                            // Coastal Village
             {
                 [0] = new int[] { 0x17C9, 0x17CA, 0x17CB, 0x17CC },
                 [1] = new int[] { 0x17DB, 0x17DC, 0x17DD, 0x17DE },
                 [2] = new int[] { 0x17ED, 0x17EE, 0x17EF, 0x17F0 }
             },
-            ["Crash Site"] = new Dictionary<int, int[]>
+            [6] = new Dictionary<int, int[]>                            // Crash Site
             {
                 [0] = new int[] { 0x18EB, 0x18EC, 0x18ED, 0x18EE },
                 [1] = new int[] { 0x18FD, 0x18FE, 0x18FF, 0x1900 },
@@ -915,7 +887,7 @@ namespace TR_SaveMaster
                 [4] = new int[] { 0x1933, 0x1934, 0x1935, 0x1936 },
                 [5] = new int[] { 0x1945, 0x1946, 0x1947, 0x1948 }
             },
-            ["Madubu Gorge"] = new Dictionary<int, int[]>
+            [7] = new Dictionary<int, int[]>                            // Madubu Gorge
             {
                 [0] = new int[] { 0x1435, 0x1436, 0x1437, 0x1438 },
                 [1] = new int[] { 0x1447, 0x1448, 0x1449, 0x144A },
@@ -924,58 +896,58 @@ namespace TR_SaveMaster
                 [4] = new int[] { 0x1487, 0x1488, 0x1489, 0x148A },
                 [5] = new int[] { 0x148F, 0x1490, 0x1491, 0x1492 }
             },
-            ["Temple Of Puna"] = new Dictionary<int, int[]>
+            [8] = new Dictionary<int, int[]>                            // Temple Of Puna
             {
                 [0] = new int[] { 0x110D, 0x110E, 0x110F, 0x1110 },
                 [1] = new int[] { 0x105D, 0x105E, 0x105F, 0x1060 }
             },
-            ["Thames Wharf"] = new Dictionary<int, int[]>
+            [9] = new Dictionary<int, int[]>                            // Thames Wharf
             {
                 [0] = new int[] { 0x188B, 0x188C, 0x188D, 0x188E },
                 [1] = new int[] { 0x189D, 0x189E, 0x189F, 0x18A0 },
                 [2] = new int[] { 0x18AF, 0x18B0, 0x18B1, 0x18B2 }
             },
-            ["Aldwych"] = new Dictionary<int, int[]>
+            [10] = new Dictionary<int, int[]>                           // Aldwych
             {
                 [0] = new int[] { 0x2317, 0x2318, 0x2319, 0x231A },
                 [1] = new int[] { 0x2329, 0x232A, 0x232B, 0x232C }
             },
-            ["Lud's Gate"] = new Dictionary<int, int[]>
+            [11] = new Dictionary<int, int[]>                           // Lud's Gate
             {
                 [0] = new int[] { 0x1D8F, 0x1D90, 0x1D91, 0x1D92 },
                 [1] = new int[] { 0x1DA1, 0x1DA2, 0x1DA3, 0x1DA4 },
                 [2] = new int[] { 0x1DB3, 0x1DB4, 0x1DB5, 0x1DB6 },
                 [3] = new int[] { 0x1D03, 0x1D04, 0x1D05, 0x1D06 }
             },
-            ["City"] = new Dictionary<int, int[]>
+            [12] = new Dictionary<int, int[]>                           // City
             {
                 [0] = new int[] { 0xB0B, 0xB0C, 0xB0D, 0xB0E },
                 [1] = new int[] { 0xB1D, 0xB1E, 0xB1F, 0xB20 }
             },
-            ["Antarctica"] = new Dictionary<int, int[]>
+            [16] = new Dictionary<int, int[]>                           // Antarctica
             {
                 [0] = new int[] { 0x19AD, 0x19AE, 0x19AF, 0x19B0 },
                 [1] = new int[] { 0x19BF, 0x19C0, 0x19C1, 0x19C2 }
             },
-            ["RX-Tech Mines"] = new Dictionary<int, int[]>
+            [17] = new Dictionary<int, int[]>                           // RX-Tech Mines
             {
                 [0] = new int[] { 0x196F, 0x1970, 0x1971, 0x1972 },
                 [1] = new int[] { 0x1981, 0x1982, 0x1983, 0x1984 },
                 [2] = new int[] { 0x1993, 0x1994, 0x1995, 0x1996 },
                 [3] = new int[] { 0x19A5, 0x19A6, 0x19A7, 0x19A8 }
             },
-            ["Lost City Of Tinnos"] = new Dictionary<int, int[]>
+            [18] = new Dictionary<int, int[]>                           // Lost City Of Tinnos
             {
                 [0] = new int[] { 0x1DAF, 0x1DB0, 0x1DB1, 0x1DB2 },
                 [1] = new int[] { 0x1DC1, 0x1DC2, 0x1DC3, 0x1DC4 },
                 [2] = new int[] { 0x1DD3, 0x1DD4, 0x1DD5, 0x1DD6 },
             },
-            ["Meteorite Cavern"] = new Dictionary<int, int[]>
+            [19] = new Dictionary<int, int[]>                           // Meteorite Cavern
             {
                 [0] = new int[] { 0xB01, 0xB02, 0xB03, 0xB04 },
                 [1] = new int[] { 0xB13, 0xB14, 0xB15, 0xB16 },
             },
-            ["All Hallows"] = new Dictionary<int, int[]>
+            [20] = new Dictionary<int, int[]>                           // All Hallows
             {
                 [0] = new int[] { 0x1045, 0x1046, 0x1047, 0x1048 },
                 [1] = new int[] { 0x1057, 0x1058, 0x1059, 0x105A },
@@ -985,12 +957,12 @@ namespace TR_SaveMaster
 
         private int GetAmmoIndex()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
             int ammoIndex = 0;
 
-            if (ammoIndexData.ContainsKey(lvlName))
+            if (ammoIndexData.ContainsKey(levelIndex))
             {
-                Dictionary<int, int[]> indexData = ammoIndexData[lvlName];
+                Dictionary<int, int[]> indexData = ammoIndexData[levelIndex];
 
                 for (int i = 0; i < indexData.Count; i++)
                 {
@@ -1083,6 +1055,11 @@ namespace TR_SaveMaster
             double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
 
             return healthPercentage;
+        }
+
+        private byte GetLevelIndex()
+        {
+            return ReadByte(levelIndexOffset);
         }
 
         private byte GetWeaponsConfigNum()
@@ -1374,7 +1351,8 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
-            return GetCleanLvlName() != null;
+            byte levelIndex = GetLevelIndex();
+            return (levelIndex >= 1 && levelIndex <= 20);
         }
 
         public List<string> GetSavegamePaths(string gameDirectory)
