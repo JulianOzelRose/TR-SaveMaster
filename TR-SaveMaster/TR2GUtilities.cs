@@ -11,6 +11,7 @@ namespace TR_SaveMaster
     {
         // Offsets
         private const int saveNumOffset = 0x4B;
+        private const int levelIndexOffset = 0x483;
         private int weaponsConfigNumOffset;
         private int smallMedipackOffset;
         private int largeMedipackOffset;
@@ -101,24 +102,11 @@ namespace TR_SaveMaster
             }
         }
 
-        private string GetCleanLvlName()
-        {
-            string lvlName = GetLvlName();
-
-            if (lvlName.StartsWith("The Cold War") || lvlName.StartsWith("Der kalte Krieg")) return "The Cold War";
-            else if (lvlName.StartsWith("Fool's Gold") || lvlName.StartsWith("Das Gold des Narren")) return "Fool's Gold";
-            else if (lvlName.StartsWith("Furnace of the Gods") || lvlName.StartsWith("Hochofen der G~otter")) return "Furnace of the Gods";
-            else if (lvlName.StartsWith("Kingdom") || lvlName.StartsWith("K~onigreich")) return "Kingdom";
-            else if (lvlName.StartsWith("Nightmare In Vegas") || lvlName.StartsWith("Alptraum in Vegas")) return "Nightmare In Vegas";
-
-            return null;
-        }
-
         public void DetermineOffsets()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
 
-            if (lvlName == "The Cold War")
+            if (levelIndex == 1)        // The Cold War
             {
                 automaticPistolsAmmoOffset = 0x7D;
                 uziAmmoOffset = 0x7F;
@@ -133,7 +121,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xE60, 0xE6C);
             }
-            else if (lvlName == "Fool's Gold")
+            else if (levelIndex == 2)   // Fool's Gold
             {
                 automaticPistolsAmmoOffset = 0xA9;
                 uziAmmoOffset = 0xAB;
@@ -148,7 +136,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x12D6, 0x12E2);
             }
-            else if (lvlName == "Furnace of the Gods")
+            else if (levelIndex == 3)   // Furnace of the Gods
             {
                 automaticPistolsAmmoOffset = 0xD5;
                 uziAmmoOffset = 0xD7;
@@ -163,7 +151,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x1490, 0x14B4, 0x14C0, 0x14CC);
             }
-            else if (lvlName == "Kingdom")
+            else if (levelIndex == 4)   // Kingdom
             {
                 automaticPistolsAmmoOffset = 0x101;
                 uziAmmoOffset = 0x103;
@@ -178,7 +166,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x600);
             }
-            else if (lvlName == "Nightmare In Vegas")
+            else if (levelIndex == 5)   // Nightmare In Vegas
             {
                 automaticPistolsAmmoOffset = 0x12D;
                 uziAmmoOffset = 0x12F;
@@ -197,10 +185,10 @@ namespace TR_SaveMaster
             SetSecondaryAmmoOffsets();
         }
 
-        private readonly Dictionary<string, Dictionary<int, List<int[]>>> ammoIndexData =
-            new Dictionary<string, Dictionary<int, List<int[]>>>
+        private readonly Dictionary<byte, Dictionary<int, List<int[]>>> ammoIndexData =
+            new Dictionary<byte, Dictionary<int, List<int[]>>>
             {
-                ["The Cold War"] = new Dictionary<int, List<int[]>>
+                [1] = new Dictionary<int, List<int[]>>              // The Cold War
                 {
                     [0x1C3A] = new List<int[]>
                     {
@@ -252,7 +240,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1CA4, 0x1CA5, 0x1CA6, 0x1CA7 },
                     },
                 },
-                ["Fool's Gold"] = new Dictionary<int, List<int[]>>
+                [2] = new Dictionary<int, List<int[]>>              // Fool's Gold
                 {
                     [0x1C44] = new List<int[]>
                     {
@@ -315,7 +303,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1CB6, 0x1CB7, 0x1CB8, 0x1CB9 },
                     },
                 },
-                ["Furnace of the Gods"] = new Dictionary<int, List<int[]>>
+                [3] = new Dictionary<int, List<int[]>>              // Furnace of the Gods
                 {
                     [0x1B34] = new List<int[]>
                     {
@@ -345,7 +333,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1B7A, 0x1B7B, 0x1B7C, 0x1B7D },
                     },
                 },
-                ["Kingdom"] = new Dictionary<int, List<int[]>>
+                [4] = new Dictionary<int, List<int[]>>              // Kingdom
                 {
                     [0x1392] = new List<int[]>
                     {
@@ -376,7 +364,7 @@ namespace TR_SaveMaster
                         new int[] { 0x13D8, 0x13D9, 0x13DA, 0x13DB },
                     }
                 },
-                ["Nightmare In Vegas"] = new Dictionary<int, List<int[]>>
+                [5] = new Dictionary<int, List<int[]>>              // Nightmare In Vegas
                 {
                     [0x1584] = new List<int[]>
                     {
@@ -410,12 +398,12 @@ namespace TR_SaveMaster
 
         private int GetSecondaryAmmoIndexMarker()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
             int ammoIndexMarker = -1;
 
-            if (ammoIndexData.ContainsKey(lvlName))
+            if (ammoIndexData.ContainsKey(levelIndex))
             {
-                Dictionary<int, List<int[]>> indexData = ammoIndexData[lvlName];
+                Dictionary<int, List<int[]>> indexData = ammoIndexData[levelIndex];
                 var enumerator = indexData.GetEnumerator();
 
                 for (int index = 0; index < indexData.Count && enumerator.MoveNext(); index++)
@@ -577,6 +565,11 @@ namespace TR_SaveMaster
             }
         }
 
+        private byte GetLevelIndex()
+        {
+            return ReadByte(levelIndexOffset);
+        }
+
         private byte GetWeaponsConfigNum()
         {
             return ReadByte(weaponsConfigNumOffset);
@@ -639,7 +632,7 @@ namespace TR_SaveMaster
             NumericUpDown nudSmallMedipacks, NumericUpDown nudLargeMedipacks, TrackBar trbHealth, Label lblHealth,
             Label lblHealthError)
         {
-            txtLvlName.Text = GetCleanLvlName();
+            txtLvlName.Text = GetLvlName();
 
             nudSaveNumber.Value = GetSaveNumber();
             nudSmallMedipacks.Value = GetNumSmallMedipacks();
@@ -652,7 +645,7 @@ namespace TR_SaveMaster
             nudGrenadeLauncherAmmo.Value = GetGrenadeLauncherAmmo();
             nudHarpoonGunAmmo.Value = GetHarpoonGunAmmo();
 
-            if (GetCleanLvlName() == "Nightmare In Vegas")
+            if (GetLevelIndex() == 5)
             {
                 chkM16.Enabled = false;
                 chkGrenadeLauncher.Enabled = false;
@@ -859,7 +852,8 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
-            return GetCleanLvlName() != null;
+            byte levelIndex = GetLevelIndex();
+            return (levelIndex >= 1 && levelIndex <= 5);
         }
 
         public List<string> GetSavegamePaths(string gameDirectory)
