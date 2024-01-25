@@ -17,6 +17,7 @@ namespace TR_SaveMaster
         private const int magnumAmmoOffset = 0x18C;
         private const int uziAmmoOffset = 0x18E;
         private const int shotgunAmmoOffset = 0x190;
+        private const int levelIndexOffset = 0x1A3;
         private int magnumAmmoOffset2;
         private int uziAmmoOffset2;
         private int shotgunAmmoOffset2;
@@ -94,34 +95,11 @@ namespace TR_SaveMaster
             }
         }
 
-        private string GetCleanLvlName()
-        {
-            string lvlName = GetLvlName();
-
-            if (lvlName.StartsWith("Caves") || lvlName.StartsWith("Die Kavernen")) return "Caves";
-            else if (lvlName.StartsWith("City of Vilcabamba") || lvlName.StartsWith("Die Stadt Vilcabamba")) return "City of Vilcabamba";
-            else if (lvlName.StartsWith("Lost Valley") || lvlName.StartsWith("Das Verlorene Tal")) return "Lost Valley";
-            else if (lvlName.StartsWith("Tomb of Qualopec") || lvlName.StartsWith("Das Grab von Qualopec")) return "Tomb of Qualopec";
-            else if (lvlName.StartsWith("St. Francis' Folly")) return "St. Francis' Folly";
-            else if (lvlName.StartsWith("Colosseum") || lvlName.StartsWith("Das Kolosseum")) return "Colosseum";
-            else if (lvlName.StartsWith("Palace Midas") || lvlName.StartsWith("Der Palast des Midas")) return "Palace Midas";
-            else if (lvlName.StartsWith("The Cistern") || lvlName.StartsWith("Die Zisterne")) return "The Cistern";
-            else if (lvlName.StartsWith("Tomb of Tihocan") || lvlName.StartsWith("Das Grab des Tihocan")) return "Tomb of Tihocan";
-            else if (lvlName.StartsWith("City of Khamoon") || lvlName.StartsWith("Die Stadt Khamoon")) return "City of Khamoon";
-            else if (lvlName.StartsWith("Obelisk of Khamoon") || lvlName.StartsWith("Der Obelisk von Khamoon")) return "Obelisk of Khamoon";
-            else if (lvlName.StartsWith("Sanctuary of the Scion") || lvlName.StartsWith("Das Heiligtum des Scion")) return "Sanctuary of the Scion";
-            else if (lvlName.StartsWith("Natla's Mines") || lvlName.StartsWith("Natlas Katakomben")) return "Natla's Mines";
-            else if (lvlName.StartsWith("Atlantis")) return "Atlantis";
-            else if (lvlName.StartsWith("The Great Pyramid") || lvlName.StartsWith("Die Gro=e Pyramide")) return "The Great Pyramid";
-
-            return null;
-        }
-
         public void DetermineOffsets()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
 
-            if (lvlName == "Caves")
+            if (levelIndex == 1)        // Caves
             {
                 magnumAmmoOffset2 = 0x641;
                 uziAmmoOffset2 = 0x64D;
@@ -129,7 +107,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x1E7);
             }
-            else if (lvlName == "City of Vilcabamba")
+            else if (levelIndex == 2)   // City of Vilcabamba
             {
                 magnumAmmoOffset2 = 0xC24;
                 uziAmmoOffset2 = 0xC30;
@@ -137,7 +115,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xB6C);
             }
-            else if (lvlName == "Lost Valley")
+            else if (levelIndex == 3)   // Lost Valley
             {
                 magnumAmmoOffset2 = 0x598;
                 uziAmmoOffset2 = 0x5A4;
@@ -145,7 +123,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x1EF);
             }
-            else if (lvlName == "Tomb of Qualopec")
+            else if (levelIndex == 4)   // Tomb of Qualopec
             {
                 magnumAmmoOffset2 = 0x84A;
                 uziAmmoOffset2 = 0x856;
@@ -153,7 +131,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x44E);
             }
-            else if (lvlName == "St. Francis' Folly")
+            else if (levelIndex == 5)   // St. Francis' Folly
             {
                 magnumAmmoOffset2 = 0xD70;
                 uziAmmoOffset2 = 0xD7C;
@@ -161,7 +139,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xCB0);
             }
-            else if (lvlName == "Colosseum")
+            else if (levelIndex == 6)   // Colosseum
             {
                 magnumAmmoOffset2 = 0xA56;
                 uziAmmoOffset2 = 0xA62;
@@ -169,7 +147,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x5A9);
             }
-            else if (lvlName == "Palace Midas")
+            else if (levelIndex == 7)   // Palace Midas
             {
                 magnumAmmoOffset2 = 0xD48;
                 uziAmmoOffset2 = 0xD54;
@@ -177,7 +155,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x1F1);
             }
-            else if (lvlName == "The Cistern")
+            else if (levelIndex == 8)   // The Cistern
             {
                 magnumAmmoOffset2 = 0xC8A;
                 uziAmmoOffset2 = 0xC96;
@@ -185,7 +163,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xBE0);
             }
-            else if (lvlName == "Tomb of Tihocan")
+            else if (levelIndex == 9)   // Tomb of Tihocan
             {
                 magnumAmmoOffset2 = 0x93D;
                 uziAmmoOffset2 = 0x949;
@@ -193,7 +171,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x2E9);
             }
-            else if (lvlName == "City of Khamoon")
+            else if (levelIndex == 10)  // City of Khamoon
             {
                 magnumAmmoOffset2 = 0x85D;
                 uziAmmoOffset2 = 0x869;
@@ -201,7 +179,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x1E9);
             }
-            else if (lvlName == "Obelisk of Khamoon")
+            else if (levelIndex == 11)  // Obelisk of Khamoon
             {
                 magnumAmmoOffset2 = 0x8A3;
                 uziAmmoOffset2 = 0x8AF;
@@ -209,7 +187,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x2DF);
             }
-            else if (lvlName == "Sanctuary of the Scion")
+            else if (levelIndex == 12)  // Sanctuary of the Scion
             {
                 magnumAmmoOffset2 = 0x718;
                 uziAmmoOffset2 = 0x724;
@@ -217,7 +195,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x63D);
             }
-            else if (lvlName == "Natla's Mines")
+            else if (levelIndex == 13)  // Natla's Mines
             {
                 magnumAmmoOffset2 = 0x8A8;
                 uziAmmoOffset2 = 0x8B4;
@@ -225,7 +203,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x750);
             }
-            else if (lvlName == "Atlantis")
+            else if (levelIndex == 14)  // Atlantis
             {
                 magnumAmmoOffset2 = 0xFFA;
                 uziAmmoOffset2 = 0x1006;
@@ -233,7 +211,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x447);
             }
-            else if (lvlName == "The Great Pyramid")
+            else if (levelIndex == 15)  // The Great Pyramid
             {
                 magnumAmmoOffset2 = 0x8D2;
                 uziAmmoOffset2 = 0x8DE;
@@ -247,7 +225,7 @@ namespace TR_SaveMaster
             NumericUpDown nudSaveNumber, NumericUpDown nudSmallMedipacks, NumericUpDown nudLargeMedipacks, NumericUpDown nudUziAmmo,
             NumericUpDown nudMagnumAmmo, NumericUpDown nudShotgunAmmo, TrackBar trbHealth, Label lblHealth, Label lblHealthError)
         {
-            txtLvlName.Text = GetCleanLvlName();
+            txtLvlName.Text = GetLvlName();
 
             nudSaveNumber.Value = GetSaveNumber();
             nudSmallMedipacks.Value = GetNumSmallMedipacks();
@@ -329,6 +307,11 @@ namespace TR_SaveMaster
         private UInt16 GetSaveNumber()
         {
             return ReadUInt16(saveNumOffset);
+        }
+
+        private byte GetLevelIndex()
+        {
+            return ReadByte(levelIndexOffset);
         }
 
         private byte GetNumSmallMedipacks()
@@ -523,7 +506,8 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
-            return GetCleanLvlName() != null && IsSavegameFile(path);
+            byte levelIndex = GetLevelIndex();
+            return (levelIndex >= 1 && levelIndex <= 15) && IsSavegameFile(path);
         }
 
         private static bool IsSavegameFile(string path)
