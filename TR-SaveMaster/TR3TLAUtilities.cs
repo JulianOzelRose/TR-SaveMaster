@@ -11,6 +11,7 @@ namespace TR_SaveMaster
     {
         // Offsets
         private const int saveNumOffset = 0x4B;
+        private const int levelIndexOffset = 0x5C6;
         private int smallMedipackOffset;
         private int largeMedipackOffset;
         private int numFlaresOffset;
@@ -129,6 +130,11 @@ namespace TR_SaveMaster
             return false;
         }
 
+        private byte GetLevelIndex()
+        {
+            return ReadByte(levelIndexOffset);
+        }
+
         private byte GetWeaponsConfigNum()
         {
             return ReadByte(weaponsConfigNumOffset);
@@ -160,26 +166,11 @@ namespace TR_SaveMaster
             return null;
         }
 
-        private string GetCleanLvlName()
-        {
-            string lvlName = GetLvlName();
-            lvlName = lvlName.Trim();
-
-            if (lvlName.StartsWith("Highland Fling")) return "Highland Fling";
-            else if (lvlName.StartsWith("Willard's Lair")) return "Willard's Lair";
-            else if (lvlName.StartsWith("Shakespeare Cliff")) return "Shakespeare Cliff";
-            else if (lvlName.StartsWith("Sleeping with the Fishes")) return "Sleeping with the Fishes";
-            else if (lvlName.StartsWith("It's a Madhouse!")) return "It's a Madhouse!";
-            else if (lvlName.StartsWith("Reunion")) return "Reunion";
-
-            return null;
-        }
-
         public void DetermineOffsets()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
 
-            if (lvlName == "Highland Fling")
+            if (levelIndex == 1)        // Highland Fling
             {
                 smallMedipackOffset = 0xE6;
                 largeMedipackOffset = 0xE7;
@@ -206,7 +197,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x1435, 0x1447, 0x1459);
             }
-            else if (lvlName == "Willard's Lair")
+            else if (levelIndex == 2)   // Willard's Lair
             {
                 smallMedipackOffset = 0x119;
                 largeMedipackOffset = 0x11A;
@@ -233,7 +224,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xF5B, 0xF6D);
             }
-            else if (lvlName == "Shakespeare Cliff")
+            else if (levelIndex == 3)   // Shakespeare Cliff
             {
                 smallMedipackOffset = 0x14C;
                 largeMedipackOffset = 0x14D;
@@ -260,7 +251,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xCDB, 0xCED);
             }
-            else if (lvlName == "Sleeping with the Fishes")
+            else if (levelIndex == 4)   // Sleeping with the Fishes
             {
                 smallMedipackOffset = 0x17F;
                 largeMedipackOffset = 0x180;
@@ -287,7 +278,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0x705);
             }
-            else if (lvlName == "It's a Madhouse!")
+            else if (levelIndex == 5)   // It's a Madhouse!
             {
                 smallMedipackOffset = 0x1B2;
                 largeMedipackOffset = 0x1B3;
@@ -314,7 +305,7 @@ namespace TR_SaveMaster
 
                 SetHealthOffsets(0xB37, 0xB5B, 0xB6D, 0xB7F, 0xB91);
             }
-            else if (lvlName == "Reunion")
+            else if (levelIndex == 6)   // Reunion
             {
                 smallMedipackOffset = 0x1E5;
                 largeMedipackOffset = 0x1E6;
@@ -343,10 +334,10 @@ namespace TR_SaveMaster
             }
         }
 
-        private readonly Dictionary<string, Dictionary<int, List<int[]>>> ammoIndexData =
-            new Dictionary<string, Dictionary<int, List<int[]>>>
+        private readonly Dictionary<byte, Dictionary<int, List<int[]>>> ammoIndexData =
+            new Dictionary<byte, Dictionary<int, List<int[]>>>
             {
-                ["Highland Fling"] = new Dictionary<int, List<int[]>>
+                [1] = new Dictionary<int, List<int[]>>              // Highland Fling
                 {
                     [0] = new List<int[]>
                     {
@@ -369,7 +360,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1847, 0x1848, 0x1849, 0x184A },
                     },
                 },
-                ["Willard's Lair"] = new Dictionary<int, List<int[]>>
+                [2] = new Dictionary<int, List<int[]>>              // Willard's Lair
                 {
                     [0] = new List<int[]>
                     {
@@ -392,7 +383,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1B33, 0x1B34, 0x1B35, 0x1B36 },
                     },
                 },
-                ["Shakespeare Cliff"] = new Dictionary<int, List<int[]>>
+                [3] = new Dictionary<int, List<int[]>>              // Shakespeare Cliff
                 {
                     [0] = new List<int[]>
                     {
@@ -415,7 +406,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1B2C, 0x1B2D, 0x1B2E, 0x1B2F },
                     },
                 },
-                ["Sleeping with the Fishes"] = new Dictionary<int, List<int[]>>
+                [4] = new Dictionary<int, List<int[]>>              // Sleeping with the Fishes
                 {
                     [0] = new List<int[]>
                     {
@@ -444,7 +435,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1A25, 0x1A26, 0x1A27, 0x1A28 },
                     },
                 },
-                ["It's a Madhouse!"] = new Dictionary<int, List<int[]>>
+                [5] = new Dictionary<int, List<int[]>>              // It's a Madhouse!
                 {
                     [0] = new List<int[]>
                     {
@@ -471,7 +462,7 @@ namespace TR_SaveMaster
                         new int[] { 0x1765, 0x1766, 0x1767, 0x1768 },
                     },
                 },
-                ["Reunion"] = new Dictionary<int, List<int[]>>
+                [6] = new Dictionary<int, List<int[]>>              // Reunion
                 {
                     [0] = new List<int[]>
                     {
@@ -492,12 +483,12 @@ namespace TR_SaveMaster
 
         private int GetAmmoIndex()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
             int ammoIndex = 0;
 
-            if (ammoIndexData.ContainsKey(lvlName))
+            if (ammoIndexData.ContainsKey(levelIndex))
             {
-                Dictionary<int, List<int[]>> indexData = ammoIndexData[lvlName];
+                Dictionary<int, List<int[]>> indexData = ammoIndexData[levelIndex];
 
                 for (int i = 0; i < indexData.Count; i++)
                 {
@@ -919,7 +910,8 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
-            return GetCleanLvlName() != null;
+            byte levelIndex = GetLevelIndex();
+            return (levelIndex >= 1 && levelIndex <= 6);
         }
 
         public List<string> GetSavegamePaths(string gameDirectory)
