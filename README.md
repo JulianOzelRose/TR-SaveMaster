@@ -312,8 +312,8 @@ private byte CalculateChecksum()
 ## Tomb Raider: Chronicles
 Similar to Tomb Raider 4, most of the savegame data in Tomb Raider 5 is stored statically. The only exception is the health data,
 which is dynamically stored on a range that varies on each level. To determine the correct health offset, it is necessary to use
-the heuristic algorithm outlined in the above section. For Tomb Raider 5, the character animation data is located between 6-7
-bytes away from the health offset.
+the heuristic algorithm outlined in the [above section](https://github.com/JulianOzelRose/TR-SaveMaster#using-heuristics-to-determine-the-health-offset).
+For Tomb Raider 5, the character animation data is located between 6-7 bytes away from the health offset.
 
 ### Health offsets
 | **Level**           	   | **Offset range** |
@@ -340,16 +340,17 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 
 ## Tomb Raider I
 ### Common ###
-| **File offset**        | **Type**         | **Variable**            |
-| :---                	 | :---             | :---                    |
-| 0x0000                 | String           | Level Name              |
-| 0x004B                 | UInt16           | Save Number             |
-| 0x018C                 | UInt16           | Magnum Ammo             |
-| 0x018E                 | UInt16           | Uzi Ammo                |
-| 0x0190                 | UInt16           | Shotgun Ammo            |
-| 0x0192                 | BYTE             | Small Medipack          |
-| 0x0193                 | BYTE             | Large Medipack          |
-| 0x0197                 | BYTE             | Weapons Config Num      |
+| **File offset**        | **Type**         | **Variable**              |
+| :---                	 | :---             | :---                      |
+| 0x0000                 | String           | Level Name                |
+| 0x004B                 | UInt16           | Save Number               |
+| 0x018C                 | UInt16           | Magnum Ammo               |
+| 0x018E                 | UInt16           | Uzi Ammo                  |
+| 0x0190                 | UInt16           | Shotgun Ammo              |
+| 0x0192                 | BYTE             | Small Medipack            |
+| 0x0193                 | BYTE             | Large Medipack            |
+| 0x0197                 | BYTE             | Weapons Config Num        |
+| 0x01A3                 | BYTE             | Level Index               |
 
 ### Caves ###
 | **File offset**         | **Type**         | **Variable**             |
@@ -359,11 +360,11 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | Shotgun Ammo 2          | UInt16           | 0x0659                   |
 
 ### City of Vilcabamba ###
-| **File offset**        | **Type**         | **Variable**             |
-| :---                   | :---             | :---                     |
-| Magnum Ammo 2          | UInt16           | 0x0C24                   |
-| Uzi Ammo 2             | UInt16           | 0x0C30                   |
-| Shotgun Ammo 2         | UInt16           | 0x0C3C                   |
+| **File offset**        | **Type**         | **Variable**              |
+| :---                   | :---             | :---                      |
+| Magnum Ammo 2          | UInt16           | 0x0C24                    |
+| Uzi Ammo 2             | UInt16           | 0x0C30                    |
+| Shotgun Ammo 2         | UInt16           | 0x0C3C                    |
 
 ### Lost Valley ###
 | **File offset**         | **Type**         | **Variable**             |
@@ -457,39 +458,43 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | Shotgun Ammo 2          | UInt16           | 0x08EA                   |
 
 ## Tomb Raider I: Unfinished Business
-| **File Offset**       | **Type**         | **Variable**            |
-| :---                	| :---             | :---                    |
-| 0x000                 | String           | Level Name              |
-| 0x04B                 | UInt16           | Save Number             |
-| 0x09C                 | UInt16           | Magnum Ammo             |
-| 0x09E                 | UInt16           | Uzi Ammo                |
-| 0x0A0                 | UInt16           | Shotgun Ammo            |
-| 0x0A2                 | BYTE             | Small Medipack          |
-| 0x0A3                 | BYTE             | Large Medipack          |
-| 0x0A7                 | BYTE             | Weapons Config Num      |
+| **File Offset**       | **Type**         | **Variable**               |
+| :---                	| :---             | :---                       |
+| 0x000                 | String           | Level Name                 |
+| 0x04B                 | UInt16           | Save Number                |
+| 0x09C                 | UInt16           | Magnum Ammo                |
+| 0x09E                 | UInt16           | Uzi Ammo                   |
+| 0x0A0                 | UInt16           | Shotgun Ammo               |
+| 0x0A2                 | BYTE             | Small Medipack             |
+| 0x0A3                 | BYTE             | Large Medipack             |
+| 0x0A7                 | BYTE             | Weapons Config Num         |
+| 0x0B3                 | BYTE             | Level Index                |
 
 ## Tomb Raider II
+### Common ###
+| **File Offset**       | **Type**         | **Variable**               |
+| :---                	| :---             | :---                       |
+| 0x000                 | String           | Level Name                 |
+| 0x04B                 | UInt16           | Save Number                |
+| 0x483                 | BYTE             | Level Index                |
+
 ### The Great Wall ###
-| **File Offset**       | **Type**         | **Variable**            |
-| :---                	| :---             | :---                    |
-| 0x000                 | String           | Level Name              |
-| 0x04B                 | UInt16           | Save Number             |
-| 0x07D                 | UInt16           | Autmatic Pistols Ammo   |
-| 0x07F                 | UInt16           | Uzi Ammo                |
-| 0x081                 | UInt16           | Shotgun Ammo            |
-| 0x083                 | UInt16           | M16 Ammo                |
-| 0x085                 | UInt16           | Grenade Launcher Ammo   |
-| 0x087                 | UInt16           | Harpoon Gun Ammo        |
-| 0x089                 | BYTE             | Small Medipack          |
-| 0x08A                 | BYTE             | Large Medipack          |
-| 0x08C                 | BYTE             | Flares                  |
-| 0x08F                 | BYTE             | Weapons Config Num      |
+| **File Offset**       | **Type**         | **Variable**               |
+| :---                	| :---             | :---                       |
+| 0x07D                 | UInt16           | Autmatic Pistols Ammo      |
+| 0x07F                 | UInt16           | Uzi Ammo                   |
+| 0x081                 | UInt16           | Shotgun Ammo               |
+| 0x083                 | UInt16           | M16 Ammo                   |
+| 0x085                 | UInt16           | Grenade Launcher Ammo      |
+| 0x087                 | UInt16           | Harpoon Gun Ammo           |
+| 0x089                 | BYTE             | Small Medipack             |
+| 0x08A                 | BYTE             | Large Medipack             |
+| 0x08C                 | BYTE             | Flares                     |
+| 0x08F                 | BYTE             | Weapons Config Num         |
 
 ### Venice ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x0A9           | UInt16   | Autmatic Pistols Ammo  |
 | 0x0AB           | UInt16   | Uzi Ammo               |
 | 0x0AD           | UInt16   | Shotgun Ammo           |
@@ -504,8 +509,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Bartoli's Hideout ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x0D5           | UInt16   | Autmatic Pistols Ammo  |
 | 0x0D7           | UInt16   | Uzi Ammo               |
 | 0x0D9           | UInt16   | Shotgun Ammo           |
@@ -520,8 +523,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Opera House ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x101           | UInt16   | Autmatic Pistols Ammo  |
 | 0x103           | UInt16   | Uzi Ammo               |
 | 0x105           | UInt16   | Shotgun Ammo           |
@@ -536,8 +537,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Offshore Rig ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x12D           | UInt16   | Autmatic Pistols Ammo  |
 | 0x12F           | UInt16   | Uzi Ammo               |
 | 0x131           | UInt16   | Shotgun Ammo           |
@@ -552,8 +551,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Diving Area ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x159           | UInt16   | Autmatic Pistols Ammo  |
 | 0x15B           | UInt16   | Uzi Ammo               |
 | 0x15D           | UInt16   | Shotgun Ammo           |
@@ -568,8 +565,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### 40 Fathoms ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x185           | UInt16   | Autmatic Pistols Ammo  |
 | 0x187           | UInt16   | Uzi Ammo               |
 | 0x189           | UInt16   | Shotgun Ammo           |
@@ -584,8 +579,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Wreck of the Maria Doria ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x1B1           | UInt16   | Autmatic Pistols Ammo  |
 | 0x1B3           | UInt16   | Uzi Ammo               |
 | 0x1B5           | UInt16   | Shotgun Ammo           |
@@ -600,8 +593,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Living Quarters ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x1DD           | UInt16   | Autmatic Pistols Ammo  |
 | 0x1DF           | UInt16   | Uzi Ammo               |
 | 0x1E1           | UInt16   | Shotgun Ammo           |
@@ -616,8 +607,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### The Deck ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x209           | UInt16   | Autmatic Pistols Ammo  |
 | 0x20B           | UInt16   | Uzi Ammo               |
 | 0x20D           | UInt16   | Shotgun Ammo           |
@@ -632,8 +621,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Tibetan Foothills ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x235           | UInt16   | Autmatic Pistols Ammo  |
 | 0x237           | UInt16   | Uzi Ammo               |
 | 0x239           | UInt16   | Shotgun Ammo           |
@@ -648,8 +635,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Barkhang Monastery ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x261           | UInt16   | Autmatic Pistols Ammo  |
 | 0x263           | UInt16   | Uzi Ammo               |
 | 0x265           | UInt16   | Shotgun Ammo           |
@@ -664,8 +649,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Catacombs of the Talion ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x28D           | UInt16   | Autmatic Pistols Ammo  |
 | 0x28F           | UInt16   | Uzi Ammo               |
 | 0x291           | UInt16   | Shotgun Ammo           |
@@ -680,8 +663,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Ice Palace ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x2B9           | UInt16   | Autmatic Pistols Ammo  |
 | 0x2BB           | UInt16   | Uzi Ammo               |
 | 0x2BD           | UInt16   | Shotgun Ammo           |
@@ -696,8 +677,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Temple of Xian ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x2E5           | UInt16   | Autmatic Pistols Ammo  |
 | 0x2E7           | UInt16   | Uzi Ammo               |
 | 0x2E9           | UInt16   | Shotgun Ammo           |
@@ -712,8 +691,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Floating Islands ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x311           | UInt16   | Autmatic Pistols Ammo  |
 | 0x313           | UInt16   | Uzi Ammo               |
 | 0x315           | UInt16   | Shotgun Ammo           |
@@ -728,8 +705,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### The Dragon's Lair ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x33D           | UInt16   | Autmatic Pistols Ammo  |
 | 0x33F           | UInt16   | Uzi Ammo               |
 | 0x341           | UInt16   | Shotgun Ammo           |
@@ -744,8 +719,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Home Sweet Home ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x36D           | UInt16   | Shotgun Ammo           |
 | 0x375           | BYTE     | Small Medipack         |
 | 0x376           | BYTE     | Large Medipack         |
@@ -753,11 +726,16 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x37B           | BYTE     | Weapons Config Num     |
 
 ## Tomb Raider II: The Golden Mask
-### The Cold War ###
+### Common ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
 | 0x000           | String   | Level Name             |
 | 0x04B           | UInt16   | Save Number            |
+| 0x483           | BYTE     | Level Index            |
+
+### The Cold War ###
+| **File Offset** | **Type** | **Variable**           |
+| :-------------- | :------- | :--------------------- |
 | 0x07D           | UInt16   | Automatic Pistols Ammo |
 | 0x07F           | UInt16   | Uzi Ammo               |
 | 0x081           | UInt16   | Shotgun Ammo           |
@@ -772,8 +750,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Fool's Gold ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x0A9           | UInt16   | Automatic Pistols Ammo |
 | 0x0AB           | UInt16   | Uzi Ammo               |
 | 0x0AD           | UInt16   | Shotgun Ammo           |
@@ -788,8 +764,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Furnace of the Gods ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x0D5           | UInt16   | Automatic Pistols Ammo |
 | 0x0D7           | UInt16   | Uzi Ammo               |
 | 0x0D9           | UInt16   | Shotgun Ammo           |
@@ -804,8 +778,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Kingdom ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x101           | UInt16   | Automatic Pistols Ammo |
 | 0x103           | UInt16   | Uzi Ammo               |
 | 0x105           | UInt16   | Shotgun Ammo           |
@@ -820,8 +792,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 ### Nightmare In Vegas ###
 | **File Offset** | **Type** | **Variable**           |
 | :-------------- | :------- | :--------------------- |
-| 0x000           | String   | Level Name             |
-| 0x04B           | UInt16   | Save Number            |
 | 0x12D           | UInt16   | Automatic Pistols Ammo |
 | 0x12F           | UInt16   | Uzi Ammo               |
 | 0x131           | UInt16   | Shotgun Ammo           |
@@ -834,11 +804,16 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x13F           | BYTE     | Weapons Config Num     |
 
 ## Tomb Raider III
-#### Jungle ####
+#### Common ####
 | **File offset** | **Type** | **Variable**            |
 | :---            | :---     | :---                    |
 | 0x0000          | String   | Level Name              |
 | 0x004B          | UInt16   | Save Number             |
+| 0x05C6          | BYTE     | Level Index             |
+
+#### Jungle ####
+| **File offset** | **Type** | **Variable**            |
+| :---            | :---     | :---                    |
 | 0x00D8          | UInt16   | Deagle Ammo 1           |
 | 0x00DA          | UInt16   | Uzi Ammo 1              |
 | 0x00DC          | UInt16   | Shotgun Ammo 1          |
@@ -862,8 +837,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Temple Ruins ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x010B            | UInt16   | Deagle Ammo 1           |
 | 0x010D            | UInt16   | Uzi Ammo 1              |
 | 0x010F            | UInt16   | Shotgun Ammo 1          |
@@ -887,8 +860,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### The River Ganges ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x013E            | UInt16   | Deagle Ammo 1           |
 | 0x0140            | UInt16   | Uzi Ammo 1              |
 | 0x0142            | UInt16   | Shotgun Ammo 1          |
@@ -912,8 +883,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Caves of Kaliya ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x0171            | UInt16   | Deagle Ammo 1           |
 | 0x0173            | UInt16   | Uzi Ammo 1              |
 | 0x0175            | UInt16   | Shotgun Ammo 1          |
@@ -937,8 +906,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Nevada Desert ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x033C            | UInt16   | Deagle Ammo 1           |
 | 0x033E            | UInt16   | Uzi Ammo 1              |
 | 0x0340            | UInt16   | Shotgun Ammo 1          |
@@ -948,7 +915,7 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x0348            | UInt16   | Grenade Launcher Ammo 1 |
 | 0x034A            | BYTE     | Small Medipack          |
 | 0x034B            | BYTE     | Large Medipack          |
-| 0x034A            | BYTE     | Flares                  |
+| 0x034D            | BYTE     | Flares                  |
 | 0x0351            | BYTE     | Weapons Config Number   |
 | 0x0352            | BYTE     | Harpoon Gun             |
 | 0x179C            | UInt16   | Deagle Ammo 2           |
@@ -962,8 +929,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### High Security Compound ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x036F            | UInt16   | Deagle Ammo 1           |
 | 0x0371            | UInt16   | Uzi Ammo 1              |
 | 0x0373            | UInt16   | Shotgun Ammo 1          |
@@ -987,8 +952,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Area 51 ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x03A2            | UInt16   | Deagle Ammo 1           |
 | 0x03A4            | UInt16   | Uzi Ammo 1              |
 | 0x03A6            | UInt16   | Shotgun Ammo 1          |
@@ -1012,8 +975,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Coastal Village ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x01A4            | UInt16   | Deagle Ammo 1           |
 | 0x01A6            | UInt16   | Uzi Ammo 1              |
 | 0x01A8            | UInt16   | Shotgun Ammo 1          |
@@ -1037,8 +998,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Crash Site ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x01D7            | UInt16   | Deagle Ammo 1           |
 | 0x01D9            | UInt16   | Uzi Ammo 1              |
 | 0x01DB            | UInt16   | Shotgun Ammo 1          |
@@ -1061,8 +1020,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Madubu Gorge ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x020A            | UInt16   | Deagle Ammo 1           |
 | 0x020C            | UInt16   | Uzi Ammo 1              |
 | 0x020E            | UInt16   | Shotgun Ammo 1          |
@@ -1085,8 +1042,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Temple of Puna ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x023D            | UInt16   | Deagle Ammo 1           |
 | 0x023F            | UInt16   | Uzi Ammo 1              |
 | 0x0241            | UInt16   | Shotgun Ammo 1          |
@@ -1110,8 +1065,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Thames Wharf ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x0270            | UInt16   | Deagle Ammo 1           |
 | 0x0272            | UInt16   | Uzi Ammo 1              |
 | 0x0274            | UInt16   | Shotgun Ammo 1          |
@@ -1135,8 +1088,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Aldwych ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x02A3            | UInt16   | Deagle Ammo 1           |
 | 0x02A5            | UInt16   | Uzi Ammo 1              |
 | 0x02A7            | UInt16   | Shotgun Ammo 1          |
@@ -1160,8 +1111,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Lud's Gate ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x02D6            | UInt16   | Deagle Ammo 1           |
 | 0x02D8            | UInt16   | Uzi Ammo 1              |
 | 0x02DA            | UInt16   | Shotgun Ammo 1          |
@@ -1185,8 +1134,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### City ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x0309            | UInt16   | Deagle Ammo 1           |
 | 0x030B            | UInt16   | Uzi Ammo 1              |
 | 0x030D            | UInt16   | Shotgun Ammo 1          |
@@ -1210,8 +1157,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Antarctica ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x03D5            | UInt16   | Deagle Ammo 1           |
 | 0x03D7            | UInt16   | Uzi Ammo 1              |
 | 0x03D9            | UInt16   | Shotgun Ammo 1          |
@@ -1235,8 +1180,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### RX-Tech Mines ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x0408            | UInt16   | Deagle Ammo 1           |
 | 0x040A            | UInt16   | Uzi Ammo 1              |
 | 0x040C            | UInt16   | Shotgun Ammo 1          |
@@ -1260,8 +1203,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Lost City of Tinnos ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x043B            | UInt16   | Deagle Ammo 1           |
 | 0x043D            | UInt16   | Uzi Ammo 1              |
 | 0x043F            | UInt16   | Shotgun Ammo 1          |
@@ -1285,8 +1226,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Meteorite Cavern ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x046E            | UInt16   | Deagle Ammo 1           |
 | 0x0470            | UInt16   | Uzi Ammo 1              |
 | 0x0472            | UInt16   | Shotgun Ammo 1          |
@@ -1310,8 +1249,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### All Hallows ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x046E            | UInt16   | Deagle Ammo 1           |
 | 0x0470            | UInt16   | Uzi Ammo 1              |
 | 0x0472            | UInt16   | Shotgun Ammo 1          |
@@ -1338,11 +1275,16 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x103D            | UInt16   | MP5 Ammo 2              |
 
 ## Tomb Raider III: The Lost Artifact
-#### Highland Fling ####
+#### Common ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
 | 0x0000            | String   | Level Name              |
 | 0x004B            | UInt16   | Save Number             |
+| 0x05C6            | BYTE     | Level Index             |
+
+#### Highland Fling ####
+| **File offset**   | **Type** | **Variable**            |
+| :---              | :---     | :---                    |
 | 0x00DA            | UInt16   | Uzi Ammo                |
 | 0x00DE            | UInt16   | MP5 Ammo                |
 | 0x00E0            | UInt16   | Rocket Launcher Ammo    |
@@ -1364,8 +1306,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Willard's Lair ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x010D            | UInt16   | Uzi Ammo                |
 | 0x0111            | UInt16   | MP5 Ammo                |
 | 0x0113            | UInt16   | Rocket Launcher Ammo    |
@@ -1387,8 +1327,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Shakespeare Cliff ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x0140            | UInt16   | Uzi Ammo                |
 | 0x0144            | UInt16   | MP5 Ammo                |
 | 0x0146            | UInt16   | Rocket Launcher Ammo    |
@@ -1410,8 +1348,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Sleeping with the Fishes ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x0173            | UInt16   | Uzi Ammo                |
 | 0x0177            | UInt16   | MP5 Ammo                |
 | 0x0179            | UInt16   | Rocket Launcher Ammo    |
@@ -1433,8 +1369,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### It's a Madhouse! ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x01A6            | UInt16   | Uzi Ammo                |
 | 0x01AA            | UInt16   | MP5 Ammo                |
 | 0x01AC            | UInt16   | Rocket Launcher Ammo    |
@@ -1456,8 +1390,6 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 #### Reunion ####
 | **File offset**   | **Type** | **Variable**            |
 | :---              | :---     | :---                    |
-| 0x0000            | String   | Level Name              |
-| 0x004B            | UInt16   | Save Number             |
 | 0x01D9            | UInt16   | Uzi Ammo                |
 | 0x01DD            | UInt16   | MP5 Ammo                |
 | 0x01DF            | UInt16   | Rocket Launcher Ammo    |
@@ -1503,28 +1435,30 @@ indicates the weapon is not present. Ammunition data is also stored statically, 
 | 0x1A6                 | UInt16           | Crossbow Normal Ammo    |
 | 0x1A8                 | UInt16           | Crossbow Poison Ammo    |
 | 0x1AA                 | UInt16           | Crossbow Explosive Ammo |
+| 0x1E7                 | BYTE             | Level Index             |
 
 ## Tomb Raider: Chronicles
-| **File offset**       | **Type**         | **Variable**          |
-| :---                	| :---             | :---                  |
-| 0x000     	          | String      		 | Level Name            |
-| 0x04B                 | UInt16           | Save Number           |
-| 0x16F     	          | BYTE        		 | Pistols               |
-| 0x170     	          | BYTE  		       | Uzi                   |
-| 0x171     	          | BYTE  		       | Shotgun               |
-| 0x172     	          | BYTE  		       | Grappling Gun         |
-| 0x173     	          | BYTE  		       | HK Gun                |
-| 0x174     	          | BYTE  		       | Revolver/Deagle       |
-| 0x175     	          | BYTE  		       | LaserSight            |
-| 0x177     	          | BYTE  		       | Binoculars/Headset    |
-| 0x178     	          | BYTE  		       | Crowbar               |
-| 0x194     	          | UInt16  		     | Small Medipack        |
-| 0x196     	          | UInt16  		     | Large Medipack        |
-| 0x198     	          | UInt16  		     | Flares                |
-| 0x19C     	          | UInt16  		     | Uzi Ammo              |
-| 0x19E     	          | UInt16  		     | Revolver/Deagle Ammo  |
-| 0x1A0     	          | UInt16  		     | Shotgun Normal Ammo   |
-| 0x1A2     	          | UInt16  		     | Shotgun Wideshot Ammo |
-| 0x1A4     	          | UInt16  		     | HK Ammo               |
-| 0x1A6     	          | UInt16  		     | Grappling Gun Ammo    |
-| 0x1C3     	          | BYTE    		     | Secrets               |
+| **File offset**       | **Type**          | **Variable**          |
+| :---                	| :---              | :---                  |
+| 0x000     	         | String      		  | Level Name            |
+| 0x04B                 | UInt16            | Save Number           |
+| 0x16F     	         | BYTE        		  | Pistols               |
+| 0x170     	         | BYTE  		        | Uzi                   |
+| 0x171     	         | BYTE  		        | Shotgun               |
+| 0x172     	         | BYTE  		        | Grappling Gun         |
+| 0x173     	         | BYTE  		        | HK Gun                |
+| 0x174     	         | BYTE  		        | Revolver/Deagle       |
+| 0x175     	         | BYTE  		        | LaserSight            |
+| 0x177     	         | BYTE  		        | Binoculars/Headset    |
+| 0x178     	         | BYTE  		        | Crowbar               |
+| 0x194                 | UInt16  		     | Small Medipack        |
+| 0x196    	            | UInt16  		     | Large Medipack        |
+| 0x198                 | UInt16  		     | Flares                |
+| 0x19C                 | UInt16  		     | Uzi Ammo              |
+| 0x19E     	         | UInt16  		     | Revolver/Deagle Ammo  |
+| 0x1A0     	         | UInt16  		     | Shotgun Normal Ammo   |
+| 0x1A2     	         | UInt16  		     | Shotgun Wideshot Ammo |
+| 0x1A4     	         | UInt16  		     | HK Ammo               |
+| 0x1A6     	         | UInt16  		     | Grappling Gun Ammo    |
+| 0x1C3     	         | BYTE    		     | Secrets               |
+| 0x1EC                 | BYTE              | Level Index           |
