@@ -17,6 +17,7 @@ namespace TR_SaveMaster
         private const int smallMedipackOffset = 0x0A2;
         private const int largeMedipackOffset = 0x0A3;
         private const int weaponsConfigNumOffset = 0x0A7;
+        private const int levelIndexOffset = 0x0B3;
         private int magnumAmmoOffset2;
         private int uziAmmoOffset2;
         private int shotgunAmmoOffset2;
@@ -94,35 +95,23 @@ namespace TR_SaveMaster
             }
         }
 
-        private string GetCleanLvlName()
-        {
-            string lvlName = GetLvlName();
-
-            if (lvlName.StartsWith("Return to Egypt")) return "Return to Egypt";
-            else if (lvlName.StartsWith("Temple of the Cat")) return "Temple of the Cat";
-            else if (lvlName.StartsWith("Atlantean Stronghold")) return "Atlantean Stronghold";
-            else if (lvlName.StartsWith("The Hive")) return "The Hive";
-
-            return null;
-        }
-
         public void DetermineOffsets()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
 
-            if (lvlName == "Return to Egypt")
+            if (levelIndex == 0)        // Return to Egypt
             {
                 SetHealthOffsets(0x165);
             }
-            else if (lvlName == "Temple of the Cat")
+            else if (levelIndex == 1)   // Temple of the Cat
             {
                 SetHealthOffsets(0x3DD, 0x3E9);
             }
-            else if (lvlName == "Atlantean Stronghold")
+            else if (levelIndex == 2)   // Atlantean Stronghold
             {
                 SetHealthOffsets(0x3C7, 0x3DF, 0x3D3);
             }
-            else if (lvlName == "The Hive")
+            else if (levelIndex == 3)   // The Hive
             {
                 SetHealthOffsets(0x501);
             }
@@ -130,9 +119,9 @@ namespace TR_SaveMaster
             SetSecondaryAmmoOffsets();
         }
 
-        private readonly Dictionary<string, Dictionary<int, int[]>> ammoIndexData = new Dictionary<string, Dictionary<int, int[]>>
+        private readonly Dictionary<byte, Dictionary<int, int[]>> ammoIndexData = new Dictionary<byte, Dictionary<int, int[]>>
         {
-            ["Return to Egypt"] = new Dictionary<int, int[]>
+            [0] = new Dictionary<int, int[]>                // Return to Egypt
             {
                 [0xC95] = new int[] { 0xC95, 0xC96, 0xC97, 0xC98 },
                 [0xCA1] = new int[] { 0xCA1, 0xCA2, 0xCA3, 0xCA4 },
@@ -141,7 +130,7 @@ namespace TR_SaveMaster
                 [0xCDD] = new int[] { 0xCDD, 0xCDE, 0xCDF, 0xCE0 },
                 [0xDF7] = new int[] { 0xDF7, 0xDF8, 0xDF9, 0xDFA },
             },
-            ["Temple of the Cat"] = new Dictionary<int, int[]>
+            [1] = new Dictionary<int, int[]>                // Temple of the Cat
             {
                 [0xFBF] = new int[] { 0xFBF, 0xFC0, 0xFC1, 0xFC2 },
                 [0xFCB] = new int[] { 0xFCB, 0xFCC, 0xFCD, 0xFCE },
@@ -149,7 +138,7 @@ namespace TR_SaveMaster
                 [0x1007] = new int[] { 0x1027, 0x1028, 0x1029, 0x102A },
                 [0x114B] = new int[] { 0x114B, 0x114C, 0x114D, 0x114E },
             },
-            ["Atlantean Stronghold"] = new Dictionary<int, int[]>
+            [2] = new Dictionary<int, int[]>                // Atlantean Stronghold
             {
                 [0xB3D] = new int[] { 0xB3D, 0xB3E, 0xB3F, 0xB40 },
                 [0xB49] = new int[] { 0xB49, 0xB4A, 0xB4B, 0xB4C },
@@ -157,7 +146,7 @@ namespace TR_SaveMaster
                 [0xB79] = new int[] { 0xB79, 0xB7A, 0xB7B, 0xB7C },
                 [0xC5A] = new int[] { 0xC5A, 0xC5B, 0xC5C, 0xC5D },
             },
-            ["The Hive"] = new Dictionary<int, int[]>
+            [3] = new Dictionary<int, int[]>                // The Hive
             {
                 [0x1099] = new int[] { 0x1099, 0x109A, 0x109B, 0x109C },
                 [0x10A5] = new int[] { 0x10A5, 0x10A6, 0x10A7, 0x10A8 },
@@ -180,12 +169,12 @@ namespace TR_SaveMaster
 
         private int GetSecondaryAmmoIndexMarker()
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
             int ammoIndexMarker = -1;
 
-            if (ammoIndexData.ContainsKey(lvlName))
+            if (ammoIndexData.ContainsKey(levelIndex))
             {
-                Dictionary<int, int[]> indexData = ammoIndexData[lvlName];
+                Dictionary<int, int[]> indexData = ammoIndexData[levelIndex];
 
                 for (int i = 0; i < indexData.Count; i++)
                 {
@@ -211,6 +200,11 @@ namespace TR_SaveMaster
             if (byteFlag1 == 0x0D && byteFlag2 == 0x00 && byteFlag3 == 0x0D) return true;       // Underwater
 
             return false;
+        }
+
+        private byte GetLevelIndex()
+        {
+            return ReadByte(levelIndexOffset);
         }
 
         private byte GetNumSmallMedipacks()
@@ -495,7 +489,8 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
-            return GetCleanLvlName() != null;
+            byte levelIndex = GetLevelIndex();
+            return (levelIndex >= 0 && levelIndex <= 3);
         }
 
         public List<string> GetSavegamePaths(string gameDirectory)
