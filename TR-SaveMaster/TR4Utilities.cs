@@ -34,6 +34,7 @@ namespace TR_SaveMaster
         private const int crossbowNormalAmmoOffset = 0x1A6;
         private const int crossbowPoisonAmmoOffset = 0x1A8;
         private const int crossbowExplosiveAmmoOffset = 0x1AA;
+        private const int levelIndexOffset = 0x1E7;
 
         // Checksum
         private const int CHECKSUM_START_OFFSET = 0x57;
@@ -91,270 +92,219 @@ namespace TR_SaveMaster
             }
         }
 
-        private string GetCleanLvlName()
-        {
-            string lvlName = GetLvlName();
-            lvlName = lvlName.Trim();
-
-            if (lvlName.StartsWith("Angkor Wat")) return "Angkor Wat";
-            else if (lvlName.StartsWith("Race For The Iris") || lvlName.StartsWith("Die Jagd nach der Iris")) return "Race For The Iris";
-            else if (lvlName.StartsWith("The Tomb Of Seth") || lvlName.StartsWith("Das Grabmal des Seth")) return "The Tomb Of Seth";
-            else if (lvlName.StartsWith("Burial Chambers") || lvlName.StartsWith("Die Grabkammer")) return "Burial Chambers";
-            else if (lvlName.StartsWith("Valley Of The Kings") || lvlName.StartsWith("Im Tal der K~onige")) return "Valley Of The Kings";
-            else if (lvlName.StartsWith("KV5") || lvlName.StartsWith("Das 5. Grabmal im Tal der K~onige")) return "KV5";
-            else if (lvlName.StartsWith("Temple Of Karnak") || lvlName.StartsWith("Der Tempel von Karnak")) return "Temple Of Karnak";
-            else if (lvlName.StartsWith("The Great Hypostyle Hall") || lvlName.StartsWith("Die grosse Hypostyle Halle")) return "The Great Hypostyle Hall";
-            else if (lvlName.StartsWith("Sacred Lake") || lvlName.StartsWith("Der heilige See")) return "Sacred Lake";
-            else if (lvlName.StartsWith("Tomb Of Semerkhet") || lvlName.StartsWith("Das Grabmal des Semerkhet")) return "Tomb Of Semerkhet";
-            else if (lvlName.StartsWith("Guardian Of Semerkhet") || lvlName.StartsWith("Der W~achter des Semerkhet")) return "Guardian Of Semerkhet";
-            else if (lvlName.StartsWith("Desert Railroad") || lvlName.StartsWith("Ein Zug in der W~uste")) return "Desert Railroad";
-            else if (lvlName.StartsWith("Alexandria")) return "Alexandria";
-            else if (lvlName.StartsWith("Coastal Ruins") || lvlName.StartsWith("Die K~ustenruinen")) return "Coastal Ruins";
-            else if (lvlName.StartsWith("Catacombs") || lvlName.StartsWith("Die Katakomben")) return "Catacombs";
-            else if (lvlName.StartsWith("Temple Of Poseidon") || lvlName.StartsWith("Der Poseidontempel")) return "Temple Of Poseidon";
-            else if (lvlName.StartsWith("The Lost Library") || lvlName.StartsWith("Die verschwundene Bibliothek")) return "The Lost Library";
-            else if (lvlName.StartsWith("Hall Of Demetrius") || lvlName.StartsWith("Die Hallen des Demetrius")) return "Hall Of Demetrius";
-            else if (lvlName.StartsWith("Pharos, Temple Of Isis") || lvlName.StartsWith("Der Isistempel von Pharos")) return "Pharos, Temple Of Isis";
-            else if (lvlName.StartsWith("Cleopatra's Palaces") || lvlName.StartsWith("Der Palast der Kleopatra")) return "Cleopatra's Palaces";
-            else if (lvlName.StartsWith("City Of The Dead") || lvlName.StartsWith("Die Stadt der Toten")) return "City Of The Dead";
-            else if (lvlName.StartsWith("Chambers Of Tulun") || lvlName.StartsWith("Die Tulun-Moschee")) return "Chambers Of Tulun";
-            else if (lvlName.StartsWith("Citadel Gate") || lvlName.StartsWith("Das Tor zur Zitadelle")) return "Citadel Gate";
-            else if (lvlName.StartsWith("Trenches") || lvlName.StartsWith("Die Gr~aben")) return "Trenches";
-            else if (lvlName.StartsWith("Street Bazaar") || lvlName.StartsWith("Der Stra=enbasar")) return "Street Bazaar";
-            else if (lvlName.StartsWith("Citadel") || lvlName.StartsWith("Die Zitadelle")) return "Citadel";
-            else if (lvlName.StartsWith("The Sphinx Complex") || lvlName.StartsWith("Der Sphinx Komplex")) return "The Sphinx Complex";
-            else if (lvlName.StartsWith("Underneath The Sphinx") || lvlName.StartsWith("Der Tempel im Tal")) return "Underneath The Sphinx";
-            else if (lvlName.StartsWith("Menkaure's Pyramid") || lvlName.StartsWith("Die Pyramide des Menkaure")) return "Menkaure's Pyramid";
-            else if (lvlName.StartsWith("Inside Menkaure's Pyramid") || lvlName.StartsWith("In der Pyramide des Menkaure")) return "Inside Menkaure's Pyramid";
-            else if (lvlName.StartsWith("The Mastabas") || lvlName.StartsWith("Die Mastabas")) return "The Mastabas";
-            else if (lvlName.StartsWith("The Great Pyramid") || lvlName.StartsWith("Die gro=e Pyramide")) return "The Great Pyramid";
-            else if (lvlName.StartsWith("Khufu's Queens Pyramids") || lvlName.StartsWith("Die K~onigspyramiden von Khufu")) return "Khufu's Queens Pyramids";
-            else if (lvlName.StartsWith("Inside The Great Pyramid") || lvlName.StartsWith("In der gro=en Pyramide")) return "Inside The Great Pyramid";
-            else if (lvlName.StartsWith("Temple Of Horus") || lvlName.StartsWith("Der Tempel des Horus")) return "Temple Of Horus";
-            else if (lvlName.StartsWith("The Times Exclusive")) return "The Times Exclusive";
-
-            return null;
-        }
-
         public void SetLevelParams(CheckBox chkBinoculars, CheckBox chkLaserSight, CheckBox chkCrowbar)
         {
-            string lvlName = GetCleanLvlName();
+            byte levelIndex = GetLevelIndex();
 
-            if (lvlName == "Angkor Wat")
+            if (levelIndex == 1)        // Angkor Wat
             {
                 chkBinoculars.Enabled = false;
                 chkLaserSight.Enabled = false;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "Race For The Iris")
+            else if (levelIndex == 2)   // Race For The Iris (also The Times Exclusive)
             {
                 chkBinoculars.Enabled = false;
                 chkLaserSight.Enabled = false;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "The Tomb Of Seth")
+            else if (levelIndex == 3)   // The Tomb Of Seth
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "Burial Chambers")
+            else if (levelIndex == 4)   // Burial Chambers
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "Valley Of The Kings")
+            else if (levelIndex == 5)   // Valley Of The Kings
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "KV5")
+            else if (levelIndex == 6)   // KV5
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "Temple Of Karnak")
+            else if (levelIndex == 7)   // Temple Of Karnak
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "The Great Hypostyle Hall")
+            else if (levelIndex == 8)   // The Great Hypostyle Hall
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "Sacred Lake")
+            else if (levelIndex == 9)   // Sacred Lake
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "Tomb Of Semerkhet")
+            else if (levelIndex == 11)  // Tomb Of Semerkhet
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "Guardian Of Semerkhet")
+            else if (levelIndex == 12)  // Guardian Of Semerkhet
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
             }
-            else if (lvlName == "Desert Railroad")
+            else if (levelIndex == 13)  // Desert Railroad
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Alexandria")
+            else if (levelIndex == 14)  // Alexandria
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Coastal Ruins")
+            else if (levelIndex == 15)  // Coastal Ruins
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Catacombs")
+            else if (levelIndex == 18)  // Catacombs
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Temple Of Poseidon")
+            else if (levelIndex == 19)  // Temple Of Poseidon
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "The Lost Library")
+            else if (levelIndex == 20)  // The Lost Library
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Hall Of Demetrius")
+            else if (levelIndex == 21)  // Hall Of Demetrius
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Pharos, Temple Of Isis")
+            else if (levelIndex == 16)  // Pharos, Temple Of Isis
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Cleopatra's Palaces")
+            else if (levelIndex == 17)  // Cleopatra's Palaces
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "City Of The Dead")
+            else if (levelIndex == 22)  // City Of The Dead
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Chambers Of Tulun")
+            else if (levelIndex == 24)  // Chambers Of Tulun
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Citadel Gate")
+            else if (levelIndex == 26)  // Citadel Gate
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Trenches")
+            else if (levelIndex == 23)  // Trenches
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Street Bazaar")
+            else if (levelIndex == 25)  // Street Bazaar
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Citadel")
+            else if (levelIndex == 27)  // Citadel
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "The Sphinx Complex")
+            else if (levelIndex == 28)  // The Sphinx Complex
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Underneath The Sphinx")
+            else if (levelIndex == 30)  // Underneath The Sphinx
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Menkaure's Pyramid")
+            else if (levelIndex == 31)  // Menkaure's Pyramid
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Inside Menkaure's Pyramid")
+            else if (levelIndex == 32)  // Inside Menkaure's Pyramid
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "The Mastabas")
+            else if (levelIndex == 33)  // The Mastabas
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "The Great Pyramid")
+            else if (levelIndex == 34)  // The Great Pyramid
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Khufu's Queens Pyramids")
+            else if (levelIndex == 35)  // Khufu's Queens Pyramids
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Inside The Great Pyramid")
+            else if (levelIndex == 36)  // Inside The Great Pyramid
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
             }
-            else if (lvlName == "Temple Of Horus")
+            else if (levelIndex == 38)  // Temple Of Horus
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
-            }
-            else if (lvlName == "The Times Exclusive")
-            {
-                chkBinoculars.Enabled = true;
-                chkLaserSight.Enabled = true;
-                chkCrowbar.Enabled = false;
             }
         }
 
@@ -366,7 +316,7 @@ namespace TR_SaveMaster
             CheckBox chkLaserSight, CheckBox chkPistols, CheckBox chkRevolver, CheckBox chkUzis, CheckBox chkShotgun, CheckBox chkCrossbow,
             CheckBox chkGrenadeGun)
         {
-            txtLvlName.Text = GetCleanLvlName();
+            txtLvlName.Text = GetLvlName();
 
             nudSaveNumber.Value = GetSaveNumber();
             nudSecrets.Value = GetNumSecrets();
@@ -515,6 +465,11 @@ namespace TR_SaveMaster
         private bool IsLaserSightPresent()
         {
             return ReadByte(laserSightOffset) != 0;
+        }
+
+        private byte GetLevelIndex()
+        {
+            return ReadByte(levelIndexOffset);
         }
 
         private byte GetNumSecrets()
@@ -882,7 +837,8 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
-            return GetCleanLvlName() != null;
+            byte levelIndex = GetLevelIndex();
+            return (levelIndex >= 1 && levelIndex <= 38);
         }
 
         public List<string> GetSavegamePaths(string gameDirectory)
