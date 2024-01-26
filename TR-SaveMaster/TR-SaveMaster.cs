@@ -3688,59 +3688,44 @@ namespace TR_SaveMaster
             }
         }
 
-        private void tabGame_SelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateSaveButtonState()
         {
-            for (int i = 0; i < tabGame.TabPages.Count; i++)
+            if (tabGame.SelectedIndex == 0)
             {
-                if (tabGame.TabPages[i] == tabGame.SelectedTab)
-                {
-                    for (int j = 0; j < tabGame.TabPages[i].Controls.Count; j++)
-                    {
-                        tabGame.TabPages[i].Controls[j].Visible = true;
-                    }
-                }
-                else
-                {
-                    for (int j = 0; j < tabGame.TabPages[i].Controls.Count; j++)
-                    {
-                        tabGame.TabPages[i].Controls[j].Visible = false;
-                    }
-                }
-
-                if (tabGame.SelectedIndex == 0)
-                {
-                    tsmiSave.Enabled = btnSaveTR1.Enabled;
-                }
-                else if (tabGame.SelectedIndex == 1)
-                {
-                    tsmiSave.Enabled = btnSaveTR1UB.Enabled;
-                }
-                else if (tabGame.SelectedIndex == 2)
-                {
-                    tsmiSave.Enabled = btnSaveTR2.Enabled;
-                }
-                else if (tabGame.SelectedIndex == 3)
-                {
-                    tsmiSave.Enabled = btnSaveTR2G.Enabled;
-                }
-                else if (tabGame.SelectedIndex == 4)
-                {
-                    tsmiSave.Enabled = btnSaveTR3.Enabled;
-                }
-                else if (tabGame.SelectedIndex == 5)
-                {
-                    tsmiSave.Enabled = btnSaveTR3TLA.Enabled;
-                }
-                else if (tabGame.SelectedIndex == 6)
-                {
-                    tsmiSave.Enabled = btnSaveTR4.Enabled;
-                }
-                else if (tabGame.SelectedIndex == 7)
-                {
-                    tsmiSave.Enabled = btnSaveTRC.Enabled;
-                }
+                tsmiSave.Enabled = btnSaveTR1.Enabled;
             }
+            else if (tabGame.SelectedIndex == 1)
+            {
+                tsmiSave.Enabled = btnSaveTR1UB.Enabled;
+            }
+            else if (tabGame.SelectedIndex == 2)
+            {
+                tsmiSave.Enabled = btnSaveTR2.Enabled;
+            }
+            else if (tabGame.SelectedIndex == 3)
+            {
+                tsmiSave.Enabled = btnSaveTR2G.Enabled;
+            }
+            else if (tabGame.SelectedIndex == 4)
+            {
+                tsmiSave.Enabled = btnSaveTR3.Enabled;
+            }
+            else if (tabGame.SelectedIndex == 5)
+            {
+                tsmiSave.Enabled = btnSaveTR3TLA.Enabled;
+            }
+            else if (tabGame.SelectedIndex == 6)
+            {
+                tsmiSave.Enabled = btnSaveTR4.Enabled;
+            }
+            else if (tabGame.SelectedIndex == 7)
+            {
+                tsmiSave.Enabled = btnSaveTRC.Enabled;
+            }
+        }
 
+        private void UpdateStatusMessage()
+        {
             if (tabGame.SelectedIndex == 0)
             {
                 slblStatus.Text = !string.IsNullOrEmpty(directoryTR1) ?
@@ -3781,6 +3766,30 @@ namespace TR_SaveMaster
                 slblStatus.Text = !string.IsNullOrEmpty(directoryTRC) ?
                     $"{cmbSavegamesTRC.Items.Count} savegames found in \"{directoryTRC}\"" : "Ready";
             }
+        }
+
+        private void tabGame_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < tabGame.TabPages.Count; i++)
+            {
+                if (tabGame.TabPages[i] == tabGame.SelectedTab)
+                {
+                    for (int j = 0; j < tabGame.TabPages[i].Controls.Count; j++)
+                    {
+                        tabGame.TabPages[i].Controls[j].Visible = true;
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < tabGame.TabPages[i].Controls.Count; j++)
+                    {
+                        tabGame.TabPages[i].Controls[j].Visible = false;
+                    }
+                }
+            }
+
+            UpdateSaveButtonState();
+            UpdateStatusMessage();
         }
 
         private void TR_SaveMaster_FormClosing(object sender, FormClosingEventArgs e)
