@@ -123,6 +123,7 @@ namespace TR_SaveMaster
         {
             [0] = new Dictionary<int, int[]>                // Return to Egypt
             {
+                [0xC7D] = new int[] { 0xC7D, 0xC7E, 0xC7F, 0xC80 },
                 [0xC95] = new int[] { 0xC95, 0xC96, 0xC97, 0xC98 },
                 [0xCA1] = new int[] { 0xCA1, 0xCA2, 0xCA3, 0xCA4 },
                 [0xCC5] = new int[] { 0xCC5, 0xCC6, 0xCC7, 0xCC8 },
@@ -140,6 +141,7 @@ namespace TR_SaveMaster
             },
             [2] = new Dictionary<int, int[]>                // Atlantean Stronghold
             {
+                [0xB31] = new int[] { 0xB31, 0xB32, 0xB33, 0xB34 },
                 [0xB3D] = new int[] { 0xB3D, 0xB3E, 0xB3F, 0xB40 },
                 [0xB49] = new int[] { 0xB49, 0xB4A, 0xB4B, 0xB4C },
                 [0xB55] = new int[] { 0xB55, 0xB56, 0xB57, 0xB58 },
