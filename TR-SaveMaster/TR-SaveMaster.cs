@@ -11,13 +11,14 @@ namespace TR_SaveMaster
         public TR_SaveMaster()
         {
             InitializeComponent();
+        }
 
+        private void TR_SaveMaster_Load(object sender, EventArgs e)
+        {
             GetDirectories();
 
-            if (cmbSavegamesTR1.SelectedIndex != -1)
-            {
-                slblStatus.Text = cmbSavegamesTR1.Items.Count + " savegames found in \"" + directoryTR1 + "\"";
-            }
+            slblStatus.Text = !string.IsNullOrEmpty(directoryTR1) ?
+                $"{cmbSavegamesTR1.Items.Count} savegames found in \"{directoryTR1}\"" : "Ready";
         }
 
         public class Savegame
@@ -289,48 +290,64 @@ namespace TR_SaveMaster
                         txtDirectoryTR1.Text = folderBrowserDialog.SelectedPath;
                         directoryTR1 = folderBrowserDialog.SelectedPath;
                         DisplaySavegamesTR1();
+
+                        slblStatus.Text = $"{cmbSavegamesTR1.Items.Count} savegames found in \"{directoryTR1}\"";
                     }
                     else if (tabGame.SelectedIndex == 1)
                     {
                         txtDirectoryTR1UB.Text = folderBrowserDialog.SelectedPath;
                         directoryTR1UB = folderBrowserDialog.SelectedPath;
                         DisplaySavegamesTR1UB();
+
+                        slblStatus.Text = $"{cmbSavegamesTR1UB.Items.Count} savegames found in \"{directoryTR1UB}\"";
                     }
                     else if (tabGame.SelectedIndex == 2)
                     {
                         txtDirectoryTR2.Text = folderBrowserDialog.SelectedPath;
                         directoryTR2 = folderBrowserDialog.SelectedPath;
                         DisplaySavegamesTR2();
+
+                        slblStatus.Text = $"{cmbSavegamesTR2.Items.Count} savegames found in \"{directoryTR2}\"";
                     }
                     else if (tabGame.SelectedIndex == 3)
                     {
                         txtDirectoryTR2G.Text = folderBrowserDialog.SelectedPath;
                         directoryTR2G = folderBrowserDialog.SelectedPath;
                         DisplaySavegamesTR2G();
+
+                        slblStatus.Text = $"{cmbSavegamesTR2G.Items.Count} savegames found in \"{directoryTR2G}\"";
                     }
                     else if (tabGame.SelectedIndex == 4)
                     {
                         txtDirectoryTR3.Text = folderBrowserDialog.SelectedPath;
                         directoryTR3 = folderBrowserDialog.SelectedPath;
                         DisplaySavegamesTR3();
+
+                        slblStatus.Text = $"{cmbSavegamesTR3.Items.Count} savegames found in \"{directoryTR3}\"";
                     }
                     else if (tabGame.SelectedIndex == 5)
                     {
                         txtDirectoryTR3TLA.Text = folderBrowserDialog.SelectedPath;
                         directoryTR3TLA = folderBrowserDialog.SelectedPath;
                         DisplaySavegamesTR3TLA();
+
+                        slblStatus.Text = $"{cmbSavegamesTR3TLA.Items.Count} savegames found in \"{directoryTR3TLA}\"";
                     }
                     else if (tabGame.SelectedIndex == 6)
                     {
                         txtDirectoryTR4.Text = folderBrowserDialog.SelectedPath;
                         directoryTR4 = folderBrowserDialog.SelectedPath;
                         DisplaySavegamesTR4();
+
+                        slblStatus.Text = $"{cmbSavegamesTR4.Items.Count} savegames found in \"{directoryTR4}\"";
                     }
                     else if (tabGame.SelectedIndex == 7)
                     {
                         txtDirectoryTRC.Text = folderBrowserDialog.SelectedPath;
                         directoryTRC = folderBrowserDialog.SelectedPath;
                         DisplaySavegamesTRC();
+
+                        slblStatus.Text = $"{cmbSavegamesTRC.Items.Count} savegames found in \"{directoryTRC}\"";
                     }
 
                     UpdateDirectories();
@@ -456,8 +473,6 @@ namespace TR_SaveMaster
                 btnSaveTR1.Enabled = false;
                 btnCancelTR1.Enabled = false;
             }
-
-            slblStatus.Text = cmbSavegamesTR1.Items.Count + " savegames found in \"" + directoryTR1 + "\"";
         }
 
         private void DisplaySavegamesTR1UB()
@@ -492,8 +507,6 @@ namespace TR_SaveMaster
                 btnSaveTR1UB.Enabled = false;
                 btnCancelTR1UB.Enabled = false;
             }
-
-            slblStatus.Text = cmbSavegamesTR1UB.Items.Count + " savegames found in \"" + directoryTR1UB + "\"";
         }
 
         private void DisplaySavegamesTR2()
@@ -528,8 +541,6 @@ namespace TR_SaveMaster
                 btnSaveTR2.Enabled = false;
                 btnCancelTR2.Enabled = false;
             }
-
-            slblStatus.Text = cmbSavegamesTR2.Items.Count + " savegames found in \"" + directoryTR2 + "\"";
         }
 
         private void DisplaySavegamesTR2G()
@@ -564,8 +575,6 @@ namespace TR_SaveMaster
                 btnSaveTR2G.Enabled = false;
                 btnCancelTR2G.Enabled = false;
             }
-
-            slblStatus.Text = cmbSavegamesTR2G.Items.Count + " savegames found in \"" + directoryTR2G + "\"";
         }
 
         private void DisplaySavegamesTR3()
@@ -600,8 +609,6 @@ namespace TR_SaveMaster
                 btnSaveTR3.Enabled = false;
                 btnCancelTR3.Enabled = false;
             }
-
-            slblStatus.Text = cmbSavegamesTR3.Items.Count + " savegames found in \"" + directoryTR3 + "\"";
         }
 
         private void DisplaySavegamesTR3TLA()
@@ -636,8 +643,6 @@ namespace TR_SaveMaster
                 btnSaveTR3TLA.Enabled = false;
                 btnCancelTR3TLA.Enabled = false;
             }
-
-            slblStatus.Text = cmbSavegamesTR3TLA.Items.Count + " savegames found in \"" + directoryTR3TLA + "\"";
         }
 
         private void DisplaySavegamesTR4()
@@ -672,8 +677,6 @@ namespace TR_SaveMaster
                 btnSaveTR4.Enabled = false;
                 btnCancelTR4.Enabled = false;
             }
-
-            slblStatus.Text = cmbSavegamesTR4.Items.Count + " savegames found in \"" + directoryTR4 + "\"";
         }
 
         private void DisplaySavegamesTRC()
@@ -708,8 +711,6 @@ namespace TR_SaveMaster
                 btnSaveTRC.Enabled = false;
                 btnCancelTRC.Enabled = false;
             }
-
-            slblStatus.Text = cmbSavegamesTRC.Items.Count + " savegames found in \"" + directoryTRC + "\"";
         }
 
         private void DisplayGameInfoTR1()
@@ -3698,37 +3699,45 @@ namespace TR_SaveMaster
                 }
             }
 
-            if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1)
+            if (tabGame.SelectedIndex == 0)
             {
-                slblStatus.Text = cmbSavegamesTR1.Items.Count + " savegames found in \"" + directoryTR1 + "\"";
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR1) ?
+                    $"{cmbSavegamesTR1.Items.Count} savegames found in \"{directoryTR1}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 1 && cmbSavegamesTR1UB.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == 1)
             {
-                slblStatus.Text = cmbSavegamesTR1UB.Items.Count + " savegames found in \"" + directoryTR1UB + "\"";
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR1UB) ?
+                    $"{cmbSavegamesTR1UB.Items.Count} savegames found in \"{directoryTR1UB}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 2 && cmbSavegamesTR2.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == 2)
             {
-                slblStatus.Text = cmbSavegamesTR2.Items.Count + " savegames found in \"" + directoryTR2 + "\"";
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR2) ?
+                    $"{cmbSavegamesTR2.Items.Count} savegames found in \"{directoryTR2}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 3 && cmbSavegamesTR2G.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == 3)
             {
-                slblStatus.Text = cmbSavegamesTR2G.Items.Count + " savegames found in \"" + directoryTR2G + "\"";
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR2G) ?
+                    $"{cmbSavegamesTR2G.Items.Count} savegames found in \"{directoryTR2G}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 4 && cmbSavegamesTR3.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == 4)
             {
-                slblStatus.Text = cmbSavegamesTR3.Items.Count + " savegames found in \"" + directoryTR3 + "\"";
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR3) ?
+                    $"{cmbSavegamesTR3.Items.Count} savegames found in \"{directoryTR3}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 5 && cmbSavegamesTR3TLA.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == 5)
             {
-                slblStatus.Text = cmbSavegamesTR3TLA.Items.Count + " savegames found in \"" + directoryTR3TLA + "\"";
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR3TLA) ?
+                    $"{cmbSavegamesTR3TLA.Items.Count} savegames found in \"{directoryTR3TLA}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 6 && cmbSavegamesTR4.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == 6)
             {
-                slblStatus.Text = cmbSavegamesTR4.Items.Count + " savegames found in \"" + directoryTR4 + "\"";
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR4) ?
+                    $"{cmbSavegamesTR4.Items.Count} savegames found in \"{directoryTR4}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 7 && cmbSavegamesTRC.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == 7)
             {
-                slblStatus.Text = cmbSavegamesTRC.Items.Count + " savegames found in \"" + directoryTRC + "\"";
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTRC) ?
+                    $"{cmbSavegamesTRC.Items.Count} savegames found in \"{directoryTRC}\"" : "Ready";
             }
         }
 

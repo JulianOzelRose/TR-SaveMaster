@@ -4516,6 +4516,7 @@ namespace TR_SaveMaster
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tomb Raider - Savegame Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TR_SaveMaster_FormClosing);
+            this.Load += new System.EventHandler(this.TR_SaveMaster_Load);
             this.tsrToolStrip.ResumeLayout(false);
             this.tsrToolStrip.PerformLayout();
             this.ssrStatusStrip.ResumeLayout(false);
