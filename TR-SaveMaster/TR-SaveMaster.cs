@@ -365,11 +365,18 @@ namespace TR_SaveMaster
                 }
                 else if (control is NumericUpDown numericUpDown)
                 {
+                    numericUpDown.Enabled = true;
                     numericUpDown.Value = 0;
                 }
                 else if (control is CheckBox checkBox)
                 {
+                    checkBox.Enabled = true;
                     checkBox.Checked = false;
+                }
+                else if (control is TrackBar trackBar)
+                {
+                    trackBar.Enabled = true;
+                    trackBar.Value = 0;
                 }
             }
         }
@@ -379,6 +386,11 @@ namespace TR_SaveMaster
             ClearControlsInGroupBox(grpLevelTR1);
             ClearControlsInGroupBox(grpItemsTR1);
             ClearControlsInGroupBox(grpWeaponsTR1);
+            ClearControlsInGroupBox(grpHealthTR1);
+
+            lblHealthErrorTR1.Visible = false;
+            lblHealthTR1.Visible = true;
+            lblHealthTR1.Text = "0.0%";
         }
 
         private void ClearControlsTR1UB()
@@ -386,6 +398,11 @@ namespace TR_SaveMaster
             ClearControlsInGroupBox(grpLevelTR1UB);
             ClearControlsInGroupBox(grpItemsTR1UB);
             ClearControlsInGroupBox(grpWeaponsTR1UB);
+            ClearControlsInGroupBox(grpHealthTR1UB);
+
+            lblHealthErrorTR1UB.Visible = false;
+            lblHealthTR1UB.Visible = true;
+            lblHealthTR1UB.Text = "0.0%";
         }
 
         private void ClearControlsTR2()
@@ -393,6 +410,11 @@ namespace TR_SaveMaster
             ClearControlsInGroupBox(grpLevelTR2);
             ClearControlsInGroupBox(grpItemsTR2);
             ClearControlsInGroupBox(grpWeaponsTR2);
+            ClearControlsInGroupBox(grpHealthTR2);
+
+            lblHealthErrorTR2.Visible = false;
+            lblHealthTR2.Visible = true;
+            lblHealthTR2.Text = "0.0%";
         }
 
         private void ClearControlsTR2G()
@@ -400,6 +422,11 @@ namespace TR_SaveMaster
             ClearControlsInGroupBox(grpLevelTR2G);
             ClearControlsInGroupBox(grpItemsTR2G);
             ClearControlsInGroupBox(grpWeaponsTR2G);
+            ClearControlsInGroupBox(grpHealthTR2G);
+
+            lblHealthErrorTR2G.Visible = false;
+            lblHealthTR2G.Visible = true;
+            lblHealthTR2G.Text = "0.0%";
         }
 
         private void ClearControlsTR3()
@@ -407,6 +434,11 @@ namespace TR_SaveMaster
             ClearControlsInGroupBox(grpLevelTR3);
             ClearControlsInGroupBox(grpItemsTR3);
             ClearControlsInGroupBox(grpWeaponsTR3);
+            ClearControlsInGroupBox(grpHealthTR3);
+
+            lblHealthErrorTR3.Visible = false;
+            lblHealthTR3.Visible = true;
+            lblHealthTR3.Text = "0.0%";
         }
 
         private void ClearControlsTR3TLA()
@@ -414,6 +446,11 @@ namespace TR_SaveMaster
             ClearControlsInGroupBox(grpLevelTR3TLA);
             ClearControlsInGroupBox(grpItemsTR3TLA);
             ClearControlsInGroupBox(grpWeaponsTR3TLA);
+            ClearControlsInGroupBox(grpHealthTR3TLA);
+
+            lblHealthErrorTR3TLA.Visible = false;
+            lblHealthTR3TLA.Visible = true;
+            lblHealthTR3TLA.Text = "0.0%";
         }
 
         private void ClearControlsTR4()
@@ -428,6 +465,11 @@ namespace TR_SaveMaster
             ClearControlsInGroupBox(grpLevelTRC);
             ClearControlsInGroupBox(grpItemsTRC);
             ClearControlsInGroupBox(grpWeaponsTRC);
+            ClearControlsInGroupBox(grpHealthTRC);
+
+            lblHealthErrorTRC.Visible = false;
+            lblHealthTRC.Visible = true;
+            lblHealthTRC.Text = "0.0%";
         }
 
         static void CreateBackup(string filePath)
