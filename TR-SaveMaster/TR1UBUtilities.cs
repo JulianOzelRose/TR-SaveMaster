@@ -491,8 +491,10 @@ namespace TR_SaveMaster
         {
             savegamePath = path;
 
+            FileInfo fileInfo = new FileInfo(path);
             byte levelIndex = GetLevelIndex();
-            return (levelIndex >= 0 && levelIndex <= 3);
+
+            return (levelIndex >= 0 && levelIndex <= 3) && (fileInfo.Length == 0x28C3);
         }
 
         public List<string> GetSavegamePaths(string gameDirectory)
