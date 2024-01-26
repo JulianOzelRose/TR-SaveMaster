@@ -373,6 +373,7 @@ namespace TR_SaveMaster
             this.nudSaveNumberTRC = new System.Windows.Forms.NumericUpDown();
             this.lblLvlNameTRC = new System.Windows.Forms.Label();
             this.txtLvlNameTRC = new System.Windows.Forms.TextBox();
+            this.tsmiSendFeedback = new System.Windows.Forms.ToolStripMenuItem();
             this.tsrToolStrip.SuspendLayout();
             this.ssrStatusStrip.SuspendLayout();
             this.tabGame.SuspendLayout();
@@ -644,6 +645,7 @@ namespace TR_SaveMaster
             this.tsmiResources,
             this.tsmiHelpSeparator,
             this.tsmiViewReadme,
+            this.tsmiSendFeedback,
             this.tsmiAbout});
             this.tsddbHelp.Image = ((System.Drawing.Image)(resources.GetObject("tsddbHelp.Image")));
             this.tsddbHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -655,26 +657,26 @@ namespace TR_SaveMaster
             // tsmiResources
             // 
             this.tsmiResources.Name = "tsmiResources";
-            this.tsmiResources.Size = new System.Drawing.Size(148, 22);
+            this.tsmiResources.Size = new System.Drawing.Size(180, 22);
             this.tsmiResources.Text = "Resources";
             this.tsmiResources.Click += new System.EventHandler(this.tsmiResources_Click);
             // 
             // tsmiHelpSeparator
             // 
             this.tsmiHelpSeparator.Name = "tsmiHelpSeparator";
-            this.tsmiHelpSeparator.Size = new System.Drawing.Size(145, 6);
+            this.tsmiHelpSeparator.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmiViewReadme
             // 
             this.tsmiViewReadme.Name = "tsmiViewReadme";
-            this.tsmiViewReadme.Size = new System.Drawing.Size(148, 22);
+            this.tsmiViewReadme.Size = new System.Drawing.Size(180, 22);
             this.tsmiViewReadme.Text = "View README";
             this.tsmiViewReadme.Click += new System.EventHandler(this.tsmiViewReadme_Click);
             // 
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(148, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(180, 22);
             this.tsmiAbout.Text = "About";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
@@ -4499,6 +4501,13 @@ namespace TR_SaveMaster
             this.txtLvlNameTRC.TabIndex = 5;
             this.txtLvlNameTRC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // tsmiSendFeedback
+            // 
+            this.tsmiSendFeedback.Name = "tsmiSendFeedback";
+            this.tsmiSendFeedback.Size = new System.Drawing.Size(180, 22);
+            this.tsmiSendFeedback.Text = "Send Feedback";
+            this.tsmiSendFeedback.Click += new System.EventHandler(this.tsmiSendFeedback_Click);
+            // 
             // TR_SaveMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5037,6 +5046,7 @@ namespace TR_SaveMaster
         private System.Windows.Forms.TextBox txtLvlNameTR3TLA;
         private System.Windows.Forms.ToolStripMenuItem tsmiCreateBackups;
         private System.Windows.Forms.ToolStripSeparator tsmiFileSeparator;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSendFeedback;
     }
 }
 

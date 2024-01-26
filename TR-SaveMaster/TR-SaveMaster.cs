@@ -3854,6 +3854,11 @@ namespace TR_SaveMaster
             System.Diagnostics.Process.Start("https://github.com/JulianOzelRose/TR-SaveMaster/blob/master/README.md");
         }
 
+        private void tsmiSendFeedback_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/JulianOzelRose/TR-SaveMaster/issues");
+        }
+
         private void tsmiAbout_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
