@@ -48,6 +48,7 @@ namespace TR_SaveMaster
             this.tsmiResources = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelpSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiViewReadme = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSendFeedback = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -373,7 +374,6 @@ namespace TR_SaveMaster
             this.nudSaveNumberTRC = new System.Windows.Forms.NumericUpDown();
             this.lblLvlNameTRC = new System.Windows.Forms.Label();
             this.txtLvlNameTRC = new System.Windows.Forms.TextBox();
-            this.tsmiSendFeedback = new System.Windows.Forms.ToolStripMenuItem();
             this.tsrToolStrip.SuspendLayout();
             this.ssrStatusStrip.SuspendLayout();
             this.tabGame.SuspendLayout();
@@ -657,26 +657,33 @@ namespace TR_SaveMaster
             // tsmiResources
             // 
             this.tsmiResources.Name = "tsmiResources";
-            this.tsmiResources.Size = new System.Drawing.Size(180, 22);
+            this.tsmiResources.Size = new System.Drawing.Size(153, 22);
             this.tsmiResources.Text = "Resources";
             this.tsmiResources.Click += new System.EventHandler(this.tsmiResources_Click);
             // 
             // tsmiHelpSeparator
             // 
             this.tsmiHelpSeparator.Name = "tsmiHelpSeparator";
-            this.tsmiHelpSeparator.Size = new System.Drawing.Size(177, 6);
+            this.tsmiHelpSeparator.Size = new System.Drawing.Size(150, 6);
             // 
             // tsmiViewReadme
             // 
             this.tsmiViewReadme.Name = "tsmiViewReadme";
-            this.tsmiViewReadme.Size = new System.Drawing.Size(180, 22);
+            this.tsmiViewReadme.Size = new System.Drawing.Size(153, 22);
             this.tsmiViewReadme.Text = "View README";
             this.tsmiViewReadme.Click += new System.EventHandler(this.tsmiViewReadme_Click);
+            // 
+            // tsmiSendFeedback
+            // 
+            this.tsmiSendFeedback.Name = "tsmiSendFeedback";
+            this.tsmiSendFeedback.Size = new System.Drawing.Size(153, 22);
+            this.tsmiSendFeedback.Text = "Send Feedback";
+            this.tsmiSendFeedback.Click += new System.EventHandler(this.tsmiSendFeedback_Click);
             // 
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(153, 22);
             this.tsmiAbout.Text = "About";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
@@ -715,6 +722,7 @@ namespace TR_SaveMaster
             this.tabGame.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabGame.TabIndex = 2;
             this.tabGame.SelectedIndexChanged += new System.EventHandler(this.tabGame_SelectedIndexChanged);
+            this.tabGame.Deselecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabGame_Deselecting);
             // 
             // tpTR1
             // 
@@ -4500,13 +4508,6 @@ namespace TR_SaveMaster
             this.txtLvlNameTRC.Size = new System.Drawing.Size(257, 20);
             this.txtLvlNameTRC.TabIndex = 5;
             this.txtLvlNameTRC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tsmiSendFeedback
-            // 
-            this.tsmiSendFeedback.Name = "tsmiSendFeedback";
-            this.tsmiSendFeedback.Size = new System.Drawing.Size(180, 22);
-            this.tsmiSendFeedback.Text = "Send Feedback";
-            this.tsmiSendFeedback.Click += new System.EventHandler(this.tsmiSendFeedback_Click);
             // 
             // TR_SaveMaster
             // 
