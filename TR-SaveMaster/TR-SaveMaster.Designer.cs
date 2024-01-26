@@ -30,7 +30,7 @@ namespace TR_SaveMaster
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TR_SaveMaster));
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.tsrToolStrip = new System.Windows.Forms.ToolStrip();
             this.tsddbFile = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiBrowseDirectory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +49,7 @@ namespace TR_SaveMaster
             this.tsmiHelpSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiViewReadme = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabGame = new System.Windows.Forms.TabControl();
             this.tpTR1 = new System.Windows.Forms.TabPage();
@@ -203,7 +203,7 @@ namespace TR_SaveMaster
             this.btnSaveTR3 = new System.Windows.Forms.Button();
             this.cmbSavegamesTR3 = new System.Windows.Forms.ComboBox();
             this.txtDirectoryTR3 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpWeaponsTR3 = new System.Windows.Forms.GroupBox();
             this.lblPistolAmmoTR3 = new System.Windows.Forms.Label();
             this.nudShotgunAmmoTR3 = new System.Windows.Forms.NumericUpDown();
             this.chkHarpoonGunTR3 = new System.Windows.Forms.CheckBox();
@@ -221,19 +221,19 @@ namespace TR_SaveMaster
             this.chkDeagleTR3 = new System.Windows.Forms.CheckBox();
             this.chkPistolsTR3 = new System.Windows.Forms.CheckBox();
             this.lblDirectoryTR3 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpHealthTR3 = new System.Windows.Forms.GroupBox();
             this.lblHealthErrorTR3 = new System.Windows.Forms.Label();
             this.lblHealthTR3 = new System.Windows.Forms.Label();
             this.trbHealthTR3 = new System.Windows.Forms.TrackBar();
             this.btnCancelTR3 = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.grpItemsTR3 = new System.Windows.Forms.GroupBox();
             this.lblFlaresTR3 = new System.Windows.Forms.Label();
             this.lblLargeMedipacksTR3 = new System.Windows.Forms.Label();
             this.lblSmallMedipacksTR3 = new System.Windows.Forms.Label();
             this.nudFlaresTR3 = new System.Windows.Forms.NumericUpDown();
             this.nudLargeMedipacksTR3 = new System.Windows.Forms.NumericUpDown();
             this.nudSmallMedipacksTR3 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.grpLevelTR3 = new System.Windows.Forms.GroupBox();
             this.lblSaveNumTR3 = new System.Windows.Forms.Label();
             this.nudSaveNumberTR3 = new System.Windows.Forms.NumericUpDown();
             this.lblLvlNameTR3 = new System.Windows.Forms.Label();
@@ -373,8 +373,8 @@ namespace TR_SaveMaster
             this.nudSaveNumberTRC = new System.Windows.Forms.NumericUpDown();
             this.lblLvlNameTRC = new System.Windows.Forms.Label();
             this.txtLvlNameTRC = new System.Windows.Forms.TextBox();
-            this.toolStrip.SuspendLayout();
-            this.statusStrip.SuspendLayout();
+            this.tsrToolStrip.SuspendLayout();
+            this.ssrStatusStrip.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
             this.grpHealthTR1.SuspendLayout();
@@ -433,7 +433,7 @@ namespace TR_SaveMaster
             this.grpLevelTR2G.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumberTR2G)).BeginInit();
             this.tpTR3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpWeaponsTR3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudShotgunAmmoTR3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudUziAmmoTR3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMP5AmmoTR3)).BeginInit();
@@ -441,13 +441,13 @@ namespace TR_SaveMaster
             ((System.ComponentModel.ISupportInitialize)(this.nudRocketLauncherAmmoTR3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGrenadeLauncherAmmoTR3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDeagleAmmoTR3)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.grpHealthTR3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbHealthTR3)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            this.grpItemsTR3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFlaresTR3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLargeMedipacksTR3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSmallMedipacksTR3)).BeginInit();
-            this.groupBox4.SuspendLayout();
+            this.grpLevelTR3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumberTR3)).BeginInit();
             this.tpTR3TLA.SuspendLayout();
             this.grpWeaponsTR3TLA.SuspendLayout();
@@ -504,18 +504,17 @@ namespace TR_SaveMaster
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumberTRC)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip
+            // tsrToolStrip
             // 
-            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsrToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsrToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsddbFile,
             this.tsddbView,
             this.tsddbHelp});
-            this.toolStrip.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(728, 25);
-            this.toolStrip.TabIndex = 0;
-            this.toolStrip.Text = "toolStrip";
+            this.tsrToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.tsrToolStrip.Name = "tsrToolStrip";
+            this.tsrToolStrip.Size = new System.Drawing.Size(728, 25);
+            this.tsrToolStrip.TabIndex = 0;
             // 
             // tsddbFile
             // 
@@ -679,16 +678,15 @@ namespace TR_SaveMaster
             this.tsmiAbout.Text = "About";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
-            // statusStrip
+            // ssrStatusStrip
             // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ssrStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.slblStatus});
-            this.statusStrip.Location = new System.Drawing.Point(0, 452);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(728, 22);
-            this.statusStrip.SizingGrip = false;
-            this.statusStrip.TabIndex = 1;
-            this.statusStrip.Text = "statusStrip";
+            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 452);
+            this.ssrStatusStrip.Name = "ssrStatusStrip";
+            this.ssrStatusStrip.Size = new System.Drawing.Size(728, 22);
+            this.ssrStatusStrip.SizingGrip = false;
+            this.ssrStatusStrip.TabIndex = 1;
             // 
             // slblStatus
             // 
@@ -2399,12 +2397,12 @@ namespace TR_SaveMaster
             this.tpTR3.Controls.Add(this.btnSaveTR3);
             this.tpTR3.Controls.Add(this.cmbSavegamesTR3);
             this.tpTR3.Controls.Add(this.txtDirectoryTR3);
-            this.tpTR3.Controls.Add(this.groupBox1);
+            this.tpTR3.Controls.Add(this.grpWeaponsTR3);
             this.tpTR3.Controls.Add(this.lblDirectoryTR3);
-            this.tpTR3.Controls.Add(this.groupBox2);
+            this.tpTR3.Controls.Add(this.grpHealthTR3);
             this.tpTR3.Controls.Add(this.btnCancelTR3);
-            this.tpTR3.Controls.Add(this.groupBox3);
-            this.tpTR3.Controls.Add(this.groupBox4);
+            this.tpTR3.Controls.Add(this.grpItemsTR3);
+            this.tpTR3.Controls.Add(this.grpLevelTR3);
             this.tpTR3.Location = new System.Drawing.Point(4, 40);
             this.tpTR3.Name = "tpTR3";
             this.tpTR3.Padding = new System.Windows.Forms.Padding(3);
@@ -2470,30 +2468,30 @@ namespace TR_SaveMaster
             this.txtDirectoryTR3.Size = new System.Drawing.Size(330, 20);
             this.txtDirectoryTR3.TabIndex = 0;
             // 
-            // groupBox1
+            // grpWeaponsTR3
             // 
-            this.groupBox1.Controls.Add(this.lblPistolAmmoTR3);
-            this.groupBox1.Controls.Add(this.nudShotgunAmmoTR3);
-            this.groupBox1.Controls.Add(this.chkHarpoonGunTR3);
-            this.groupBox1.Controls.Add(this.chkGrenadeLauncherTR3);
-            this.groupBox1.Controls.Add(this.nudUziAmmoTR3);
-            this.groupBox1.Controls.Add(this.nudMP5AmmoTR3);
-            this.groupBox1.Controls.Add(this.nudHarpoonGunAmmoTR3);
-            this.groupBox1.Controls.Add(this.nudRocketLauncherAmmoTR3);
-            this.groupBox1.Controls.Add(this.nudGrenadeLauncherAmmoTR3);
-            this.groupBox1.Controls.Add(this.nudDeagleAmmoTR3);
-            this.groupBox1.Controls.Add(this.chkShotgunTR3);
-            this.groupBox1.Controls.Add(this.chkRocketLauncherTR3);
-            this.groupBox1.Controls.Add(this.chkMP5TR3);
-            this.groupBox1.Controls.Add(this.chkUziTR3);
-            this.groupBox1.Controls.Add(this.chkDeagleTR3);
-            this.groupBox1.Controls.Add(this.chkPistolsTR3);
-            this.groupBox1.Location = new System.Drawing.Point(351, 121);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(360, 224);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Weapons";
+            this.grpWeaponsTR3.Controls.Add(this.lblPistolAmmoTR3);
+            this.grpWeaponsTR3.Controls.Add(this.nudShotgunAmmoTR3);
+            this.grpWeaponsTR3.Controls.Add(this.chkHarpoonGunTR3);
+            this.grpWeaponsTR3.Controls.Add(this.chkGrenadeLauncherTR3);
+            this.grpWeaponsTR3.Controls.Add(this.nudUziAmmoTR3);
+            this.grpWeaponsTR3.Controls.Add(this.nudMP5AmmoTR3);
+            this.grpWeaponsTR3.Controls.Add(this.nudHarpoonGunAmmoTR3);
+            this.grpWeaponsTR3.Controls.Add(this.nudRocketLauncherAmmoTR3);
+            this.grpWeaponsTR3.Controls.Add(this.nudGrenadeLauncherAmmoTR3);
+            this.grpWeaponsTR3.Controls.Add(this.nudDeagleAmmoTR3);
+            this.grpWeaponsTR3.Controls.Add(this.chkShotgunTR3);
+            this.grpWeaponsTR3.Controls.Add(this.chkRocketLauncherTR3);
+            this.grpWeaponsTR3.Controls.Add(this.chkMP5TR3);
+            this.grpWeaponsTR3.Controls.Add(this.chkUziTR3);
+            this.grpWeaponsTR3.Controls.Add(this.chkDeagleTR3);
+            this.grpWeaponsTR3.Controls.Add(this.chkPistolsTR3);
+            this.grpWeaponsTR3.Location = new System.Drawing.Point(351, 121);
+            this.grpWeaponsTR3.Name = "grpWeaponsTR3";
+            this.grpWeaponsTR3.Size = new System.Drawing.Size(360, 224);
+            this.grpWeaponsTR3.TabIndex = 15;
+            this.grpWeaponsTR3.TabStop = false;
+            this.grpWeaponsTR3.Text = "Weapons";
             // 
             // lblPistolAmmoTR3
             // 
@@ -2699,17 +2697,17 @@ namespace TR_SaveMaster
             this.lblDirectoryTR3.TabIndex = 1;
             this.lblDirectoryTR3.Text = "Directory:";
             // 
-            // groupBox2
+            // grpHealthTR3
             // 
-            this.groupBox2.Controls.Add(this.lblHealthErrorTR3);
-            this.groupBox2.Controls.Add(this.lblHealthTR3);
-            this.groupBox2.Controls.Add(this.trbHealthTR3);
-            this.groupBox2.Location = new System.Drawing.Point(7, 269);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(335, 76);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Health";
+            this.grpHealthTR3.Controls.Add(this.lblHealthErrorTR3);
+            this.grpHealthTR3.Controls.Add(this.lblHealthTR3);
+            this.grpHealthTR3.Controls.Add(this.trbHealthTR3);
+            this.grpHealthTR3.Location = new System.Drawing.Point(7, 269);
+            this.grpHealthTR3.Name = "grpHealthTR3";
+            this.grpHealthTR3.Size = new System.Drawing.Size(335, 76);
+            this.grpHealthTR3.TabIndex = 17;
+            this.grpHealthTR3.TabStop = false;
+            this.grpHealthTR3.Text = "Health";
             // 
             // lblHealthErrorTR3
             // 
@@ -2751,20 +2749,20 @@ namespace TR_SaveMaster
             this.btnCancelTR3.UseVisualStyleBackColor = true;
             this.btnCancelTR3.Click += new System.EventHandler(this.btnCancelTR3_Click);
             // 
-            // groupBox3
+            // grpItemsTR3
             // 
-            this.groupBox3.Controls.Add(this.lblFlaresTR3);
-            this.groupBox3.Controls.Add(this.lblLargeMedipacksTR3);
-            this.groupBox3.Controls.Add(this.lblSmallMedipacksTR3);
-            this.groupBox3.Controls.Add(this.nudFlaresTR3);
-            this.groupBox3.Controls.Add(this.nudLargeMedipacksTR3);
-            this.groupBox3.Controls.Add(this.nudSmallMedipacksTR3);
-            this.groupBox3.Location = new System.Drawing.Point(7, 121);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(335, 144);
-            this.groupBox3.TabIndex = 16;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Items";
+            this.grpItemsTR3.Controls.Add(this.lblFlaresTR3);
+            this.grpItemsTR3.Controls.Add(this.lblLargeMedipacksTR3);
+            this.grpItemsTR3.Controls.Add(this.lblSmallMedipacksTR3);
+            this.grpItemsTR3.Controls.Add(this.nudFlaresTR3);
+            this.grpItemsTR3.Controls.Add(this.nudLargeMedipacksTR3);
+            this.grpItemsTR3.Controls.Add(this.nudSmallMedipacksTR3);
+            this.grpItemsTR3.Location = new System.Drawing.Point(7, 121);
+            this.grpItemsTR3.Name = "grpItemsTR3";
+            this.grpItemsTR3.Size = new System.Drawing.Size(335, 144);
+            this.grpItemsTR3.TabIndex = 16;
+            this.grpItemsTR3.TabStop = false;
+            this.grpItemsTR3.Text = "Items";
             // 
             // lblFlaresTR3
             // 
@@ -2835,18 +2833,18 @@ namespace TR_SaveMaster
             this.nudSmallMedipacksTR3.ValueChanged += new System.EventHandler(this.nudSmallMedipacksTR3_ValueChanged);
             this.nudSmallMedipacksTR3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudSmallMedipacksTR3_KeyPress);
             // 
-            // groupBox4
+            // grpLevelTR3
             // 
-            this.groupBox4.Controls.Add(this.lblSaveNumTR3);
-            this.groupBox4.Controls.Add(this.nudSaveNumberTR3);
-            this.groupBox4.Controls.Add(this.lblLvlNameTR3);
-            this.groupBox4.Controls.Add(this.txtLvlNameTR3);
-            this.groupBox4.Location = new System.Drawing.Point(7, 55);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(704, 60);
-            this.groupBox4.TabIndex = 14;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Level";
+            this.grpLevelTR3.Controls.Add(this.lblSaveNumTR3);
+            this.grpLevelTR3.Controls.Add(this.nudSaveNumberTR3);
+            this.grpLevelTR3.Controls.Add(this.lblLvlNameTR3);
+            this.grpLevelTR3.Controls.Add(this.txtLvlNameTR3);
+            this.grpLevelTR3.Location = new System.Drawing.Point(7, 55);
+            this.grpLevelTR3.Name = "grpLevelTR3";
+            this.grpLevelTR3.Size = new System.Drawing.Size(704, 60);
+            this.grpLevelTR3.TabIndex = 14;
+            this.grpLevelTR3.TabStop = false;
+            this.grpLevelTR3.Text = "Level";
             // 
             // lblSaveNumTR3
             // 
@@ -4508,8 +4506,8 @@ namespace TR_SaveMaster
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(728, 474);
             this.Controls.Add(this.tabGame);
-            this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.toolStrip);
+            this.Controls.Add(this.ssrStatusStrip);
+            this.Controls.Add(this.tsrToolStrip);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -4518,10 +4516,10 @@ namespace TR_SaveMaster
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tomb Raider - Savegame Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TR_SaveMaster_FormClosing);
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
+            this.tsrToolStrip.ResumeLayout(false);
+            this.tsrToolStrip.PerformLayout();
+            this.ssrStatusStrip.ResumeLayout(false);
+            this.ssrStatusStrip.PerformLayout();
             this.tabGame.ResumeLayout(false);
             this.tpTR1.ResumeLayout(false);
             this.tpTR1.PerformLayout();
@@ -4601,8 +4599,8 @@ namespace TR_SaveMaster
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumberTR2G)).EndInit();
             this.tpTR3.ResumeLayout(false);
             this.tpTR3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpWeaponsTR3.ResumeLayout(false);
+            this.grpWeaponsTR3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudShotgunAmmoTR3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudUziAmmoTR3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMP5AmmoTR3)).EndInit();
@@ -4610,16 +4608,16 @@ namespace TR_SaveMaster
             ((System.ComponentModel.ISupportInitialize)(this.nudRocketLauncherAmmoTR3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGrenadeLauncherAmmoTR3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDeagleAmmoTR3)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grpHealthTR3.ResumeLayout(false);
+            this.grpHealthTR3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbHealthTR3)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.grpItemsTR3.ResumeLayout(false);
+            this.grpItemsTR3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFlaresTR3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLargeMedipacksTR3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSmallMedipacksTR3)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.grpLevelTR3.ResumeLayout(false);
+            this.grpLevelTR3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumberTR3)).EndInit();
             this.tpTR3TLA.ResumeLayout(false);
             this.tpTR3TLA.PerformLayout();
@@ -4695,7 +4693,7 @@ namespace TR_SaveMaster
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStrip tsrToolStrip;
         private System.Windows.Forms.ToolStripDropDownButton tsddbFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiBrowseDirectory;
         private System.Windows.Forms.ToolStripMenuItem tsmiSave;
@@ -4703,7 +4701,7 @@ namespace TR_SaveMaster
         private System.Windows.Forms.ToolStripMenuItem tsmiExit;
         private System.Windows.Forms.ToolStripDropDownButton tsddbHelp;
         private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
-        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.StatusStrip ssrStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel slblStatus;
         private System.Windows.Forms.TabControl tabGame;
         private System.Windows.Forms.TabPage tpTRC;
@@ -4748,7 +4746,7 @@ namespace TR_SaveMaster
         private System.Windows.Forms.CheckBox chkCrowbarTRC;
         private System.Windows.Forms.Button btnExitTR3;
         private System.Windows.Forms.Button btnSaveTR3;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpWeaponsTR3;
         private System.Windows.Forms.NumericUpDown nudUziAmmoTR3;
         private System.Windows.Forms.NumericUpDown nudMP5AmmoTR3;
         private System.Windows.Forms.NumericUpDown nudHarpoonGunAmmoTR3;
@@ -4761,18 +4759,18 @@ namespace TR_SaveMaster
         private System.Windows.Forms.CheckBox chkUziTR3;
         private System.Windows.Forms.CheckBox chkDeagleTR3;
         private System.Windows.Forms.CheckBox chkPistolsTR3;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpHealthTR3;
         private System.Windows.Forms.Label lblHealthTR3;
         private System.Windows.Forms.TrackBar trbHealthTR3;
         private System.Windows.Forms.Button btnCancelTR3;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox grpItemsTR3;
         private System.Windows.Forms.Label lblFlaresTR3;
         private System.Windows.Forms.Label lblLargeMedipacksTR3;
         private System.Windows.Forms.Label lblSmallMedipacksTR3;
         private System.Windows.Forms.NumericUpDown nudFlaresTR3;
         private System.Windows.Forms.NumericUpDown nudLargeMedipacksTR3;
         private System.Windows.Forms.NumericUpDown nudSmallMedipacksTR3;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox grpLevelTR3;
         private System.Windows.Forms.Label lblSaveNumTR3;
         private System.Windows.Forms.NumericUpDown nudSaveNumberTR3;
         private System.Windows.Forms.Label lblLvlNameTR3;

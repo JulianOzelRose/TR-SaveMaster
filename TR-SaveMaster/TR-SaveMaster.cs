@@ -145,16 +145,16 @@ namespace TR_SaveMaster
                             if (value == "True" && !tsmiStatusBar.Checked)
                             {
                                 tsmiStatusBar.Checked = true;
-                                statusStrip.Visible = true;
+                                ssrStatusStrip.Visible = true;
                                 slblStatus.Visible = true;
-                                this.Height += statusStrip.Height;
+                                this.Height += ssrStatusStrip.Height;
                             }
                             else if (value == "False" && tsmiStatusBar.Checked)
                             {
                                 tsmiStatusBar.Checked = false;
-                                statusStrip.Visible = false;
+                                ssrStatusStrip.Visible = false;
                                 slblStatus.Visible = false;
-                                this.Height -= statusStrip.Height;
+                                this.Height -= ssrStatusStrip.Height;
                             }
                         }
                         else if (key.Equals("Theme", StringComparison.OrdinalIgnoreCase))
@@ -338,6 +338,81 @@ namespace TR_SaveMaster
             }
         }
 
+        private void ClearControlsInGroupBox(GroupBox groupBox)
+        {
+            foreach (Control control in groupBox.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Clear();
+                }
+                else if (control is NumericUpDown numericUpDown)
+                {
+                    numericUpDown.Value = 0;
+                }
+                else if (control is CheckBox checkBox)
+                {
+                    checkBox.Checked = false;
+                }
+            }
+        }
+
+        private void ClearControlsTR1()
+        {
+            ClearControlsInGroupBox(grpLevelTR1);
+            ClearControlsInGroupBox(grpItemsTR1);
+            ClearControlsInGroupBox(grpWeaponsTR1);
+        }
+
+        private void ClearControlsTR1UB()
+        {
+            ClearControlsInGroupBox(grpLevelTR1UB);
+            ClearControlsInGroupBox(grpItemsTR1UB);
+            ClearControlsInGroupBox(grpWeaponsTR1UB);
+        }
+
+        private void ClearControlsTR2()
+        {
+            ClearControlsInGroupBox(grpLevelTR2);
+            ClearControlsInGroupBox(grpItemsTR2);
+            ClearControlsInGroupBox(grpWeaponsTR2);
+        }
+
+        private void ClearControlsTR2G()
+        {
+            ClearControlsInGroupBox(grpLevelTR2G);
+            ClearControlsInGroupBox(grpItemsTR2G);
+            ClearControlsInGroupBox(grpWeaponsTR2G);
+        }
+
+        private void ClearControlsTR3()
+        {
+            ClearControlsInGroupBox(grpLevelTR3);
+            ClearControlsInGroupBox(grpItemsTR3);
+            ClearControlsInGroupBox(grpWeaponsTR3);
+        }
+
+        private void ClearControlsTR3TLA()
+        {
+            ClearControlsInGroupBox(grpLevelTR3TLA);
+            ClearControlsInGroupBox(grpItemsTR3TLA);
+            ClearControlsInGroupBox(grpWeaponsTR3TLA);
+        }
+
+        private void ClearControlsTR4()
+        {
+            ClearControlsInGroupBox(grpLevelTR4);
+            ClearControlsInGroupBox(grpItemsTR4);
+            ClearControlsInGroupBox(grpWeaponsTR4);
+        }
+
+        private void ClearControlsTRC()
+        {
+            ClearControlsInGroupBox(grpLevelTRC);
+            ClearControlsInGroupBox(grpItemsTRC);
+            ClearControlsInGroupBox(grpWeaponsTRC);
+        }
+
         static void CreateBackup(string filePath)
         {
             string directory = Path.GetDirectoryName(filePath);
@@ -354,6 +429,7 @@ namespace TR_SaveMaster
             List<string> savegamePaths = TR1.GetSavegamePaths(directoryTR1);
 
             cmbSavegamesTR1.Items.Clear();
+            savegamesTR1.Clear();
 
             for (int i = 0; i < savegamePaths.Count; i++)
             {
@@ -373,6 +449,15 @@ namespace TR_SaveMaster
                 cmbSavegamesTR1.SelectedIndex = 0;
                 DisplayGameInfoTR1();
             }
+            else
+            {
+                ClearControlsTR1();
+
+                btnSaveTR1.Enabled = false;
+                btnCancelTR1.Enabled = false;
+            }
+
+            slblStatus.Text = cmbSavegamesTR1.Items.Count + " savegames found in \"" + directoryTR1 + "\"";
         }
 
         private void DisplaySavegamesTR1UB()
@@ -380,6 +465,7 @@ namespace TR_SaveMaster
             List<string> savegamePaths = TR1UB.GetSavegamePaths(directoryTR1UB);
 
             cmbSavegamesTR1UB.Items.Clear();
+            savegamesTR1UB.Clear();
 
             for (int i = 0; i < savegamePaths.Count; i++)
             {
@@ -399,6 +485,15 @@ namespace TR_SaveMaster
                 cmbSavegamesTR1UB.SelectedIndex = 0;
                 DisplayGameInfoTR1UB();
             }
+            else
+            {
+                ClearControlsTR1UB();
+
+                btnSaveTR1UB.Enabled = false;
+                btnCancelTR1UB.Enabled = false;
+            }
+
+            slblStatus.Text = cmbSavegamesTR1UB.Items.Count + " savegames found in \"" + directoryTR1UB + "\"";
         }
 
         private void DisplaySavegamesTR2()
@@ -406,6 +501,7 @@ namespace TR_SaveMaster
             List<string> savegamePaths = TR2.GetSavegamePaths(directoryTR2);
 
             cmbSavegamesTR2.Items.Clear();
+            savegamesTR2.Clear();
 
             for (int i = 0; i < savegamePaths.Count; i++)
             {
@@ -425,6 +521,15 @@ namespace TR_SaveMaster
                 cmbSavegamesTR2.SelectedIndex = 0;
                 DisplayGameInfoTR2();
             }
+            else
+            {
+                ClearControlsTR2();
+
+                btnSaveTR2.Enabled = false;
+                btnCancelTR2.Enabled = false;
+            }
+
+            slblStatus.Text = cmbSavegamesTR2.Items.Count + " savegames found in \"" + directoryTR2 + "\"";
         }
 
         private void DisplaySavegamesTR2G()
@@ -432,6 +537,7 @@ namespace TR_SaveMaster
             List<string> savegamePaths = TR2G.GetSavegamePaths(directoryTR2G);
 
             cmbSavegamesTR2G.Items.Clear();
+            savegamesTR2G.Clear();
 
             for (int i = 0; i < savegamePaths.Count; i++)
             {
@@ -451,6 +557,15 @@ namespace TR_SaveMaster
                 cmbSavegamesTR2G.SelectedIndex = 0;
                 DisplayGameInfoTR2G();
             }
+            else
+            {
+                ClearControlsTR2G();
+
+                btnSaveTR2G.Enabled = false;
+                btnCancelTR2G.Enabled = false;
+            }
+
+            slblStatus.Text = cmbSavegamesTR2G.Items.Count + " savegames found in \"" + directoryTR2G + "\"";
         }
 
         private void DisplaySavegamesTR3()
@@ -458,6 +573,7 @@ namespace TR_SaveMaster
             List<string> savegamePaths = TR3.GetSavegamePaths(directoryTR3);
 
             cmbSavegamesTR3.Items.Clear();
+            savegamesTR3.Clear();
 
             for (int i = 0; i < savegamePaths.Count; i++)
             {
@@ -477,6 +593,15 @@ namespace TR_SaveMaster
                 cmbSavegamesTR3.SelectedIndex = 0;
                 DisplayGameInfoTR3();
             }
+            else
+            {
+                ClearControlsTR3();
+
+                btnSaveTR3.Enabled = false;
+                btnCancelTR3.Enabled = false;
+            }
+
+            slblStatus.Text = cmbSavegamesTR3.Items.Count + " savegames found in \"" + directoryTR3 + "\"";
         }
 
         private void DisplaySavegamesTR3TLA()
@@ -484,6 +609,7 @@ namespace TR_SaveMaster
             List<string> savegamePaths = TR3TLA.GetSavegamePaths(directoryTR3TLA);
 
             cmbSavegamesTR3TLA.Items.Clear();
+            savegamesTR3TLA.Clear();
 
             for (int i = 0; i < savegamePaths.Count; i++)
             {
@@ -503,6 +629,15 @@ namespace TR_SaveMaster
                 cmbSavegamesTR3TLA.SelectedIndex = 0;
                 DisplayGameInfoTR3TLA();
             }
+            else
+            {
+                ClearControlsTR3TLA();
+
+                btnSaveTR3TLA.Enabled = false;
+                btnCancelTR3TLA.Enabled = false;
+            }
+
+            slblStatus.Text = cmbSavegamesTR3TLA.Items.Count + " savegames found in \"" + directoryTR3TLA + "\"";
         }
 
         private void DisplaySavegamesTR4()
@@ -510,6 +645,7 @@ namespace TR_SaveMaster
             List<string> savegamePaths = TR4.GetSavegamePaths(directoryTR4);
 
             cmbSavegamesTR4.Items.Clear();
+            savegamesTR4.Clear();
 
             for (int i = 0; i < savegamePaths.Count; i++)
             {
@@ -529,6 +665,15 @@ namespace TR_SaveMaster
                 cmbSavegamesTR4.SelectedIndex = 0;
                 DisplayGameInfoTR4();
             }
+            else
+            {
+                ClearControlsTR4();
+
+                btnSaveTR4.Enabled = false;
+                btnCancelTR4.Enabled = false;
+            }
+
+            slblStatus.Text = cmbSavegamesTR4.Items.Count + " savegames found in \"" + directoryTR4 + "\"";
         }
 
         private void DisplaySavegamesTRC()
@@ -536,6 +681,7 @@ namespace TR_SaveMaster
             List<string> savegamePaths = TRC.GetSavegamePaths(directoryTRC);
 
             cmbSavegamesTRC.Items.Clear();
+            savegamesTRC.Clear();
 
             for (int i = 0; i < savegamePaths.Count; i++)
             {
@@ -555,6 +701,15 @@ namespace TR_SaveMaster
                 cmbSavegamesTRC.SelectedIndex = 0;
                 DisplayGameInfoTRC();
             }
+            else
+            {
+                ClearControlsTRC();
+
+                btnSaveTRC.Enabled = false;
+                btnCancelTRC.Enabled = false;
+            }
+
+            slblStatus.Text = cmbSavegamesTRC.Items.Count + " savegames found in \"" + directoryTRC + "\"";
         }
 
         private void DisplayGameInfoTR1()
@@ -3667,15 +3822,15 @@ namespace TR_SaveMaster
         {
             if (tsmiStatusBar.Checked)
             {
-                statusStrip.Visible = true;
+                ssrStatusStrip.Visible = true;
                 slblStatus.Visible = true;
-                this.Height += statusStrip.Height;
+                this.Height += ssrStatusStrip.Height;
             }
             else
             {
-                statusStrip.Visible = false;
+                ssrStatusStrip.Visible = false;
                 slblStatus.Visible = false;
-                this.Height -= statusStrip.Height;
+                this.Height -= ssrStatusStrip.Height;
             }
         }
 
