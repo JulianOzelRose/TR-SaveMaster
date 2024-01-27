@@ -281,7 +281,7 @@ namespace TR_SaveMaster
             using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
             {
                 folderBrowserDialog.SelectedPath = "C:\\";
-                folderBrowserDialog.Description = "Select a folder.";
+                folderBrowserDialog.Description = $"Select {tabGame.TabPages[tabGame.SelectedIndex].Text} directory";
 
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
