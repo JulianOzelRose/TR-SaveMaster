@@ -1,7 +1,7 @@
 ﻿
 namespace TR_SaveMaster
 {
-    partial class TR_SaveMaster
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace TR_SaveMaster
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TR_SaveMaster));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tsrToolStrip = new System.Windows.Forms.ToolStrip();
             this.tsddbFile = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiBrowseDirectory = new System.Windows.Forms.ToolStripMenuItem();
@@ -4509,7 +4509,7 @@ namespace TR_SaveMaster
             this.txtLvlNameTRC.TabIndex = 5;
             this.txtLvlNameTRC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // TR_SaveMaster
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -4522,11 +4522,11 @@ namespace TR_SaveMaster
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "TR_SaveMaster";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tomb Raider - Savegame Editor";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TR_SaveMaster_FormClosing);
-            this.Load += new System.EventHandler(this.TR_SaveMaster_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tsrToolStrip.ResumeLayout(false);
             this.tsrToolStrip.PerformLayout();
             this.ssrStatusStrip.ResumeLayout(false);

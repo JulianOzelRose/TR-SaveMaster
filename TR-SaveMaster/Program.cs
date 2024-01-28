@@ -16,7 +16,7 @@ namespace TR_SaveMaster
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TR_SaveMaster());
+            Application.Run(new MainForm());
         }
     }
 }

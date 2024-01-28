@@ -6,14 +6,14 @@ using System.Windows.Forms;
 
 namespace TR_SaveMaster
 {
-    public partial class TR_SaveMaster : Form
+    public partial class MainForm : Form
     {
-        public TR_SaveMaster()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        private void TR_SaveMaster_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             GetDirectories();
 
@@ -3908,7 +3908,7 @@ namespace TR_SaveMaster
             }
         }
 
-        private void TR_SaveMaster_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1 && btnCancelTR1.Enabled)
             {
