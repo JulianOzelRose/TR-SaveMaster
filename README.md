@@ -1,7 +1,7 @@
 # Tomb Raider - Savegame Editor
-This is a fully-featured savegame editor for the classic Tomb Raider series, compatible with Tomb Raider 1-5, including the expansion packs and bonus levels.
-It is designed to function seamlessly with both the Steam versions and the CD/multi-patched versions of the games. For installation and usage instructions,
-please scroll down to the next section of this README. Additionally, technical details on reverse engineering the Tomb Raider classic series and offset tables are included.
+This is a fully-featured savegame editor for the classic Tomb Raider series. It works with Tomb Raider 1-5, including the expansion packs and bonus levels.
+It is compatible with the original CD savegames as well as the ATI, GOG, and multi-patched savegames. For installation and usage instructions,
+please scroll down to the next section of this README. Additionally, technical details on reverse engineering the Tomb Raider classic series as well as offset tables are included.
 
 ![TR-SaveMaster-UI](https://github.com/JulianOzelRose/TR-SaveMaster/assets/95890436/d95b20d0-ea26-431f-ab39-74c9166d791b)
 
