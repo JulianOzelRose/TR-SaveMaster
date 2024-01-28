@@ -7,8 +7,8 @@ please scroll down to the next section of this README. Additionally, technical d
 
 ## Table of contents
 - [**Installation and use**](https://github.com/JulianOzelRose/TR-SaveMaster#installation-and-use)
-   - [Common game directories](https://github.com/JulianOzelRose/TR-SaveMaster/blob/master/README.md#common-game-directories)
-   - [Dealing with protected directories](https://github.com/JulianOzelRose/TR-SaveMaster/blob/master/README.md#dealing-with-protected-directories)
+   - [Common game directories](https://github.com/JulianOzelRose/TR-SaveMaster#common-game-directories)
+   - [Dealing with protected directories](https://github.com/JulianOzelRose/TR-SaveMaster#dealing-with-protected-directories)
 - [**Reverse engineering the Tomb Raider series**](https://github.com/JulianOzelRose/TR-SaveMaster#reverse-engineering-the-tomb-raider-series)
    - [Using bitwise to extract weapons information](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information)
    - [Using heuristics to determine the health offset](https://github.com/JulianOzelRose/TR-SaveMaster#using-heuristics-to-determine-the-health-offset)
