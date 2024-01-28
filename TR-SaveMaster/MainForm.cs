@@ -782,6 +782,8 @@ namespace TR_SaveMaster
                             btnSaveTR1.Enabled = false;
                             btnCancelTR1.Enabled = false;
                             tsmiSave.Enabled = false;
+
+                            slblStatus.Text = $"Successfully loaded save file: {selectedDisplayString}";
                         }
                         else
                         {
@@ -823,6 +825,8 @@ namespace TR_SaveMaster
                             btnSaveTR1UB.Enabled = false;
                             btnCancelTR1UB.Enabled = false;
                             tsmiSave.Enabled = false;
+
+                            slblStatus.Text = $"Successfully loaded save file: {selectedDisplayString}";
                         }
                         else
                         {
@@ -865,6 +869,8 @@ namespace TR_SaveMaster
                             btnSaveTR2.Enabled = false;
                             btnCancelTR2.Enabled = false;
                             tsmiSave.Enabled = false;
+
+                            slblStatus.Text = $"Successfully loaded save file: {selectedDisplayString}";
                         }
                         else
                         {
@@ -908,6 +914,8 @@ namespace TR_SaveMaster
                             btnSaveTR2G.Enabled = false;
                             btnCancelTR2G.Enabled = false;
                             tsmiSave.Enabled = false;
+
+                            slblStatus.Text = $"Successfully loaded save file: {selectedDisplayString}";
                         }
                         else
                         {
@@ -951,6 +959,8 @@ namespace TR_SaveMaster
                             btnSaveTR3.Enabled = false;
                             btnCancelTR3.Enabled = false;
                             tsmiSave.Enabled = false;
+
+                            slblStatus.Text = $"Successfully loaded save file: {selectedDisplayString}";
                         }
                         else
                         {
@@ -996,6 +1006,8 @@ namespace TR_SaveMaster
                             btnSaveTR3TLA.Enabled = false;
                             btnCancelTR3TLA.Enabled = false;
                             tsmiSave.Enabled = false;
+
+                            slblStatus.Text = $"Successfully loaded save file: {selectedDisplayString}";
                         }
                         else
                         {
@@ -1041,6 +1053,8 @@ namespace TR_SaveMaster
                             btnSaveTR4.Enabled = false;
                             btnCancelTR4.Enabled = false;
                             tsmiSave.Enabled = false;
+
+                            slblStatus.Text = $"Successfully loaded save file: {selectedDisplayString}";
                         }
                         else
                         {
@@ -1089,6 +1103,8 @@ namespace TR_SaveMaster
                             btnSaveTRC.Enabled = false;
                             btnCancelTRC.Enabled = false;
                             tsmiSave.Enabled = false;
+
+                            slblStatus.Text = $"Successfully loaded save file: {selectedDisplayString}";
                         }
                         else
                         {
@@ -1128,13 +1144,12 @@ namespace TR_SaveMaster
                             btnCancelTR1.Enabled = false;
                             tsmiSave.Enabled = false;
 
-                            slblStatus.Text = "Successfully patched save file: " + selectedDisplayString;
+                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                         }
                         else
                         {
                             isFilePresent = false;
                             MessageBox.Show("Could not find file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            slblStatus.Text = $"Could not patch {cmbSavegamesTR1.SelectedItem} because file does not exist.";
                             DisplaySavegamesTR1();
                         }
 
@@ -1169,13 +1184,12 @@ namespace TR_SaveMaster
                             btnSaveTR1UB.Enabled = false;
                             tsmiSave.Enabled = false;
 
-                            slblStatus.Text = "Successfully patched save file: " + selectedDisplayString;
+                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                         }
                         else
                         {
                             isFilePresent = false;
                             MessageBox.Show("Could not find file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            slblStatus.Text = $"Could not patch {cmbSavegamesTR1UB.SelectedItem} because file does not exist.";
                             DisplaySavegamesTR1UB();
                         }
 
@@ -1211,13 +1225,12 @@ namespace TR_SaveMaster
                             btnCancelTR2.Enabled = false;
                             tsmiSave.Enabled = false;
 
-                            slblStatus.Text = "Successfully patched save file: " + selectedDisplayString;
+                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                         }
                         else
                         {
                             isFilePresent = false;
                             MessageBox.Show("Could not find file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            slblStatus.Text = $"Could not patch {cmbSavegamesTR2.SelectedItem} because file does not exist.";
                             DisplaySavegamesTR2();
                         }
 
@@ -1253,13 +1266,12 @@ namespace TR_SaveMaster
                             btnSaveTR2G.Enabled = false;
                             tsmiSave.Enabled = false;
 
-                            slblStatus.Text = "Successfully patched save file: " + selectedDisplayString;
+                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                         }
                         else
                         {
                             isFilePresent = false;
                             MessageBox.Show("Could not find file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            slblStatus.Text = $"Could not patch {cmbSavegamesTR2G.SelectedItem} because file does not exist.";
                             DisplaySavegamesTR2G();
                         }
 
@@ -1295,13 +1307,12 @@ namespace TR_SaveMaster
                             btnSaveTR3.Enabled = false;
                             tsmiSave.Enabled = false;
 
-                            slblStatus.Text = "Successfully patched save file: " + selectedDisplayString;
+                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                         }
                         else
                         {
                             isFilePresent = false;
                             MessageBox.Show("Could not find file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            slblStatus.Text = $"Could not patch {cmbSavegamesTR3.SelectedItem} because file does not exist.";
                             DisplaySavegamesTR3();
                         }
 
@@ -1338,13 +1349,12 @@ namespace TR_SaveMaster
                             btnSaveTR3TLA.Enabled = false;
                             tsmiSave.Enabled = false;
 
-                            slblStatus.Text = "Successfully patched save file: " + selectedDisplayString;
+                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                         }
                         else
                         {
                             isFilePresent = false;
                             MessageBox.Show("Could not find file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            slblStatus.Text = $"Could not patch {cmbSavegamesTR3TLA.SelectedItem} because file does not exist.";
                             DisplaySavegamesTR3TLA();
                         }
 
@@ -1382,13 +1392,12 @@ namespace TR_SaveMaster
                             btnCancelTR4.Enabled = false;
                             tsmiSave.Enabled = false;
 
-                            slblStatus.Text = "Successfully patched save file: " + selectedDisplayString;
+                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                         }
                         else
                         {
                             isFilePresent = false;
                             MessageBox.Show("Could not find file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            slblStatus.Text = $"Could not patch {cmbSavegamesTR4.SelectedItem} because file does not exist.";
                             DisplaySavegamesTR4();
                         }
 
@@ -1427,13 +1436,12 @@ namespace TR_SaveMaster
                             btnSaveTRC.Enabled = false;
                             tsmiSave.Enabled = false;
 
-                            slblStatus.Text = "Successfully patched save file: " + selectedDisplayString;
+                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                         }
                         else
                         {
                             isFilePresent = false;
                             MessageBox.Show("Could not find file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            slblStatus.Text = $"Could not patch {cmbSavegamesTRC.SelectedItem} because file does not exist.";
                             DisplaySavegamesTRC();
                         }
 
