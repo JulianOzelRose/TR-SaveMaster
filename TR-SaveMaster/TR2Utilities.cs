@@ -776,6 +776,7 @@ namespace TR_SaveMaster
                     [0x1A82] = new List<int[]>
                     {
                         new int[] { 0x1A82, 0x1A83, 0x1A84, 0x1A85 },
+                        new int[] { 0x1A8C, 0x1A8D, 0x1A8E, 0x1A8F },
                     },
                     [0x1A8E] = new List<int[]>
                     {
