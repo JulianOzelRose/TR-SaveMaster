@@ -67,6 +67,20 @@ For Tomb Raider: Chronicles and The Last Revelation, ammunition will be represen
 ammunition for weapons not currently equipped may appear differently than in-game. Specifically, Harpoons are grouped in bundles of 2, Desert Eagle clips represent 5
 bullets, MP5 clips equate to 30 bullets, Uzi clips correspond to 20 bullets, and a single box of grenades is equivalent to 2 rounds of Grenade Launcher ammunition.
 
+### Dealing with protected directories
+If you did a CD install with one of the original games or expansions, the savegame files are likely located in a protected directory, and modifications to them
+will not be possible. To circumvent this issue, you will have to modify the folder permissions to allow modification. First, right-click on Start, and click "Windows PowerShell (Admin)".
+Then, use the following commands:
+
+```
+takeown /f "C:\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /r /d y
+icacls "C:\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /grant:r %USERNAME%:F /t
+```
+
+Of course, be sure to replace the directory with the one that you are encountering permission issues with, and be sure to replace "USERNAME" with your actual username.
+Run the `takeown` command first, then run the `icals` command second. You should then be able to modify files within that directory and begin savegame editing.
+
+
 # Reverse engineering the Tomb Raider series
 This section details the technical aspects of reverse engineering the savegame files for the classic Tomb Raider series. The offset tables for each game are included
 at the end of the README. In general, there are many similarities between the games, as they are all built on the same engine. Tomb Raider 1-3 use a very similar engine,
