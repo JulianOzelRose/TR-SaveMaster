@@ -7,6 +7,8 @@ please scroll down to the next section of this README. Additionally, technical d
 
 ## Table of contents
 - [**Installation and use**](https://github.com/JulianOzelRose/TR-SaveMaster#installation-and-use)
+   - [Common game directories](https://github.com/JulianOzelRose/TR-SaveMaster/blob/master/README.md#common-game-directories)
+   - [Dealing with protected directories](https://github.com/JulianOzelRose/TR-SaveMaster/blob/master/README.md#dealing-with-protected-directories)
 - [**Reverse engineering the Tomb Raider series**](https://github.com/JulianOzelRose/TR-SaveMaster#reverse-engineering-the-tomb-raider-series)
    - [Using bitwise to extract weapons information](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information)
    - [Using heuristics to determine the health offset](https://github.com/JulianOzelRose/TR-SaveMaster#using-heuristics-to-determine-the-health-offset)
@@ -37,9 +39,9 @@ please scroll down to the next section of this README. Additionally, technical d
 To use this savegame editor, simply navigate to the [Release](https://github.com/JulianOzelRose/TR-SaveMaster/tree/master/TR-SaveMaster/bin/x64/Release) folder, then
 download ```TR-SaveMaster.exe```, then open it. There is no need to install anything, and it can be run from anywhere on your computer. To toggle between the different
 Tomb Raider games, click the appopriate tab on the tab control above. To begin savegame editing, you must first set your game's directory. To do this, click ```Browse```,
-the navigate to your game's directory on your computer. The exact directory depends on whether you have a Steam installation or a CD installation. Here are some common
-directories for each game:
+the navigate to your game's directory on your computer. The exact directory depends on whether you have a Steam installation or a CD installation.
 
+### Common game directories
 - **Tomb Raider I**
   - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)\TOMBRAID```
 - **Tomb Raider I: Unfinished Business**
