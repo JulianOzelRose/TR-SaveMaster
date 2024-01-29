@@ -257,6 +257,7 @@ namespace TR_SaveMaster
                     },
                     [0x1C5C] = new List<int[]>
                     {
+                        new int[] { 0x1C5C, 0x1C5D, 0x1C5E, 0x1C5F },
                         new int[] { 0x1C66, 0x1C67, 0x1C68, 0x1C69 },
                     },
                     [0x1C62] = new List<int[]>
