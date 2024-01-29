@@ -188,6 +188,7 @@ bitwise methods, as outlined in the [section above](https://github.com/JulianOze
 | Uzis                    | 8                 |
 | Shotgun                 | 16                |
 
+### Ammunition
 Ammunition is stored on up to two offsets; a primary offset, and a secondary offset. If a weapon is not equipped,
 it is only stored on the primary offset. If the weapon is equipped, the ammo is stored on both offsets. So when
 removing a weapon from inventory, you should also zero the secondary ammo offset. Health is stored on
@@ -211,6 +212,7 @@ the [above section](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwis
 | Grenade Launcher        | 64                |
 | Harpoon Gun             | 128               |
 
+### Calculating secondary ammo offsets
 Ammunition is also stored on a primary and secondary offset, this aspect works the same as in Tomb Raider I. However,
 the secondary ammo offsets are dynamically allocated and must therefore be calculated before writing. The location
 of the secondary ammo offsets seem to depend on the number of active entities in the game. When there are no entities,
@@ -219,7 +221,6 @@ There is a line in the savegame files that shifts along with the secondary ammo 
 consisting of 0xFF, 4 times. It's somewhat of an EOF marker. You can store the locations of the 0xFF markers using
 a dictionary. Then, using the location of the first byte of the 0xFF line, you can calculate the secondary ammo offsets.
 
-### Calculating secondary ammo offsets
 ```
 private void SetSecondaryAmmoOffsets()
 {
@@ -252,13 +253,13 @@ on how to do this.
 | Rocket Launcher         | 64                |
 | Grenade Launcher        | 128               |
 
+### Calculating secondary ammo offsets
 Tomb Raider III also stores ammunition on a primary and secondary offset, with the same logic as the previous two titles;
 an equipped weapon stores ammo on both offsets, while a non-equipped weapon only stores ammo in the primary offset. The
 secondary ammo indices are dynamically allocated. The pattern is more consistent than Tomb Raider II, as the offsets
 are always 18 bytes apart. Storing the index data as a dictionary, you can use the following algorithm to determine
 the dynamically allocated ammo offsets:
 
-### Calculating secondary ammo offsets
 ```
 private int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
 {
@@ -273,12 +274,17 @@ private int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
     }
 
     validOffsets.Add(primaryOffset);
-    validOffsets.Add(secondaryOffsets[currentAmmoIndex]);
+
+    if (currentAmmoIndex != -1)
+    {
+        validOffsets.Add(secondaryOffsets[currentAmmoIndex]);
+    }
 
     return validOffsets.ToArray();
 }
 ```
 
+### Health
 Health information is also stored dynamically. It can be stored on anywhere from 1-4 unique offsets per level. To avoid
 writing to the incorrect health offset, it is neccessary to use the heuristic algorithm outlined in the
 [above section](https://github.com/JulianOzelRose/TR-SaveMaster#using-heuristics-to-determine-the-health-offset).
@@ -291,12 +297,12 @@ not stored on a single offset; instead, it is stored on individual offsets. For 
 present. A value of 0xD indicates the weapon is present with a LaserSight attached. For items such as binoculars, crowbar, and
 LaserSight, a value of 0x1 indicates it is present in inventory.
 
+### Checksum algorithm
 The biggest challenge in reversing the Tomb Raider 4 savegames is the fact that it uses a file checksum to determine if a
 savegame is valid or not. If a savegame's checksum does not match the game's calculation, it will show up as "Empty Slot".
 So, when modifying a savegame, you must calculate the new checksum after writing your changes. The checksum is a simple
 modulo-256 checksum. The calculation begins on offset 0x57, and ends where the file ends.
 
-### Checksum algorithm
 ```
 private byte CalculateChecksum()
 {
@@ -348,6 +354,7 @@ For Tomb Raider 5, the character animation data is located between 6-7 bytes awa
 | Escape with the Iris	   | 0x6F6 - 0xC47	 |
 | Red Alert!		         | 0x52C - 0x5D6	 |
 
+### Weapons
 Weapons information is also stored similar to Tomb Raider 4; each weapon is stored on its own unique offset. A value of 0x9
 indicates the weapon is present, a value of 0xD indicates the weapon is present with a LaserSight attached, and a value of 0
 indicates the weapon is not present. Ammunition data is also stored statically, and on its own individual offsets.
