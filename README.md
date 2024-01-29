@@ -78,8 +78,9 @@ will not be possible. To circumvent this issue, you will have to modify the fold
 Then, use the following commands:
 
 ```
-takeown /f "C:\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /r /d y
-icacls "C:\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /grant:r %USERNAME%:F /t
+takeown /f "C:\Users\YourUserName\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /r /d y
+
+icacls "C:\Users\YourUserName\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /grant:r %USERNAME%:F /t
 ```
 
 Of course, be sure to replace the directory with the one that you are encountering permission issues with, and be sure to replace "USERNAME" with your actual username.
@@ -151,24 +152,23 @@ Health is stored in a similar fashion for each game. Health is represented as a 
 there is a health offset range. In other words, health is dynamically allocated. Since writing to the incorrect health
 offset may cause the game to crash, it is important to determine the health offset with an accurate method. Since health
 is stored right next to character movement data, is is possible to find the correct health offset by checking the surrounding
-data for character movement byte flags. Here is an example of this algorithm for Tomb Raider III savegames:
+data for character movement byte flags. Here is an example of how to implement this algorithm for Tomb Raider 5 savegames:
 
 ```
 private int GetHealthOffset()
 {
-    for (int i = 0; i < healthOffsets.Count; i++)
+    for (int offset = MIN_HEALTH_OFFSET; offset <= MAX_HEALTH_OFFSET; offset++)
     {
-        UInt16 value = ReadUInt16(healthOffsets[i]);
+        byte byteFlag1 = ReadByte(offset - 7);
+        byte byteFlag2 = ReadByte(offset - 6);
 
-        if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
+        if (IsKnownByteFlagPattern(byteFlag1, byteFlag2))
         {
-            byte byteFlag1 = ReadByte(healthOffsets[i] - 10);
-            byte byteFlag2 = ReadByte(healthOffsets[i] - 9);
-            byte byteFlag3 = ReadByte(healthOffsets[i] - 8);
+            UInt16 value = ReadUInt16(offset);
 
-            if (IsKnownByteFlagPattern(byteFlag1, byteFlag2, byteFlag3))
+            if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
             {
-                return healthOffsets[i];
+                return offset;
             }
         }
     }
@@ -194,8 +194,7 @@ bitwise methods, as outlined in the [section above](https://github.com/JulianOze
 ### Ammunition
 Ammunition is stored on up to two offsets; a primary offset, and a secondary offset. If a weapon is not equipped,
 it is only stored on the primary offset. If the weapon is equipped, the ammo is stored on both offsets. So when
-removing a weapon from inventory, you should also zero the secondary ammo offset. Health is stored on
-one offset per level.
+removing a weapon from inventory, you should also zero the secondary ammo offset.
 
 ## Tomb Raider II
 Reverse engineering Tomb Raider II savegames is slightly different compared to Tomb Raider I. The file offsets
@@ -241,7 +240,7 @@ private void SetSecondaryAmmoOffsets()
 ## Tomb Raider III
 Similar to the previous two titles, Tomb Raider III also stores weapons information on a single offset - with the exception
 of the Harpoon Gun, which is stored as a boolean on its own offset, 1 byte away from the weapons config number. Bitwise
-can be used to extract the weapons present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information)
+can be used to determine which weapons are present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information)
 on how to do this.
 
 ### Weapon byte flags
