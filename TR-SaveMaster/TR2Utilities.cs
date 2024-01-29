@@ -1021,7 +1021,7 @@ namespace TR_SaveMaster
             WriteSmallMedipacks((byte)nudSmallMedipacks.Value);
             WriteLargeMedipacks((byte)nudLargeMedipacks.Value);
 
-            if (GetLevelIndex() != 18 && GetSecondaryAmmoIndexMarker() != -1)
+            if (GetLevelIndex() != 18)
             {
                 WriteAutomaticPistolsAmmo(chkAutomaticPistols.Checked, (UInt16)nudAutomaticPistolsAmmo.Value);
                 WriteUziAmmo(chkUzis.Checked, (UInt16)nudUziAmmo.Value);
@@ -1030,10 +1030,7 @@ namespace TR_SaveMaster
                 WriteHarpoonGunAmmo(chkHarpoonGun.Checked, (UInt16)nudHarpoonGunAmmo.Value);
             }
 
-            if (GetSecondaryAmmoIndexMarker() != -1)
-            {
-                WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
-            }
+            WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
 
             if (GetHealthOffset() != -1)
             {
@@ -1172,85 +1169,121 @@ namespace TR_SaveMaster
 
         private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
         {
-            if (isPresent)
+            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+
+            if (isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(shotgunAmmoOffset, ammo);
                 WriteUInt16(shotgunAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(shotgunAmmoOffset, ammo);
                 WriteUInt16(shotgunAmmoOffset2, 0);
+            }
+            else
+            {
+                WriteUInt16(shotgunAmmoOffset, ammo);
             }
         }
 
         private void WriteAutomaticPistolsAmmo(bool isPresent, UInt16 ammo)
         {
-            if (isPresent)
+            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+
+            if (isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(automaticPistolsAmmoOffset, ammo);
                 WriteUInt16(automaticPistolsAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(automaticPistolsAmmoOffset, ammo);
                 WriteUInt16(automaticPistolsAmmoOffset2, 0);
+            }
+            else
+            {
+                WriteUInt16(automaticPistolsAmmoOffset, ammo);
             }
         }
 
         private void WriteUziAmmo(bool isPresent, UInt16 ammo)
         {
-            if (isPresent)
+            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+
+            if (isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(uziAmmoOffset, ammo);
                 WriteUInt16(uziAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(uziAmmoOffset, ammo);
                 WriteUInt16(uziAmmoOffset2, 0);
+            }
+            else
+            {
+                WriteUInt16(uziAmmoOffset, ammo);
             }
         }
 
         private void WriteM16Ammo(bool isPresent, UInt16 ammo)
         {
-            if (isPresent)
+            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+
+            if (isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(m16AmmoOffset, ammo);
                 WriteUInt16(m16AmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(m16AmmoOffset, ammo);
                 WriteUInt16(m16AmmoOffset2, 0);
+            }
+            else
+            {
+                WriteUInt16(m16AmmoOffset, ammo);
             }
         }
 
         private void WriteGrenadeLauncherAmmo(bool isPresent, UInt16 ammo)
         {
-            if (isPresent)
+            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+
+            if (isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(grenadeLauncherAmmoOffset, ammo);
                 WriteUInt16(grenadeLauncherAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(grenadeLauncherAmmoOffset, ammo);
                 WriteUInt16(grenadeLauncherAmmoOffset2, 0);
+            }
+            else
+            {
+                WriteUInt16(grenadeLauncherAmmoOffset, ammo);
             }
         }
 
         private void WriteHarpoonGunAmmo(bool isPresent, UInt16 ammo)
         {
-            if (isPresent)
+            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+
+            if (isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(harpoonGunAmmoOffset, ammo);
                 WriteUInt16(harpoonGunAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(harpoonGunAmmoOffset, ammo);
                 WriteUInt16(harpoonGunAmmoOffset2, 0);
+            }
+            else
+            {
+                WriteUInt16(harpoonGunAmmoOffset, ammo);
             }
         }
 
