@@ -958,7 +958,7 @@ namespace TR_SaveMaster
         private int GetAmmoIndex()
         {
             byte levelIndex = GetLevelIndex();
-            int ammoIndex = 0;
+            int ammoIndex = -1;
 
             if (ammoIndexData.ContainsKey(levelIndex))
             {
@@ -993,7 +993,11 @@ namespace TR_SaveMaster
             }
 
             validOffsets.Add(primaryOffset);
-            validOffsets.Add(secondaryOffsets[currentAmmoIndex]);
+
+            if (currentAmmoIndex != -1)
+            {
+                validOffsets.Add(secondaryOffsets[currentAmmoIndex]);
+            }
 
             return validOffsets.ToArray();
         }
@@ -1167,126 +1171,147 @@ namespace TR_SaveMaster
         private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validShotgunAmmoOffsets = GetValidAmmoOffsets(shotgunAmmoOffset, shotgunAmmoOffset2);
+            int ammoIndex = GetAmmoIndex();
 
-            if (isPresent)
+            if (isPresent && ammoIndex != -1)
             {
-                for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
-                {
-                    WriteUInt16(validShotgunAmmoOffsets[i], ammo);
-                }
+                WriteUInt16(validShotgunAmmoOffsets[0], ammo);
+                WriteUInt16(validShotgunAmmoOffsets[1], ammo);
+            }
+            else if (!isPresent && ammoIndex != -1)
+            {
+                WriteUInt16(validShotgunAmmoOffsets[0], ammo);
+                WriteUInt16(validShotgunAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(validShotgunAmmoOffsets[1], 0);
-                WriteUInt16(shotgunAmmoOffset, ammo);
+                WriteUInt16(validShotgunAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteDeagleAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validDeagleAmmoOffsets = GetValidAmmoOffsets(deagleAmmoOffset, deagleAmmoOffset2);
+            int ammoIndex = GetAmmoIndex();
 
-            if (isPresent)
+            if (isPresent && ammoIndex != -1)
             {
-                for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
-                {
-                    WriteUInt16(validDeagleAmmoOffsets[i], ammo);
-                }
+                WriteUInt16(validDeagleAmmoOffsets[0], ammo);
+                WriteUInt16(validDeagleAmmoOffsets[1], ammo);
+            }
+            else if (!isPresent && ammoIndex != -1)
+            {
+                WriteUInt16(validDeagleAmmoOffsets[0], ammo);
+                WriteUInt16(validDeagleAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(validDeagleAmmoOffsets[1], 0);
-                WriteUInt16(deagleAmmoOffset, ammo);
+                WriteUInt16(validDeagleAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteGrenadeLauncherAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validGrenadeLauncherAmmoOffsets = GetValidAmmoOffsets(grenadeLauncherAmmoOffset, grenadeLauncherAmmoOffset2);
+            int ammoIndex = GetAmmoIndex();
 
-            if (isPresent)
+            if (isPresent && ammoIndex != -1)
             {
-                for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
-                {
-                    WriteUInt16(validGrenadeLauncherAmmoOffsets[i], ammo);
-                }
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[0], ammo);
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[1], ammo);
+            }
+            else if (!isPresent && ammoIndex != -1)
+            {
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[0], ammo);
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(validGrenadeLauncherAmmoOffsets[1], 0);
-                WriteUInt16(grenadeLauncherAmmoOffset, ammo);
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteRocketLauncherAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validRocketLauncherAmmoOffsets = GetValidAmmoOffsets(rocketLauncherAmmoOffset, rocketLauncherAmmoOffset2);
+            int ammoIndex = GetAmmoIndex();
 
-            if (isPresent)
+            if (isPresent && ammoIndex != -1)
             {
-                for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
-                {
-                    WriteUInt16(validRocketLauncherAmmoOffsets[i], ammo);
-                }
+                WriteUInt16(validRocketLauncherAmmoOffsets[0], ammo);
+                WriteUInt16(validRocketLauncherAmmoOffsets[1], ammo);
+            }
+            else if (!isPresent && ammoIndex != -1)
+            {
+                WriteUInt16(validRocketLauncherAmmoOffsets[0], ammo);
+                WriteUInt16(validRocketLauncherAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(validRocketLauncherAmmoOffsets[1], 0);
-                WriteUInt16(rocketLauncherAmmoOffset, ammo);
+                WriteUInt16(validRocketLauncherAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteHarpoonAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validHarpoonAmmoOffsets = GetValidAmmoOffsets(harpoonAmmoOffset, harpoonAmmoOffset2);
+            int ammoIndex = GetAmmoIndex();
 
-            if (isPresent)
+            if (isPresent && ammoIndex != -1)
             {
-                for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
-                {
-                    WriteUInt16(validHarpoonAmmoOffsets[i], ammo);
-                }
+                WriteUInt16(validHarpoonAmmoOffsets[0], ammo);
+                WriteUInt16(validHarpoonAmmoOffsets[1], ammo);
+            }
+            else if (!isPresent && ammoIndex != -1)
+            {
+                WriteUInt16(validHarpoonAmmoOffsets[0], ammo);
+                WriteUInt16(validHarpoonAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(validHarpoonAmmoOffsets[1], 0);
-                WriteUInt16(harpoonAmmoOffset, ammo);
+                WriteUInt16(validHarpoonAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteMP5Ammo(bool isPresent, UInt16 ammo)
         {
             int[] validMp5AmmoOffsets = GetValidAmmoOffsets(mp5AmmoOffset, mp5AmmoOffset2);
+            int ammoIndex = GetAmmoIndex();
 
-            if (isPresent)
+            if (isPresent && ammoIndex != -1)
             {
-                for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
-                {
-                    WriteUInt16(validMp5AmmoOffsets[i], ammo);
-                }
+                WriteUInt16(validMp5AmmoOffsets[0], ammo);
+                WriteUInt16(validMp5AmmoOffsets[1], ammo);
+            }
+            else if (!isPresent && ammoIndex != -1)
+            {
+                WriteUInt16(validMp5AmmoOffsets[0], ammo);
+                WriteUInt16(validMp5AmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(validMp5AmmoOffsets[1], 0);
-                WriteUInt16(mp5AmmoOffset, ammo);
+                WriteUInt16(validMp5AmmoOffsets[0], ammo);
             }
         }
 
         private void WriteUziAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validUziAmmoOffsets = GetValidAmmoOffsets(uziAmmoOffset, uziAmmoOffset2);
+            int ammoIndex = GetAmmoIndex();
 
-            if (isPresent)
+            if (isPresent && ammoIndex != -1)
             {
-                for (int i = 0; i < validUziAmmoOffsets.Length; i++)
-                {
-                    WriteUInt16(validUziAmmoOffsets[i], ammo);
-                }
+                WriteUInt16(validUziAmmoOffsets[0], ammo);
+                WriteUInt16(validUziAmmoOffsets[1], ammo);
+            }
+            else if (!isPresent && ammoIndex != -1)
+            {
+                WriteUInt16(validUziAmmoOffsets[0], ammo);
+                WriteUInt16(validUziAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(validUziAmmoOffsets[1], 0);
-                WriteUInt16(uziAmmoOffset, ammo);
+                WriteUInt16(validUziAmmoOffsets[0], ammo);
             }
         }
 
