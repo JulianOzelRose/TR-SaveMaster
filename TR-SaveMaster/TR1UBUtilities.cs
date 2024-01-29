@@ -311,75 +311,61 @@ namespace TR_SaveMaster
 
         private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
         {
-            if (isPresent)
+            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+
+            if (isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(shotgunAmmoOffset, ammo);
                 WriteUInt16(shotgunAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(shotgunAmmoOffset, ammo);
                 WriteUInt16(shotgunAmmoOffset2, 0);
+            }
+            else
+            {
+                WriteUInt16(shotgunAmmoOffset, ammo);
             }
         }
 
         private void WriteMagnumAmmo(bool isPresent, UInt16 ammo)
         {
-            if (isPresent)
+            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+
+            if (isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(magnumAmmoOffset, ammo);
                 WriteUInt16(magnumAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(magnumAmmoOffset, ammo);
                 WriteUInt16(magnumAmmoOffset2, 0);
+            }
+            else
+            {
+                WriteUInt16(magnumAmmoOffset, ammo);
             }
         }
 
         private void WriteUziAmmo(bool isPresent, UInt16 ammo)
         {
-            if (isPresent)
+            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+
+            if (isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(uziAmmoOffset, ammo);
                 WriteUInt16(uziAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndexMarker != -1)
             {
                 WriteUInt16(uziAmmoOffset, ammo);
                 WriteUInt16(uziAmmoOffset2, 0);
             }
-        }
-
-        public void WriteChanges(NumericUpDown nudSaveNumber, NumericUpDown nudSmallMedipacks, NumericUpDown nudLargeMedipacks,
-            NumericUpDown nudShotgunAmmo, NumericUpDown nudMagnumAmmo, NumericUpDown nudUziAmmo, CheckBox chkPistols,
-            CheckBox chkMagnums, CheckBox chkUzis, CheckBox chkShotgun, TrackBar trbHealth)
-        {
-            WriteSaveNumber((UInt16)nudSaveNumber.Value);
-
-            WriteSmallMedipacks((byte)nudSmallMedipacks.Value);
-            WriteLargeMedipacks((byte)nudLargeMedipacks.Value);
-
-            if (GetSecondaryAmmoIndexMarker() != -1)
+            else
             {
-                WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
-                WriteMagnumAmmo(chkMagnums.Checked, (UInt16)nudMagnumAmmo.Value);
-                WriteUziAmmo(chkUzis.Checked, (UInt16)nudUziAmmo.Value);
-            }
-
-            byte newWeaponsConfigNum = 1;
-
-            if (chkPistols.Checked) newWeaponsConfigNum += 2;
-            if (chkMagnums.Checked) newWeaponsConfigNum += 4;
-            if (chkUzis.Checked) newWeaponsConfigNum += 8;
-            if (chkShotgun.Checked) newWeaponsConfigNum += 16;
-
-            WriteWeaponsConfigNum(newWeaponsConfigNum);
-
-            if (GetHealthOffset() != -1)
-            {
-                double newHealthPercentage = (double)trbHealth.Value;
-                WriteHealthValue(newHealthPercentage);
+                WriteUInt16(uziAmmoOffset, ammo);
             }
         }
 
@@ -435,6 +421,35 @@ namespace TR_SaveMaster
                 trbHealth.Value = 0;
                 lblHealthError.Visible = true;
                 lblHealth.Visible = false;
+            }
+        }
+
+        public void WriteChanges(NumericUpDown nudSaveNumber, NumericUpDown nudSmallMedipacks, NumericUpDown nudLargeMedipacks,
+            NumericUpDown nudShotgunAmmo, NumericUpDown nudMagnumAmmo, NumericUpDown nudUziAmmo, CheckBox chkPistols,
+            CheckBox chkMagnums, CheckBox chkUzis, CheckBox chkShotgun, TrackBar trbHealth)
+        {
+            WriteSaveNumber((UInt16)nudSaveNumber.Value);
+
+            WriteSmallMedipacks((byte)nudSmallMedipacks.Value);
+            WriteLargeMedipacks((byte)nudLargeMedipacks.Value);
+
+            WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
+            WriteMagnumAmmo(chkMagnums.Checked, (UInt16)nudMagnumAmmo.Value);
+            WriteUziAmmo(chkUzis.Checked, (UInt16)nudUziAmmo.Value);
+
+            byte newWeaponsConfigNum = 1;
+
+            if (chkPistols.Checked) newWeaponsConfigNum += 2;
+            if (chkMagnums.Checked) newWeaponsConfigNum += 4;
+            if (chkUzis.Checked) newWeaponsConfigNum += 8;
+            if (chkShotgun.Checked) newWeaponsConfigNum += 16;
+
+            WriteWeaponsConfigNum(newWeaponsConfigNum);
+
+            if (GetHealthOffset() != -1)
+            {
+                double newHealthPercentage = (double)trbHealth.Value;
+                WriteHealthValue(newHealthPercentage);
             }
         }
 
