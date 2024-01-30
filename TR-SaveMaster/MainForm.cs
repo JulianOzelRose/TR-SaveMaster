@@ -1131,20 +1131,28 @@ namespace TR_SaveMaster
                     {
                         if (File.Exists(savegamesTR1[i].Path))
                         {
-                            if (tsmiCreateBackups.Checked)
+                            try
                             {
-                                CreateBackup(savegamesTR1[i].Path);
+                                if (tsmiCreateBackups.Checked)
+                                {
+                                    CreateBackup(savegamesTR1[i].Path);
+                                }
+
+                                TR1.WriteChanges(chkPistolsTR1, chkMagnumsTR1, chkUzisTR1, chkShotgunTR1, nudSaveNumberTR1,
+                                    nudSmallMedipacksTR1, nudLargeMedipacksTR1, nudUziAmmoTR1, nudMagnumAmmoTR1,
+                                    nudShotgunAmmoTR1, trbHealthTR1);
+
+                                btnSaveTR1.Enabled = false;
+                                btnCancelTR1.Enabled = false;
+                                tsmiSave.Enabled = false;
+
+                                slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                             }
-
-                            TR1.WriteChanges(chkPistolsTR1, chkMagnumsTR1, chkUzisTR1, chkShotgunTR1, nudSaveNumberTR1,
-                                nudSmallMedipacksTR1, nudLargeMedipacksTR1, nudUziAmmoTR1, nudMagnumAmmoTR1,
-                                nudShotgunAmmoTR1, trbHealthTR1);
-
-                            btnSaveTR1.Enabled = false;
-                            btnCancelTR1.Enabled = false;
-                            tsmiSave.Enabled = false;
-
-                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                slblStatus.Text = $"Error writing to save file: {selectedDisplayString}";
+                            }
                         }
                         else
                         {
@@ -1171,20 +1179,28 @@ namespace TR_SaveMaster
                     {
                         if (File.Exists(savegamesTR1UB[i].Path))
                         {
-                            if (tsmiCreateBackups.Checked)
+                            try
                             {
-                                CreateBackup(savegamesTR1UB[i].Path);
+                                if (tsmiCreateBackups.Checked)
+                                {
+                                    CreateBackup(savegamesTR1UB[i].Path);
+                                }
+
+                                TR1UB.WriteChanges(nudSaveNumberTR1UB, nudSmallMedipacksTR1UB, nudLargeMedipacksTR1UB, nudShotgunAmmoTR1UB,
+                                    nudMagnumAmmoTR1UB, nudUziAmmoTR1UB, chkPistolsTR1UB, chkMagnumsTR1UB, chkUzisTR1UB, chkShotgunTR1UB,
+                                    trbHealthTR1UB);
+
+                                btnCancelTR1UB.Enabled = false;
+                                btnSaveTR1UB.Enabled = false;
+                                tsmiSave.Enabled = false;
+
+                                slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                             }
-
-                            TR1UB.WriteChanges(nudSaveNumberTR1UB, nudSmallMedipacksTR1UB, nudLargeMedipacksTR1UB, nudShotgunAmmoTR1UB,
-                                nudMagnumAmmoTR1UB, nudUziAmmoTR1UB, chkPistolsTR1UB, chkMagnumsTR1UB, chkUzisTR1UB, chkShotgunTR1UB,
-                                trbHealthTR1UB);
-
-                            btnCancelTR1UB.Enabled = false;
-                            btnSaveTR1UB.Enabled = false;
-                            tsmiSave.Enabled = false;
-
-                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                slblStatus.Text = $"Error writing to save file: {selectedDisplayString}";
+                            }
                         }
                         else
                         {
@@ -1211,21 +1227,29 @@ namespace TR_SaveMaster
                     {
                         if (File.Exists(savegamesTR2[i].Path))
                         {
-                            if (tsmiCreateBackups.Checked)
+                            try
                             {
-                                CreateBackup(savegamesTR2[i].Path);
+                                if (tsmiCreateBackups.Checked)
+                                {
+                                    CreateBackup(savegamesTR2[i].Path);
+                                }
+
+                                TR2.WriteChanges(chkPistolsTR2, chkAutomaticPistolsTR2, chkUzisTR2, chkShotgunTR2, chkM16TR2,
+                                    chkGrenadeLauncherTR2, chkHarpoonGunTR2, nudSaveNumberTR2, nudFlaresTR2, nudSmallMedipacksTR2,
+                                    nudLargeMedipacksTR2, nudAutomaticPistolsAmmoTR2, nudUziAmmoTR2, nudM16AmmoTR2,
+                                    nudGrenadeLauncherAmmoTR2, nudHarpoonGunAmmoTR2, nudShotgunAmmoTR2, trbHealthTR2);
+
+                                btnSaveTR2.Enabled = false;
+                                btnCancelTR2.Enabled = false;
+                                tsmiSave.Enabled = false;
+
+                                slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                             }
-
-                            TR2.WriteChanges(chkPistolsTR2, chkAutomaticPistolsTR2, chkUzisTR2, chkShotgunTR2, chkM16TR2,
-                                chkGrenadeLauncherTR2, chkHarpoonGunTR2, nudSaveNumberTR2, nudFlaresTR2, nudSmallMedipacksTR2,
-                                nudLargeMedipacksTR2, nudAutomaticPistolsAmmoTR2, nudUziAmmoTR2, nudM16AmmoTR2,
-                                nudGrenadeLauncherAmmoTR2, nudHarpoonGunAmmoTR2, nudShotgunAmmoTR2, trbHealthTR2);
-
-                            btnSaveTR2.Enabled = false;
-                            btnCancelTR2.Enabled = false;
-                            tsmiSave.Enabled = false;
-
-                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                slblStatus.Text = $"Error writing to save file: {selectedDisplayString}";
+                            }
                         }
                         else
                         {
@@ -1252,21 +1276,29 @@ namespace TR_SaveMaster
                     {
                         if (File.Exists(savegamesTR2G[i].Path))
                         {
-                            if (tsmiCreateBackups.Checked)
+                            try
                             {
-                                CreateBackup(savegamesTR2G[i].Path);
+                                if (tsmiCreateBackups.Checked)
+                                {
+                                    CreateBackup(savegamesTR2G[i].Path);
+                                }
+
+                                TR2G.WriteChanges(chkPistolsTR2G, chkAutomaticPistolsTR2G, chkUzisTR2G, chkShotgunTR2G, chkM16TR2G,
+                                    chkGrenadeLauncherTR2G, chkHarpoonGunTR2G, nudSaveNumberTR2G, nudFlaresTR2G, nudSmallMedipacksTR2G,
+                                    nudLargeMedipacksTR2G, nudAutomaticPistolsAmmoTR2G, nudUziAmmoTR2G, nudM16AmmoTR2G, nudGrenadeLauncherAmmoTR2G,
+                                    nudHarpoonGunAmmoTR2G, nudShotgunAmmoTR2G, trbHealthTR2G);
+
+                                btnCancelTR2G.Enabled = false;
+                                btnSaveTR2G.Enabled = false;
+                                tsmiSave.Enabled = false;
+
+                                slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                             }
-
-                            TR2G.WriteChanges(chkPistolsTR2G, chkAutomaticPistolsTR2G, chkUzisTR2G, chkShotgunTR2G, chkM16TR2G,
-                                chkGrenadeLauncherTR2G, chkHarpoonGunTR2G, nudSaveNumberTR2G, nudFlaresTR2G, nudSmallMedipacksTR2G,
-                                nudLargeMedipacksTR2G, nudAutomaticPistolsAmmoTR2G, nudUziAmmoTR2G, nudM16AmmoTR2G, nudGrenadeLauncherAmmoTR2G,
-                                nudHarpoonGunAmmoTR2G, nudShotgunAmmoTR2G, trbHealthTR2G);
-
-                            btnCancelTR2G.Enabled = false;
-                            btnSaveTR2G.Enabled = false;
-                            tsmiSave.Enabled = false;
-
-                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                slblStatus.Text = $"Error writing to save file: {selectedDisplayString}";
+                            }
                         }
                         else
                         {
@@ -1293,21 +1325,29 @@ namespace TR_SaveMaster
                     {
                         if (File.Exists(savegamesTR3[i].Path))
                         {
-                            if (tsmiCreateBackups.Checked)
+                            try
                             {
-                                CreateBackup(savegamesTR3[i].Path);
+                                if (tsmiCreateBackups.Checked)
+                                {
+                                    CreateBackup(savegamesTR3[i].Path);
+                                }
+
+                                TR3.WriteChanges(chkPistolsTR3, chkDeagleTR3, chkUziTR3, chkShotgunTR3, chkMP5TR3, chkRocketLauncherTR3,
+                                    chkGrenadeLauncherTR3, chkHarpoonGunTR3, nudFlaresTR3, nudSmallMedipacksTR3, nudLargeMedipacksTR3,
+                                    nudSaveNumberTR3, nudShotgunAmmoTR3, nudDeagleAmmoTR3, nudGrenadeLauncherAmmoTR3,
+                                    nudRocketLauncherAmmoTR3, nudHarpoonGunAmmoTR3, nudMP5AmmoTR3, nudUziAmmoTR3, trbHealthTR3);
+
+                                btnCancelTR3.Enabled = false;
+                                btnSaveTR3.Enabled = false;
+                                tsmiSave.Enabled = false;
+
+                                slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                             }
-
-                            TR3.WriteChanges(chkPistolsTR3, chkDeagleTR3, chkUziTR3, chkShotgunTR3, chkMP5TR3, chkRocketLauncherTR3,
-                                chkGrenadeLauncherTR3, chkHarpoonGunTR3, nudFlaresTR3, nudSmallMedipacksTR3, nudLargeMedipacksTR3,
-                                nudSaveNumberTR3, nudShotgunAmmoTR3, nudDeagleAmmoTR3, nudGrenadeLauncherAmmoTR3,
-                                nudRocketLauncherAmmoTR3, nudHarpoonGunAmmoTR3, nudMP5AmmoTR3, nudUziAmmoTR3, trbHealthTR3);
-
-                            btnCancelTR3.Enabled = false;
-                            btnSaveTR3.Enabled = false;
-                            tsmiSave.Enabled = false;
-
-                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                slblStatus.Text = $"Error writing to save file: {selectedDisplayString}";
+                            }
                         }
                         else
                         {
@@ -1334,22 +1374,30 @@ namespace TR_SaveMaster
                     {
                         if (File.Exists(savegamesTR3TLA[i].Path))
                         {
-                            if (tsmiCreateBackups.Checked)
+                            try
                             {
-                                CreateBackup(savegamesTR3TLA[i].Path);
+                                if (tsmiCreateBackups.Checked)
+                                {
+                                    CreateBackup(savegamesTR3TLA[i].Path);
+                                }
+
+                                TR3TLA.WriteChanges(chkPistolsTR3TLA, chkDeagleTR3TLA, chkUzisTR3TLA, chkShotgunTR3TLA,
+                                    chkMP5TR3TLA, chkRocketLauncherTR3TLA, chkGrenadeLauncherTR3TLA, chkHarpoonGunTR3TLA,
+                                    nudFlaresTR3TLA, nudSmallMedipacksTR3TLA, nudLargeMedipacksTR3TLA, nudSaveNumberTR3TLA,
+                                    nudShotgunAmmoTR3TLA, nudDeagleAmmoTR3TLA, nudGrenadeLauncherAmmoTR3TLA, nudRocketLauncherAmmoTR3TLA,
+                                    nudHarpoonGunAmmoTR3TLA, nudMP5AmmoTR3TLA, nudUziAmmoTR3TLA, trbHealthTR3TLA);
+
+                                btnCancelTR3TLA.Enabled = false;
+                                btnSaveTR3TLA.Enabled = false;
+                                tsmiSave.Enabled = false;
+
+                                slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                             }
-
-                            TR3TLA.WriteChanges(chkPistolsTR3TLA, chkDeagleTR3TLA, chkUzisTR3TLA, chkShotgunTR3TLA,
-                                chkMP5TR3TLA, chkRocketLauncherTR3TLA, chkGrenadeLauncherTR3TLA, chkHarpoonGunTR3TLA,
-                                nudFlaresTR3TLA, nudSmallMedipacksTR3TLA, nudLargeMedipacksTR3TLA, nudSaveNumberTR3TLA,
-                                nudShotgunAmmoTR3TLA, nudDeagleAmmoTR3TLA, nudGrenadeLauncherAmmoTR3TLA, nudRocketLauncherAmmoTR3TLA,
-                                nudHarpoonGunAmmoTR3TLA, nudMP5AmmoTR3TLA, nudUziAmmoTR3TLA, trbHealthTR3TLA);
-
-                            btnCancelTR3TLA.Enabled = false;
-                            btnSaveTR3TLA.Enabled = false;
-                            tsmiSave.Enabled = false;
-
-                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                slblStatus.Text = $"Error writing to save file: {selectedDisplayString}";
+                            }
                         }
                         else
                         {
@@ -1376,23 +1424,31 @@ namespace TR_SaveMaster
                     {
                         if (File.Exists(savegamesTR4[i].Path))
                         {
-                            if (tsmiCreateBackups.Checked)
+                            try
                             {
-                                CreateBackup(savegamesTR4[i].Path);
+                                if (tsmiCreateBackups.Checked)
+                                {
+                                    CreateBackup(savegamesTR4[i].Path);
+                                }
+
+                                TR4.WriteChanges(nudSaveNumberTR4, nudSecretsTR4, nudFlaresTR4, nudSmallMedipacksTR4,
+                                    nudLargeMedipacksTR4, nudRevolverAmmoTR4, nudUziAmmoTR4, nudGrenadeGunNormalAmmoTR4,
+                                    nudGrenadeGunSuperAmmoTR4, nudGrenadeGunFlashAmmoTR4, nudCrossbowNormalAmmoTR4, nudCrossbowPoisonAmmoTR4,
+                                    nudCrossbowExplosiveAmmoTR4, nudShotgunNormalAmmoTR4, nudShotgunWideshotAmmoTR4,
+                                    chkPistolsTR4, chkUzisTR4, chkShotgunTR4, chkCrossbowTR4, chkGrenadeGunTR4,
+                                    chkRevolverTR4, chkBinocularsTR4, chkCrowbarTR4, chkLaserSightTR4);
+
+                                btnSaveTR4.Enabled = false;
+                                btnCancelTR4.Enabled = false;
+                                tsmiSave.Enabled = false;
+
+                                slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                             }
-
-                            TR4.WriteChanges(nudSaveNumberTR4, nudSecretsTR4, nudFlaresTR4, nudSmallMedipacksTR4,
-                                nudLargeMedipacksTR4, nudRevolverAmmoTR4, nudUziAmmoTR4, nudGrenadeGunNormalAmmoTR4,
-                                nudGrenadeGunSuperAmmoTR4, nudGrenadeGunFlashAmmoTR4, nudCrossbowNormalAmmoTR4, nudCrossbowPoisonAmmoTR4,
-                                nudCrossbowExplosiveAmmoTR4, nudShotgunNormalAmmoTR4, nudShotgunWideshotAmmoTR4,
-                                chkPistolsTR4, chkUzisTR4, chkShotgunTR4, chkCrossbowTR4, chkGrenadeGunTR4,
-                                chkRevolverTR4, chkBinocularsTR4, chkCrowbarTR4, chkLaserSightTR4);
-
-                            btnSaveTR4.Enabled = false;
-                            btnCancelTR4.Enabled = false;
-                            tsmiSave.Enabled = false;
-
-                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                slblStatus.Text = $"Error writing to save file: {selectedDisplayString}";
+                            }
                         }
                         else
                         {
@@ -1419,24 +1475,31 @@ namespace TR_SaveMaster
                     {
                         if (File.Exists(savegamesTRC[i].Path))
                         {
-                            if (tsmiCreateBackups.Checked)
+                            try
                             {
-                                CreateBackup(savegamesTRC[i].Path);
+                                if (tsmiCreateBackups.Checked)
+                                {
+                                    CreateBackup(savegamesTRC[i].Path);
+                                }
+
+                                TRC.WriteChanges(nudSaveNumberTRC, nudSecretsTRC, nudSmallMedipacksTRC,
+                                    nudLargeMedipacksTRC, nudFlaresTRC, nudRevolverOrDeagleAmmoTRC, nudUziAmmoTRC,
+                                    nudHkAmmoTRC, nudGrapplingGunAmmoTRC, nudShotgunNormalAmmoTRC,
+                                    nudShotgunWideshotAmmoTRC, chkPistolsTRC, chkUziTRC, chkRevolverOrDeagleTRC,
+                                    chkShotgunTRC, chkHkGunTRC, chkGrapplingGunTRC, chkBinocularsOrHeadsetTRC,
+                                    chkCrowbarTRC, chkLaserSightTRC, trbHealthTRC);
+
+                                btnCancelTRC.Enabled = false;
+                                btnSaveTRC.Enabled = false;
+                                tsmiSave.Enabled = false;
+
+                                slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
                             }
-
-                            TRC.WriteChanges(nudSaveNumberTRC, nudSecretsTRC, nudSmallMedipacksTRC,
-                                nudLargeMedipacksTRC, nudFlaresTRC, nudRevolverOrDeagleAmmoTRC, nudUziAmmoTRC,
-                                nudHkAmmoTRC, nudGrapplingGunAmmoTRC, nudShotgunNormalAmmoTRC,
-                                nudShotgunWideshotAmmoTRC, chkPistolsTRC, chkUziTRC, chkRevolverOrDeagleTRC,
-                                chkShotgunTRC, chkHkGunTRC, chkGrapplingGunTRC, chkBinocularsOrHeadsetTRC,
-                                chkCrowbarTRC, chkLaserSightTRC, trbHealthTRC);
-
-
-                            btnCancelTRC.Enabled = false;
-                            btnSaveTRC.Enabled = false;
-                            tsmiSave.Enabled = false;
-
-                            slblStatus.Text = $"Successfully patched save file: {selectedDisplayString}";
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                slblStatus.Text = $"Error writing to save file: {selectedDisplayString}";
+                            }
                         }
                         else
                         {
