@@ -1,7 +1,7 @@
 # Tomb Raider - Savegame Editor
-This is a fully-featured savegame editor for the classic Tomb Raider series. It works with Tomb Raider 1-5, including the expansion packs and bonus levels.
-It is compatible with the original CD savegames as well as the ATI, GOG, and multi-patched savegames. For installation and usage instructions,
-please scroll down to the next section of this README. Additionally, technical details on reverse engineering the Tomb Raider classic series as well as offset tables are included.
+This is a fully-featured savegame editor for the classic Tomb Raider series. It works with Tomb Raider 1-5, including the 3 expansion packs and bonus levels.
+This editor is compatible with the original CD savegames as well as the Steam, ATI, GOG, and multi-patched savegames. For installation and usage instructions,
+please scroll down to the next section of this README. Additionally, technical details on reverse engineering the Tomb Raider series as well as offset tables are included.
 
 ![TR-SaveMaster-UI](https://github.com/JulianOzelRose/TR-SaveMaster/assets/95890436/d95b20d0-ea26-431f-ab39-74c9166d791b)
 
@@ -41,46 +41,56 @@ please scroll down to the next section of this README. Additionally, technical d
 ## Installation and use
 To use this savegame editor, simply navigate to the [Release](https://github.com/JulianOzelRose/TR-SaveMaster/tree/master/TR-SaveMaster/bin/x64/Release) folder, then
 download ```TR-SaveMaster.exe```, then open it. There is no need to install anything, and it can be run from anywhere on your computer. To toggle between the different
-Tomb Raider games, click the appopriate tab on the tab control above. To begin savegame editing, you must first set your game's directory. To do this, click ```Browse```,
-the navigate to your game's directory on your computer. The exact directory depends on whether you have a Steam installation or a CD installation.
+Tomb Raider games, click the appopriate tab on the tab control on the top. To begin savegame editing, you must first set your game's directory. To do this, click "Browse",
+the navigate to your game's directory on your computer. The exact directory depends on whether you have a Steam installation, a CD installation, or a GOG installation.
+Below are some common game directories. Note that the ```\AppData\``` directory is hidden, so you will need to either set Windows to show hidden files and folders,
+or manually enter the directory.
 
 ### Common game directories
 - **Tomb Raider I**
-  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)\TOMBRAID```
+  - CD: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider I\TOMBRAID\```
+  - GOG: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 1\TOMBRAID```
+  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)\TOMBRAID\```
 - **Tomb Raider I: Unfinished Business**
-  - Multi-patched: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)```
+  - Steam (Patched): ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)\```
 - **Tomb Raider II**
-  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (II)```
+  - CD: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider II\```
+  - GOG: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 2\```
+  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (II)\```
 - **Tomb Raider II: The Golden Mask**
-  - CD: ```C:\Users\YourUserName\AppData\Local\VirtualStore\Program Files (x86)\Tomb Raider II Gold (Full Net)```
-- **Tomb Raider III**
-  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\TombRaider (III)```
+  - CD: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Tomb Raider II Gold (Full Net)\```
+- **Tomb Raider III** 
+  - CD: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider III\```
+  - GOG: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 3\```
+  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\TombRaider (III)\```
 - **Tomb Raider III: The Lost Artifact**
-  - CD: ```C:\Users\YourUserName\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact```
+  - CD: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact\```
 - **Tomb Raider: The Last Revelation**
-  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (IV) The Last Revelation```
+  - CD: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Last Revelation\```
+  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (IV) The Last Revelation\```
 - **Tomb Raider: Chronicles**
-  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (V) Chronicles```
+  - CD: ```C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider Chronicles\```
+  - Steam: ```C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (V) Chronicles\```
 
 Once your game directory is selected, the editor will populate with the savegames found. To toggle between them, simply click the dropdown box labled "Savegame". You
-can then change ammunition, weapons, health, and items. Click ```Save``` when you are done, and your changes will be applied. This editor automatically creates backups
-of savegame files, which is enabled by default. You can toggle auto backups off, but it is highly reccommended that you leave it enabled. To find this option, click
-```File``` and then look for ```Create backups```. Under the ```View``` menu, you can also change the UI theme and hide the status bar, if you desire a simpler interface.
+can then change ammunition, weapons, health, and items. Click "Save" when you are done, and your changes will be applied. This editor automatically creates backups
+of savegame files, which is enabled by default. You can toggle auto backups off, but it is highly recommended that you leave it enabled. To find this option, click
+"File" and then look for "Create backups". Under the "View" menu, you can also change the UI theme and hide the status bar, if you desire a simpler interface.
 This savegame editor will remember your game directories, so there is no need to re-enter them each time you launch it.
 
-For Tomb Raider: Chronicles and The Last Revelation, ammunition will be represented in the editor exactly as displayed in the game. However, for Tomb Raider 1-3, the
-ammunition for weapons not currently equipped may appear differently than in-game. Specifically, Harpoons are grouped in bundles of 2, Desert Eagle clips represent 5
-bullets, MP5 clips equate to 30 bullets, Uzi clips correspond to 20 bullets, and a single box of grenades is equivalent to 2 rounds of Grenade Launcher ammunition.
+For Tomb Raider: Chronicles and The Last Revelation, ammunition will be represented in the editor exactly as displayed in the game. However, for Tomb Raider 1-3 and their
+expansions, the ammunition for weapons not currently equipped may appear differently than in-game. Specifically, Harpoons are grouped in bundles of 2, Desert Eagle clips
+equate to 5 bullets, MP5 clips equate to 30 bullets, Uzi clips equate to 20 bullets, and a single box of grenades is equivalent to 2 rounds of Grenade Launcher ammunition.
 
 ### Dealing with protected directories
 If you did a CD install with one of the original games or expansions, the savegame files are likely located in a protected directory, and modifications to them
-will not be possible. To circumvent this issue, you will have to modify the folder permissions to allow modification. First, right-click on Start, and click "Windows PowerShell (Admin)".
-Then, use the following commands:
+will not be possible. To circumvent this issue, you will have to modify the folder permissions to allow modification. First, right-click on the Start menu, then click
+"Windows PowerShell (Admin)". Then, use the following commands:
 
 ```
-takeown /f "C:\Users\YourUserName\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /r /d y
+takeown /f "C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /r /d y
 
-icacls "C:\Users\YourUserName\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /grant:r %USERNAME%:F /t
+icacls "C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact" /grant:r %USERNAME%:F /t
 ```
 
 Of course, be sure to replace the directory with the one that you are encountering permission issues with, and be sure to replace "USERNAME" with your actual username.
@@ -91,7 +101,7 @@ Run the `takeown` command first, then run the `icals` command second. You should
 This section details the technical aspects of reverse engineering the savegame files for the classic Tomb Raider series. The offset tables for each game are included
 at the end of the README. In general, there are many similarities between the games, as they are all built on the same engine. Tomb Raider 1-3 use a very similar engine,
 and so reversing those games involve a similar process. Tomb Raider 4 and 5 use a markedly different engine than 1-3, but involve a simpler process nonetheless.
-Interestingly enough, Tomb Raider 4 uses a file checksum as an anti-reverse engineering technique. However, Tomb Raider 5 does not employ this method.
+Interestingly, Tomb Raider 4 uses a file checksum as an anti-reverse engineering technique, while Tomb Raider 5 does not.
 
 ## Using bitwise to extract weapons information
 In Tomb Raider 1-3, all weapons information is stored on a single offset, which I call the weapons configuration number. The weapons configuration variable has a base number of 1,
