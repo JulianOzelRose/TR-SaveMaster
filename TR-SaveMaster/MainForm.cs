@@ -480,6 +480,11 @@ namespace TR_SaveMaster
 
             string backupFilePath = Path.Combine(directory, $"{fileNameWithoutExtension}{fileExtension}.bak");
 
+            if (File.Exists(backupFilePath))
+            {
+                File.SetAttributes(backupFilePath, File.GetAttributes(backupFilePath) & ~FileAttributes.ReadOnly);
+            }
+
             File.Copy(filePath, backupFilePath, true);
         }
 
@@ -1133,6 +1138,8 @@ namespace TR_SaveMaster
                         {
                             try
                             {
+                                File.SetAttributes(savegamesTR1[i].Path, File.GetAttributes(savegamesTR1[i].Path) & ~FileAttributes.ReadOnly);
+
                                 if (tsmiCreateBackups.Checked)
                                 {
                                     CreateBackup(savegamesTR1[i].Path);
@@ -1181,6 +1188,8 @@ namespace TR_SaveMaster
                         {
                             try
                             {
+                                File.SetAttributes(savegamesTR1UB[i].Path, File.GetAttributes(savegamesTR1UB[i].Path) & ~FileAttributes.ReadOnly);
+
                                 if (tsmiCreateBackups.Checked)
                                 {
                                     CreateBackup(savegamesTR1UB[i].Path);
@@ -1229,6 +1238,8 @@ namespace TR_SaveMaster
                         {
                             try
                             {
+                                File.SetAttributes(savegamesTR2[i].Path, File.GetAttributes(savegamesTR2[i].Path) & ~FileAttributes.ReadOnly);
+
                                 if (tsmiCreateBackups.Checked)
                                 {
                                     CreateBackup(savegamesTR2[i].Path);
@@ -1278,6 +1289,8 @@ namespace TR_SaveMaster
                         {
                             try
                             {
+                                File.SetAttributes(savegamesTR2G[i].Path, File.GetAttributes(savegamesTR2G[i].Path) & ~FileAttributes.ReadOnly);
+
                                 if (tsmiCreateBackups.Checked)
                                 {
                                     CreateBackup(savegamesTR2G[i].Path);
@@ -1327,6 +1340,8 @@ namespace TR_SaveMaster
                         {
                             try
                             {
+                                File.SetAttributes(savegamesTR3[i].Path, File.GetAttributes(savegamesTR3[i].Path) & ~FileAttributes.ReadOnly);
+
                                 if (tsmiCreateBackups.Checked)
                                 {
                                     CreateBackup(savegamesTR3[i].Path);
@@ -1376,6 +1391,8 @@ namespace TR_SaveMaster
                         {
                             try
                             {
+                                File.SetAttributes(savegamesTR3TLA[i].Path, File.GetAttributes(savegamesTR3TLA[i].Path) & ~FileAttributes.ReadOnly);
+
                                 if (tsmiCreateBackups.Checked)
                                 {
                                     CreateBackup(savegamesTR3TLA[i].Path);
@@ -1426,6 +1443,8 @@ namespace TR_SaveMaster
                         {
                             try
                             {
+                                File.SetAttributes(savegamesTR4[i].Path, File.GetAttributes(savegamesTR4[i].Path) & ~FileAttributes.ReadOnly);
+
                                 if (tsmiCreateBackups.Checked)
                                 {
                                     CreateBackup(savegamesTR4[i].Path);
@@ -1477,6 +1496,8 @@ namespace TR_SaveMaster
                         {
                             try
                             {
+                                File.SetAttributes(savegamesTRC[i].Path, File.GetAttributes(savegamesTRC[i].Path) & ~FileAttributes.ReadOnly);
+
                                 if (tsmiCreateBackups.Checked)
                                 {
                                     CreateBackup(savegamesTRC[i].Path);
