@@ -6,7 +6,7 @@ please scroll down to the next section of this README. Additionally, technical d
 ![TR-SaveMaster-UI](https://github.com/JulianOzelRose/TR-SaveMaster/assets/95890436/d95b20d0-ea26-431f-ab39-74c9166d791b)
 
 ## Table of contents
-- [**Installation and use**](https://github.com/JulianOzelRose/TR-SaveMaster#installation-and-use)
+- [**Installation and use**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#installation-and-use)
    - [Common game directories](https://github.com/JulianOzelRose/TR-SaveMaster#common-game-directories)
    - [Dealing with protected directories](https://github.com/JulianOzelRose/TR-SaveMaster#dealing-with-protected-directories)
 - [**Reverse engineering the Tomb Raider series**](https://github.com/JulianOzelRose/TR-SaveMaster#reverse-engineering-the-tomb-raider-series)
