@@ -2,7 +2,7 @@
 This is a fully-featured savegame editor for the classic Tomb Raider series. It works with Tomb Raider 1-5, including the 3 expansion packs and bonus levels.
 This editor is compatible with the original CD savegames as well as the Steam, ATI, GOG, and multi-patched savegames. For installation and usage instructions,
 please scroll down to the next section of this README. Additionally, technical details on reverse engineering the Tomb Raider are included, as well as
-a complete list of [offsets](https://github.com/JulianOzelRose/TR-SaveMaster/blob/master/OFFSETS.md).
+a complete list of offsets.
 
 ![TR-SaveMaster-UI](https://github.com/JulianOzelRose/TR-SaveMaster/assets/95890436/d95b20d0-ea26-431f-ab39-74c9166d791b)
 
@@ -212,7 +212,7 @@ private int GetHealthOffset()
 ## Tomb Raider I
 Reverse engineering Tomb Raider I savegames is relatively straightforward. The biggest convenience is that most of the file offsets are static. Meaning, they are the same
 across levels. The only exception is the secondary ammunition offsets, which are still static, but different on each level. Weapons information can be extracted using
-bitwise methods, as outlined in the [section above](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information).
+bitwise methods, as outlined in the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information).
 
 ### Weapon byte flags
 ###                                         ###
@@ -232,7 +232,7 @@ removing a weapon from inventory, you should also zero the secondary ammo offset
 Reverse engineering Tomb Raider II savegames is slightly different compared to Tomb Raider I. The file offsets
 differ on each level, and are dynamically allocated. Similar to Tomb Raider I, weapons information is also stored
 on a single offset in Tomb Raider II. You can use the same methodology to extract weapons information outlined in
-the [above section](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information).
+the [above section](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information).
 
 ### Weapon byte flags
 ###                                         ###
@@ -272,7 +272,7 @@ private void SetSecondaryAmmoOffsets()
 ## Tomb Raider III
 Similar to the previous two titles, Tomb Raider III also stores weapons information on a single offset - with the exception
 of the Harpoon Gun, which is stored as a boolean on its own offset, 1 byte away from the weapons config number. Bitwise
-can be used to determine which weapons are present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster#using-bitwise-to-extract-weapons-information)
+can be used to determine which weapons are present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information)
 on how to do this.
 
 ### Weapon byte flags
@@ -321,7 +321,7 @@ private int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
 ### Health
 Health information is also stored dynamically. It can be stored on anywhere from 1-4 unique offsets per level. To avoid
 writing to the incorrect health offset, it is neccessary to use the heuristic algorithm outlined in the
-[above section](https://github.com/JulianOzelRose/TR-SaveMaster#using-heuristics-to-determine-the-health-offset).
+[above section](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-heuristics-to-determine-the-health-offset).
 In the case of Tomb Raider III, the character movement data is stored between 8-10 bytes away from the current health offset.
 
 ## Tomb Raider: The Last Revelation
@@ -368,7 +368,7 @@ private byte CalculateChecksum()
 ## Tomb Raider: Chronicles
 Similar to Tomb Raider 4, most of the savegame data in Tomb Raider 5 is stored statically. The only exception is the health data,
 which is dynamically stored on a range that varies on each level. To determine the correct health offset, it is necessary to use
-the heuristic algorithm outlined in the [above section](https://github.com/JulianOzelRose/TR-SaveMaster#using-heuristics-to-determine-the-health-offset).
+the heuristic algorithm outlined in the [above section](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-heuristics-to-determine-the-health-offset).
 For Tomb Raider 5, the character animation data is located between 6-7 bytes away from the health offset.
 
 ### Health offsets
