@@ -437,9 +437,11 @@ namespace TR_SaveMaster
             chkHkGun.Checked = IsHKPresent();
             chkGrapplingGun.Checked = IsGrapplingGunPresent();
 
-            if (GetHealthOffset() != -1)
+            int healthOffset = GetHealthOffset();
+
+            if (healthOffset != -1)
             {
-                double healthPercentage = GetHealthPercentage();
+                double healthPercentage = GetHealthPercentage(healthOffset);
                 trbHealth.Value = (UInt16)healthPercentage;
                 trbHealth.Enabled = true;
 
@@ -500,7 +502,7 @@ namespace TR_SaveMaster
             WriteHKPresent(chkHkGun.Checked);
             WriteGrapplingGunPresent(chkGrapplingGun.Checked);
 
-            if (GetHealthOffset() != -1)
+            if (trbHealth.Enabled)
             {
                 WriteHealthValue(trbHealth.Value);
             }
@@ -527,10 +529,8 @@ namespace TR_SaveMaster
             return -1;
         }
 
-        private double GetHealthPercentage()
+        private double GetHealthPercentage(int healthOffset)
         {
-            int healthOffset = GetHealthOffset();
-
             UInt16 health = ReadUInt16(healthOffset);
             double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
 
@@ -851,8 +851,11 @@ namespace TR_SaveMaster
         {
             int healthOffset = GetHealthOffset();
 
-            UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
-            WriteUInt16(healthOffset, newHealth);
+            if (healthOffset != -1)
+            {
+                UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
+                WriteUInt16(healthOffset, newHealth);
+            }
         }
 
         private static bool IsNumericExtension(string fileName)
