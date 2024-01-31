@@ -352,6 +352,8 @@ namespace TR_SaveMaster
             this.nudSmallMedipacksTRC = new System.Windows.Forms.NumericUpDown();
             this.btnSaveTRC = new System.Windows.Forms.Button();
             this.grpWeaponsTRC = new System.Windows.Forms.GroupBox();
+            this.nudDeagleAmmoTRC = new System.Windows.Forms.NumericUpDown();
+            this.chkDeagleTRC = new System.Windows.Forms.CheckBox();
             this.lblPistolAmmoTRC = new System.Windows.Forms.Label();
             this.lblAmmo2TRC = new System.Windows.Forms.Label();
             this.lblAmmo1TRC = new System.Windows.Forms.Label();
@@ -359,13 +361,13 @@ namespace TR_SaveMaster
             this.nudGrapplingGunAmmoTRC = new System.Windows.Forms.NumericUpDown();
             this.nudHkAmmoTRC = new System.Windows.Forms.NumericUpDown();
             this.nudUziAmmoTRC = new System.Windows.Forms.NumericUpDown();
-            this.nudRevolverOrDeagleAmmoTRC = new System.Windows.Forms.NumericUpDown();
+            this.nudRevolverAmmoTRC = new System.Windows.Forms.NumericUpDown();
             this.nudShotgunWideshotAmmoTRC = new System.Windows.Forms.NumericUpDown();
             this.chkShotgunTRC = new System.Windows.Forms.CheckBox();
             this.chkGrapplingGunTRC = new System.Windows.Forms.CheckBox();
             this.chkHkGunTRC = new System.Windows.Forms.CheckBox();
             this.chkUziTRC = new System.Windows.Forms.CheckBox();
-            this.chkRevolverOrDeagleTRC = new System.Windows.Forms.CheckBox();
+            this.chkRevolverTRC = new System.Windows.Forms.CheckBox();
             this.chkPistolsTRC = new System.Windows.Forms.CheckBox();
             this.grpLevelTRC = new System.Windows.Forms.GroupBox();
             this.lblSecretsTRC = new System.Windows.Forms.Label();
@@ -494,11 +496,12 @@ namespace TR_SaveMaster
             ((System.ComponentModel.ISupportInitialize)(this.nudLargeMedipacksTRC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSmallMedipacksTRC)).BeginInit();
             this.grpWeaponsTRC.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDeagleAmmoTRC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudShotgunNormalAmmoTRC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGrapplingGunAmmoTRC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHkAmmoTRC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudUziAmmoTRC)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRevolverOrDeagleAmmoTRC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRevolverAmmoTRC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudShotgunWideshotAmmoTRC)).BeginInit();
             this.grpLevelTRC.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSecretsTRC)).BeginInit();
@@ -4229,6 +4232,8 @@ namespace TR_SaveMaster
             // 
             // grpWeaponsTRC
             // 
+            this.grpWeaponsTRC.Controls.Add(this.nudDeagleAmmoTRC);
+            this.grpWeaponsTRC.Controls.Add(this.chkDeagleTRC);
             this.grpWeaponsTRC.Controls.Add(this.lblPistolAmmoTRC);
             this.grpWeaponsTRC.Controls.Add(this.lblAmmo2TRC);
             this.grpWeaponsTRC.Controls.Add(this.lblAmmo1TRC);
@@ -4236,13 +4241,13 @@ namespace TR_SaveMaster
             this.grpWeaponsTRC.Controls.Add(this.nudGrapplingGunAmmoTRC);
             this.grpWeaponsTRC.Controls.Add(this.nudHkAmmoTRC);
             this.grpWeaponsTRC.Controls.Add(this.nudUziAmmoTRC);
-            this.grpWeaponsTRC.Controls.Add(this.nudRevolverOrDeagleAmmoTRC);
+            this.grpWeaponsTRC.Controls.Add(this.nudRevolverAmmoTRC);
             this.grpWeaponsTRC.Controls.Add(this.nudShotgunWideshotAmmoTRC);
             this.grpWeaponsTRC.Controls.Add(this.chkShotgunTRC);
             this.grpWeaponsTRC.Controls.Add(this.chkGrapplingGunTRC);
             this.grpWeaponsTRC.Controls.Add(this.chkHkGunTRC);
             this.grpWeaponsTRC.Controls.Add(this.chkUziTRC);
-            this.grpWeaponsTRC.Controls.Add(this.chkRevolverOrDeagleTRC);
+            this.grpWeaponsTRC.Controls.Add(this.chkRevolverTRC);
             this.grpWeaponsTRC.Controls.Add(this.chkPistolsTRC);
             this.grpWeaponsTRC.Location = new System.Drawing.Point(351, 121);
             this.grpWeaponsTRC.Name = "grpWeaponsTRC";
@@ -4251,10 +4256,35 @@ namespace TR_SaveMaster
             this.grpWeaponsTRC.TabStop = false;
             this.grpWeaponsTRC.Text = "Weapons";
             // 
+            // nudDeagleAmmoTRC
+            // 
+            this.nudDeagleAmmoTRC.Location = new System.Drawing.Point(229, 86);
+            this.nudDeagleAmmoTRC.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.nudDeagleAmmoTRC.Name = "nudDeagleAmmoTRC";
+            this.nudDeagleAmmoTRC.Size = new System.Drawing.Size(53, 20);
+            this.nudDeagleAmmoTRC.TabIndex = 20;
+            this.nudDeagleAmmoTRC.ValueChanged += new System.EventHandler(this.nudDeagleAmmoTRC_ValueChanged);
+            this.nudDeagleAmmoTRC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudDeagleAmmoTRC_KeyPress);
+            // 
+            // chkDeagleTRC
+            // 
+            this.chkDeagleTRC.AutoSize = true;
+            this.chkDeagleTRC.Location = new System.Drawing.Point(22, 92);
+            this.chkDeagleTRC.Name = "chkDeagleTRC";
+            this.chkDeagleTRC.Size = new System.Drawing.Size(90, 17);
+            this.chkDeagleTRC.TabIndex = 19;
+            this.chkDeagleTRC.Text = "Desert Eagle:";
+            this.chkDeagleTRC.UseVisualStyleBackColor = true;
+            this.chkDeagleTRC.CheckedChanged += new System.EventHandler(this.chkDeagleTRC_CheckedChanged);
+            // 
             // lblPistolAmmoTRC
             // 
             this.lblPistolAmmoTRC.AutoSize = true;
-            this.lblPistolAmmoTRC.Location = new System.Drawing.Point(228, 67);
+            this.lblPistolAmmoTRC.Location = new System.Drawing.Point(229, 42);
             this.lblPistolAmmoTRC.Name = "lblPistolAmmoTRC";
             this.lblPistolAmmoTRC.Size = new System.Drawing.Size(50, 13);
             this.lblPistolAmmoTRC.TabIndex = 18;
@@ -4264,7 +4294,7 @@ namespace TR_SaveMaster
             // 
             this.lblAmmo2TRC.AutoSize = true;
             this.lblAmmo2TRC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAmmo2TRC.Location = new System.Drawing.Point(285, 16);
+            this.lblAmmo2TRC.Location = new System.Drawing.Point(288, 16);
             this.lblAmmo2TRC.Name = "lblAmmo2TRC";
             this.lblAmmo2TRC.Size = new System.Drawing.Size(45, 13);
             this.lblAmmo2TRC.TabIndex = 17;
@@ -4274,7 +4304,7 @@ namespace TR_SaveMaster
             // 
             this.lblAmmo1TRC.AutoSize = true;
             this.lblAmmo1TRC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAmmo1TRC.Location = new System.Drawing.Point(226, 16);
+            this.lblAmmo1TRC.Location = new System.Drawing.Point(229, 16);
             this.lblAmmo1TRC.Name = "lblAmmo1TRC";
             this.lblAmmo1TRC.Size = new System.Drawing.Size(45, 13);
             this.lblAmmo1TRC.TabIndex = 16;
@@ -4324,7 +4354,7 @@ namespace TR_SaveMaster
             // 
             // nudUziAmmoTRC
             // 
-            this.nudUziAmmoTRC.Location = new System.Drawing.Point(229, 114);
+            this.nudUziAmmoTRC.Location = new System.Drawing.Point(229, 112);
             this.nudUziAmmoTRC.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -4336,19 +4366,19 @@ namespace TR_SaveMaster
             this.nudUziAmmoTRC.ValueChanged += new System.EventHandler(this.nudUziAmmoTRC_ValueChanged);
             this.nudUziAmmoTRC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudUziAmmoTRC_KeyPress);
             // 
-            // nudRevolverOrDeagleAmmoTRC
+            // nudRevolverAmmoTRC
             // 
-            this.nudRevolverOrDeagleAmmoTRC.Location = new System.Drawing.Point(229, 89);
-            this.nudRevolverOrDeagleAmmoTRC.Maximum = new decimal(new int[] {
+            this.nudRevolverAmmoTRC.Location = new System.Drawing.Point(229, 60);
+            this.nudRevolverAmmoTRC.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.nudRevolverOrDeagleAmmoTRC.Name = "nudRevolverOrDeagleAmmoTRC";
-            this.nudRevolverOrDeagleAmmoTRC.Size = new System.Drawing.Size(53, 20);
-            this.nudRevolverOrDeagleAmmoTRC.TabIndex = 10;
-            this.nudRevolverOrDeagleAmmoTRC.ValueChanged += new System.EventHandler(this.nudRevolverOrDeagleAmmoTRC_ValueChanged);
-            this.nudRevolverOrDeagleAmmoTRC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudRevolverOrDeagleAmmoTRC_KeyPress);
+            this.nudRevolverAmmoTRC.Name = "nudRevolverAmmoTRC";
+            this.nudRevolverAmmoTRC.Size = new System.Drawing.Size(53, 20);
+            this.nudRevolverAmmoTRC.TabIndex = 10;
+            this.nudRevolverAmmoTRC.ValueChanged += new System.EventHandler(this.nudRevolverAmmoTRC_ValueChanged);
+            this.nudRevolverAmmoTRC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudRevolverAmmoTRC_KeyPress);
             // 
             // nudShotgunWideshotAmmoTRC
             // 
@@ -4367,7 +4397,7 @@ namespace TR_SaveMaster
             // chkShotgunTRC
             // 
             this.chkShotgunTRC.AutoSize = true;
-            this.chkShotgunTRC.Location = new System.Drawing.Point(22, 193);
+            this.chkShotgunTRC.Location = new System.Drawing.Point(22, 190);
             this.chkShotgunTRC.Name = "chkShotgunTRC";
             this.chkShotgunTRC.Size = new System.Drawing.Size(69, 17);
             this.chkShotgunTRC.TabIndex = 5;
@@ -4378,7 +4408,7 @@ namespace TR_SaveMaster
             // chkGrapplingGunTRC
             // 
             this.chkGrapplingGunTRC.AutoSize = true;
-            this.chkGrapplingGunTRC.Location = new System.Drawing.Point(22, 167);
+            this.chkGrapplingGunTRC.Location = new System.Drawing.Point(22, 164);
             this.chkGrapplingGunTRC.Name = "chkGrapplingGunTRC";
             this.chkGrapplingGunTRC.Size = new System.Drawing.Size(97, 17);
             this.chkGrapplingGunTRC.TabIndex = 4;
@@ -4389,7 +4419,7 @@ namespace TR_SaveMaster
             // chkHkGunTRC
             // 
             this.chkHkGunTRC.AutoSize = true;
-            this.chkHkGunTRC.Location = new System.Drawing.Point(22, 141);
+            this.chkHkGunTRC.Location = new System.Drawing.Point(22, 140);
             this.chkHkGunTRC.Name = "chkHkGunTRC";
             this.chkHkGunTRC.Size = new System.Drawing.Size(67, 17);
             this.chkHkGunTRC.TabIndex = 3;
@@ -4400,7 +4430,7 @@ namespace TR_SaveMaster
             // chkUziTRC
             // 
             this.chkUziTRC.AutoSize = true;
-            this.chkUziTRC.Location = new System.Drawing.Point(22, 115);
+            this.chkUziTRC.Location = new System.Drawing.Point(22, 116);
             this.chkUziTRC.Name = "chkUziTRC";
             this.chkUziTRC.Size = new System.Drawing.Size(44, 17);
             this.chkUziTRC.TabIndex = 2;
@@ -4408,25 +4438,25 @@ namespace TR_SaveMaster
             this.chkUziTRC.UseVisualStyleBackColor = true;
             this.chkUziTRC.CheckedChanged += new System.EventHandler(this.chkUziTRC_CheckedChanged);
             // 
-            // chkRevolverOrDeagleTRC
+            // chkRevolverTRC
             // 
-            this.chkRevolverOrDeagleTRC.AutoSize = true;
-            this.chkRevolverOrDeagleTRC.Location = new System.Drawing.Point(22, 89);
-            this.chkRevolverOrDeagleTRC.Name = "chkRevolverOrDeagleTRC";
-            this.chkRevolverOrDeagleTRC.Size = new System.Drawing.Size(111, 17);
-            this.chkRevolverOrDeagleTRC.TabIndex = 1;
-            this.chkRevolverOrDeagleTRC.Text = "Revolver/Deagle:";
-            this.chkRevolverOrDeagleTRC.UseVisualStyleBackColor = true;
-            this.chkRevolverOrDeagleTRC.CheckedChanged += new System.EventHandler(this.chkRevolverOrDeagleTRC_CheckedChanged);
+            this.chkRevolverTRC.AutoSize = true;
+            this.chkRevolverTRC.Location = new System.Drawing.Point(22, 68);
+            this.chkRevolverTRC.Name = "chkRevolverTRC";
+            this.chkRevolverTRC.Size = new System.Drawing.Size(72, 17);
+            this.chkRevolverTRC.TabIndex = 1;
+            this.chkRevolverTRC.Text = "Revolver:";
+            this.chkRevolverTRC.UseVisualStyleBackColor = true;
+            this.chkRevolverTRC.CheckedChanged += new System.EventHandler(this.chkRevolverTRC_CheckedChanged);
             // 
             // chkPistolsTRC
             // 
             this.chkPistolsTRC.AutoSize = true;
-            this.chkPistolsTRC.Location = new System.Drawing.Point(22, 64);
+            this.chkPistolsTRC.Location = new System.Drawing.Point(22, 44);
             this.chkPistolsTRC.Name = "chkPistolsTRC";
-            this.chkPistolsTRC.Size = new System.Drawing.Size(56, 17);
+            this.chkPistolsTRC.Size = new System.Drawing.Size(59, 17);
             this.chkPistolsTRC.TabIndex = 0;
-            this.chkPistolsTRC.Text = "Pistols";
+            this.chkPistolsTRC.Text = "Pistols:";
             this.chkPistolsTRC.UseVisualStyleBackColor = true;
             this.chkPistolsTRC.CheckedChanged += new System.EventHandler(this.chkPistolsTRC_CheckedChanged);
             // 
@@ -4687,11 +4717,12 @@ namespace TR_SaveMaster
             ((System.ComponentModel.ISupportInitialize)(this.nudSmallMedipacksTRC)).EndInit();
             this.grpWeaponsTRC.ResumeLayout(false);
             this.grpWeaponsTRC.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDeagleAmmoTRC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudShotgunNormalAmmoTRC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGrapplingGunAmmoTRC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHkAmmoTRC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudUziAmmoTRC)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRevolverOrDeagleAmmoTRC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRevolverAmmoTRC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudShotgunWideshotAmmoTRC)).EndInit();
             this.grpLevelTRC.ResumeLayout(false);
             this.grpLevelTRC.PerformLayout();
@@ -4740,13 +4771,13 @@ namespace TR_SaveMaster
         private System.Windows.Forms.CheckBox chkGrapplingGunTRC;
         private System.Windows.Forms.CheckBox chkHkGunTRC;
         private System.Windows.Forms.CheckBox chkUziTRC;
-        private System.Windows.Forms.CheckBox chkRevolverOrDeagleTRC;
+        private System.Windows.Forms.CheckBox chkRevolverTRC;
         private System.Windows.Forms.CheckBox chkPistolsTRC;
         private System.Windows.Forms.NumericUpDown nudShotgunNormalAmmoTRC;
         private System.Windows.Forms.NumericUpDown nudGrapplingGunAmmoTRC;
         private System.Windows.Forms.NumericUpDown nudHkAmmoTRC;
         private System.Windows.Forms.NumericUpDown nudUziAmmoTRC;
-        private System.Windows.Forms.NumericUpDown nudRevolverOrDeagleAmmoTRC;
+        private System.Windows.Forms.NumericUpDown nudRevolverAmmoTRC;
         private System.Windows.Forms.NumericUpDown nudShotgunWideshotAmmoTRC;
         private System.Windows.Forms.Label lblFlaresTRC;
         private System.Windows.Forms.Label lblLargeMedipacksTRC;
@@ -5048,6 +5079,8 @@ namespace TR_SaveMaster
         private System.Windows.Forms.ToolStripMenuItem tsmiCreateBackups;
         private System.Windows.Forms.ToolStripSeparator tsmiFileSeparator;
         private System.Windows.Forms.ToolStripMenuItem tsmiSendFeedback;
+        private System.Windows.Forms.NumericUpDown nudDeagleAmmoTRC;
+        private System.Windows.Forms.CheckBox chkDeagleTRC;
     }
 }
 

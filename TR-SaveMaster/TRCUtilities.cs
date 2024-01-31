@@ -10,26 +10,28 @@ namespace TR_SaveMaster
     public class TRCUtilities
     {
         // Offsets
-        private const int saveNumOffset = 0x04B;
+        private const int saveNumberOffset = 0x04B;
         private const int pistolsOffset = 0x16F;
         private const int uziOffset = 0x170;
         private const int shotgunOffset = 0x171;
         private const int grapplingGunOffset = 0x172;
-        private const int hkOffset = 0x173;
-        private const int revolverOrDeagleOffset = 0x174;
+        private const int hkGunOffset = 0x173;
+        private const int revolverOffset = 0x174;
+        private const int deagleOffset = 0x174;
         private const int laserSightOffset = 0x175;
-        private const int binocularsOffset = 0x177;
+        private const int binocularsOrHeadsetOffset = 0x177;
         private const int crowbarOffset = 0x178;
         private const int smallMedipackOffset = 0x194;
-        private const int lrgMedipackOffset = 0x196;
-        private const int numFlaresOffset = 0x198;
+        private const int largeMedipackOffset = 0x196;
+        private const int flaresOffset = 0x198;
         private const int uziAmmoOffset = 0x19C;
         private const int revolverAmmoOffset = 0x19E;
+        private const int deagleAmmoOffset = 0x19E;
         private const int shotgunNormalAmmoOffset = 0x1A0;
         private const int shotgunWideshotAmmoOffset = 0x1A2;
         private const int hkAmmoOffset = 0x1A4;
         private const int grapplingGunAmmoOffset = 0x1A6;
-        private const int numSecretsOffset = 0x1C3;
+        private const int secretsOffset = 0x1C3;
         private const int levelIndexOffset = 0x1EC;
 
         // Health
@@ -37,6 +39,11 @@ namespace TR_SaveMaster
         private const UInt16 MAX_HEALTH_VALUE = 1000;
         private int MIN_HEALTH_OFFSET = 0;
         private int MAX_HEALTH_OFFSET = 1;
+
+        // Constants
+        private const byte ITEM_PRESENT = 0x1;
+        private const byte WEAPON_PRESENT = 0x9;
+        private const byte WEAPON_PRESENT_WITH_SIGHT = 0xD;
 
         // Strings
         private string savegamePath;
@@ -106,17 +113,20 @@ namespace TR_SaveMaster
             }
         }
 
-        public void SetLevelParams(CheckBox chkRevolverOrDeagle, NumericUpDown nudRevolverOrDeagleAmmo, CheckBox chkUzi,
-            NumericUpDown nudUziAmmo, CheckBox chkShotgun, NumericUpDown nudShotgunNormalAmmo, NumericUpDown nudShotgunWideshotAmmo,
-            CheckBox chkGrapplingGun, NumericUpDown nudGrapplingGunAmmo, CheckBox chkHkGun, NumericUpDown nudHkAmmo, CheckBox chkCrowbar,
+        public void SetLevelParams(CheckBox chkRevolver, CheckBox chkDeagle, NumericUpDown nudRevolverAmmo,
+            NumericUpDown nudDeagleAmmo, CheckBox chkUzi, NumericUpDown nudUziAmmo, CheckBox chkShotgun,
+            NumericUpDown nudShotgunNormalAmmo, NumericUpDown nudShotgunWideshotAmmo, CheckBox chkGrapplingGun,
+            NumericUpDown nudGrapplingGunAmmo, CheckBox chkHkGun, NumericUpDown nudHkAmmo, CheckBox chkCrowbar,
             CheckBox chkPistols, NumericUpDown nudFlares, CheckBox chkLaserSight, CheckBox chkBinocularsOrHeadset)
         {
             byte levelIndex = GetLevelIndex();
 
             if (levelIndex == 1)        // Streets of Rome
             {
-                chkRevolverOrDeagle.Enabled = true;
-                nudRevolverOrDeagleAmmo.Enabled = true;
+                chkRevolver.Enabled = true;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = true;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = true;
                 chkShotgun.Enabled = false;
@@ -132,14 +142,15 @@ namespace TR_SaveMaster
                 chkLaserSight.Enabled = true;
                 chkBinocularsOrHeadset.Enabled = true;
                 chkBinocularsOrHeadset.Text = "Binoculars";
-                chkRevolverOrDeagle.Text = "Revolver";
                 MIN_HEALTH_OFFSET = 0x4F4;
                 MAX_HEALTH_OFFSET = 0x4F8;
             }
             else if (levelIndex == 2)   // Trajan's Markets
             {
-                chkRevolverOrDeagle.Enabled = true;
-                nudRevolverOrDeagleAmmo.Enabled = true;
+                chkRevolver.Enabled = true;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = true;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = true;
                 chkShotgun.Enabled = true;
@@ -155,14 +166,15 @@ namespace TR_SaveMaster
                 chkLaserSight.Enabled = true;
                 chkBinocularsOrHeadset.Enabled = true;
                 chkBinocularsOrHeadset.Text = "Binoculars";
-                chkRevolverOrDeagle.Text = "Revolver";
                 MIN_HEALTH_OFFSET = 0x542;
                 MAX_HEALTH_OFFSET = 0x5D7;
             }
             else if (levelIndex == 3)   // The Colosseum 
             {
-                chkRevolverOrDeagle.Enabled = true;
-                nudRevolverOrDeagleAmmo.Enabled = true;
+                chkRevolver.Enabled = true;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = true;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = true;
                 nudUziAmmo.Enabled = true;
                 chkShotgun.Enabled = true;
@@ -178,14 +190,15 @@ namespace TR_SaveMaster
                 chkLaserSight.Enabled = true;
                 chkBinocularsOrHeadset.Enabled = true;
                 chkBinocularsOrHeadset.Text = "Binoculars";
-                chkRevolverOrDeagle.Text = "Revolver";
                 MIN_HEALTH_OFFSET = 0x4D2;
                 MAX_HEALTH_OFFSET = 0x7FF;
             }
             else if (levelIndex == 4)   // The Base
             {
-                chkRevolverOrDeagle.Enabled = true;
-                nudRevolverOrDeagleAmmo.Enabled = true;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = true;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = true;
                 chkUzi.Enabled = true;
                 nudUziAmmo.Enabled = true;
                 chkShotgun.Enabled = false;
@@ -201,14 +214,15 @@ namespace TR_SaveMaster
                 chkLaserSight.Enabled = true;
                 chkBinocularsOrHeadset.Enabled = true;
                 chkBinocularsOrHeadset.Text = "Binoculars";
-                chkRevolverOrDeagle.Text = "Desert Eagle";
                 MIN_HEALTH_OFFSET = 0x556;
                 MAX_HEALTH_OFFSET = 0x707;
             }
             else if (levelIndex == 5)   // The Submarine
             {
-                chkRevolverOrDeagle.Enabled = false;
-                nudRevolverOrDeagleAmmo.Enabled = false;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = false;
                 chkShotgun.Enabled = true;
@@ -229,8 +243,10 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 6)   // Deepsea Dive
             {
-                chkRevolverOrDeagle.Enabled = false;
-                nudRevolverOrDeagleAmmo.Enabled = false;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = false;
                 chkShotgun.Enabled = true;
@@ -251,8 +267,10 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 7)   // Sinking Submarine
             {
-                chkRevolverOrDeagle.Enabled = true;
-                nudRevolverOrDeagleAmmo.Enabled = true;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = true;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = true;
                 chkUzi.Enabled = true;
                 nudUziAmmo.Enabled = true;
                 chkShotgun.Enabled = true;
@@ -273,8 +291,10 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 8)   // Gallows Tree
             {
-                chkRevolverOrDeagle.Enabled = false;
-                nudRevolverOrDeagleAmmo.Enabled = false;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = false;
                 chkShotgun.Enabled = false;
@@ -295,8 +315,10 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 9)   // Labyrinth
             {
-                chkRevolverOrDeagle.Enabled = false;
-                nudRevolverOrDeagleAmmo.Enabled = false;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = false;
                 chkShotgun.Enabled = false;
@@ -317,8 +339,10 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 10)  // Old Mill
             {
-                chkRevolverOrDeagle.Enabled = false;
-                nudRevolverOrDeagleAmmo.Enabled = false;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = false;
                 chkShotgun.Enabled = false;
@@ -339,8 +363,10 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 11)  // The 13th Floor
             {
-                chkRevolverOrDeagle.Enabled = false;
-                nudRevolverOrDeagleAmmo.Enabled = false;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = false;
                 chkShotgun.Enabled = false;
@@ -361,8 +387,10 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 12)  // Escape with the Iris
             {
-                chkRevolverOrDeagle.Enabled = false;
-                nudRevolverOrDeagleAmmo.Enabled = false;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = false;
                 chkShotgun.Enabled = false;
@@ -383,8 +411,10 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 14)  // Red Alert!
             {
-                chkRevolverOrDeagle.Enabled = false;
-                nudRevolverOrDeagleAmmo.Enabled = false;
+                chkRevolver.Enabled = false;
+                chkDeagle.Enabled = false;
+                nudRevolverAmmo.Enabled = false;
+                nudDeagleAmmo.Enabled = false;
                 chkUzi.Enabled = false;
                 nudUziAmmo.Enabled = false;
                 chkShotgun.Enabled = false;
@@ -408,8 +438,8 @@ namespace TR_SaveMaster
         public void DisplayGameInfo(TextBox txtLvlName, NumericUpDown nudSmallMedipacks, NumericUpDown nudLargeMedipacks,
             NumericUpDown nudFlares, NumericUpDown nudHkAmmo, NumericUpDown nudSecrets, NumericUpDown nudSaveNumber,
             NumericUpDown nudShotgunNormalAmmo, NumericUpDown nudShotgunWideshotAmmo, NumericUpDown nudUziAmmo,
-            NumericUpDown nudGrapplingGunAmmo, NumericUpDown nudRevolverOrDeagleAmmo, CheckBox chkPistols,
-            CheckBox chkBinocularsOrHeadset, CheckBox chkLaserSight, CheckBox chkCrowbar, CheckBox chkRevolverOrDeagle,
+            NumericUpDown nudGrapplingGunAmmo, NumericUpDown nudRevolverAmmo, NumericUpDown nudDeagleAmmo, CheckBox chkPistols,
+            CheckBox chkBinocularsOrHeadset, CheckBox chkLaserSight, CheckBox chkCrowbar, CheckBox chkRevolver, CheckBox chkDeagle,
             CheckBox chkShotgun, CheckBox chkUzi, CheckBox chkHkGun, CheckBox chkGrapplingGun, TrackBar trbHealth, Label lblHealth,
             Label lblHealthError)
         {
@@ -425,17 +455,40 @@ namespace TR_SaveMaster
             nudShotgunWideshotAmmo.Value = GetShotgunWideshotAmmo() / 6;
             nudUziAmmo.Value = GetUziAmmo();
             nudGrapplingGunAmmo.Value = GetGrapplingGunAmmo();
-            nudRevolverOrDeagleAmmo.Value = GetRevolverOrDeagleAmmo();
 
             chkPistols.Checked = IsPistolsPresent();
             chkBinocularsOrHeadset.Checked = IsBinocularsOrHeadsetPresent();
             chkLaserSight.Checked = IsLaserSightPresent();
             chkCrowbar.Checked = IsCrowbarPresent();
-            chkRevolverOrDeagle.Checked = IsRevolverPresent();
             chkShotgun.Checked = IsShotgunPresent();
             chkUzi.Checked = IsUziPresent();
-            chkHkGun.Checked = IsHKPresent();
+            chkHkGun.Checked = IsHKGunPresent();
             chkGrapplingGun.Checked = IsGrapplingGunPresent();
+
+            if (chkRevolver.Enabled)
+            {
+                chkRevolver.Checked = IsRevolverPresent();
+                nudRevolverAmmo.Value = GetRevolverAmmo();
+
+                chkDeagle.Checked = false;
+                nudDeagleAmmo.Value = 0;
+            }
+            else if (chkDeagle.Enabled)
+            {
+                chkDeagle.Checked = IsDeaglePresent();
+                nudDeagleAmmo.Value = GetDeagleAmmo();
+
+                chkRevolver.Checked = false;
+                nudRevolverAmmo.Value = 0;
+            }
+            else
+            {
+                chkRevolver.Checked = false;
+                nudRevolverAmmo.Value = 0;
+
+                chkDeagle.Checked = false;
+                nudDeagleAmmo.Value = 0;
+            }
 
             int healthOffset = GetHealthOffset();
 
@@ -459,23 +512,48 @@ namespace TR_SaveMaster
         }
 
         public void WriteChanges(NumericUpDown nudSaveNumber, NumericUpDown nudSecrets, NumericUpDown nudSmallMedipacks,
-            NumericUpDown nudLargeMedipacks, NumericUpDown nudFlares, NumericUpDown nudRevolverOrDeagleAmmo, NumericUpDown nudUziAmmo,
-            NumericUpDown nudHkAmmo, NumericUpDown nudGrapplingGunAmmo, NumericUpDown nudShotgunNormalAmmo,
-            NumericUpDown nudShotgunWideshotAmmo, CheckBox chkPistols, CheckBox chkUzi, CheckBox chkRevolverOrDeagle,
+            NumericUpDown nudLargeMedipacks, NumericUpDown nudFlares, NumericUpDown nudRevolverAmmo, NumericUpDown nudDeagleAmmo,
+            NumericUpDown nudUziAmmo, NumericUpDown nudHkAmmo, NumericUpDown nudGrapplingGunAmmo, NumericUpDown nudShotgunNormalAmmo,
+            NumericUpDown nudShotgunWideshotAmmo, CheckBox chkPistols, CheckBox chkUzi, CheckBox chkRevolver, CheckBox chkDeagle,
             CheckBox chkShotgun, CheckBox chkHkGun, CheckBox chkGrapplingGun, CheckBox chkBinocularsOrHeadset,
             CheckBox chkCrowbar, CheckBox chkLaserSight, TrackBar trbHealth)
         {
             WriteSaveNumber((UInt16)nudSaveNumber.Value);
-            WriteSecrets((byte)nudSecrets.Value);
-            WriteSmallMedipacks((UInt16)nudSmallMedipacks.Value);
-            WriteLargeMedipacks((UInt16)nudLargeMedipacks.Value);
-            WriteFlares((UInt16)nudFlares.Value);
-            WriteRevolverOrDeagleAmmo((UInt16)nudRevolverOrDeagleAmmo.Value);
+            WriteNumSecrets((byte)nudSecrets.Value);
+            WriteNumSmallMedipacks((UInt16)nudSmallMedipacks.Value);
+            WriteNumLargeMedipacks((UInt16)nudLargeMedipacks.Value);
+            WriteNumFlares((UInt16)nudFlares.Value);
             WriteUziAmmo((UInt16)nudUziAmmo.Value);
             WriteHKAmmo((UInt16)nudHkAmmo.Value);
             WriteGrapplingGunAmmo((UInt16)nudGrapplingGunAmmo.Value);
             WriteShotgunNormalAmmo((UInt16)nudShotgunNormalAmmo.Value);
             WriteShotgunWideshotAmmo((UInt16)nudShotgunWideshotAmmo.Value);
+            WriteCrowbarPresent(chkCrowbar.Checked);
+            WritePistolsPresent(chkPistols.Checked);
+            WriteShotgunPresent(chkShotgun.Checked);
+            WriteUziPresent(chkUzi.Checked);
+            WriteHKGunPresent(chkHkGun.Checked);
+            WriteGrapplingGunPresent(chkGrapplingGun.Checked);
+
+            if (chkRevolver.Enabled)
+            {
+                byte prevRevolverValue = GetRevolverValue();
+                WriteRevolverPresent(chkRevolver.Checked, prevRevolverValue);
+            }
+            else if (chkDeagle.Enabled)
+            {
+                byte prevDeagleValue = GetDeagleValue();
+                WriteDeaglePresent(chkDeagle.Checked, prevDeagleValue);
+            }
+
+            if (nudRevolverAmmo.Enabled)
+            {
+                WriteRevolverAmmo((UInt16)nudRevolverAmmo.Value);
+            }
+            else if (nudDeagleAmmo.Enabled)
+            {
+                WriteDeagleAmmo((UInt16)nudDeagleAmmo.Value);
+            }
 
             if (chkBinocularsOrHeadset.Enabled)
             {
@@ -491,16 +569,6 @@ namespace TR_SaveMaster
             {
                 WriteLaserSightPresent(chkLaserSight.Checked);
             }
-
-            byte prevRevolverValue = GetRevolverValue();
-
-            WriteCrowbarPresent(chkCrowbar.Checked);
-            WritePistolsPresent(chkPistols.Checked);
-            WriteRevolverOrDeaglePresent(chkRevolverOrDeagle.Checked, prevRevolverValue);
-            WriteShotgunPresent(chkShotgun.Checked);
-            WriteUziPresent(chkUzi.Checked);
-            WriteHKPresent(chkHkGun.Checked);
-            WriteGrapplingGunPresent(chkGrapplingGun.Checked);
 
             if (trbHealth.Enabled)
             {
@@ -577,12 +645,12 @@ namespace TR_SaveMaster
 
         private UInt16 GetNumLargeMedipacks()
         {
-            return ReadUInt16(lrgMedipackOffset);
+            return ReadUInt16(largeMedipackOffset);
         }
 
         private UInt16 GetNumFlares()
         {
-            return ReadUInt16(numFlaresOffset);
+            return ReadUInt16(flaresOffset);
         }
 
         private UInt16 GetHKAmmo()
@@ -600,9 +668,14 @@ namespace TR_SaveMaster
             return ReadUInt16(grapplingGunAmmoOffset);
         }
 
-        private UInt16 GetRevolverOrDeagleAmmo()
+        private UInt16 GetRevolverAmmo()
         {
             return ReadUInt16(revolverAmmoOffset);
+        }
+
+        private UInt16 GetDeagleAmmo()
+        {
+            return ReadUInt16(deagleAmmoOffset);
         }
 
         private UInt16 GetShotgunNormalAmmo()
@@ -622,27 +695,37 @@ namespace TR_SaveMaster
 
         private byte GetNumSecrets()
         {
-            return ReadByte(numSecretsOffset);
+            return ReadByte(secretsOffset);
         }
 
         private UInt16 GetSaveNumber()
         {
-            return ReadUInt16(saveNumOffset);
+            return ReadUInt16(saveNumberOffset);
         }
 
         private byte GetRevolverValue()
         {
-            return ReadByte(revolverOrDeagleOffset);
+            return ReadByte(revolverOffset);
         }
 
-        private bool IsHKPresent()
+        private byte GetDeagleValue()
         {
-            return ReadByte(hkOffset) != 0;
+            return ReadByte(deagleOffset);
+        }
+
+        private bool IsHKGunPresent()
+        {
+            return ReadByte(hkGunOffset) != 0;
         }
 
         private bool IsRevolverPresent()
         {
-            return ReadByte(revolverOrDeagleOffset) != 0;
+            return ReadByte(revolverOffset) != 0;
+        }
+
+        private bool IsDeaglePresent()
+        {
+            return ReadByte(deagleOffset) != 0;
         }
 
         private bool IsUziPresent()
@@ -672,7 +755,7 @@ namespace TR_SaveMaster
 
         private bool IsBinocularsOrHeadsetPresent()
         {
-            return ReadByte(binocularsOffset) != 0;
+            return ReadByte(binocularsOrHeadsetOffset) != 0;
         }
 
         private bool IsLaserSightPresent()
@@ -682,34 +765,34 @@ namespace TR_SaveMaster
 
         private void WriteSaveNumber(UInt16 value)
         {
-            WriteUInt16(saveNumOffset, value);
+            WriteUInt16(saveNumberOffset, value);
         }
 
-        private void WriteSecrets(byte value)
+        private void WriteNumSecrets(byte value)
         {
-            WriteByte(numSecretsOffset, value);
+            WriteByte(secretsOffset, value);
         }
 
-        private void WriteSmallMedipacks(UInt16 value)
+        private void WriteNumSmallMedipacks(UInt16 value)
         {
             WriteUInt16(smallMedipackOffset, value);
         }
 
-        private void WriteLargeMedipacks(UInt16 value)
+        private void WriteNumLargeMedipacks(UInt16 value)
         {
-            WriteUInt16(lrgMedipackOffset, value);
+            WriteUInt16(largeMedipackOffset, value);
         }
 
-        private void WriteFlares(UInt16 value)
+        private void WriteNumFlares(UInt16 value)
         {
-            WriteUInt16(numFlaresOffset, value);
+            WriteUInt16(flaresOffset, value);
         }
 
         private void WriteCrowbarPresent(bool isPresent)
         {
             if (isPresent)
             {
-                WriteByte(crowbarOffset, 0x9);
+                WriteByte(crowbarOffset, ITEM_PRESENT);
             }
             else
             {
@@ -721,7 +804,7 @@ namespace TR_SaveMaster
         {
             if (isPresent)
             {
-                WriteByte(laserSightOffset, 0x1);
+                WriteByte(laserSightOffset, ITEM_PRESENT);
             }
             else
             {
@@ -733,11 +816,11 @@ namespace TR_SaveMaster
         {
             if (isPresent)
             {
-                WriteByte(binocularsOffset, 0x1);
+                WriteByte(binocularsOrHeadsetOffset, ITEM_PRESENT);
             }
             else
             {
-                WriteByte(binocularsOffset, 0);
+                WriteByte(binocularsOrHeadsetOffset, 0);
             }
         }
 
@@ -745,7 +828,7 @@ namespace TR_SaveMaster
         {
             if (isPresent)
             {
-                WriteByte(pistolsOffset, 0x9);
+                WriteByte(pistolsOffset, WEAPON_PRESENT);
             }
             else
             {
@@ -753,19 +836,35 @@ namespace TR_SaveMaster
             }
         }
 
-        private void WriteRevolverOrDeaglePresent(bool isPresent, byte previousValue)
+        private void WriteRevolverPresent(bool isPresent, byte previousValue)
         {
             if (isPresent && previousValue != 0)
             {
-                WriteByte(revolverOrDeagleOffset, previousValue);
+                WriteByte(revolverOffset, previousValue);
             }
             else if (isPresent && previousValue == 0)
             {
-                WriteByte(revolverOrDeagleOffset, 0x9);
+                WriteByte(revolverOffset, WEAPON_PRESENT_WITH_SIGHT);
             }
             else
             {
-                WriteByte(revolverOrDeagleOffset, 0);
+                WriteByte(revolverOffset, 0);
+            }
+        }
+
+        private void WriteDeaglePresent(bool isPresent, byte previousValue)
+        {
+            if (isPresent && previousValue != 0)
+            {
+                WriteByte(deagleOffset, previousValue);
+            }
+            else if (isPresent && previousValue == 0)
+            {
+                WriteByte(deagleOffset, WEAPON_PRESENT_WITH_SIGHT);
+            }
+            else
+            {
+                WriteByte(deagleOffset, 0);
             }
         }
 
@@ -773,7 +872,7 @@ namespace TR_SaveMaster
         {
             if (isPresent)
             {
-                WriteByte(uziOffset, 0x9);
+                WriteByte(uziOffset, WEAPON_PRESENT);
             }
             else
             {
@@ -781,15 +880,15 @@ namespace TR_SaveMaster
             }
         }
 
-        private void WriteHKPresent(bool isPresent)
+        private void WriteHKGunPresent(bool isPresent)
         {
             if (isPresent)
             {
-                WriteByte(hkOffset, 0x9);
+                WriteByte(hkGunOffset, WEAPON_PRESENT);
             }
             else
             {
-                WriteByte(hkOffset, 0);
+                WriteByte(hkGunOffset, 0);
             }
         }
 
@@ -797,7 +896,7 @@ namespace TR_SaveMaster
         {
             if (isPresent)
             {
-                WriteByte(grapplingGunOffset, 0xD);
+                WriteByte(grapplingGunOffset, WEAPON_PRESENT_WITH_SIGHT);
             }
             else
             {
@@ -809,7 +908,7 @@ namespace TR_SaveMaster
         {
             if (isPresent)
             {
-                WriteByte(shotgunOffset, 0x9);
+                WriteByte(shotgunOffset, WEAPON_PRESENT);
             }
             else
             {
@@ -817,9 +916,14 @@ namespace TR_SaveMaster
             }
         }
 
-        private void WriteRevolverOrDeagleAmmo(UInt16 ammo)
+        private void WriteRevolverAmmo(UInt16 ammo)
         {
             WriteUInt16(revolverAmmoOffset, ammo);
+        }
+
+        private void WriteDeagleAmmo(UInt16 ammo)
+        {
+            WriteUInt16(deagleAmmoOffset, ammo);
         }
 
         private void WriteUziAmmo(UInt16 ammo)

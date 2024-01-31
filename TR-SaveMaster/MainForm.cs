@@ -1091,16 +1091,15 @@ namespace TR_SaveMaster
 
                             TRC.SetSavegamePath(savegamesTRC[i].Path);
 
-                            TRC.SetLevelParams(chkRevolverOrDeagleTRC, nudRevolverOrDeagleAmmoTRC, chkUziTRC, nudUziAmmoTRC,
-                                chkShotgunTRC, nudShotgunNormalAmmoTRC, nudShotgunWideshotAmmoTRC, chkGrapplingGunTRC,
+                            TRC.SetLevelParams(chkRevolverTRC, chkDeagleTRC, nudRevolverAmmoTRC, nudDeagleAmmoTRC, chkUziTRC,
+                                nudUziAmmoTRC, chkShotgunTRC, nudShotgunNormalAmmoTRC, nudShotgunWideshotAmmoTRC, chkGrapplingGunTRC,
                                 nudGrapplingGunAmmoTRC, chkHkGunTRC, nudHkAmmoTRC, chkCrowbarTRC, chkPistolsTRC, nudFlaresTRC,
                                 chkLaserSightTRC, chkBinocularsOrHeadsetTRC);
 
-
                             TRC.DisplayGameInfo(txtLvlNameTRC, nudSmallMedipacksTRC, nudLargeMedipacksTRC, nudFlaresTRC, nudHkAmmoTRC,
                                 nudSecretsTRC, nudSaveNumberTRC, nudShotgunNormalAmmoTRC, nudShotgunWideshotAmmoTRC, nudUziAmmoTRC,
-                                nudGrapplingGunAmmoTRC, nudRevolverOrDeagleAmmoTRC, chkPistolsTRC, chkBinocularsOrHeadsetTRC,
-                                chkLaserSightTRC, chkCrowbarTRC, chkRevolverOrDeagleTRC, chkShotgunTRC, chkUziTRC, chkHkGunTRC,
+                                nudGrapplingGunAmmoTRC, nudRevolverAmmoTRC, nudDeagleAmmoTRC, chkPistolsTRC, chkBinocularsOrHeadsetTRC,
+                                chkLaserSightTRC, chkCrowbarTRC, chkRevolverTRC, chkDeagleTRC, chkShotgunTRC, chkUziTRC, chkHkGunTRC,
                                 chkGrapplingGunTRC, trbHealthTRC, lblHealthTRC, lblHealthErrorTRC);
 
                             isLoading = false;
@@ -1504,10 +1503,10 @@ namespace TR_SaveMaster
                                 }
 
                                 TRC.WriteChanges(nudSaveNumberTRC, nudSecretsTRC, nudSmallMedipacksTRC,
-                                    nudLargeMedipacksTRC, nudFlaresTRC, nudRevolverOrDeagleAmmoTRC, nudUziAmmoTRC,
+                                    nudLargeMedipacksTRC, nudFlaresTRC, nudRevolverAmmoTRC, nudDeagleAmmoTRC, nudUziAmmoTRC,
                                     nudHkAmmoTRC, nudGrapplingGunAmmoTRC, nudShotgunNormalAmmoTRC,
-                                    nudShotgunWideshotAmmoTRC, chkPistolsTRC, chkUziTRC, chkRevolverOrDeagleTRC,
-                                    chkShotgunTRC, chkHkGunTRC, chkGrapplingGunTRC, chkBinocularsOrHeadsetTRC,
+                                    nudShotgunWideshotAmmoTRC, chkPistolsTRC, chkUziTRC, chkRevolverTRC,
+                                    chkDeagleTRC, chkShotgunTRC, chkHkGunTRC, chkGrapplingGunTRC, chkBinocularsOrHeadsetTRC,
                                     chkCrowbarTRC, chkLaserSightTRC, trbHealthTRC);
 
                                 btnCancelTRC.Enabled = false;
@@ -2334,7 +2333,7 @@ namespace TR_SaveMaster
             }
         }
 
-        private void chkRevolverOrDeagleTRC_CheckedChanged(object sender, EventArgs e)
+        private void chkRevolverTRC_CheckedChanged(object sender, EventArgs e)
         {
             if (!isLoading && cmbSavegamesTRC.SelectedIndex != -1)
             {
@@ -2367,6 +2366,14 @@ namespace TR_SaveMaster
         }
 
         private void chkShotgunTRC_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isLoading && cmbSavegamesTRC.SelectedIndex != -1)
+            {
+                EnableButtonsTRC();
+            }
+        }
+
+        private void chkDeagleTRC_CheckedChanged(object sender, EventArgs e)
         {
             if (!isLoading && cmbSavegamesTRC.SelectedIndex != -1)
             {
@@ -2430,7 +2437,15 @@ namespace TR_SaveMaster
             }
         }
 
-        private void nudRevolverOrDeagleAmmoTRC_KeyPress(object sender, KeyPressEventArgs e)
+        private void nudRevolverAmmoTRC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) && cmbSavegamesTRC.SelectedIndex != -1)
+            {
+                EnableButtonsTRC();
+            }
+        }
+
+        private void nudDeagleAmmoTRC_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) && cmbSavegamesTRC.SelectedIndex != -1)
             {
@@ -2518,7 +2533,15 @@ namespace TR_SaveMaster
             }
         }
 
-        private void nudRevolverOrDeagleAmmoTRC_ValueChanged(object sender, EventArgs e)
+        private void nudRevolverAmmoTRC_ValueChanged(object sender, EventArgs e)
+        {
+            if (!isLoading && cmbSavegamesTRC.SelectedIndex != -1)
+            {
+                EnableButtonsTRC();
+            }
+        }
+
+        private void nudDeagleAmmoTRC_ValueChanged(object sender, EventArgs e)
         {
             if (!isLoading && cmbSavegamesTRC.SelectedIndex != -1)
             {
