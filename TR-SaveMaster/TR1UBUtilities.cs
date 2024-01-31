@@ -239,10 +239,8 @@ namespace TR_SaveMaster
             return ReadUInt16(uziAmmoOffset);
         }
 
-        private double GetHealthPercentage()
+        private double GetHealthPercentage(int healthOffset)
         {
-            int healthOffset = GetHealthOffset();
-
             UInt16 health = ReadUInt16(healthOffset);
             double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
 
@@ -286,12 +284,12 @@ namespace TR_SaveMaster
             WriteUInt16(saveNumberOffset, value);
         }
 
-        private void WriteSmallMedipacks(byte value)
+        private void WriteNumSmallMedipacks(byte value)
         {
             WriteByte(smallMedipackOffset, value);
         }
 
-        private void WriteLargeMedipacks(byte value)
+        private void WriteNumLargeMedipacks(byte value)
         {
             WriteByte(largeMedipackOffset, value);
         }
@@ -305,8 +303,11 @@ namespace TR_SaveMaster
         {
             int healthOffset = GetHealthOffset();
 
-            UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
-            WriteUInt16(healthOffset, newHealth);
+            if (healthOffset != -1)
+            {
+                UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
+                WriteUInt16(healthOffset, newHealth);
+            }
         }
 
         private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
@@ -405,9 +406,11 @@ namespace TR_SaveMaster
                 chkShotgun.Checked = (weaponsConfigNum & Shotgun) != 0;
             }
 
-            if (GetHealthOffset() != -1)
+            int healthOffset = GetHealthOffset();
+
+            if (healthOffset != -1)
             {
-                double healthPercentage = GetHealthPercentage();
+                double healthPercentage = GetHealthPercentage(healthOffset);
                 trbHealth.Value = (UInt16)healthPercentage;
                 trbHealth.Enabled = true;
 
@@ -430,8 +433,8 @@ namespace TR_SaveMaster
         {
             WriteSaveNumber((UInt16)nudSaveNumber.Value);
 
-            WriteSmallMedipacks((byte)nudSmallMedipacks.Value);
-            WriteLargeMedipacks((byte)nudLargeMedipacks.Value);
+            WriteNumSmallMedipacks((byte)nudSmallMedipacks.Value);
+            WriteNumLargeMedipacks((byte)nudLargeMedipacks.Value);
 
             WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
             WriteMagnumAmmo(chkMagnums.Checked, (UInt16)nudMagnumAmmo.Value);
@@ -446,7 +449,7 @@ namespace TR_SaveMaster
 
             WriteWeaponsConfigNum(newWeaponsConfigNum);
 
-            if (GetHealthOffset() != -1)
+            if (trbHealth.Enabled)
             {
                 double newHealthPercentage = (double)trbHealth.Value;
                 WriteHealthValue(newHealthPercentage);
