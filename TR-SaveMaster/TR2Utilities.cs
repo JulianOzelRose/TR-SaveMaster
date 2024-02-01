@@ -405,7 +405,7 @@ namespace TR_SaveMaster
 
                 shotgunAmmoOffset = 0x36D;
 
-                SetHealthOffsets(0x980);
+                SetHealthOffsets(0x974, 0x980);
             }
 
             SetSecondaryAmmoOffsets();
@@ -416,27 +416,30 @@ namespace TR_SaveMaster
             {
                 [1] = new Dictionary<int, List<int[]>>              // The Great Wall
                 {
-                    [0xFE0] = new List<int[]>
+                    [0x0FE0] = new List<int[]>
                     {
-                        new int[] { 0xFE0, 0xFE1, 0xFE2, 0xFE3 },
-                        new int[] { 0xFEA, 0xFEB, 0xFEC, 0xFED },
+                        new int[] { 0x0FE0, 0x0FE1, 0x0FE2, 0x0FE3 },
+                        new int[] { 0x0FEA, 0x0FEB, 0x0FEC, 0x0FED },
                     },
-                    [0xFEC] = new List<int[]>
+                    [0x0FEC] = new List<int[]>
                     {
-                        new int[] { 0xFEC, 0xFED, 0xFEE, 0xFEF },
-                        new int[] { 0xFF6, 0xFF7, 0xFF8, 0xFF9 },
+                        new int[] { 0x0FEC, 0x0FED, 0x0FEE, 0x0FEF },
+                        new int[] { 0x0FF6, 0x0FF7, 0x0FF8, 0x0FF9 },
                     },
-                    [0xFF8] = new List<int[]>
+                    [0x0FF8] = new List<int[]>
                     {
-                        new int[] { 0xFF8, 0xFF9, 0xFFA, 0xFFB },
+                        new int[] { 0x0FF8, 0x0FF9, 0x0FFA, 0x0FFB },
+                        new int[] { 0x1002, 0x1003, 0x1004, 0x1005 },
                     },
                     [0x1004] = new List<int[]>
                     {
                         new int[] { 0x1004, 0x1005, 0x1006, 0x1007 },
+                        new int[] { 0x100E, 0x100F, 0x1010, 0x1011 },
                     },
                     [0x1010] = new List<int[]>
                     {
                         new int[] { 0x1010, 0x1011, 0x1012, 0x1013 },
+                        new int[] { 0x101F, 0x1020, 0x1021, 0x1022 },
                     },
                 },
                 [2] = new Dictionary<int, List<int[]>>              // Venice
@@ -444,6 +447,7 @@ namespace TR_SaveMaster
                     [0x10EC] = new List<int[]>
                     {
                         new int[] { 0x10EC, 0x10ED, 0x10EE, 0x10EF },
+                        new int[] { 0x10F6, 0x10F7, 0x10F8, 0x10F9 },
                     },
                     [0x10F8] = new List<int[]>
                     {
@@ -458,6 +462,7 @@ namespace TR_SaveMaster
                     [0x1110] = new List<int[]>
                     {
                         new int[] { 0x1110, 0x1111, 0x1112, 0x1113 },
+                        new int[] { 0x111A, 0x111B, 0x111C, 0x111D },
                     },
                     [0x111C] = new List<int[]>
                     {
@@ -470,22 +475,27 @@ namespace TR_SaveMaster
                     [0x12B4] = new List<int[]>
                     {
                         new int[] { 0x12B4, 0x12B5, 0x12B6, 0x12B7 },
+                        new int[] { 0x12BE, 0x12BF, 0x12C0, 0x12C1 },
                     },
                     [0x12C0] = new List<int[]>
                     {
                         new int[] { 0x12C0, 0x12C1, 0x12C2, 0x12C3 },
+                        new int[] { 0x12CA, 0x12CB, 0x12CC, 0x12CD },
                     },
                     [0x12CC] = new List<int[]>
                     {
                         new int[] { 0x12CC, 0x12CD, 0x12CE, 0x12CF },
+                        new int[] { 0x12D6, 0x12D7, 0x12D8, 0x12D9 },
                     },
                     [0x12D8] = new List<int[]>
                     {
                         new int[] { 0x12D8, 0x12D9, 0x12DA, 0x12DB },
+                        new int[] { 0x12E2, 0x12E3, 0x12E4, 0x12E5 },
                     },
                     [0x12E4] = new List<int[]>
                     {
                         new int[] { 0x12E4, 0x12E5, 0x12E6, 0x12E7 },
+                        new int[] { 0x12EE, 0x12EF, 0x12F0, 0x12F1 },
                     },
                 },
                 [4] = new Dictionary<int, List<int[]>>              // Opera House
@@ -493,26 +503,32 @@ namespace TR_SaveMaster
                     [0x19EE] = new List<int[]>
                     {
                         new int[] { 0x19EE, 0x19EF, 0x19F0, 0x19F1 },
+                        new int[] { 0x19F8, 0x19F9, 0x19FA, 0x19FB },
                     },
                     [0x19FA] = new List<int[]>
                     {
                         new int[] { 0x19FA, 0x19FB, 0x19FC, 0x19FD },
+                        new int[] { 0x1A04, 0x1A05, 0x1A06, 0x1A07 },
                     },
                     [0x1A06] = new List<int[]>
                     {
                         new int[] { 0x1A06, 0x1A07, 0x1A08, 0x1A09 },
+                        new int[] { 0x1A10, 0x1A11, 0x1A12, 0x1A13 },
                     },
                     [0x1A12] = new List<int[]>
                     {
                         new int[] { 0x1A12, 0x1A13, 0x1A14, 0x1A15 },
+                        new int[] { 0x1A1C, 0x1A1D, 0x1A1E, 0x1A1F },
                     },
                     [0x1A1E] = new List<int[]>
                     {
                         new int[] { 0x1A1E, 0x1A1F, 0x1A20, 0x1A21 },
+                        new int[] { 0x1A28, 0x1A29, 0x1A2A, 0x1A2B },
                     },
                     [0x1A2A] = new List<int[]>
                     {
                         new int[] { 0x1A2A, 0x1A2B, 0x1A2C, 0x1A2D },
+                        new int[] { 0x1A34, 0x1A35, 0x1A36, 0x1A37 },
                     },
                 },
                 [5] = new Dictionary<int, List<int[]>>              // Offshore Rig
@@ -524,6 +540,7 @@ namespace TR_SaveMaster
                     },
                     [0x102C] = new List<int[]>
                     {
+                        new int[] { 0x102C, 0x102D, 0x102E, 0x102F },
                         new int[] { 0x1036, 0x1037, 0x1038, 0x1039 },
                     },
                     [0x1038] = new List<int[]>
@@ -533,6 +550,7 @@ namespace TR_SaveMaster
                     },
                     [0x1044] = new List<int[]>
                     {
+                        new int[] { 0x1044, 0x1045, 0x1046, 0x1047 },
                         new int[] { 0x104E, 0x104F, 0x1050, 0x1051 },
                     },
                 },
@@ -541,50 +559,60 @@ namespace TR_SaveMaster
                     [0x1274] = new List<int[]>
                     {
                         new int[] { 0x1274, 0x1275, 0x1276, 0x1277 },
+                        new int[] { 0x127E, 0x127F, 0x1280, 0x1281 },
                     },
                     [0x1280] = new List<int[]>
                     {
                         new int[] { 0x1280, 0x1281, 0x1282, 0x1283 },
+                        new int[] { 0x128A, 0x128B, 0x128C, 0x128D },
                     },
                     [0x128C] = new List<int[]>
                     {
                         new int[] { 0x128C, 0x128D, 0x128E, 0x128F },
+                        new int[] { 0x1296, 0x1297, 0x1298, 0x1299 },
                     },
                     [0x1298] = new List<int[]>
                     {
                         new int[] { 0x1298, 0x1299, 0x129A, 0x129B },
+                        new int[] { 0x12A2, 0x12A3, 0x12A4, 0x12A5 },
                     },
                     [0x12A4] = new List<int[]>
                     {
                         new int[] { 0x12A4, 0x12A5, 0x12A6, 0x12A7 },
+                        new int[] { 0x12AE, 0x12AF, 0x12B0, 0x12B1 },
                     },
                     [0x12B0] = new List<int[]>
                     {
                         new int[] { 0x12B0, 0x12B1, 0x12B2, 0x12B3 },
+                        new int[] { 0x12BA, 0x12BB, 0x12BC, 0x12BD },
                     }
                 },
                 [7] = new Dictionary<int, List<int[]>>              // 40 Fathoms
                 {
-                    [0xC0E] = new List<int[]>
+                    [0x0C0E] = new List<int[]>
                     {
-                        new int[] { 0xC0E, 0xC0F, 0xC10, 0xC11 },
-                        new int[] { 0xC18, 0xC19, 0xC1A, 0xC1B },
+                        new int[] { 0x0C0E, 0x0C0F, 0x0C10, 0x0C11 },
+                        new int[] { 0x0C18, 0x0C19, 0x0C1A, 0x0C1B },
                     },
-                    [0xC1A] = new List<int[]>
+                    [0x0C1A] = new List<int[]>
                     {
-                        new int[] { 0xC1A, 0xC1B, 0xC1C, 0xC1D },
+                        new int[] { 0x0C1A, 0x0C1B, 0x0C1C, 0x0C1D },
+                        new int[] { 0x0C24, 0x0C25, 0x0C26, 0x0C27 },
                     },
-                    [0xC24] = new List<int[]>
+                    [0x0C24] = new List<int[]>
                     {
-                        new int[] { 0xC24, 0xC25, 0xC26, 0xC27 },
+                        new int[] { 0x0C24, 0x0C25, 0x0C26, 0x0C27 },
+                        new int[] { 0x0C2E, 0x0C2F, 0x0C30, 0x0C31 },
                     },
-                    [0xC26] = new List<int[]>
+                    [0x0C26] = new List<int[]>
                     {
-                        new int[] { 0xC26, 0xC27, 0xC28, 0xC29 },
+                        new int[] { 0x0C26, 0x0C27, 0x0C28, 0x0C29 },
+                        new int[] { 0x0C30, 0x0C31, 0x0C32, 0x0C33 },
                     },
-                    [0xC32] = new List<int[]>
+                    [0x0C32] = new List<int[]>
                     {
-                        new int[] { 0xC32, 0xC33, 0xC34, 0xC35 },
+                        new int[] { 0x0C32, 0x0C33, 0x0C34, 0x0C35 },
+                        new int[] { 0x0C3C, 0x0C3D, 0x0C3E, 0x0C3F },
                     },
                 },
                 [8] = new Dictionary<int, List<int[]>>              // Wreck of the Maria Doria
@@ -592,18 +620,22 @@ namespace TR_SaveMaster
                     [0x16F4] = new List<int[]>
                     {
                         new int[] { 0x16F4, 0x16F5, 0x16F6, 0x16F7 },
+                        new int[] { 0x16FE, 0x16FF, 0x1700, 0x1701 },
                     },
                     [0x1700] = new List<int[]>
                     {
                         new int[] { 0x1700, 0x1701, 0x1702, 0x1703 },
+                        new int[] { 0x170A, 0x170B, 0x170C, 0x170D },
                     },
                     [0x170C] = new List<int[]>
                     {
                         new int[] { 0x170C, 0x170D, 0x170E, 0x170F },
+                        new int[] { 0x1716, 0x1717, 0x1718, 0x1719 },
                     },
                     [0x1718] = new List<int[]>
                     {
                         new int[] { 0x1718, 0x1719, 0x171A, 0x171B },
+                        new int[] { 0x1722, 0x1723, 0x1724, 0x1725 },
                     },
                     [0x1724] = new List<int[]>
                     {
@@ -613,21 +645,25 @@ namespace TR_SaveMaster
                 },
                 [9] = new Dictionary<int, List<int[]>>              // Living Quarters
                 {
-                    [0xEA4] = new List<int[]>
+                    [0x0EA4] = new List<int[]>
                     {
-                        new int[] { 0xEA4, 0xEA5, 0xEA6, 0xEA7 },
+                        new int[] { 0x0EA4, 0x0EA5, 0x0EA6, 0x0EA7 },
+                        new int[] { 0x0EAE, 0x0EAF, 0x0EB0, 0x0EB1 },
                     },
-                    [0xEB0] = new List<int[]>
+                    [0x0EB0] = new List<int[]>
                     {
-                        new int[] { 0xEB0, 0xEB1, 0xEB2, 0xEB3 },
+                        new int[] { 0x0EB0, 0x0EB1, 0x0EB2, 0x0EB3 },
+                        new int[] { 0x0EBA, 0x0EBB, 0x0EBC, 0x0EBD },
                     },
-                    [0xEBC] = new List<int[]>
+                    [0x0EBC] = new List<int[]>
                     {
-                        new int[] { 0xEBC, 0xEBD, 0xEBE, 0xEBF },
+                        new int[] { 0x0EBC, 0x0EBD, 0x0EBE, 0x0EBF },
+                        new int[] { 0x0EC6, 0x0EC7, 0x0EC8, 0x0EC9 },
                     },
-                    [0xEC8] = new List<int[]>
+                    [0x0EC8] = new List<int[]>
                     {
-                        new int[] { 0xEC8, 0xEC9, 0xECA, 0xECB },
+                        new int[] { 0x0EC8, 0x0EC9, 0x0ECA, 0x0ECB },
+                        new int[] { 0x0ED2, 0x0ED3, 0x0ED4, 0x0ED5 },
                     },
                 },
                 [10] = new Dictionary<int, List<int[]>>             // The Deck
@@ -635,14 +671,17 @@ namespace TR_SaveMaster
                     [0x11C8] = new List<int[]>
                     {
                         new int[] { 0x11C8, 0x11C9, 0x11CA, 0x11CB },
+                        new int[] { 0x11D2, 0x11D3, 0x11D4, 0x11D5 },
                     },
                     [0x11D4] = new List<int[]>
                     {
+                        new int[] { 0x11D4, 0x11D5, 0x11D6, 0x11D7 },
                         new int[] { 0x11DE, 0x11DF, 0x11E0, 0x11E1 },
                     },
                     [0x11E0] = new List<int[]>
                     {
                         new int[] { 0x11E0, 0x11E1, 0x11E2, 0x11E3 },
+                        new int[] { 0x11EA, 0x11EB, 0x11EC, 0x11ED },
                     },
                     [0x11EC] = new List<int[]>
                     {
@@ -655,22 +694,27 @@ namespace TR_SaveMaster
                     [0x1402] = new List<int[]>
                     {
                         new int[] { 0x1402, 0x1403, 0x1404, 0x1405 },
+                        new int[] { 0x140C, 0x140D, 0x140E, 0x140F },
                     },
                     [0x140E] = new List<int[]>
                     {
                         new int[] { 0x140E, 0x140F, 0x1410, 0x1411 },
+                        new int[] { 0x1418, 0x1419, 0x141A, 0x141B },
                     },
                     [0x1414] = new List<int[]>
                     {
                         new int[] { 0x1414, 0x1415, 0x1416, 0x1417 },
+                        new int[] { 0x141E, 0x141F, 0x1420, 0x1421 },
                     },
                     [0x141A] = new List<int[]>
                     {
                         new int[] { 0x141A, 0x141B, 0x141C, 0x141D },
+                        new int[] { 0x1424, 0x1425, 0x1426, 0x1427 },
                     },
                     [0x1426] = new List<int[]>
                     {
                         new int[] { 0x1426, 0x1427, 0x1428, 0x1429 },
+                        new int[] { 0x1430, 0x1431, 0x1432, 0x1433 },
                     },
                     [0x1432] = new List<int[]>
                     {
@@ -685,28 +729,34 @@ namespace TR_SaveMaster
                     [0x142C] = new List<int[]>
                     {
                         new int[] { 0x142C, 0x142D, 0x142E, 0x142F },
+                        new int[] { 0x1436, 0x1437, 0x1438, 0x1439 },
                     },
                     [0x144A] = new List<int[]>
                     {
                         new int[] { 0x144A, 0x144B, 0x144C, 0x144D },
+                        new int[] { 0x1454, 0x1455, 0x1456, 0x1457 },
                     },
                 },
                 [12] = new Dictionary<int, List<int[]>>             // Barkhang Monastery
                 {
                     [0x1972] = new List<int[]>
                     {
+                        new int[] { 0x1972, 0x1973, 0x1974, 0x1975 },
                         new int[] { 0x197C, 0x197D, 0x197E, 0x197F },
                     },
                     [0x197E] = new List<int[]>
                     {
+                        new int[] { 0x197E, 0x197F, 0x1980, 0x1981 },
                         new int[] { 0x1988, 0x1989, 0x198A, 0x198B },
                     },
                     [0x198A] = new List<int[]>
                     {
                         new int[] { 0x198A, 0x198B, 0x198C, 0x198D },
+                        new int[] { 0x1994, 0x1995, 0x1996, 0x1997 },
                     },
                     [0x1996] = new List<int[]>
                     {
+                        new int[] { 0x1996, 0x1997, 0x1998, 0x1999 },
                         new int[] { 0x19A0, 0x19A1, 0x19A2, 0x19A3 },
                     },
                     [0x19A2] = new List<int[]>
@@ -720,18 +770,22 @@ namespace TR_SaveMaster
                     [0x1522] = new List<int[]>
                     {
                         new int[] { 0x1522, 0x1523, 0x1524, 0x1525 },
+                        new int[] { 0x152C, 0x152D, 0x152E, 0x152F },
                     },
                     [0x152E] = new List<int[]>
                     {
                         new int[] { 0x152E, 0x152F, 0x1530, 0x1531 },
+                        new int[] { 0x1538, 0x1539, 0x153A, 0x153B },
                     },
                     [0x153A] = new List<int[]>
                     {
                         new int[] { 0x153A, 0x153B, 0x153C, 0x153D },
+                        new int[] { 0x1544, 0x1545, 0x1546, 0x1547 },
                     },
                     [0x1546] = new List<int[]>
                     {
                         new int[] { 0x1546, 0x1547, 0x1548, 0x1549 },
+                        new int[] { 0x1550, 0x1551, 0x1552, 0x1553 },
                     },
                 },
                 [14] = new Dictionary<int, List<int[]>>             // Ice Palace
@@ -739,10 +793,12 @@ namespace TR_SaveMaster
                     [0x122A] = new List<int[]>
                     {
                         new int[] { 0x122A, 0x122B, 0x122C, 0x122D },
+                        new int[] { 0x1234, 0x1235, 0x1236, 0x1237 },
                     },
                     [0x1236] = new List<int[]>
                     {
-                        new int[] { 0x1236, 0x1237, 0x1238, 0x1239 },   // Need to test this
+                        new int[] { 0x1236, 0x1237, 0x1238, 0x1239 },
+                        new int[] { 0x1240, 0x1241, 0x1242, 0x1243 },
                     },
                     [0x1242] = new List<int[]>
                     {
@@ -756,11 +812,13 @@ namespace TR_SaveMaster
                     },
                     [0x125A] = new List<int[]>
                     {
+                        new int[] { 0x125A, 0x125B, 0x125C, 0x125D },
                         new int[] { 0x1264, 0x1265, 0x1266, 0x1267 },
                     },
                     [0x1266] = new List<int[]>
                     {
                         new int[] { 0x1266, 0x1267, 0x1268, 0x1269 },
+                        new int[] { 0x1270, 0x1271, 0x1272, 0x1273 },
                     },
                 },
                 [15] = new Dictionary<int, List<int[]>>             // Temple of Xian
@@ -768,10 +826,12 @@ namespace TR_SaveMaster
                     [0x1A6A] = new List<int[]>
                     {
                         new int[] { 0x1A6A, 0x1A6B, 0x1A6C, 0x1A6D },
+                        new int[] { 0x1A74, 0x1A75, 0x1A76, 0x1A77 },
                     },
                     [0x1A76] = new List<int[]>
                     {
-                        new int[] { 0x1A76, 0x1A77, 0x1A78, 0x1A79 },   // Need to test this
+                        new int[] { 0x1A76, 0x1A77, 0x1A78, 0x1A79 },
+                        new int[] { 0x1A80, 0x1A81, 0x1A82, 0x1A83 },
                     },
                     [0x1A82] = new List<int[]>
                     {
@@ -781,14 +841,17 @@ namespace TR_SaveMaster
                     [0x1A8E] = new List<int[]>
                     {
                         new int[] { 0x1A8E, 0x1A8F, 0x1A90, 0x1A91 },
+                        new int[] { 0x1A98, 0x1A99, 0x1A9A, 0x1A9B },
                     },
                     [0x1A9A] = new List<int[]>
                     {
                         new int[] { 0x1A9A, 0x1A9B, 0x1A9C, 0x1A9D },
+                        new int[] { 0x1AA4, 0x1AA5, 0x1AA6, 0x1AA7 },
                     },
                     [0x1AA6] = new List<int[]>
                     {
                         new int[] { 0x1AA6, 0x1AA7, 0x1AA8, 0x1AA9 },
+                        new int[] { 0x1AB0, 0x1AB1, 0x1AB2, 0x1AB3 },
                     },
                 },
                 [16] = new Dictionary<int, List<int[]>>             // Floating Islands
@@ -806,33 +869,38 @@ namespace TR_SaveMaster
                 },
                 [17] = new Dictionary<int, List<int[]>>             // The Dragon's Lair
                 {
-                    [0xD30] = new List<int[]>
+                    [0x0D30] = new List<int[]>
                     {
-                        new int[] { 0xD30, 0xD31, 0xD32, 0xD33 },
+                        new int[] { 0x0D30, 0x0D31, 0x0D32, 0x0D33 },
+                        new int[] { 0x0D3A, 0x0D3B, 0x0D3C, 0x0D3D },
                     },
-                    [0xD3C] = new List<int[]>
+                    [0x0D3C] = new List<int[]>
                     {
-                        new int[] { 0xD3C, 0xD3D, 0xD3E, 0xD3F },
+                        new int[] { 0x0D3C, 0x0D3D, 0x0D3E, 0x0D3F },
+                        new int[] { 0x0D46, 0x0D47, 0x0D48, 0x0D49 },
                     },
-                    [0xD48] = new List<int[]>
+                    [0x0D48] = new List<int[]>
                     {
-                        new int[] { 0xD48, 0xD49, 0xD4A, 0xD4B },
+                        new int[] { 0x0D48, 0x0D49, 0x0D4A, 0x0D4B },
+                        new int[] { 0x0D52, 0x0D53, 0x0D54, 0x0D55 },
                     },
-                    [0xD54] = new List<int[]>
+                    [0x0D54] = new List<int[]>
                     {
-                        new int[] { 0xD54, 0xD55, 0xD56, 0xD57 },
+                        new int[] { 0x0D54, 0x0D55, 0x0D56, 0x0D57 },
+                        new int[] { 0x0D5E, 0x0D5F, 0x0D60, 0x0D61 },
                     }
                 },
                 [18] = new Dictionary<int, List<int[]>>             // Home Sweet Home
                 {
                     [0x1020] = new List<int[]>
                     {
+                        new int[] { 0x1020, 0x1021, 0x1022, 0x1023 },
                         new int[] { 0x102A, 0x102B, 0x102C, 0x102D },
                     },
                     [0x102C] = new List<int[]>
                     {
-                        new int[] { 0x1036, 0x1037, 0x1038, 0x1039 },
                         new int[] { 0x102C, 0x102D, 0x102E, 0x102F },
+                        new int[] { 0x1036, 0x1037, 0x1038, 0x1039 },
                     },
                 }
             };
