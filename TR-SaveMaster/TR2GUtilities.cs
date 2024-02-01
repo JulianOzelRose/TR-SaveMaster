@@ -119,7 +119,7 @@ namespace TR_SaveMaster
                 flaresOffset = 0x8C;
                 weaponsConfigNumOffset = 0x8F;
 
-                SetHealthOffsets(0xE60, 0xE6C);
+                SetHealthOffsets(0xE54, 0xE60, 0xE6C, 0xE84);
             }
             else if (levelIndex == 2)   // Fool's Gold
             {
@@ -134,7 +134,7 @@ namespace TR_SaveMaster
                 flaresOffset = 0xB8;
                 weaponsConfigNumOffset = 0xBB;
 
-                SetHealthOffsets(0x12D6, 0x12E2);
+                SetHealthOffsets(0x12D6, 0x12E2, 0x12EE, 0x12FA);
             }
             else if (levelIndex == 3)   // Furnace of the Gods
             {
@@ -179,7 +179,7 @@ namespace TR_SaveMaster
                 flaresOffset = 0x13C;
                 weaponsConfigNumOffset = 0x13F;
 
-                SetHealthOffsets(0x8AE, 0x8BA);
+                SetHealthOffsets(0x8AE, 0x8BA, 0x8C6);
             }
 
             SetSecondaryAmmoOffsets();
@@ -192,6 +192,7 @@ namespace TR_SaveMaster
                 {
                     [0x1C3A] = new List<int[]>
                     {
+                        new int[] { 0x1C3A, 0x1C3B, 0x1C3C, 0x1C3D },
                         new int[] { 0x1C44, 0x1C45, 0x1C46, 0x1C47 },
                     },
                     [0x1C46] = new List<int[]>
@@ -202,22 +203,26 @@ namespace TR_SaveMaster
                     [0x1C50] = new List<int[]>
                     {
                         new int[] { 0x1C50, 0x1C51, 0x1C52, 0x1C53 },
+                        new int[] { 0x1C5A, 0x1C5B, 0x1C5C, 0x1C5D },
                     },
                     [0x1C52] = new List<int[]>
                     {
-                        new int[] { 0x1C5C, 0x1C5D, 0x1C5E, 0x1C5F },
                         new int[] { 0x1C52, 0x1C53, 0x1C54, 0x1C55 },
+                        new int[] { 0x1C5C, 0x1C5D, 0x1C5E, 0x1C5F },
                     },
                     [0x1C58] = new List<int[]>
                     {
                         new int[] { 0x1C58, 0x1C59, 0x1C5A, 0x1C5B },
+                        new int[] { 0x1C62, 0x1C63, 0x1C64, 0x1C65 },
                     },
                     [0x1C5E] = new List<int[]>
                     {
+                        new int[] { 0x1C5E, 0x1C5F, 0x1C60, 0x1C61 },
                         new int[] { 0x1C68, 0x1C69, 0x1C6A, 0x1C6B },
                     },
                     [0x1C6A] = new List<int[]>
                     {
+                        new int[] { 0x1C6A, 0x1C6B, 0x1C6C, 0x1C6D },
                         new int[] { 0x1C74, 0x1C75, 0x1C76, 0x1C77 },
                     },
                     [0x1C76] = new List<int[]>
@@ -233,6 +238,7 @@ namespace TR_SaveMaster
                     [0x1C8E] = new List<int[]>
                     {
                         new int[] { 0x1C8E, 0x1C8F, 0x1C90, 0x1C91 },
+                        new int[] { 0x1C98, 0x1C99, 0x1C9A, 0x1C9B },
                     },
                     [0x1C9A] = new List<int[]>
                     {
@@ -249,11 +255,13 @@ namespace TR_SaveMaster
                     },
                     [0x1C50] = new List<int[]>
                     {
+                        new int[] { 0x1C50, 0x1C51, 0x1C52, 0x1C53 },
                         new int[] { 0x1C5A, 0x1C5B, 0x1C5C, 0x1C5D },
                     },
                     [0x1C56] = new List<int[]>
                     {
                         new int[] { 0x1C56, 0x1C57, 0x1C58, 0x1C59 },
+                        new int[] { 0x1C60, 0x1C61, 0x1C62, 0x1C63 },
                     },
                     [0x1C5C] = new List<int[]>
                     {
@@ -263,6 +271,7 @@ namespace TR_SaveMaster
                     [0x1C62] = new List<int[]>
                     {
                         new int[] { 0x1C62, 0x1C63, 0x1C64, 0x1C65 },
+                        new int[] { 0x1C6C, 0x1C6D, 0x1C6E, 0x1C6F },
                     },
                     [0x1C68] = new List<int[]>
                     {
@@ -272,6 +281,7 @@ namespace TR_SaveMaster
                     [0x1C6E] = new List<int[]>
                     {
                         new int[] { 0x1C6E, 0x1C6F, 0x1C70, 0x1C71 },
+                        new int[] { 0x1C78, 0x1C79, 0x1C7A, 0x1C7B },
                     },
                     [0x1C74] = new List<int[]>
                     {
@@ -286,22 +296,27 @@ namespace TR_SaveMaster
                     [0x1C86] = new List<int[]>
                     {
                         new int[] { 0x1C86, 0x1C87, 0x1C88, 0x1C89 },
+                        new int[] { 0x1C90, 0x1C91, 0x1C92, 0x1C93 },
                     },
                     [0x1C92] = new List<int[]>
                     {
                         new int[] { 0x1C92, 0x1C93, 0x1C94, 0x1C95 },
+                        new int[] { 0x1C9C, 0x1C9D, 0x1C9E, 0x1C9F },
                     },
                     [0x1C9E] = new List<int[]>
                     {
                         new int[] { 0x1C9E, 0x1C9F, 0x1CA0, 0x1CA1 },
+                        new int[] { 0x1CA8, 0x1CA9, 0x1CAA, 0x1CAB },
                     },
                     [0x1CAA] = new List<int[]>
                     {
                         new int[] { 0x1CAA, 0x1CAB, 0x1CAC, 0x1CAD },
+                        new int[] { 0x1CB4, 0x1CB5, 0x1CB6, 0x1CB7 },
                     },
                     [0x1CB6] = new List<int[]>
                     {
                         new int[] { 0x1CB6, 0x1CB7, 0x1CB8, 0x1CB9 },
+                        new int[] { 0x1CC0, 0x1CC1, 0x1CC2, 0x1CC3 },
                     },
                 },
                 [3] = new Dictionary<int, List<int[]>>              // Furnace of the Gods
@@ -309,14 +324,17 @@ namespace TR_SaveMaster
                     [0x1B34] = new List<int[]>
                     {
                         new int[] { 0x1B34, 0x1B35, 0x1B36, 0x1B37 },
+                        new int[] { 0x1B3E, 0x1B3F, 0x1B40, 0x1B41 },
                     },
                     [0x1B40] = new List<int[]>
                     {
                         new int[] { 0x1B40, 0x1B41, 0x1B42, 0x1B43 },
+                        new int[] { 0x1B4A, 0x1B4B, 0x1B4C, 0x1B4D },
                     },
                     [0x1B4C] = new List<int[]>
                     {
                         new int[] { 0x1B4C, 0x1B4D, 0x1B4E, 0x1B4F },
+                        new int[] { 0x1B56, 0x1B57, 0x1B58, 0x1B59 },
                     },
                     [0x1B58] = new List<int[]>
                     {
@@ -343,6 +361,7 @@ namespace TR_SaveMaster
                     },
                     [0x139E] = new List<int[]>
                     {
+                        new int[] { 0x139E, 0x139F, 0x13A0, 0x13A1 },
                         new int[] { 0x13A8, 0x13A9, 0x13AA, 0x13AB },
                     },
                     [0x13AA] = new List<int[]>
@@ -362,6 +381,7 @@ namespace TR_SaveMaster
                     },
                     [0x13CE] = new List<int[]>
                     {
+                        new int[] { 0x13CE, 0x13CF, 0x13D0, 0x13D1 },
                         new int[] { 0x13D8, 0x13D9, 0x13DA, 0x13DB },
                     }
                 },
@@ -370,6 +390,7 @@ namespace TR_SaveMaster
                     [0x1584] = new List<int[]>
                     {
                         new int[] { 0x1584, 0x1585, 0x1586, 0x1587 },
+                        new int[] { 0x158E, 0x158F, 0x1590, 0x1591 },
                     },
                     [0x1590] = new List<int[]>
                     {
@@ -388,10 +409,12 @@ namespace TR_SaveMaster
                     },
                     [0x15B4] = new List<int[]>
                     {
+                        new int[] { 0x15B4, 0x15B5, 0x15B6, 0x15B7 },
                         new int[] { 0x15BE, 0x15BF, 0x15C0, 0x15C1 },
                     },
                     [0x15C0] = new List<int[]>
                     {
+                        new int[] { 0x15C0, 0x15C1, 0x15C2, 0x15C3 },
                         new int[] { 0x15CA, 0x15CB, 0x15CC, 0x15CD },
                     },
                 },
