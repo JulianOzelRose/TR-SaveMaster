@@ -305,7 +305,7 @@ namespace TR_SaveMaster
             this.nudCrossbowNormalAmmoTR4 = new System.Windows.Forms.NumericUpDown();
             this.chkShotgunTR4 = new System.Windows.Forms.CheckBox();
             this.chkRevolverTR4 = new System.Windows.Forms.CheckBox();
-            this.chkUzisTR4 = new System.Windows.Forms.CheckBox();
+            this.chkUziTR4 = new System.Windows.Forms.CheckBox();
             this.chkCrossbowTR4 = new System.Windows.Forms.CheckBox();
             this.chkPistolsTR4 = new System.Windows.Forms.CheckBox();
             this.txtDirectoryTR4 = new System.Windows.Forms.TextBox();
@@ -3487,7 +3487,7 @@ namespace TR_SaveMaster
             this.grpWeaponsTR4.Controls.Add(this.nudCrossbowNormalAmmoTR4);
             this.grpWeaponsTR4.Controls.Add(this.chkShotgunTR4);
             this.grpWeaponsTR4.Controls.Add(this.chkRevolverTR4);
-            this.grpWeaponsTR4.Controls.Add(this.chkUzisTR4);
+            this.grpWeaponsTR4.Controls.Add(this.chkUziTR4);
             this.grpWeaponsTR4.Controls.Add(this.chkCrossbowTR4);
             this.grpWeaponsTR4.Controls.Add(this.chkPistolsTR4);
             this.grpWeaponsTR4.Location = new System.Drawing.Point(351, 121);
@@ -3709,16 +3709,16 @@ namespace TR_SaveMaster
             this.chkRevolverTR4.UseVisualStyleBackColor = true;
             this.chkRevolverTR4.CheckedChanged += new System.EventHandler(this.chkRevolverTR4_CheckedChanged);
             // 
-            // chkUzisTR4
+            // chkUziTR4
             // 
-            this.chkUzisTR4.AutoSize = true;
-            this.chkUzisTR4.Location = new System.Drawing.Point(22, 80);
-            this.chkUzisTR4.Name = "chkUzisTR4";
-            this.chkUzisTR4.Size = new System.Drawing.Size(49, 17);
-            this.chkUzisTR4.TabIndex = 2;
-            this.chkUzisTR4.Text = "Uzis:";
-            this.chkUzisTR4.UseVisualStyleBackColor = true;
-            this.chkUzisTR4.CheckedChanged += new System.EventHandler(this.chkUzisTR4_CheckedChanged);
+            this.chkUziTR4.AutoSize = true;
+            this.chkUziTR4.Location = new System.Drawing.Point(22, 80);
+            this.chkUziTR4.Name = "chkUziTR4";
+            this.chkUziTR4.Size = new System.Drawing.Size(44, 17);
+            this.chkUziTR4.TabIndex = 2;
+            this.chkUziTR4.Text = "Uzi:";
+            this.chkUziTR4.UseVisualStyleBackColor = true;
+            this.chkUziTR4.CheckedChanged += new System.EventHandler(this.chkUziTR4_CheckedChanged);
             // 
             // chkCrossbowTR4
             // 
@@ -3736,9 +3736,9 @@ namespace TR_SaveMaster
             this.chkPistolsTR4.AutoSize = true;
             this.chkPistolsTR4.Location = new System.Drawing.Point(22, 53);
             this.chkPistolsTR4.Name = "chkPistolsTR4";
-            this.chkPistolsTR4.Size = new System.Drawing.Size(56, 17);
+            this.chkPistolsTR4.Size = new System.Drawing.Size(59, 17);
             this.chkPistolsTR4.TabIndex = 0;
-            this.chkPistolsTR4.Text = "Pistols";
+            this.chkPistolsTR4.Text = "Pistols:";
             this.chkPistolsTR4.UseVisualStyleBackColor = true;
             this.chkPistolsTR4.CheckedChanged += new System.EventHandler(this.chkPistolsTR4_CheckedChanged);
             // 
@@ -4907,7 +4907,7 @@ namespace TR_SaveMaster
         private System.Windows.Forms.NumericUpDown nudGrenadeGunNormalAmmoTR4;
         private System.Windows.Forms.CheckBox chkShotgunTR4;
         private System.Windows.Forms.CheckBox chkRevolverTR4;
-        private System.Windows.Forms.CheckBox chkUzisTR4;
+        private System.Windows.Forms.CheckBox chkUziTR4;
         private System.Windows.Forms.CheckBox chkPistolsTR4;
         private System.Windows.Forms.Button btnCancelTR4;
         private System.Windows.Forms.GroupBox grpItemsTR4;

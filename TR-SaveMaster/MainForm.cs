@@ -1051,7 +1051,7 @@ namespace TR_SaveMaster
                                 nudShotgunWideshotAmmoTR4, nudGrenadeGunNormalAmmoTR4, nudGrenadeGunSuperAmmoTR4,
                                 nudGrenadeGunFlashAmmoTR4, nudCrossbowNormalAmmoTR4, nudCrossbowPoisonAmmoTR4,
                                 nudCrossbowExplosiveAmmoTR4, chkBinocularsTR4, chkCrowbarTR4, chkLaserSightTR4,
-                                chkPistolsTR4, chkRevolverTR4, chkUzisTR4, chkShotgunTR4, chkCrossbowTR4, chkGrenadeGunTR4);
+                                chkPistolsTR4, chkRevolverTR4, chkUziTR4, chkShotgunTR4, chkCrossbowTR4, chkGrenadeGunTR4);
 
                             isLoading = false;
 
@@ -1453,7 +1453,7 @@ namespace TR_SaveMaster
                                     nudLargeMedipacksTR4, nudRevolverAmmoTR4, nudUziAmmoTR4, nudGrenadeGunNormalAmmoTR4,
                                     nudGrenadeGunSuperAmmoTR4, nudGrenadeGunFlashAmmoTR4, nudCrossbowNormalAmmoTR4, nudCrossbowPoisonAmmoTR4,
                                     nudCrossbowExplosiveAmmoTR4, nudShotgunNormalAmmoTR4, nudShotgunWideshotAmmoTR4,
-                                    chkPistolsTR4, chkUzisTR4, chkShotgunTR4, chkCrossbowTR4, chkGrenadeGunTR4,
+                                    chkPistolsTR4, chkUziTR4, chkShotgunTR4, chkCrossbowTR4, chkGrenadeGunTR4,
                                     chkRevolverTR4, chkBinocularsTR4, chkCrowbarTR4, chkLaserSightTR4);
 
                                 btnSaveTR4.Enabled = false;
@@ -2069,7 +2069,7 @@ namespace TR_SaveMaster
             }
         }
 
-        private void chkUzisTR4_CheckedChanged(object sender, EventArgs e)
+        private void chkUziTR4_CheckedChanged(object sender, EventArgs e)
         {
             if (!isLoading && cmbSavegamesTR4.SelectedIndex != -1)
             {

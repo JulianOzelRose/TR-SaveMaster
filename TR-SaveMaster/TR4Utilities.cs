@@ -10,13 +10,7 @@ namespace TR_SaveMaster
     class TR4Utilities
     {
         // Offsets
-        private const int saveNumOffset = 0x4B;
-        private const int binocularsOffset = 0x170;
-        private const int crowbarOffset = 0x171;
-        private const int numSecretsOffset = 0x1FB;
-        private const int smallMedipackOffset = 0x190;
-        private const int largeMedipackOffset = 0x192;
-        private const int flaresOffset = 0x194;
+        private const int saveNumberOffset = 0x4B;
         private const int pistolsOffset = 0x169;
         private const int uziOffset = 0x16A;
         private const int shotgunOffset = 0x16B;
@@ -24,17 +18,27 @@ namespace TR_SaveMaster
         private const int grenadeGunOffset = 0x16D;
         private const int revolverOffset = 0x16E;
         private const int laserSightOffset = 0x16F;
+        private const int binocularsOffset = 0x170;
+        private const int crowbarOffset = 0x171;
+        private const int smallMedipackOffset = 0x190;
+        private const int largeMedipackOffset = 0x192;
+        private const int flaresOffset = 0x194;
         private const int uziAmmoOffset = 0x198;
         private const int revolverAmmoOffset = 0x19A;
+        private const int shotgunNormalAmmoOffset = 0x19C;
+        private const int shotgunWideshotAmmoOffset = 0x19E;
         private const int grenadeGunNormalAmmoOffset = 0x1A0;
         private const int grenadeGunSuperAmmoOffset = 0x1A2;
         private const int grenadeGunFlashAmmoOffset = 0x1A4;
-        private const int shotgunNormalAmmoOffset = 0x19C;
-        private const int shotgunWideshotAmmoOffset = 0x19E;
         private const int crossbowNormalAmmoOffset = 0x1A6;
         private const int crossbowPoisonAmmoOffset = 0x1A8;
         private const int crossbowExplosiveAmmoOffset = 0x1AA;
         private const int levelIndexOffset = 0x1E7;
+        private const int secretsOffset = 0x1FB;
+
+        // Constants
+        private const int ITEM_PRESENT = 0x1;
+        private const int WEAPON_PRESENT = 0x9;
 
         // Checksum
         private const int CHECKSUM_START_OFFSET = 0x57;
@@ -313,7 +317,7 @@ namespace TR_SaveMaster
             NumericUpDown nudShotgunNormalAmmo, NumericUpDown nudShotgunWideshotAmmo, NumericUpDown nudGrenadeGunNormalAmmo,
             NumericUpDown nudGrenadeGunSuperAmmo, NumericUpDown nudGrenadeGunFlashAmmo, NumericUpDown nudCrossbowNormalAmmo,
             NumericUpDown nudCrossbowPoisonAmmo, NumericUpDown nudCrossbowExplosiveAmmo, CheckBox chkBinoculars, CheckBox chkCrowbar,
-            CheckBox chkLaserSight, CheckBox chkPistols, CheckBox chkRevolver, CheckBox chkUzis, CheckBox chkShotgun, CheckBox chkCrossbow,
+            CheckBox chkLaserSight, CheckBox chkPistols, CheckBox chkRevolver, CheckBox chkUzi, CheckBox chkShotgun, CheckBox chkCrossbow,
             CheckBox chkGrenadeGun)
         {
             txtLvlName.Text = GetLvlName();
@@ -340,7 +344,7 @@ namespace TR_SaveMaster
             chkLaserSight.Checked = IsLaserSightPresent();
             chkPistols.Checked = GetPistolsValue() != 0;
             chkRevolver.Checked = GetRevolverValue() != 0;
-            chkUzis.Checked = GetUziValue() != 0;
+            chkUzi.Checked = GetUziValue() != 0;
             chkShotgun.Checked = GetShotgunValue() != 0;
             chkCrossbow.Checked = GetCrossbowValue() != 0;
             chkGrenadeGun.Checked = GetGrenadeGunValue() != 0;
@@ -351,7 +355,7 @@ namespace TR_SaveMaster
             NumericUpDown nudUziAmmo, NumericUpDown nudGrenadeGunNormalAmmo, NumericUpDown nudGrenadeGunSuperAmmo,
             NumericUpDown nudGrenadeGunFlashAmmo, NumericUpDown nudCrossbowNormalAmmo, NumericUpDown nudCrossbowPoisonAmmo,
             NumericUpDown nudCrossbowExplosiveAmmo, NumericUpDown nudShotgunNormalAmmo, NumericUpDown nudShotgunWideshotAmmo,
-            CheckBox chkPistols, CheckBox chkUzis, CheckBox chkShotgun, CheckBox chkCrossbow, CheckBox chkGrenadeGun,
+            CheckBox chkPistols, CheckBox chkUzi, CheckBox chkShotgun, CheckBox chkCrossbow, CheckBox chkGrenadeGun,
             CheckBox chkRevolver, CheckBox chkBinoculars, CheckBox chkCrowbar, CheckBox chkLaserSight)
         {
             byte prevPistolsValue = GetPistolsValue();
@@ -363,9 +367,9 @@ namespace TR_SaveMaster
 
             WriteSaveNumber((UInt16)nudSaveNumber.Value);
             WriteNumSecrets((byte)nudSecrets.Value);
-            WriteFlares((UInt16)nudFlares.Value);
-            WriteSmallMedipacks((UInt16)nudSmallMedipacks.Value);
-            WriteLargeMedipacks((UInt16)nudLargeMedipacks.Value);
+            WriteNumFlares((UInt16)nudFlares.Value);
+            WriteNumSmallMedipacks((UInt16)nudSmallMedipacks.Value);
+            WriteNumLargeMedipacks((UInt16)nudLargeMedipacks.Value);
 
             WriteRevolverAmmo((UInt16)nudRevolverAmmo.Value);
             WriteUziAmmo((UInt16)nudUziAmmo.Value);
@@ -379,7 +383,7 @@ namespace TR_SaveMaster
             WriteShotgunWideshotAmmo((UInt16)(nudShotgunWideshotAmmo.Value * 6));
 
             WritePistolsPresent(chkPistols.Checked, prevPistolsValue);
-            WriteUzisPresent(chkUzis.Checked, prevUziValue);
+            WriteUziPresent(chkUzi.Checked, prevUziValue);
             WriteShotgunPresent(chkShotgun.Checked, prevShotgunValue);
             WriteCrossbowPresent(chkCrossbow.Checked, prevCrossbowValue);
             WriteGrenadeGunPresent(chkGrenadeGun.Checked, prevGrenadeGunValue);
@@ -474,12 +478,12 @@ namespace TR_SaveMaster
 
         private byte GetNumSecrets()
         {
-            return ReadByte(numSecretsOffset);
+            return ReadByte(secretsOffset);
         }
 
         private UInt16 GetSaveNumber()
         {
-            return ReadUInt16(saveNumOffset);
+            return ReadUInt16(saveNumberOffset);
         }
 
         private UInt16 GetNumFlares()
@@ -579,25 +583,25 @@ namespace TR_SaveMaster
 
         private void WriteSaveNumber(UInt16 value)
         {
-            WriteUInt16(saveNumOffset, value);
+            WriteUInt16(saveNumberOffset, value);
         }
 
         private void WriteNumSecrets(byte value)
         {
-            WriteByte(numSecretsOffset, value);
+            WriteByte(secretsOffset, value);
         }
 
-        private void WriteSmallMedipacks(UInt16 value)
+        private void WriteNumSmallMedipacks(UInt16 value)
         {
             WriteUInt16(smallMedipackOffset, value);
         }
 
-        private void WriteLargeMedipacks(UInt16 value)
+        private void WriteNumLargeMedipacks(UInt16 value)
         {
             WriteUInt16(largeMedipackOffset, value);
         }
 
-        private void WriteFlares(UInt16 value)
+        private void WriteNumFlares(UInt16 value)
         {
             WriteUInt16(flaresOffset, value);
         }
@@ -656,7 +660,7 @@ namespace TR_SaveMaster
         {
             if (isPresent)
             {
-                WriteByte(binocularsOffset, 0x1);
+                WriteByte(binocularsOffset, ITEM_PRESENT);
             }
             else
             {
@@ -668,7 +672,7 @@ namespace TR_SaveMaster
         {
             if (isPresent)
             {
-                WriteByte(crowbarOffset, 0x1);
+                WriteByte(crowbarOffset, ITEM_PRESENT);
             }
             else
             {
@@ -680,7 +684,7 @@ namespace TR_SaveMaster
         {
             if (isPresent)
             {
-                WriteByte(laserSightOffset, 0x1);
+                WriteByte(laserSightOffset, ITEM_PRESENT);
             }
             else
             {
@@ -690,13 +694,13 @@ namespace TR_SaveMaster
 
         private void WritePistolsPresent(bool isPresent, byte previousValue)
         {
-            if (isPresent && previousValue != 0)
+            if (isPresent)
             {
                 WriteByte(pistolsOffset, previousValue);
             }
             else if (isPresent && previousValue == 0)
             {
-                WriteByte(pistolsOffset, 0x9);
+                WriteByte(pistolsOffset, WEAPON_PRESENT);
             }
             else
             {
@@ -712,7 +716,7 @@ namespace TR_SaveMaster
             }
             else if (isPresent && previousValue == 0)
             {
-                WriteByte(shotgunOffset, 0x9);
+                WriteByte(shotgunOffset, WEAPON_PRESENT);
             }
             else
             {
@@ -720,7 +724,7 @@ namespace TR_SaveMaster
             }
         }
 
-        private void WriteUzisPresent(bool isPresent, byte previousValue)
+        private void WriteUziPresent(bool isPresent, byte previousValue)
         {
             if (isPresent && previousValue != 0)
             {
@@ -728,7 +732,7 @@ namespace TR_SaveMaster
             }
             else if (isPresent && previousValue == 0)
             {
-                WriteByte(uziOffset, 0x9);
+                WriteByte(uziOffset, WEAPON_PRESENT);
             }
             else
             {
@@ -744,7 +748,7 @@ namespace TR_SaveMaster
             }
             else if (isPresent && previousValue == 0)
             {
-                WriteByte(revolverOffset, 0x9);
+                WriteByte(revolverOffset, WEAPON_PRESENT);
             }
             else
             {
@@ -760,7 +764,7 @@ namespace TR_SaveMaster
             }
             else if (isPresent && previousValue == 0)
             {
-                WriteByte(crossbowOffset, 0x9);
+                WriteByte(crossbowOffset, WEAPON_PRESENT);
             }
             else
             {
@@ -776,7 +780,7 @@ namespace TR_SaveMaster
             }
             else if (isPresent && previousValue == 0)
             {
-                WriteByte(grenadeGunOffset, 0x9);
+                WriteByte(grenadeGunOffset, WEAPON_PRESENT);
             }
             else
             {
