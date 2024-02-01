@@ -2695,9 +2695,9 @@ namespace TR_SaveMaster
             this.chkPistolsTR3.AutoSize = true;
             this.chkPistolsTR3.Location = new System.Drawing.Point(22, 34);
             this.chkPistolsTR3.Name = "chkPistolsTR3";
-            this.chkPistolsTR3.Size = new System.Drawing.Size(56, 17);
+            this.chkPistolsTR3.Size = new System.Drawing.Size(59, 17);
             this.chkPistolsTR3.TabIndex = 0;
-            this.chkPistolsTR3.Text = "Pistols";
+            this.chkPistolsTR3.Text = "Pistols:";
             this.chkPistolsTR3.UseVisualStyleBackColor = true;
             this.chkPistolsTR3.CheckedChanged += new System.EventHandler(this.chkPistolsTR3_CheckedChanged);
             // 
@@ -3193,9 +3193,9 @@ namespace TR_SaveMaster
             this.chkPistolsTR3TLA.AutoSize = true;
             this.chkPistolsTR3TLA.Location = new System.Drawing.Point(22, 34);
             this.chkPistolsTR3TLA.Name = "chkPistolsTR3TLA";
-            this.chkPistolsTR3TLA.Size = new System.Drawing.Size(56, 17);
+            this.chkPistolsTR3TLA.Size = new System.Drawing.Size(59, 17);
             this.chkPistolsTR3TLA.TabIndex = 0;
-            this.chkPistolsTR3TLA.Text = "Pistols";
+            this.chkPistolsTR3TLA.Text = "Pistols:";
             this.chkPistolsTR3TLA.UseVisualStyleBackColor = true;
             this.chkPistolsTR3TLA.CheckedChanged += new System.EventHandler(this.chkPistolsTR3TLA_CheckedChanged);
             // 

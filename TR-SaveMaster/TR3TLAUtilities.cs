@@ -10,11 +10,11 @@ namespace TR_SaveMaster
     class TR3TLAUtilities
     {
         // Offsets
-        private const int saveNumOffset = 0x4B;
+        private const int saveNumberOffset = 0x4B;
         private const int levelIndexOffset = 0x5C6;
         private int smallMedipackOffset;
         private int largeMedipackOffset;
-        private int numFlaresOffset;
+        private int flaresOffset;
         private int weaponsConfigNumOffset;
         private int harpoonGunOffset;
         private int shotgunAmmoOffset;
@@ -25,8 +25,8 @@ namespace TR_SaveMaster
         private int grenadeLauncherAmmoOffset2;
         private int rocketLauncherAmmoOffset;
         private int rocketLauncherAmmoOffset2;
-        private int harpoonAmmoOffset;
-        private int harpoonAmmoOffset2;
+        private int harpoonGunAmmoOffset;
+        private int harpoonGunAmmoOffset2;
         private int mp5AmmoOffset;
         private int mp5AmmoOffset2;
         private int uziAmmoOffset;
@@ -111,10 +111,8 @@ namespace TR_SaveMaster
             return -1;
         }
 
-        private double GetHealthPercentage()
+        private double GetHealthPercentage(int healthOffset)
         {
-            int healthOffset = GetHealthOffset();
-
             UInt16 health = ReadUInt16(healthOffset);
             double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
 
@@ -142,7 +140,22 @@ namespace TR_SaveMaster
 
         private UInt16 GetSaveNumber()
         {
-            return ReadUInt16(saveNumOffset);
+            return ReadUInt16(saveNumberOffset);
+        }
+
+        private byte GetNumSmallMedipacks()
+        {
+            return ReadByte(smallMedipackOffset);
+        }
+
+        private byte GetNumLargeMedipacks()
+        {
+            return ReadByte(largeMedipackOffset);
+        }
+
+        private byte GetNumFlares()
+        {
+            return ReadByte(flaresOffset);
         }
 
         private bool IsHarpoonGunPresent()
@@ -174,7 +187,7 @@ namespace TR_SaveMaster
             {
                 smallMedipackOffset = 0xE6;
                 largeMedipackOffset = 0xE7;
-                numFlaresOffset = 0xE9;
+                flaresOffset = 0xE9;
 
                 weaponsConfigNumOffset = 0xED;
                 harpoonGunOffset = 0xEE;
@@ -184,13 +197,13 @@ namespace TR_SaveMaster
                 shotgunAmmoOffset = 0xDC;
                 mp5AmmoOffset = 0xDE;
                 rocketLauncherAmmoOffset = 0xE0;
-                harpoonAmmoOffset = 0xE2;
+                harpoonGunAmmoOffset = 0xE2;
                 grenadeLauncherAmmoOffset = 0xE4;
 
                 deagleAmmoOffset2 = 0x17DF;
                 uziAmmoOffset2 = 0x17E3;
                 shotgunAmmoOffset2 = 0x17E7;
-                harpoonAmmoOffset2 = 0x17EB;
+                harpoonGunAmmoOffset2 = 0x17EB;
                 rocketLauncherAmmoOffset2 = 0x17EF;
                 grenadeLauncherAmmoOffset2 = 0x17F3;
                 mp5AmmoOffset2 = 0x17F7;
@@ -201,7 +214,7 @@ namespace TR_SaveMaster
             {
                 smallMedipackOffset = 0x119;
                 largeMedipackOffset = 0x11A;
-                numFlaresOffset = 0x11C;
+                flaresOffset = 0x11C;
 
                 weaponsConfigNumOffset = 0x120;
                 harpoonGunOffset = 0x121;
@@ -211,13 +224,13 @@ namespace TR_SaveMaster
                 shotgunAmmoOffset = 0x10F;
                 mp5AmmoOffset = 0x111;
                 rocketLauncherAmmoOffset = 0x113;
-                harpoonAmmoOffset = 0x115;
+                harpoonGunAmmoOffset = 0x115;
                 grenadeLauncherAmmoOffset = 0x117;
 
                 deagleAmmoOffset2 = 0x1ACB;
                 uziAmmoOffset2 = 0x1ACF;
                 shotgunAmmoOffset2 = 0x1AD3;
-                harpoonAmmoOffset2 = 0x1AD7;
+                harpoonGunAmmoOffset2 = 0x1AD7;
                 rocketLauncherAmmoOffset2 = 0x1ADB;
                 grenadeLauncherAmmoOffset2 = 0x1ADF;
                 mp5AmmoOffset2 = 0x1AE3;
@@ -228,7 +241,7 @@ namespace TR_SaveMaster
             {
                 smallMedipackOffset = 0x14C;
                 largeMedipackOffset = 0x14D;
-                numFlaresOffset = 0x14F;
+                flaresOffset = 0x14F;
 
                 weaponsConfigNumOffset = 0x153;
                 harpoonGunOffset = 0x154;
@@ -238,13 +251,13 @@ namespace TR_SaveMaster
                 shotgunAmmoOffset = 0x142;
                 mp5AmmoOffset = 0x144;
                 rocketLauncherAmmoOffset = 0x146;
-                harpoonAmmoOffset = 0x148;
+                harpoonGunAmmoOffset = 0x148;
                 grenadeLauncherAmmoOffset = 0x14A;
 
                 deagleAmmoOffset2 = 0x1AC4;
                 uziAmmoOffset2 = 0x1AC8;
                 shotgunAmmoOffset2 = 0x1ACC;
-                harpoonAmmoOffset2 = 0x1AD0;
+                harpoonGunAmmoOffset2 = 0x1AD0;
                 rocketLauncherAmmoOffset2 = 0x1AD4;
                 grenadeLauncherAmmoOffset2 = 0x1AD8;
                 mp5AmmoOffset2 = 0x1ADC;
@@ -255,7 +268,7 @@ namespace TR_SaveMaster
             {
                 smallMedipackOffset = 0x17F;
                 largeMedipackOffset = 0x180;
-                numFlaresOffset = 0x182;
+                flaresOffset = 0x182;
 
                 weaponsConfigNumOffset = 0x186;
                 harpoonGunOffset = 0x187;
@@ -265,13 +278,13 @@ namespace TR_SaveMaster
                 shotgunAmmoOffset = 0x175;
                 mp5AmmoOffset = 0x177;
                 rocketLauncherAmmoOffset = 0x179;
-                harpoonAmmoOffset = 0x17B;
+                harpoonGunAmmoOffset = 0x17B;
                 grenadeLauncherAmmoOffset = 0x17D;
 
                 deagleAmmoOffset2 = 0x19A1;
                 uziAmmoOffset2 = 0x19A5;
                 shotgunAmmoOffset2 = 0x19A9;
-                harpoonAmmoOffset2 = 0x19AD;
+                harpoonGunAmmoOffset2 = 0x19AD;
                 rocketLauncherAmmoOffset2 = 0x19B1;
                 grenadeLauncherAmmoOffset2 = 0x19B5;
                 mp5AmmoOffset2 = 0x19B9;
@@ -282,7 +295,7 @@ namespace TR_SaveMaster
             {
                 smallMedipackOffset = 0x1B2;
                 largeMedipackOffset = 0x1B3;
-                numFlaresOffset = 0x1B5;
+                flaresOffset = 0x1B5;
 
                 weaponsConfigNumOffset = 0x1B9;
                 harpoonGunOffset = 0x1BA;
@@ -292,13 +305,13 @@ namespace TR_SaveMaster
                 shotgunAmmoOffset = 0x1A8;
                 mp5AmmoOffset = 0x1AA;
                 rocketLauncherAmmoOffset = 0x1AC;
-                harpoonAmmoOffset = 0x1AE;
+                harpoonGunAmmoOffset = 0x1AE;
                 grenadeLauncherAmmoOffset = 0x1B0;
 
                 deagleAmmoOffset2 = 0x16EB;
                 uziAmmoOffset2 = 0x16EF;
                 shotgunAmmoOffset2 = 0x16F3;
-                harpoonAmmoOffset2 = 0x16F7;
+                harpoonGunAmmoOffset2 = 0x16F7;
                 rocketLauncherAmmoOffset2 = 0x16FB;
                 grenadeLauncherAmmoOffset2 = 0x16FF;
                 mp5AmmoOffset2 = 0x1703;
@@ -309,7 +322,7 @@ namespace TR_SaveMaster
             {
                 smallMedipackOffset = 0x1E5;
                 largeMedipackOffset = 0x1E6;
-                numFlaresOffset = 0x1E8;
+                flaresOffset = 0x1E8;
 
                 weaponsConfigNumOffset = 0x1EC;
                 harpoonGunOffset = 0x1ED;
@@ -319,13 +332,13 @@ namespace TR_SaveMaster
                 shotgunAmmoOffset = 0x1DB;
                 mp5AmmoOffset = 0x1DD;
                 rocketLauncherAmmoOffset = 0x1DF;
-                harpoonAmmoOffset = 0x1E1;
+                harpoonGunAmmoOffset = 0x1E1;
                 grenadeLauncherAmmoOffset = 0x1E3;
 
                 deagleAmmoOffset2 = 0x11F5;
                 uziAmmoOffset2 = 0x11F9;
                 shotgunAmmoOffset2 = 0x11FD;
-                harpoonAmmoOffset2 = 0x1201;
+                harpoonGunAmmoOffset2 = 0x1201;
                 rocketLauncherAmmoOffset2 = 0x1205;
                 grenadeLauncherAmmoOffset2 = 0x1209;
                 mp5AmmoOffset2 = 0x120D;
@@ -481,7 +494,7 @@ namespace TR_SaveMaster
                 },
             };
 
-        private int GetAmmoIndex()
+        private int GetSecondaryAmmoIndex()
         {
             byte levelIndex = GetLevelIndex();
             int ammoIndex = -1;
@@ -516,7 +529,7 @@ namespace TR_SaveMaster
             List<int> secondaryOffsets = new List<int>();
             List<int> validOffsets = new List<int>();
 
-            int currentAmmoIndex = GetAmmoIndex();
+            int currentAmmoIndex = GetSecondaryAmmoIndex();
 
             for (int i = 0; i < 10; i++)
             {
@@ -536,7 +549,7 @@ namespace TR_SaveMaster
         private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validShotgunAmmoOffsets = GetValidAmmoOffsets(shotgunAmmoOffset, shotgunAmmoOffset2);
-            int ammoIndex = GetAmmoIndex();
+            int ammoIndex = GetSecondaryAmmoIndex();
 
             if (isPresent && ammoIndex != -1)
             {
@@ -557,7 +570,7 @@ namespace TR_SaveMaster
         private void WriteDeagleAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validDeagleAmmoOffsets = GetValidAmmoOffsets(deagleAmmoOffset, deagleAmmoOffset2);
-            int ammoIndex = GetAmmoIndex();
+            int ammoIndex = GetSecondaryAmmoIndex();
 
             if (isPresent && ammoIndex != -1)
             {
@@ -578,7 +591,7 @@ namespace TR_SaveMaster
         private void WriteGrenadeLauncherAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validGrenadeLauncherAmmoOffsets = GetValidAmmoOffsets(grenadeLauncherAmmoOffset, grenadeLauncherAmmoOffset2);
-            int ammoIndex = GetAmmoIndex();
+            int ammoIndex = GetSecondaryAmmoIndex();
 
             if (isPresent && ammoIndex != -1)
             {
@@ -599,7 +612,7 @@ namespace TR_SaveMaster
         private void WriteRocketLauncherAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validRocketLauncherAmmoOffsets = GetValidAmmoOffsets(rocketLauncherAmmoOffset, rocketLauncherAmmoOffset2);
-            int ammoIndex = GetAmmoIndex();
+            int ammoIndex = GetSecondaryAmmoIndex();
 
             if (isPresent && ammoIndex != -1)
             {
@@ -619,29 +632,29 @@ namespace TR_SaveMaster
 
         private void WriteHarpoonAmmo(bool isPresent, UInt16 ammo)
         {
-            int[] validHarpoonAmmoOffsets = GetValidAmmoOffsets(harpoonAmmoOffset, harpoonAmmoOffset2);
-            int ammoIndex = GetAmmoIndex();
+            int[] validHarpoonGunAmmoOffsets = GetValidAmmoOffsets(harpoonGunAmmoOffset, harpoonGunAmmoOffset2);
+            int ammoIndex = GetSecondaryAmmoIndex();
 
             if (isPresent && ammoIndex != -1)
             {
-                WriteUInt16(validHarpoonAmmoOffsets[0], ammo);
-                WriteUInt16(validHarpoonAmmoOffsets[1], ammo);
+                WriteUInt16(validHarpoonGunAmmoOffsets[0], ammo);
+                WriteUInt16(validHarpoonGunAmmoOffsets[1], ammo);
             }
             else if (!isPresent && ammoIndex != -1)
             {
-                WriteUInt16(validHarpoonAmmoOffsets[0], ammo);
-                WriteUInt16(validHarpoonAmmoOffsets[1], 0);
+                WriteUInt16(validHarpoonGunAmmoOffsets[0], ammo);
+                WriteUInt16(validHarpoonGunAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(validHarpoonAmmoOffsets[0], ammo);
+                WriteUInt16(validHarpoonGunAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteMP5Ammo(bool isPresent, UInt16 ammo)
         {
             int[] validMp5AmmoOffsets = GetValidAmmoOffsets(mp5AmmoOffset, mp5AmmoOffset2);
-            int ammoIndex = GetAmmoIndex();
+            int ammoIndex = GetSecondaryAmmoIndex();
 
             if (isPresent && ammoIndex != -1)
             {
@@ -662,7 +675,7 @@ namespace TR_SaveMaster
         private void WriteUziAmmo(bool isPresent, UInt16 ammo)
         {
             int[] validUziAmmoOffsets = GetValidAmmoOffsets(uziAmmoOffset, uziAmmoOffset2);
-            int ammoIndex = GetAmmoIndex();
+            int ammoIndex = GetSecondaryAmmoIndex();
 
             if (isPresent && ammoIndex != -1)
             {
@@ -684,8 +697,11 @@ namespace TR_SaveMaster
         {
             int healthOffset = GetHealthOffset();
 
-            UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
-            WriteUInt16(healthOffset, newHealth);
+            if (healthOffset != -1)
+            {
+                UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
+                WriteUInt16(healthOffset, newHealth);
+            }
         }
 
         private void SetHealthOffsets(params int[] offsets)
@@ -720,7 +736,7 @@ namespace TR_SaveMaster
 
         private UInt16 GetHarpoonGunAmmo()
         {
-            return ReadUInt16(harpoonAmmoOffset);
+            return ReadUInt16(harpoonGunAmmoOffset);
         }
 
         private UInt16 GetMP5Ammo()
@@ -733,12 +749,12 @@ namespace TR_SaveMaster
             return ReadUInt16(uziAmmoOffset);
         }
 
-        private void WriteSmallMedipacks(byte value)
+        private void WriteNumSmallMedipacks(byte value)
         {
             WriteByte(smallMedipackOffset, value);
         }
 
-        private void WriteLargeMedipacks(byte value)
+        private void WriteNumLargeMedipacks(byte value)
         {
             WriteByte(largeMedipackOffset, value);
         }
@@ -750,12 +766,12 @@ namespace TR_SaveMaster
 
         private void WriteSaveNumber(UInt16 value)
         {
-            WriteUInt16(saveNumOffset, value);
+            WriteUInt16(saveNumberOffset, value);
         }
 
-        private void WriteFlares(byte value)
+        private void WriteNumFlares(byte value)
         {
-            WriteByte(numFlaresOffset, value);
+            WriteByte(flaresOffset, value);
         }
 
         private void WriteHarpoonGunPresent(bool isPresent)
@@ -780,9 +796,9 @@ namespace TR_SaveMaster
             txtLvlName.Text = GetLvlName();
 
             nudSaveNumber.Value = GetSaveNumber();
-            nudSmallMedipacks.Value = ReadByte(smallMedipackOffset);
-            nudLargeMedipacks.Value = ReadByte(largeMedipackOffset);
-            nudFlares.Value = ReadByte(numFlaresOffset);
+            nudSmallMedipacks.Value = GetNumSmallMedipacks();
+            nudLargeMedipacks.Value = GetNumLargeMedipacks();
+            nudFlares.Value = GetNumFlares();
             nudShotgunAmmo.Value = GetShotgunAmmo() / 6;
             nudDeagleAmmo.Value = GetDeagleAmmo();
             nudGrenadeLauncherAmmo.Value = GetGrenadeLauncherAmmo();
@@ -824,9 +840,11 @@ namespace TR_SaveMaster
 
             chkHarpoonGun.Checked = IsHarpoonGunPresent();
 
-            if (GetHealthOffset() != -1)
+            int healthOffset = GetHealthOffset();
+
+            if (healthOffset != -1)
             {
-                double healthPercentage = GetHealthPercentage();
+                double healthPercentage = GetHealthPercentage(healthOffset);
                 trbHealth.Value = (UInt16)healthPercentage;
                 trbHealth.Enabled = true;
 
@@ -850,9 +868,9 @@ namespace TR_SaveMaster
             NumericUpDown nudHarpoonGunAmmo, NumericUpDown nudMP5Ammo, NumericUpDown nudUziAmmo, TrackBar trbHealth)
         {
             WriteSaveNumber((UInt16)nudSaveNumber.Value);
-            WriteFlares((byte)nudFlares.Value);
-            WriteSmallMedipacks((byte)nudSmallMedipacks.Value);
-            WriteLargeMedipacks((byte)nudLargeMedipacks.Value);
+            WriteNumFlares((byte)nudFlares.Value);
+            WriteNumSmallMedipacks((byte)nudSmallMedipacks.Value);
+            WriteNumLargeMedipacks((byte)nudLargeMedipacks.Value);
 
             byte newWeaponsConfigNum = 1;
 
@@ -875,7 +893,7 @@ namespace TR_SaveMaster
             WriteMP5Ammo(chkMP5.Checked, (UInt16)nudMP5Ammo.Value);
             WriteUziAmmo(chkUzi.Checked, (UInt16)nudUziAmmo.Value);
 
-            if (GetHealthOffset() != -1)
+            if (trbHealth.Enabled)
             {
                 double newHealthPercentage = (double)trbHealth.Value;
                 WriteHealthValue(newHealthPercentage);
