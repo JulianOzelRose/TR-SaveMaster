@@ -1083,7 +1083,6 @@
 | 0x16F                 | BYTE             | LaserSight              |
 | 0x170                 | BYTE             | Binoculars              |
 | 0x171                 | BYTE             | Crowbar                 |
-| 0x1FB                 | BYTE             | Secrets                 |
 | 0x190                 | UInt16           | Small Medipack          |
 | 0x192                 | UInt16           | Large Medipack          |
 | 0x194                 | UInt16           | Flares                  |
@@ -1097,29 +1096,30 @@
 | 0x1A8                 | UInt16           | Crossbow Poison Ammo    |
 | 0x1AA                 | UInt16           | Crossbow Explosive Ammo |
 | 0x1E7                 | BYTE             | Level Index             |
+| 0x1FB                 | BYTE             | Secrets                 |
 
 ## Tomb Raider: Chronicles
 | **File offset**       | **Type**          | **Variable**          |
 | :---                	| :---              | :---                  |
-| 0x000     	         | String      		  | Level Name            |
+| 0x000     	          | String      		  | Level Name            |
 | 0x04B                 | UInt16            | Save Number           |
-| 0x16F     	         | BYTE        		  | Pistols               |
-| 0x170     	         | BYTE  		        | Uzi                   |
-| 0x171     	         | BYTE  		        | Shotgun               |
-| 0x172     	         | BYTE  		        | Grappling Gun         |
-| 0x173     	         | BYTE  		        | HK Gun                |
-| 0x174     	         | BYTE  		        | Revolver/Deagle       |
-| 0x175     	         | BYTE  		        | LaserSight            |
-| 0x177     	         | BYTE  		        | Binoculars/Headset    |
-| 0x178     	         | BYTE  		        | Crowbar               |
-| 0x194                 | UInt16  		     | Small Medipack        |
-| 0x196    	            | UInt16  		     | Large Medipack        |
-| 0x198                 | UInt16  		     | Flares                |
-| 0x19C                 | UInt16  		     | Uzi Ammo              |
-| 0x19E     	         | UInt16  		     | Revolver/Deagle Ammo  |
-| 0x1A0     	         | UInt16  		     | Shotgun Normal Ammo   |
-| 0x1A2     	         | UInt16  		     | Shotgun Wideshot Ammo |
-| 0x1A4     	         | UInt16  		     | HK Ammo               |
-| 0x1A6     	         | UInt16  		     | Grappling Gun Ammo    |
-| 0x1C3     	         | BYTE    		     | Secrets               |
+| 0x16F     	          | BYTE        		  | Pistols               |
+| 0x170     	          | BYTE  		        | Uzi                   |
+| 0x171     	          | BYTE  		        | Shotgun               |
+| 0x172     	          | BYTE  		        | Grappling Gun         |
+| 0x173     	          | BYTE  		        | HK Gun                |
+| 0x174     	          | BYTE  		        | Revolver/Deagle       |
+| 0x175     	          | BYTE  		        | LaserSight            |
+| 0x177     	          | BYTE  		        | Binoculars/Headset    |
+| 0x178     	          | BYTE  		        | Crowbar               |
+| 0x194                 | UInt16  		      | Small Medipack        |
+| 0x196    	            | UInt16  		      | Large Medipack        |
+| 0x198                 | UInt16  		      | Flares                |
+| 0x19C                 | UInt16  		      | Uzi Ammo              |
+| 0x19E     	          | UInt16  		      | Revolver/Deagle Ammo  |
+| 0x1A0     	          | UInt16  		      | Shotgun Normal Ammo   |
+| 0x1A2     	          | UInt16  		      | Shotgun Wideshot Ammo |
+| 0x1A4     	          | UInt16  		      | HK Ammo               |
+| 0x1A6     	          | UInt16  		      | Grappling Gun Ammo    |
+| 0x1C3     	          | BYTE    		      | Secrets               |
 | 0x1EC                 | BYTE              | Level Index           |
