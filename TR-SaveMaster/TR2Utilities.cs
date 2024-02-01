@@ -10,7 +10,7 @@ namespace TR_SaveMaster
     class TR2Utilities
     {
         // Offsets
-        private const int saveNumOffset = 0x4B;
+        private const int saveNumberOffset = 0x4B;
         private const int levelIndexOffset = 0x483;
         private int weaponsConfigNumOffset;
         private int smallMedipackOffset;
@@ -979,9 +979,11 @@ namespace TR_SaveMaster
                 chkHarpoonGun.Checked = (weaponsConfigNum & HarpoonGun) != 0;
             }
 
-            if (GetHealthOffset() != -1)
+            int healthOffset = GetHealthOffset();
+
+            if (healthOffset != -1)
             {
-                double healthPercentage = GetHealthPercentage();
+                double healthPercentage = GetHealthPercentage(healthOffset);
                 trbHealth.Value = (UInt16)healthPercentage;
                 trbHealth.Enabled = true;
 
@@ -1018,8 +1020,8 @@ namespace TR_SaveMaster
 
             WriteSaveNumber((UInt16)nudSaveNumber.Value);
             WriteNumFlares((byte)nudFlares.Value);
-            WriteSmallMedipacks((byte)nudSmallMedipacks.Value);
-            WriteLargeMedipacks((byte)nudLargeMedipacks.Value);
+            WriteNumSmallMedipacks((byte)nudSmallMedipacks.Value);
+            WriteNumLargeMedipacks((byte)nudLargeMedipacks.Value);
 
             if (GetLevelIndex() != 18)
             {
@@ -1032,7 +1034,7 @@ namespace TR_SaveMaster
 
             WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
 
-            if (GetHealthOffset() != -1)
+            if (trbHealth.Enabled)
             {
                 double newHealthPercentage = (double)trbHealth.Value;
                 WriteHealthValue(newHealthPercentage);
@@ -1061,10 +1063,8 @@ namespace TR_SaveMaster
             return -1;
         }
 
-        private double GetHealthPercentage()
+        private double GetHealthPercentage(int healthOffset)
         {
-            int healthOffset = GetHealthOffset();
-
             UInt16 health = ReadUInt16(healthOffset);
             double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
 
@@ -1094,7 +1094,7 @@ namespace TR_SaveMaster
 
         private UInt16 GetSaveNumber()
         {
-            return ReadUInt16(saveNumOffset);
+            return ReadUInt16(saveNumberOffset);
         }
 
         private byte GetNumSmallMedipacks()
@@ -1149,7 +1149,7 @@ namespace TR_SaveMaster
 
         private void WriteSaveNumber(UInt16 value)
         {
-            WriteUInt16(saveNumOffset, value);
+            WriteUInt16(saveNumberOffset, value);
         }
 
         private void WriteNumFlares(byte value)
@@ -1157,12 +1157,12 @@ namespace TR_SaveMaster
             WriteByte(flaresOffset, value);
         }
 
-        private void WriteSmallMedipacks(byte value)
+        private void WriteNumSmallMedipacks(byte value)
         {
             WriteByte(smallMedipackOffset, value);
         }
 
-        private void WriteLargeMedipacks(byte value)
+        private void WriteNumLargeMedipacks(byte value)
         {
             WriteByte(largeMedipackOffset, value);
         }
@@ -1291,8 +1291,11 @@ namespace TR_SaveMaster
         {
             int healthOffset = GetHealthOffset();
 
-            UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
-            WriteUInt16(healthOffset, newHealth);
+            if (healthOffset != -1)
+            {
+                UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
+                WriteUInt16(healthOffset, newHealth);
+            }
         }
 
         private static bool IsNumericExtension(string fileName)
