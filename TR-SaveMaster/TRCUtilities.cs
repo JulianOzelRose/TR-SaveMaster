@@ -844,7 +844,7 @@ namespace TR_SaveMaster
             }
             else if (isPresent && previousValue == 0)
             {
-                WriteByte(revolverOffset, WEAPON_PRESENT_WITH_SIGHT);
+                WriteByte(revolverOffset, WEAPON_PRESENT);
             }
             else
             {
@@ -860,7 +860,7 @@ namespace TR_SaveMaster
             }
             else if (isPresent && previousValue == 0)
             {
-                WriteByte(deagleOffset, WEAPON_PRESENT_WITH_SIGHT);
+                WriteByte(deagleOffset, WEAPON_PRESENT);
             }
             else
             {
