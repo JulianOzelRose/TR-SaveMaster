@@ -191,14 +191,14 @@ private int GetHealthOffset()
 {
     for (int offset = MIN_HEALTH_OFFSET; offset <= MAX_HEALTH_OFFSET; offset++)
     {
-        byte byteFlag1 = ReadByte(offset - 7);
-        byte byteFlag2 = ReadByte(offset - 6);
+        UInt16 value = ReadUInt16(offset);
 
-        if (IsKnownByteFlagPattern(byteFlag1, byteFlag2))
+        if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
         {
-            UInt16 value = ReadUInt16(offset);
+            byte byteFlag1 = ReadByte(offset - 7);
+            byte byteFlag2 = ReadByte(offset - 6);
 
-            if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
+            if (IsKnownByteFlagPattern(byteFlag1, byteFlag2))
             {
                 return offset;
             }
@@ -300,7 +300,7 @@ private int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
     List<int> secondaryOffsets = new List<int>();
     List<int> validOffsets = new List<int>();
 
-    int currentAmmoIndex = GetAmmoIndex();
+    int currentAmmoIndex = GetSecondaryAmmoIndex();
 
     for (int i = 0; i < 10; i++)
     {
