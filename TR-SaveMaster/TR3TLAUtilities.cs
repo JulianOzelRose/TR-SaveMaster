@@ -355,45 +355,55 @@ namespace TR_SaveMaster
                     [0] = new List<int[]>
                     {
                         new int[] { 0x17FF, 0x1800, 0x1801, 0x1802 },
+                        new int[] { 0x1809, 0x180A, 0x180B, 0x180C },
                     },
                     [1] = new List<int[]>
                     {
                         new int[] { 0x1811, 0x1812, 0x1813, 0x1814 },
+                        new int[] { 0x181B, 0x181C, 0x181D, 0x181E },
                     },
                     [2] = new List<int[]>
                     {
                         new int[] { 0x1823, 0x1824, 0x1825, 0x1826 },
+                        new int[] { 0x182D, 0x182E, 0x182F, 0x1830 },
                     },
                     [3] = new List<int[]>
                     {
                         new int[] { 0x1835, 0x1836, 0x1837, 0x1838 },
+                        new int[] { 0x183F, 0x1840, 0x1841, 0x1842 },
                     },
                     [4] = new List<int[]>
                     {
                         new int[] { 0x1847, 0x1848, 0x1849, 0x184A },
+                        new int[] { 0x1851, 0x1852, 0x1853, 0x1854 },
                     },
                 },
                 [2] = new Dictionary<int, List<int[]>>              // Willard's Lair
                 {
                     [0] = new List<int[]>
                     {
-                        new int[] { 0x1AEB, 0x1AEC, 0x1AED, 0x1AEF },
+                        new int[] { 0x1AEB, 0x1AEC, 0x1AED, 0x1AEE },
+                        new int[] { 0x1AF5, 0x1AF6, 0x1AF7, 0x1AF8 },
                     },
                     [1] = new List<int[]>
                     {
                         new int[] { 0x1AFD, 0x1AFE, 0x1AFF, 0x1B00 },
+                        new int[] { 0x1B07, 0x1B08, 0x1B09, 0x1B0A },
                     },
                     [2] = new List<int[]>
                     {
                         new int[] { 0x1B0F, 0x1B10, 0x1B11, 0x1B12 },
+                        new int[] { 0x1B19, 0x1B1A, 0x1B1B, 0x1B1C },
                     },
                     [3] = new List<int[]>
                     {
                         new int[] { 0x1B21, 0x1B22, 0x1B23, 0x1B24 },
+                        new int[] { 0x1B2B, 0x1B2C, 0x1B2D, 0x1B2E },
                     },
                     [4] = new List<int[]>
                     {
                         new int[] { 0x1B33, 0x1B34, 0x1B35, 0x1B36 },
+                        new int[] { 0x1B3D, 0x1B3E, 0x1B3F, 0x1B40 },
                     },
                 },
                 [3] = new Dictionary<int, List<int[]>>              // Shakespeare Cliff
@@ -401,22 +411,27 @@ namespace TR_SaveMaster
                     [0] = new List<int[]>
                     {
                         new int[] { 0x1AE4, 0x1AE5, 0x1AE6, 0x1AE7 },
+                        new int[] { 0x1AEE, 0x1AEF, 0x1AF0, 0x1AF1 },
                     },
                     [1] = new List<int[]>
                     {
                         new int[] { 0x1AF6, 0x1AF7, 0x1AF8, 0x1AF9 },
+                        new int[] { 0x1B00, 0x1B01, 0x1B02, 0x1B03 },
                     },
                     [2] = new List<int[]>
                     {
                         new int[] { 0x1B08, 0x1B09, 0x1B0A, 0x1B0B },
+                        new int[] { 0x1B12, 0x1B13, 0x1B14, 0x1B15 },
                     },
                     [3] = new List<int[]>
                     {
                         new int[] { 0x1B1A, 0x1B1B, 0x1B1C, 0x1B1D },
+                        new int[] { 0x1B24, 0x1B25, 0x1B26, 0x1B27 },
                     },
                     [4] = new List<int[]>
                     {
                         new int[] { 0x1B2C, 0x1B2D, 0x1B2E, 0x1B2F },
+                        new int[] { 0x1B36, 0x1B37, 0x1B38, 0x1B39 },
                     },
                 },
                 [4] = new Dictionary<int, List<int[]>>              // Sleeping with the Fishes
@@ -424,18 +439,22 @@ namespace TR_SaveMaster
                     [0] = new List<int[]>
                     {
                         new int[] { 0x19C1, 0x19C2, 0x19C3, 0x19C4 },
+                        new int[] { 0x19CB, 0x19CC, 0x19CD, 0x19CE },
                     },
                     [1] = new List<int[]>
                     {
                         new int[] { 0x19D3, 0x19D4, 0x19D5, 0x19D6 },
+                        new int[] { 0x19DD, 0x19DE, 0x19DF, 0x19E0 },
                     },
                     [2] = new List<int[]>
                     {
                         new int[] { 0x19E5, 0x19E6, 0x19E7, 0x19E8 },
+                        new int[] { 0x19EF, 0x19F0, 0x19F1, 0x19F2 },
                     },
                     [3] = new List<int[]>
                     {
                         new int[] { 0x19F7, 0x19F8, 0x19F9, 0x19FA },
+                        new int[] { 0x1A01, 0x1A02, 0x1A03, 0x1A04 },
                     },
                     [4] = new List<int[]>
                     {
@@ -453,26 +472,32 @@ namespace TR_SaveMaster
                     [0] = new List<int[]>
                     {
                         new int[] { 0x170B, 0x170C, 0x170D, 0x170E },
+                        new int[] { 0x1715, 0x1716, 0x1717, 0x1718 },
                     },
                     [1] = new List<int[]>
                     {
                         new int[] { 0x171D, 0x171E, 0x171F, 0x1720 },
+                        new int[] { 0x1727, 0x1728, 0x1729, 0x172A },
                     },
                     [2] = new List<int[]>
                     {
                         new int[] { 0x172F, 0x1730, 0x1731, 0x1732 },
+                        new int[] { 0x1739, 0x173A, 0x173B, 0x173C },
                     },
                     [3] = new List<int[]>
                     {
                         new int[] { 0x1741, 0x1742, 0x1743, 0x1744 },
+                        new int[] { 0x174B, 0x174C, 0x174D, 0x174E },
                     },
                     [4] = new List<int[]>
                     {
                         new int[] { 0x1753, 0x1754, 0x1755, 0x1756 },
+                        new int[] { 0x175D, 0x175E, 0x175F, 0x1760 },
                     },
                     [5] = new List<int[]>
                     {
                         new int[] { 0x1765, 0x1766, 0x1767, 0x1768 },
+                        new int[] { 0x176F, 0x1770, 0x1771, 0x1772 },
                     },
                 },
                 [6] = new Dictionary<int, List<int[]>>              // Reunion
@@ -480,6 +505,7 @@ namespace TR_SaveMaster
                     [0] = new List<int[]>
                     {
                         new int[] { 0x1215, 0x1216, 0x1217, 0x1218 },
+                        new int[] { 0x121F, 0x1220, 0x1221, 0x1222 },
                     },
                     [1] = new List<int[]>
                     {
