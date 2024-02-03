@@ -37,6 +37,9 @@ namespace TR_SaveMaster
         // Strings
         private string savegamePath;
 
+        // Ammo index
+        private int secondaryAmmoIndex = -1;
+
         public void SetSavegamePath(string path)
         {
             savegamePath = path;
@@ -119,6 +122,13 @@ namespace TR_SaveMaster
                 flaresOffset = 0x8C;
                 weaponsConfigNumOffset = 0x8F;
 
+                m16AmmoOffset2 = 0x1C32;
+                grenadeLauncherAmmoOffset2 = 0x1C2E;
+                harpoonGunAmmoOffset2 = 0x1C2A;
+                shotgunAmmoOffset2 = 0x1C26;
+                uziAmmoOffset2 = 0x1C22;
+                automaticPistolsAmmoOffset2 = 0x1C1E;
+
                 SetHealthOffsets(0xE54, 0xE60, 0xE6C, 0xE84);
             }
             else if (levelIndex == 2)   // Fool's Gold
@@ -133,6 +143,13 @@ namespace TR_SaveMaster
                 largeMedipackOffset = 0xB6;
                 flaresOffset = 0xB8;
                 weaponsConfigNumOffset = 0xBB;
+
+                m16AmmoOffset2 = 0x1C3C;
+                grenadeLauncherAmmoOffset2 = 0x1C38;
+                harpoonGunAmmoOffset2 = 0x1C34;
+                shotgunAmmoOffset2 = 0x1C30;
+                uziAmmoOffset2 = 0x1C2C;
+                automaticPistolsAmmoOffset2 = 0x1C28;
 
                 SetHealthOffsets(0x12D6, 0x12E2, 0x12EE, 0x12FA);
             }
@@ -149,6 +166,13 @@ namespace TR_SaveMaster
                 flaresOffset = 0xE4;
                 weaponsConfigNumOffset = 0xE7;
 
+                m16AmmoOffset2 = 0x1B2C;
+                grenadeLauncherAmmoOffset2 = 0x1B28;
+                harpoonGunAmmoOffset2 = 0x1B24;
+                shotgunAmmoOffset2 = 0x1B20;
+                uziAmmoOffset2 = 0x1B1C;
+                automaticPistolsAmmoOffset2 = 0x1B18;
+
                 SetHealthOffsets(0x1490, 0x14B4, 0x14C0, 0x14CC);
             }
             else if (levelIndex == 4)   // Kingdom
@@ -163,6 +187,13 @@ namespace TR_SaveMaster
                 largeMedipackOffset = 0x10E;
                 flaresOffset = 0x110;
                 weaponsConfigNumOffset = 0x113;
+
+                m16AmmoOffset2 = 0x138A;
+                grenadeLauncherAmmoOffset2 = 0x1386;
+                harpoonGunAmmoOffset2 = 0x1382;
+                shotgunAmmoOffset2 = 0x137E;
+                uziAmmoOffset2 = 0x137A;
+                automaticPistolsAmmoOffset2 = 0x1376;
 
                 SetHealthOffsets(0x600);
             }
@@ -179,287 +210,82 @@ namespace TR_SaveMaster
                 flaresOffset = 0x13C;
                 weaponsConfigNumOffset = 0x13F;
 
+                m16AmmoOffset2 = 0x157C;
+                grenadeLauncherAmmoOffset2 = 0x1578;
+                harpoonGunAmmoOffset2 = 0x1574;
+                shotgunAmmoOffset2 = 0x1570;
+                uziAmmoOffset2 = 0x156C;
+                automaticPistolsAmmoOffset2 = 0x1568;
+
                 SetHealthOffsets(0x8AE, 0x8BA, 0x8C6);
             }
-
-            SetSecondaryAmmoOffsets();
         }
 
-        private readonly Dictionary<byte, Dictionary<int, List<int[]>>> ammoIndexData =
-            new Dictionary<byte, Dictionary<int, List<int[]>>>
-            {
-                [1] = new Dictionary<int, List<int[]>>              // The Cold War
-                {
-                    [0x1C3A] = new List<int[]>
-                    {
-                        new int[] { 0x1C3A, 0x1C3B, 0x1C3C, 0x1C3D },
-                        new int[] { 0x1C44, 0x1C45, 0x1C46, 0x1C47 },
-                    },
-                    [0x1C46] = new List<int[]>
-                    {
-                        new int[] { 0x1C46, 0x1C47, 0x1C48, 0x1C49 },
-                        new int[] { 0x1C50, 0x1C51, 0x1C52, 0x1C53 },
-                    },
-                    [0x1C50] = new List<int[]>
-                    {
-                        new int[] { 0x1C50, 0x1C51, 0x1C52, 0x1C53 },
-                        new int[] { 0x1C5A, 0x1C5B, 0x1C5C, 0x1C5D },
-                    },
-                    [0x1C52] = new List<int[]>
-                    {
-                        new int[] { 0x1C52, 0x1C53, 0x1C54, 0x1C55 },
-                        new int[] { 0x1C5C, 0x1C5D, 0x1C5E, 0x1C5F },
-                    },
-                    [0x1C58] = new List<int[]>
-                    {
-                        new int[] { 0x1C58, 0x1C59, 0x1C5A, 0x1C5B },
-                        new int[] { 0x1C62, 0x1C63, 0x1C64, 0x1C65 },
-                    },
-                    [0x1C5E] = new List<int[]>
-                    {
-                        new int[] { 0x1C5E, 0x1C5F, 0x1C60, 0x1C61 },
-                        new int[] { 0x1C68, 0x1C69, 0x1C6A, 0x1C6B },
-                    },
-                    [0x1C6A] = new List<int[]>
-                    {
-                        new int[] { 0x1C6A, 0x1C6B, 0x1C6C, 0x1C6D },
-                        new int[] { 0x1C74, 0x1C75, 0x1C76, 0x1C77 },
-                    },
-                    [0x1C76] = new List<int[]>
-                    {
-                        new int[] { 0x1C76, 0x1C77, 0x1C78, 0x1C79 },
-                        new int[] { 0x1C80, 0x1C81, 0x1C82, 0x1C83 },
-                    },
-                    [0x1C82] = new List<int[]>
-                    {
-                        new int[] { 0x1C82, 0x1C83, 0x1C84, 0x1C85 },
-                        new int[] { 0x1C8C, 0x1C8D, 0x1C8E, 0x1C8F },
-                    },
-                    [0x1C8E] = new List<int[]>
-                    {
-                        new int[] { 0x1C8E, 0x1C8F, 0x1C90, 0x1C91 },
-                        new int[] { 0x1C98, 0x1C99, 0x1C9A, 0x1C9B },
-                    },
-                    [0x1C9A] = new List<int[]>
-                    {
-                        new int[] { 0x1C9A, 0x1C9B, 0x1C9C, 0x1C9D },
-                        new int[] { 0x1CA4, 0x1CA5, 0x1CA6, 0x1CA7 },
-                    },
-                },
-                [2] = new Dictionary<int, List<int[]>>              // Fool's Gold
-                {
-                    [0x1C44] = new List<int[]>
-                    {
-                        new int[] { 0x1C44, 0x1C45, 0x1C46, 0x1C47 },
-                        new int[] { 0x1C4E, 0x1C4F, 0x1C50, 0x1C51 },
-                    },
-                    [0x1C50] = new List<int[]>
-                    {
-                        new int[] { 0x1C50, 0x1C51, 0x1C52, 0x1C53 },
-                        new int[] { 0x1C5A, 0x1C5B, 0x1C5C, 0x1C5D },
-                    },
-                    [0x1C56] = new List<int[]>
-                    {
-                        new int[] { 0x1C56, 0x1C57, 0x1C58, 0x1C59 },
-                        new int[] { 0x1C60, 0x1C61, 0x1C62, 0x1C63 },
-                    },
-                    [0x1C5C] = new List<int[]>
-                    {
-                        new int[] { 0x1C5C, 0x1C5D, 0x1C5E, 0x1C5F },
-                        new int[] { 0x1C66, 0x1C67, 0x1C68, 0x1C69 },
-                    },
-                    [0x1C62] = new List<int[]>
-                    {
-                        new int[] { 0x1C62, 0x1C63, 0x1C64, 0x1C65 },
-                        new int[] { 0x1C6C, 0x1C6D, 0x1C6E, 0x1C6F },
-                    },
-                    [0x1C68] = new List<int[]>
-                    {
-                        new int[] { 0x1C68, 0x1C69, 0x1C6A, 0x1C6B },
-                        new int[] { 0x1C72, 0x1C73, 0x1C74, 0x1C75 },
-                    },
-                    [0x1C6E] = new List<int[]>
-                    {
-                        new int[] { 0x1C6E, 0x1C6F, 0x1C70, 0x1C71 },
-                        new int[] { 0x1C78, 0x1C79, 0x1C7A, 0x1C7B },
-                    },
-                    [0x1C74] = new List<int[]>
-                    {
-                        new int[] { 0x1C74, 0x1C75, 0x1C76, 0x1C77 },
-                        new int[] { 0x1C7E, 0x1C7F, 0x1C80, 0x1C81 },
-                    },
-                    [0x1C7A] = new List<int[]>
-                    {
-                        new int[] { 0x1C84, 0x1C85, 0x1C86, 0x1C87 },
-                        new int[] { 0x1C7A, 0x1C7B, 0x1C7C, 0x1C7D },
-                    },
-                    [0x1C86] = new List<int[]>
-                    {
-                        new int[] { 0x1C86, 0x1C87, 0x1C88, 0x1C89 },
-                        new int[] { 0x1C90, 0x1C91, 0x1C92, 0x1C93 },
-                    },
-                    [0x1C92] = new List<int[]>
-                    {
-                        new int[] { 0x1C92, 0x1C93, 0x1C94, 0x1C95 },
-                        new int[] { 0x1C9C, 0x1C9D, 0x1C9E, 0x1C9F },
-                    },
-                    [0x1C9E] = new List<int[]>
-                    {
-                        new int[] { 0x1C9E, 0x1C9F, 0x1CA0, 0x1CA1 },
-                        new int[] { 0x1CA8, 0x1CA9, 0x1CAA, 0x1CAB },
-                    },
-                    [0x1CAA] = new List<int[]>
-                    {
-                        new int[] { 0x1CAA, 0x1CAB, 0x1CAC, 0x1CAD },
-                        new int[] { 0x1CB4, 0x1CB5, 0x1CB6, 0x1CB7 },
-                    },
-                    [0x1CB6] = new List<int[]>
-                    {
-                        new int[] { 0x1CB6, 0x1CB7, 0x1CB8, 0x1CB9 },
-                        new int[] { 0x1CC0, 0x1CC1, 0x1CC2, 0x1CC3 },
-                    },
-                },
-                [3] = new Dictionary<int, List<int[]>>              // Furnace of the Gods
-                {
-                    [0x1B34] = new List<int[]>
-                    {
-                        new int[] { 0x1B34, 0x1B35, 0x1B36, 0x1B37 },
-                        new int[] { 0x1B3E, 0x1B3F, 0x1B40, 0x1B41 },
-                    },
-                    [0x1B40] = new List<int[]>
-                    {
-                        new int[] { 0x1B40, 0x1B41, 0x1B42, 0x1B43 },
-                        new int[] { 0x1B4A, 0x1B4B, 0x1B4C, 0x1B4D },
-                    },
-                    [0x1B4C] = new List<int[]>
-                    {
-                        new int[] { 0x1B4C, 0x1B4D, 0x1B4E, 0x1B4F },
-                        new int[] { 0x1B56, 0x1B57, 0x1B58, 0x1B59 },
-                    },
-                    [0x1B58] = new List<int[]>
-                    {
-                        new int[] { 0x1B58, 0x1B59, 0x1B5A, 0x1B5B },
-                        new int[] { 0x1B62, 0x1B63, 0x1B64, 0x1B65 },
-                    },
-                    [0x1B64] = new List<int[]>
-                    {
-                        new int[] { 0x1B64, 0x1B65, 0x1B66, 0x1B67 },
-                        new int[] { 0x1B6E, 0x1B6F, 0x1B70, 0x1B71 },
-                    },
-                    [0x1B70] = new List<int[]>
-                    {
-                        new int[] { 0x1B70, 0x1B71, 0x1B72, 0x1B73 },
-                        new int[] { 0x1B7A, 0x1B7B, 0x1B7C, 0x1B7D },
-                    },
-                },
-                [4] = new Dictionary<int, List<int[]>>              // Kingdom
-                {
-                    [0x1392] = new List<int[]>
-                    {
-                        new int[] { 0x1392, 0x1393, 0x1394, 0x1395 },
-                        new int[] { 0x139C, 0x139D, 0x139E, 0x139F },
-                    },
-                    [0x139E] = new List<int[]>
-                    {
-                        new int[] { 0x139E, 0x139F, 0x13A0, 0x13A1 },
-                        new int[] { 0x13A8, 0x13A9, 0x13AA, 0x13AB },
-                    },
-                    [0x13AA] = new List<int[]>
-                    {
-                        new int[] { 0x13AA, 0x13AB, 0x13AC, 0x13AD },
-                        new int[] { 0x13B4, 0x13B5, 0x13B6, 0x13B7 },
-                    },
-                    [0x13B6] = new List<int[]>
-                    {
-                        new int[] { 0x13B6, 0x13B7, 0x13B8, 0x13B9 },
-                        new int[] { 0x13C0, 0x13C1, 0x13C2, 0x13C3 },
-                    },
-                    [0x13C2] = new List<int[]>
-                    {
-                        new int[] { 0x13C2, 0x13C3, 0x13C4, 0x13C5 },
-                        new int[] { 0x13CC, 0x13CD, 0x13CE, 0x13CF },
-                    },
-                    [0x13CE] = new List<int[]>
-                    {
-                        new int[] { 0x13CE, 0x13CF, 0x13D0, 0x13D1 },
-                        new int[] { 0x13D8, 0x13D9, 0x13DA, 0x13DB },
-                    }
-                },
-                [5] = new Dictionary<int, List<int[]>>              // Nightmare In Vegas
-                {
-                    [0x1584] = new List<int[]>
-                    {
-                        new int[] { 0x1584, 0x1585, 0x1586, 0x1587 },
-                        new int[] { 0x158E, 0x158F, 0x1590, 0x1591 },
-                    },
-                    [0x1590] = new List<int[]>
-                    {
-                        new int[] { 0x1590, 0x1591, 0x1592, 0x1593 },
-                        new int[] { 0x159A, 0x159B, 0x159C, 0x159D },
-                    },
-                    [0x159C] = new List<int[]>
-                    {
-                        new int[] { 0x159C, 0x159D, 0x159E, 0x159F },
-                        new int[] { 0x15A6, 0x15A7, 0x15A8, 0x15A9 },
-                    },
-                    [0x15A8] = new List<int[]>
-                    {
-                        new int[] { 0x15A8, 0x15A9, 0x15AA, 0x15AB },
-                        new int[] { 0x15B2, 0x15B3, 0x15B4, 0x15B5 },
-                    },
-                    [0x15B4] = new List<int[]>
-                    {
-                        new int[] { 0x15B4, 0x15B5, 0x15B6, 0x15B7 },
-                        new int[] { 0x15BE, 0x15BF, 0x15C0, 0x15C1 },
-                    },
-                    [0x15C0] = new List<int[]>
-                    {
-                        new int[] { 0x15C0, 0x15C1, 0x15C2, 0x15C3 },
-                        new int[] { 0x15CA, 0x15CB, 0x15CC, 0x15CD },
-                    },
-                },
-            };
+        private readonly Dictionary<byte, int[]> ammoIndexData = new Dictionary<byte, int[]>
+        {
+            { 1, new int[] { 0x1C3A, 0x1C3B, 0x1C3C, 0x1C3D } },    // The Cold War
+            { 2, new int[] { 0x1C44, 0x1C45, 0x1C46, 0x1C47 } },    // Fool's Gold
+            { 3, new int[] { 0x1B34, 0x1B35, 0x1B36, 0x1B37 } },    // Furnace of the Gods
+            { 4, new int[] { 0x1392, 0x1393, 0x1394, 0x1395 } },    // Kingdom
+            { 5, new int[] { 0x1584, 0x1585, 0x1586, 0x1587 } },    // Nightmare in Vegas
+        };
 
-        private int GetSecondaryAmmoIndexMarker()
+        private int GetSecondaryAmmoIndex()
         {
             byte levelIndex = GetLevelIndex();
-            int ammoIndexMarker = -1;
 
             if (ammoIndexData.ContainsKey(levelIndex))
             {
-                Dictionary<int, List<int[]>> indexData = ammoIndexData[levelIndex];
-                var enumerator = indexData.GetEnumerator();
+                int[] indexData = ammoIndexData[levelIndex];
 
-                for (int index = 0; index < indexData.Count && enumerator.MoveNext(); index++)
+                int[] offsets1 = new int[indexData.Length];
+                int[] offsets2 = new int[indexData.Length];
+
+                for (int index = 0; index < 20; index++)
                 {
-                    var kvp = enumerator.Current;
-                    int key = kvp.Key;
+                    Array.Copy(indexData, offsets1, indexData.Length);
 
-                    List<int[]> offsetsList = kvp.Value;
-
-                    bool isMatch = offsetsList.Any(offsets => offsets.All(offset => ReadByte(offset) == 0xFF));
-
-                    if (isMatch)
+                    for (int i = 0; i < indexData.Length; i++)
                     {
-                        ammoIndexMarker = key;
-                        break;
+                        offsets2[i] = offsets1[i] + 0xA;
+
+                        offsets1[i] += (index * 0x6);
+                        offsets2[i] += (index * 0x6);
+                    }
+
+                    if (offsets1.All(offset => ReadByte(offset) == 0xFF))
+                    {
+                        return index;
+                    }
+
+                    if (offsets2.All(offset => ReadByte(offset) == 0xFF))
+                    {
+                        return index;
                     }
                 }
             }
 
-            return ammoIndexMarker;
+            return -1;
         }
 
-        private void SetSecondaryAmmoOffsets()
+        private int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
         {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+            List<int> secondaryOffsets = new List<int>();
+            List<int> validOffsets = new List<int>();
 
-            m16AmmoOffset2 = secondaryAmmoIndexMarker - 8;
-            grenadeLauncherAmmoOffset2 = secondaryAmmoIndexMarker - 12;
-            harpoonGunAmmoOffset2 = secondaryAmmoIndexMarker - 16;
-            shotgunAmmoOffset2 = secondaryAmmoIndexMarker - 20;
-            uziAmmoOffset2 = secondaryAmmoIndexMarker - 24;
-            automaticPistolsAmmoOffset2 = secondaryAmmoIndexMarker - 28;
+            for (int i = 0; i < 20; i++)
+            {
+                secondaryOffsets.Add(baseSecondaryOffset + i * 0x6);
+            }
+
+            validOffsets.Add(primaryOffset);
+
+            if (secondaryAmmoIndex != -1)
+            {
+                validOffsets.Add(secondaryOffsets[secondaryAmmoIndex]);
+            }
+
+            return validOffsets.ToArray();
         }
 
         private void WriteNumSmallMedipacks(byte value)
@@ -484,121 +310,121 @@ namespace TR_SaveMaster
 
         private void WriteM16Ammo(bool isPresent, UInt16 ammo)
         {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+            int[] validM16AmmoOffsets = GetValidAmmoOffsets(m16AmmoOffset, m16AmmoOffset2);
 
-            if (isPresent && secondaryAmmoIndexMarker != -1)
+            if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(m16AmmoOffset, ammo);
-                WriteUInt16(m16AmmoOffset2, ammo);
+                WriteUInt16(validM16AmmoOffsets[0], ammo);
+                WriteUInt16(validM16AmmoOffsets[1], ammo);
             }
-            else if (!isPresent && secondaryAmmoIndexMarker != -1)
+            else if (!isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(m16AmmoOffset, ammo);
-                WriteUInt16(m16AmmoOffset2, 0);
+                WriteUInt16(validM16AmmoOffsets[0], ammo);
+                WriteUInt16(validM16AmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(m16AmmoOffset, ammo);
+                WriteUInt16(validM16AmmoOffsets[0], ammo);
             }
         }
 
         private void WriteGrenadeLauncherAmmo(bool isPresent, UInt16 ammo)
         {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+            int[] validGrenadeLauncherAmmoOffsets = GetValidAmmoOffsets(grenadeLauncherAmmoOffset, grenadeLauncherAmmoOffset2);
 
-            if (isPresent && secondaryAmmoIndexMarker != -1)
+            if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(grenadeLauncherAmmoOffset, ammo);
-                WriteUInt16(grenadeLauncherAmmoOffset2, ammo);
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[0], ammo);
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[1], ammo);
             }
-            else if (!isPresent && secondaryAmmoIndexMarker != -1)
+            else if (!isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(grenadeLauncherAmmoOffset, ammo);
-                WriteUInt16(grenadeLauncherAmmoOffset2, 0);
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[0], ammo);
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(grenadeLauncherAmmoOffset, ammo);
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteHarpoonGunAmmo(bool isPresent, UInt16 ammo)
         {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+            int[] validHarpoonGunAmmoOffsets = GetValidAmmoOffsets(harpoonGunAmmoOffset, harpoonGunAmmoOffset2);
 
-            if (isPresent && secondaryAmmoIndexMarker != -1)
+            if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(harpoonGunAmmoOffset, ammo);
-                WriteUInt16(harpoonGunAmmoOffset2, ammo);
+                WriteUInt16(validHarpoonGunAmmoOffsets[0], ammo);
+                WriteUInt16(validHarpoonGunAmmoOffsets[1], ammo);
             }
-            else if (!isPresent && secondaryAmmoIndexMarker != -1)
+            else if (!isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(harpoonGunAmmoOffset, ammo);
-                WriteUInt16(harpoonGunAmmoOffset2, 0);
+                WriteUInt16(validHarpoonGunAmmoOffsets[0], ammo);
+                WriteUInt16(validHarpoonGunAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(harpoonGunAmmoOffset, ammo);
+                WriteUInt16(validHarpoonGunAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
         {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+            int[] validShotgunAmmoOffsets = GetValidAmmoOffsets(shotgunAmmoOffset, shotgunAmmoOffset2);
 
-            if (isPresent && secondaryAmmoIndexMarker != -1)
+            if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(shotgunAmmoOffset, ammo);
-                WriteUInt16(shotgunAmmoOffset2, ammo);
+                WriteUInt16(validShotgunAmmoOffsets[0], ammo);
+                WriteUInt16(validShotgunAmmoOffsets[1], ammo);
             }
-            else if (!isPresent && secondaryAmmoIndexMarker != -1)
+            else if (!isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(shotgunAmmoOffset, ammo);
-                WriteUInt16(shotgunAmmoOffset2, 0);
+                WriteUInt16(validShotgunAmmoOffsets[0], ammo);
+                WriteUInt16(validShotgunAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(shotgunAmmoOffset, ammo);
+                WriteUInt16(validShotgunAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteAutomaticPistolsAmmo(bool isPresent, UInt16 ammo)
         {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+            int[] validAutomaticPistolsAmmoOffsets = GetValidAmmoOffsets(automaticPistolsAmmoOffset, automaticPistolsAmmoOffset2);
 
-            if (isPresent && secondaryAmmoIndexMarker != -1)
+            if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(automaticPistolsAmmoOffset, ammo);
-                WriteUInt16(automaticPistolsAmmoOffset2, ammo);
+                WriteUInt16(validAutomaticPistolsAmmoOffsets[0], ammo);
+                WriteUInt16(validAutomaticPistolsAmmoOffsets[1], ammo);
             }
-            else if (!isPresent && secondaryAmmoIndexMarker != -1)
+            else if (!isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(automaticPistolsAmmoOffset, ammo);
-                WriteUInt16(automaticPistolsAmmoOffset2, 0);
+                WriteUInt16(validAutomaticPistolsAmmoOffsets[0], ammo);
+                WriteUInt16(validAutomaticPistolsAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(automaticPistolsAmmoOffset, ammo);
+                WriteUInt16(validAutomaticPistolsAmmoOffsets[0], ammo);
             }
         }
 
         private void WriteUziAmmo(bool isPresent, UInt16 ammo)
         {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
+            int[] validUziAmmoOffsets = GetValidAmmoOffsets(uziAmmoOffset, uziAmmoOffset2);
 
-            if (isPresent && secondaryAmmoIndexMarker != -1)
+            if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(uziAmmoOffset, ammo);
-                WriteUInt16(uziAmmoOffset2, ammo);
+                WriteUInt16(validUziAmmoOffsets[0], ammo);
+                WriteUInt16(validUziAmmoOffsets[1], ammo);
             }
-            else if (!isPresent && secondaryAmmoIndexMarker != -1)
+            else if (!isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(uziAmmoOffset, ammo);
-                WriteUInt16(uziAmmoOffset2, 0);
+                WriteUInt16(validUziAmmoOffsets[0], ammo);
+                WriteUInt16(validUziAmmoOffsets[1], 0);
             }
             else
             {
-                WriteUInt16(uziAmmoOffset, ammo);
+                WriteUInt16(validUziAmmoOffsets[0], ammo);
             }
         }
 
@@ -713,7 +539,6 @@ namespace TR_SaveMaster
                 chkM16.Enabled = false;
                 chkGrenadeLauncher.Enabled = false;
                 chkHarpoonGun.Enabled = false;
-
                 nudM16Ammo.Enabled = false;
                 nudGrenadeLauncherAmmo.Enabled = false;
                 nudHarpoonGunAmmo.Enabled = false;
@@ -723,7 +548,6 @@ namespace TR_SaveMaster
                 chkM16.Enabled = true;
                 chkGrenadeLauncher.Enabled = true;
                 chkHarpoonGun.Enabled = true;
-
                 nudM16Ammo.Enabled = true;
                 nudGrenadeLauncherAmmo.Enabled = true;
                 nudHarpoonGunAmmo.Enabled = true;
@@ -792,6 +616,8 @@ namespace TR_SaveMaster
             WriteNumLargeMedipacks((byte)nudLargeMedipacks.Value);
             WriteNumFlares((byte)nudFlares.Value);
 
+            secondaryAmmoIndex = GetSecondaryAmmoIndex();
+
             WriteM16Ammo(chkM16.Checked, (UInt16)nudM16Ammo.Value);
             WriteGrenadeLauncherAmmo(chkGrenadeLauncher.Checked, (UInt16)nudGrenadeLauncherAmmo.Value);
             WriteHarpoonGunAmmo(chkHarpoonGun.Checked, (UInt16)nudHarpoonGunAmmo.Value);
@@ -813,8 +639,7 @@ namespace TR_SaveMaster
 
             if (trbHealth.Enabled)
             {
-                double newHealthPercentage = (double)trbHealth.Value;
-                WriteHealthValue(newHealthPercentage);
+                WriteHealthValue((double)trbHealth.Value);
             }
         }
 
