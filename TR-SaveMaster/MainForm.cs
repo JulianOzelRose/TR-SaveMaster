@@ -4096,6 +4096,7 @@ namespace TR_SaveMaster
         private void tsmiResources_Click(object sender, EventArgs e)
         {
             ResourcesForm resourcesForm = new ResourcesForm();
+            resourcesForm.TopMost = TopMost;
             resourcesForm.ShowDialog();
         }
 
@@ -4112,6 +4113,7 @@ namespace TR_SaveMaster
         private void tsmiAbout_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
+            aboutForm.TopMost = TopMost;
             aboutForm.ShowDialog();
         }
 
