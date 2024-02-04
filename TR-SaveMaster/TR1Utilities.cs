@@ -9,15 +9,17 @@ namespace TR_SaveMaster
 {
     class TR1Utilities
     {
-        // Offsets
+        // Static offsets
         private const int saveNumberOffset = 0x4B;
-        private const int smallMedipackOffset = 0x192;
-        private const int largeMedipackOffset = 0x193;
-        private const int weaponsConfigNumOffset = 0x197;
         private const int magnumAmmoOffset = 0x18C;
         private const int uziAmmoOffset = 0x18E;
         private const int shotgunAmmoOffset = 0x190;
+        private const int smallMedipackOffset = 0x192;
+        private const int largeMedipackOffset = 0x193;
+        private const int weaponsConfigNumOffset = 0x197;
         private const int levelIndexOffset = 0x1A3;
+
+        // Dynamic offsets
         private int magnumAmmoOffset2;
         private int uziAmmoOffset2;
         private int shotgunAmmoOffset2;
@@ -301,8 +303,7 @@ namespace TR_SaveMaster
 
             if (trbHealth.Enabled)
             {
-                double newHealthPercentage = (double)trbHealth.Value;
-                WriteHealthValue(newHealthPercentage);
+                WriteHealthValue((double)trbHealth.Value);
             }
         }
 
@@ -368,42 +369,42 @@ namespace TR_SaveMaster
 
         private void WriteUziAmmo(bool isPresent, UInt16 ammo)
         {
+            WriteUInt16(uziAmmoOffset, ammo);
+
             if (isPresent)
             {
-                WriteUInt16(uziAmmoOffset, ammo);
                 WriteUInt16(uziAmmoOffset2, ammo);
             }
             else
             {
-                WriteUInt16(uziAmmoOffset, ammo);
                 WriteUInt16(uziAmmoOffset2, 0);
             }
         }
 
         private void WriteMagnumAmmo(bool isPresent, UInt16 ammo)
         {
+            WriteUInt16(magnumAmmoOffset, ammo);
+
             if (isPresent)
             {
-                WriteUInt16(magnumAmmoOffset, ammo);
                 WriteUInt16(magnumAmmoOffset2, ammo);
             }
             else
             {
-                WriteUInt16(magnumAmmoOffset, ammo);
                 WriteUInt16(magnumAmmoOffset2, 0);
             }
         }
 
         private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
         {
+            WriteUInt16(shotgunAmmoOffset, ammo);
+
             if (isPresent)
             {
-                WriteUInt16(shotgunAmmoOffset, ammo);
                 WriteUInt16(shotgunAmmoOffset2, ammo);
             }
             else
             {
-                WriteUInt16(shotgunAmmoOffset, ammo);
                 WriteUInt16(shotgunAmmoOffset2, 0);
             }
         }
