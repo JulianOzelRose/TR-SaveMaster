@@ -572,7 +572,7 @@ namespace TR_SaveMaster
 
             if (trbHealth.Enabled)
             {
-                WriteHealthValue(trbHealth.Value);
+                WriteHealthValue((double)trbHealth.Value);
             }
         }
 
