@@ -9,13 +9,15 @@ namespace TR_SaveMaster
 {
     class TR2GUtilities
     {
-        // Offsets
+        // Static offsets
         private const int saveNumberOffset = 0x4B;
         private const int levelIndexOffset = 0x483;
-        private int weaponsConfigNumOffset;
+
+        // Dynamic offsets
         private int smallMedipackOffset;
         private int largeMedipackOffset;
         private int flaresOffset;
+        private int weaponsConfigNumOffset;
         private int uziAmmoOffset;
         private int uziAmmoOffset2;
         private int automaticPistolsAmmoOffset;
@@ -109,19 +111,19 @@ namespace TR_SaveMaster
         {
             byte levelIndex = GetLevelIndex();
 
+            automaticPistolsAmmoOffset = 0x51 + (levelIndex * 0x2C);
+            uziAmmoOffset = 0x53 + (levelIndex * 0x2C);
+            shotgunAmmoOffset = 0x55 + (levelIndex * 0x2C);
+            m16AmmoOffset = 0x57 + (levelIndex * 0x2C);
+            grenadeLauncherAmmoOffset = 0x59 + (levelIndex * 0x2C);
+            harpoonGunAmmoOffset = 0x5B + (levelIndex * 0x2C);
+            smallMedipackOffset = 0x5D + (levelIndex * 0x2C);
+            largeMedipackOffset = 0x5E + (levelIndex * 0x2C);
+            flaresOffset = 0x60 + (levelIndex * 0x2C);
+            weaponsConfigNumOffset = 0x63 + (levelIndex * 0x2C);
+
             if (levelIndex == 1)        // The Cold War
             {
-                automaticPistolsAmmoOffset = 0x7D;
-                uziAmmoOffset = 0x7F;
-                shotgunAmmoOffset = 0x81;
-                m16AmmoOffset = 0x83;
-                grenadeLauncherAmmoOffset = 0x85;
-                harpoonGunAmmoOffset = 0x87;
-                smallMedipackOffset = 0x89;
-                largeMedipackOffset = 0x8A;
-                flaresOffset = 0x8C;
-                weaponsConfigNumOffset = 0x8F;
-
                 m16AmmoOffset2 = 0x1C32;
                 grenadeLauncherAmmoOffset2 = 0x1C2E;
                 harpoonGunAmmoOffset2 = 0x1C2A;
@@ -133,17 +135,6 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 2)   // Fool's Gold
             {
-                automaticPistolsAmmoOffset = 0xA9;
-                uziAmmoOffset = 0xAB;
-                shotgunAmmoOffset = 0xAD;
-                m16AmmoOffset = 0xAF;
-                grenadeLauncherAmmoOffset = 0xB1;
-                harpoonGunAmmoOffset = 0xB3;
-                smallMedipackOffset = 0xB5;
-                largeMedipackOffset = 0xB6;
-                flaresOffset = 0xB8;
-                weaponsConfigNumOffset = 0xBB;
-
                 m16AmmoOffset2 = 0x1C3C;
                 grenadeLauncherAmmoOffset2 = 0x1C38;
                 harpoonGunAmmoOffset2 = 0x1C34;
@@ -155,17 +146,6 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 3)   // Furnace of the Gods
             {
-                automaticPistolsAmmoOffset = 0xD5;
-                uziAmmoOffset = 0xD7;
-                shotgunAmmoOffset = 0xD9;
-                m16AmmoOffset = 0xDB;
-                grenadeLauncherAmmoOffset = 0xDD;
-                harpoonGunAmmoOffset = 0xDF;
-                smallMedipackOffset = 0xE1;
-                largeMedipackOffset = 0xE2;
-                flaresOffset = 0xE4;
-                weaponsConfigNumOffset = 0xE7;
-
                 m16AmmoOffset2 = 0x1B2C;
                 grenadeLauncherAmmoOffset2 = 0x1B28;
                 harpoonGunAmmoOffset2 = 0x1B24;
@@ -177,17 +157,6 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 4)   // Kingdom
             {
-                automaticPistolsAmmoOffset = 0x101;
-                uziAmmoOffset = 0x103;
-                shotgunAmmoOffset = 0x105;
-                m16AmmoOffset = 0x107;
-                grenadeLauncherAmmoOffset = 0x109;
-                harpoonGunAmmoOffset = 0x10B;
-                smallMedipackOffset = 0x10D;
-                largeMedipackOffset = 0x10E;
-                flaresOffset = 0x110;
-                weaponsConfigNumOffset = 0x113;
-
                 m16AmmoOffset2 = 0x138A;
                 grenadeLauncherAmmoOffset2 = 0x1386;
                 harpoonGunAmmoOffset2 = 0x1382;
@@ -199,17 +168,6 @@ namespace TR_SaveMaster
             }
             else if (levelIndex == 5)   // Nightmare In Vegas
             {
-                automaticPistolsAmmoOffset = 0x12D;
-                uziAmmoOffset = 0x12F;
-                shotgunAmmoOffset = 0x131;
-                m16AmmoOffset = 0x133;
-                grenadeLauncherAmmoOffset = 0x135;
-                harpoonGunAmmoOffset = 0x137;
-                smallMedipackOffset = 0x139;
-                largeMedipackOffset = 0x13A;
-                flaresOffset = 0x13C;
-                weaponsConfigNumOffset = 0x13F;
-
                 m16AmmoOffset2 = 0x157C;
                 grenadeLauncherAmmoOffset2 = 0x1578;
                 harpoonGunAmmoOffset2 = 0x1574;
@@ -268,24 +226,16 @@ namespace TR_SaveMaster
             return -1;
         }
 
-        private int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
+        private int GetSecondaryAmmoOffset(int baseOffset)
         {
-            List<int> secondaryOffsets = new List<int>();
-            List<int> validOffsets = new List<int>();
+            List<int> secondaryAmmoOffsets = new List<int>();
 
             for (int i = 0; i < 20; i++)
             {
-                secondaryOffsets.Add(baseSecondaryOffset + i * 0x6);
+                secondaryAmmoOffsets.Add(baseOffset + i * 0x6);
             }
 
-            validOffsets.Add(primaryOffset);
-
-            if (secondaryAmmoIndex != -1)
-            {
-                validOffsets.Add(secondaryOffsets[secondaryAmmoIndex]);
-            }
-
-            return validOffsets.ToArray();
+            return secondaryAmmoOffsets[secondaryAmmoIndex];
         }
 
         private void WriteNumSmallMedipacks(byte value)
@@ -308,123 +258,87 @@ namespace TR_SaveMaster
             WriteUInt16(saveNumberOffset, value);
         }
 
-        private void WriteM16Ammo(bool isPresent, UInt16 ammo)
-        {
-            int[] validM16AmmoOffsets = GetValidAmmoOffsets(m16AmmoOffset, m16AmmoOffset2);
-
-            if (isPresent && secondaryAmmoIndex != -1)
-            {
-                WriteUInt16(validM16AmmoOffsets[0], ammo);
-                WriteUInt16(validM16AmmoOffsets[1], ammo);
-            }
-            else if (!isPresent && secondaryAmmoIndex != -1)
-            {
-                WriteUInt16(validM16AmmoOffsets[0], ammo);
-                WriteUInt16(validM16AmmoOffsets[1], 0);
-            }
-            else
-            {
-                WriteUInt16(validM16AmmoOffsets[0], ammo);
-            }
-        }
-
-        private void WriteGrenadeLauncherAmmo(bool isPresent, UInt16 ammo)
-        {
-            int[] validGrenadeLauncherAmmoOffsets = GetValidAmmoOffsets(grenadeLauncherAmmoOffset, grenadeLauncherAmmoOffset2);
-
-            if (isPresent && secondaryAmmoIndex != -1)
-            {
-                WriteUInt16(validGrenadeLauncherAmmoOffsets[0], ammo);
-                WriteUInt16(validGrenadeLauncherAmmoOffsets[1], ammo);
-            }
-            else if (!isPresent && secondaryAmmoIndex != -1)
-            {
-                WriteUInt16(validGrenadeLauncherAmmoOffsets[0], ammo);
-                WriteUInt16(validGrenadeLauncherAmmoOffsets[1], 0);
-            }
-            else
-            {
-                WriteUInt16(validGrenadeLauncherAmmoOffsets[0], ammo);
-            }
-        }
-
-        private void WriteHarpoonGunAmmo(bool isPresent, UInt16 ammo)
-        {
-            int[] validHarpoonGunAmmoOffsets = GetValidAmmoOffsets(harpoonGunAmmoOffset, harpoonGunAmmoOffset2);
-
-            if (isPresent && secondaryAmmoIndex != -1)
-            {
-                WriteUInt16(validHarpoonGunAmmoOffsets[0], ammo);
-                WriteUInt16(validHarpoonGunAmmoOffsets[1], ammo);
-            }
-            else if (!isPresent && secondaryAmmoIndex != -1)
-            {
-                WriteUInt16(validHarpoonGunAmmoOffsets[0], ammo);
-                WriteUInt16(validHarpoonGunAmmoOffsets[1], 0);
-            }
-            else
-            {
-                WriteUInt16(validHarpoonGunAmmoOffsets[0], ammo);
-            }
-        }
-
         private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
         {
-            int[] validShotgunAmmoOffsets = GetValidAmmoOffsets(shotgunAmmoOffset, shotgunAmmoOffset2);
+            WriteUInt16(shotgunAmmoOffset, ammo);
 
             if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(validShotgunAmmoOffsets[0], ammo);
-                WriteUInt16(validShotgunAmmoOffsets[1], ammo);
+                WriteUInt16(shotgunAmmoOffset2, ammo);
             }
             else if (!isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(validShotgunAmmoOffsets[0], ammo);
-                WriteUInt16(validShotgunAmmoOffsets[1], 0);
-            }
-            else
-            {
-                WriteUInt16(validShotgunAmmoOffsets[0], ammo);
+                WriteUInt16(shotgunAmmoOffset2, 0);
             }
         }
 
         private void WriteAutomaticPistolsAmmo(bool isPresent, UInt16 ammo)
         {
-            int[] validAutomaticPistolsAmmoOffsets = GetValidAmmoOffsets(automaticPistolsAmmoOffset, automaticPistolsAmmoOffset2);
+            WriteUInt16(automaticPistolsAmmoOffset, ammo);
 
             if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(validAutomaticPistolsAmmoOffsets[0], ammo);
-                WriteUInt16(validAutomaticPistolsAmmoOffsets[1], ammo);
+                WriteUInt16(automaticPistolsAmmoOffset2, ammo);
             }
             else if (!isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(validAutomaticPistolsAmmoOffsets[0], ammo);
-                WriteUInt16(validAutomaticPistolsAmmoOffsets[1], 0);
-            }
-            else
-            {
-                WriteUInt16(validAutomaticPistolsAmmoOffsets[0], ammo);
+                WriteUInt16(automaticPistolsAmmoOffset2, 0);
             }
         }
 
         private void WriteUziAmmo(bool isPresent, UInt16 ammo)
         {
-            int[] validUziAmmoOffsets = GetValidAmmoOffsets(uziAmmoOffset, uziAmmoOffset2);
+            WriteUInt16(uziAmmoOffset, ammo);
 
             if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(validUziAmmoOffsets[0], ammo);
-                WriteUInt16(validUziAmmoOffsets[1], ammo);
+                WriteUInt16(uziAmmoOffset2, ammo);
             }
             else if (!isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(validUziAmmoOffsets[0], ammo);
-                WriteUInt16(validUziAmmoOffsets[1], 0);
+                WriteUInt16(uziAmmoOffset2, 0);
             }
-            else
+        }
+
+        private void WriteM16Ammo(bool isPresent, UInt16 ammo)
+        {
+            WriteUInt16(m16AmmoOffset, ammo);
+
+            if (isPresent && secondaryAmmoIndex != -1)
             {
-                WriteUInt16(validUziAmmoOffsets[0], ammo);
+                WriteUInt16(m16AmmoOffset2, ammo);
+            }
+            else if (!isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(m16AmmoOffset2, 0);
+            }
+        }
+
+        private void WriteGrenadeLauncherAmmo(bool isPresent, UInt16 ammo)
+        {
+            WriteUInt16(grenadeLauncherAmmoOffset, ammo);
+
+            if (isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(grenadeLauncherAmmoOffset2, ammo);
+            }
+            else if (!isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(grenadeLauncherAmmoOffset2, 0);
+            }
+        }
+
+        private void WriteHarpoonGunAmmo(bool isPresent, UInt16 ammo)
+        {
+            WriteUInt16(harpoonGunAmmoOffset, ammo);
+
+            if (isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(harpoonGunAmmoOffset2, ammo);
+            }
+            else if (!isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(harpoonGunAmmoOffset2, 0);
             }
         }
 
@@ -514,6 +428,29 @@ namespace TR_SaveMaster
             return ReadUInt16(harpoonGunAmmoOffset);
         }
 
+        public void SetLevelParams(CheckBox chkM16, CheckBox chkGrenadeLauncher, CheckBox chkHarpoonGun,
+            NumericUpDown nudM16Ammo, NumericUpDown nudGrenadeLauncherAmmo, NumericUpDown nudHarpoonGunAmmo)
+        {
+            if (GetLevelIndex() == 5)
+            {
+                chkM16.Enabled = false;
+                chkGrenadeLauncher.Enabled = false;
+                chkHarpoonGun.Enabled = false;
+                nudM16Ammo.Enabled = false;
+                nudGrenadeLauncherAmmo.Enabled = false;
+                nudHarpoonGunAmmo.Enabled = false;
+            }
+            else
+            {
+                chkM16.Enabled = true;
+                chkGrenadeLauncher.Enabled = true;
+                chkHarpoonGun.Enabled = true;
+                nudM16Ammo.Enabled = true;
+                nudGrenadeLauncherAmmo.Enabled = true;
+                nudHarpoonGunAmmo.Enabled = true;
+            }
+        }
+
         public void DisplayGameInfo(TextBox txtLvlName, CheckBox chkPistols, CheckBox chkAutomaticPistols, CheckBox chkUzis,
             CheckBox chkM16, CheckBox chkGrenadeLauncher, CheckBox chkHarpoonGun, NumericUpDown nudAutomaticPistolsAmmo,
             CheckBox chkShotgun, NumericUpDown nudUziAmmo, NumericUpDown nudM16Ammo, NumericUpDown nudGrenadeLauncherAmmo,
@@ -533,25 +470,6 @@ namespace TR_SaveMaster
             nudM16Ammo.Value = GetM16Ammo();
             nudGrenadeLauncherAmmo.Value = GetGrenadeLauncherAmmo();
             nudHarpoonGunAmmo.Value = GetHarpoonGunAmmo();
-
-            if (GetLevelIndex() == 5)
-            {
-                chkM16.Enabled = false;
-                chkGrenadeLauncher.Enabled = false;
-                chkHarpoonGun.Enabled = false;
-                nudM16Ammo.Enabled = false;
-                nudGrenadeLauncherAmmo.Enabled = false;
-                nudHarpoonGunAmmo.Enabled = false;
-            }
-            else
-            {
-                chkM16.Enabled = true;
-                chkGrenadeLauncher.Enabled = true;
-                chkHarpoonGun.Enabled = true;
-                nudM16Ammo.Enabled = true;
-                nudGrenadeLauncherAmmo.Enabled = true;
-                nudHarpoonGunAmmo.Enabled = true;
-            }
 
             byte weaponsConfigNum = GetWeaponsConfigNum();
 
@@ -618,9 +536,23 @@ namespace TR_SaveMaster
 
             secondaryAmmoIndex = GetSecondaryAmmoIndex();
 
-            WriteM16Ammo(chkM16.Checked, (UInt16)nudM16Ammo.Value);
-            WriteGrenadeLauncherAmmo(chkGrenadeLauncher.Checked, (UInt16)nudGrenadeLauncherAmmo.Value);
-            WriteHarpoonGunAmmo(chkHarpoonGun.Checked, (UInt16)nudHarpoonGunAmmo.Value);
+            if (secondaryAmmoIndex != -1)
+            {
+                automaticPistolsAmmoOffset2 = GetSecondaryAmmoOffset(automaticPistolsAmmoOffset2);
+                uziAmmoOffset2 = GetSecondaryAmmoOffset(uziAmmoOffset2);
+                shotgunAmmoOffset2 = GetSecondaryAmmoOffset(shotgunAmmoOffset2);
+                harpoonGunAmmoOffset2 = GetSecondaryAmmoOffset(harpoonGunAmmoOffset2);
+                grenadeLauncherAmmoOffset2 = GetSecondaryAmmoOffset(grenadeLauncherAmmoOffset2);
+                m16AmmoOffset2 = GetSecondaryAmmoOffset(m16AmmoOffset2);
+            }
+
+            if (GetLevelIndex() != 5)
+            {
+                WriteM16Ammo(chkM16.Checked, (UInt16)nudM16Ammo.Value);
+                WriteGrenadeLauncherAmmo(chkGrenadeLauncher.Checked, (UInt16)nudGrenadeLauncherAmmo.Value);
+                WriteHarpoonGunAmmo(chkHarpoonGun.Checked, (UInt16)nudHarpoonGunAmmo.Value);
+            }
+
             WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
             WriteUziAmmo(chkUzis.Checked, (UInt16)nudUziAmmo.Value);
             WriteAutomaticPistolsAmmo(chkAutomaticPistols.Checked, (UInt16)nudAutomaticPistolsAmmo.Value);

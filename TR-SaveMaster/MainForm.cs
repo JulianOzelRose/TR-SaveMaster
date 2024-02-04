@@ -917,6 +917,9 @@ namespace TR_SaveMaster
 
                             TR2G.DetermineOffsets();
 
+                            TR2G.SetLevelParams(chkM16TR2G, chkGrenadeLauncherTR2G, chkHarpoonGunTR2G,
+                                nudM16AmmoTR2G, nudGrenadeLauncherAmmoTR2G, nudHarpoonGunAmmoTR2G);
+
                             TR2G.DisplayGameInfo(txtLvlNameTR2G, chkPistolsTR2G, chkAutomaticPistolsTR2G, chkUzisTR2G,
                                 chkM16TR2G, chkGrenadeLauncherTR2G, chkHarpoonGunTR2G, nudAutomaticPistolsAmmoTR2G,
                                 chkShotgunTR2G, nudUziAmmoTR2G, nudM16AmmoTR2G, nudGrenadeLauncherAmmoTR2G,
