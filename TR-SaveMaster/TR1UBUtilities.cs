@@ -9,15 +9,17 @@ namespace TR_SaveMaster
 {
     class TR1UBUtilities
     {
-        // Offsets
-        private const int saveNumberOffset = 0x04B;
-        private const int magnumAmmoOffset = 0x09C;
-        private const int uziAmmoOffset = 0x09E;
-        private const int shotgunAmmoOffset = 0x0A0;
-        private const int smallMedipackOffset = 0x0A2;
-        private const int largeMedipackOffset = 0x0A3;
-        private const int weaponsConfigNumOffset = 0x0A7;
-        private const int levelIndexOffset = 0x0B3;
+        // Static offsets
+        private const int saveNumberOffset = 0x4B;
+        private const int magnumAmmoOffset = 0x9C;
+        private const int uziAmmoOffset = 0x9E;
+        private const int shotgunAmmoOffset = 0xA0;
+        private const int smallMedipackOffset = 0xA2;
+        private const int largeMedipackOffset = 0xA3;
+        private const int weaponsConfigNumOffset = 0xA7;
+        private const int levelIndexOffset = 0xB3;
+
+        // Dynamic offsets
         private int magnumAmmoOffset2;
         private int uziAmmoOffset2;
         private int shotgunAmmoOffset2;
@@ -29,6 +31,9 @@ namespace TR_SaveMaster
 
         // Strings
         private string savegamePath;
+
+        // Ammo index
+        private int secondaryAmmoIndex = -1;
 
         public void SetSavegamePath(string path)
         {
@@ -101,150 +106,85 @@ namespace TR_SaveMaster
 
             if (levelIndex == 0)        // Return to Egypt
             {
+                shotgunAmmoOffset2 = 0xC6D;
+                uziAmmoOffset2 = 0xC61;
+                magnumAmmoOffset2 = 0xC55;
+
                 SetHealthOffsets(0x165);
             }
             else if (levelIndex == 1)   // Temple of the Cat
             {
+                shotgunAmmoOffset2 = 0xFAF;
+                uziAmmoOffset2 = 0xFA3;
+                magnumAmmoOffset2 = 0xF97;
+
                 SetHealthOffsets(0x3DD, 0x3E9);
             }
             else if (levelIndex == 2)   // Atlantean Stronghold
             {
+                shotgunAmmoOffset2 = 0xB21;
+                uziAmmoOffset2 = 0xB15;
+                magnumAmmoOffset2 = 0xB09;
+
                 SetHealthOffsets(0x3C7, 0x3DF, 0x3D3);
             }
             else if (levelIndex == 3)   // The Hive
             {
+                shotgunAmmoOffset2 = 0x1089;
+                uziAmmoOffset2 = 0x107D;
+                magnumAmmoOffset2 = 0x1071;
+
                 SetHealthOffsets(0x501);
             }
-
-            SetSecondaryAmmoOffsets();
         }
 
-        private readonly Dictionary<byte, Dictionary<int, int[]>> ammoIndexData = new Dictionary<byte, Dictionary<int, int[]>>
+        private readonly Dictionary<byte, int[]> ammoIndexData = new Dictionary<byte, int[]>
         {
-            [0] = new Dictionary<int, int[]>                // Return to Egypt
-            {
-                [0xC7D] = new int[] { 0xC7D, 0xC7E, 0xC7F, 0xC80 },
-                [0xC95] = new int[] { 0xC95, 0xC96, 0xC97, 0xC98 },
-                [0xCA1] = new int[] { 0xCA1, 0xCA2, 0xCA3, 0xCA4 },
-                [0xCC5] = new int[] { 0xCC5, 0xCC6, 0xCC7, 0xCC8 },
-                [0xCD1] = new int[] { 0xCD1, 0xCD2, 0xCD3, 0xCD4 },
-                [0xCDD] = new int[] { 0xCDD, 0xCDE, 0xCDF, 0xCE0 },
-                [0xDF7] = new int[] { 0xDF7, 0xDF8, 0xDF9, 0xDFA },
-            },
-            [1] = new Dictionary<int, int[]>                // Temple of the Cat
-            {
-                [0xFBF] = new int[] { 0xFBF, 0xFC0, 0xFC1, 0xFC2 },
-                [0xFCB] = new int[] { 0xFCB, 0xFCC, 0xFCD, 0xFCE },
-                [0xFD7] = new int[] { 0xFD7, 0xFD8, 0xFD9, 0xFDA },
-                [0x1007] = new int[] { 0x1027, 0x1028, 0x1029, 0x102A },
-                [0x114B] = new int[] { 0x114B, 0x114C, 0x114D, 0x114E },
-            },
-            [2] = new Dictionary<int, int[]>                // Atlantean Stronghold
-            {
-                [0xB31] = new int[] { 0xB31, 0xB32, 0xB33, 0xB34 },
-                [0xB3D] = new int[] { 0xB3D, 0xB3E, 0xB3F, 0xB40 },
-                [0xB49] = new int[] { 0xB49, 0xB4A, 0xB4B, 0xB4C },
-                [0xB55] = new int[] { 0xB55, 0xB56, 0xB57, 0xB58 },
-                [0xB79] = new int[] { 0xB79, 0xB7A, 0xB7B, 0xB7C },
-                [0xC5A] = new int[] { 0xC5A, 0xC5B, 0xC5C, 0xC5D },
-            },
-            [3] = new Dictionary<int, int[]>                // The Hive
-            {
-                [0x1099] = new int[] { 0x1099, 0x109A, 0x109B, 0x109C },
-                [0x10A5] = new int[] { 0x10A5, 0x10A6, 0x10A7, 0x10A8 },
-                [0x10B1] = new int[] { 0x10B1, 0x10B2, 0x10B3, 0x10B4 },
-                [0x10BD] = new int[] { 0x10BD, 0x10BE, 0x10BF, 0x10C0 },
-                [0x10C9] = new int[] { 0x10C9, 0x10CA, 0x10CB, 0x10CC },
-                [0x10D5] = new int[] { 0x10D5, 0x10D6, 0x10D7, 0x10D8 },
-                [0x120A] = new int[] { 0x120A, 0x120B, 0x120C, 0x120D },
-            },
+            { 0, new int[] { 0x0C7D, 0x0C7E, 0x0C7F, 0x0C80 } },    // Return to Egypt
+            { 1, new int[] { 0x0FBF, 0x0FC0, 0x0FC1, 0x0FC2 } },    // Temple of the Cat
+            { 2, new int[] { 0x0B31, 0x0B32, 0x0B33, 0x0B34 } },    // Atlantean Stronghold
+            { 3, new int[] { 0x1099, 0x109A, 0x109B, 0x109C } },    // The Hive
         };
 
-        private void SetSecondaryAmmoOffsets()
-        {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
-
-            shotgunAmmoOffset2 = secondaryAmmoIndexMarker - 16;
-            uziAmmoOffset2 = secondaryAmmoIndexMarker - 28;
-            magnumAmmoOffset2 = secondaryAmmoIndexMarker - 40;
-        }
-
-        private int GetSecondaryAmmoIndexMarker()
+        private int GetSecondaryAmmoIndex()
         {
             byte levelIndex = GetLevelIndex();
-            int ammoIndexMarker = -1;
 
             if (ammoIndexData.ContainsKey(levelIndex))
             {
-                Dictionary<int, int[]> indexData = ammoIndexData[levelIndex];
+                int[] indexData = ammoIndexData[levelIndex];
 
-                for (int i = 0; i < indexData.Count; i++)
+                int[] offsets = new int[indexData.Length];
+
+                for (int index = 0; index < 133; index++)
                 {
-                    int key = indexData.ElementAt(i).Key;
-                    int[] offsets = indexData.ElementAt(i).Value;
+                    Array.Copy(indexData, offsets, indexData.Length);
+
+                    for (int i = 0; i < indexData.Length; i++)
+                    {
+                        offsets[i] += (index * 0x3);
+                    }
 
                     if (offsets.All(offset => ReadByte(offset) == 0xFF))
                     {
-                        ammoIndexMarker = key;
-                        break;
+                        return index;
                     }
                 }
             }
 
-            return ammoIndexMarker;
+            return -1;
         }
 
-        private bool IsKnownByteFlagPattern(byte byteFlag1, byte byteFlag2, byte byteFlag3)
+        private int GetSecondaryAmmoOffset(int baseOffset)
         {
-            if (byteFlag1 == 0x02 && byteFlag2 == 0x00 && byteFlag3 == 0x02) return true;       // Standing
-            if (byteFlag1 == 0x13 && byteFlag2 == 0x00 && byteFlag3 == 0x13) return true;       // Climbing
-            if (byteFlag1 == 0x21 && byteFlag2 == 0x00 && byteFlag3 == 0x21) return true;       // On water
-            if (byteFlag1 == 0x0D && byteFlag2 == 0x00 && byteFlag3 == 0x0D) return true;       // Underwater
+            List<int> secondaryOffsets = new List<int>();
 
-            return false;
-        }
+            for (int i = 0; i < 133; i++)
+            {
+                secondaryOffsets.Add(baseOffset + i * 0x3);
+            }
 
-        private byte GetLevelIndex()
-        {
-            return ReadByte(levelIndexOffset);
-        }
-
-        private byte GetNumSmallMedipacks()
-        {
-            return ReadByte(smallMedipackOffset);
-        }
-
-        private byte GetNumLargeMedipacks()
-        {
-            return ReadByte(largeMedipackOffset);
-        }
-
-        private UInt16 GetSaveNumber()
-        {
-            return ReadUInt16(saveNumberOffset);
-        }
-
-        private UInt16 GetShotgunAmmo()
-        {
-            return ReadUInt16(shotgunAmmoOffset);
-        }
-
-        private UInt16 GetMagnumAmmo()
-        {
-            return ReadUInt16(magnumAmmoOffset);
-        }
-
-        private UInt16 GetUziAmmo()
-        {
-            return ReadUInt16(uziAmmoOffset);
-        }
-
-        private double GetHealthPercentage(int healthOffset)
-        {
-            UInt16 health = ReadUInt16(healthOffset);
-            double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
-
-            return healthPercentage;
+            return secondaryOffsets[secondaryAmmoIndex];
         }
 
         private void SetHealthOffsets(params int[] offsets)
@@ -254,119 +194,6 @@ namespace TR_SaveMaster
             for (int i = 0; i < offsets.Length; i++)
             {
                 healthOffsets.Add(offsets[i]);
-            }
-        }
-
-        private int GetHealthOffset()
-        {
-            for (int i = 0; i < healthOffsets.Count; i++)
-            {
-                UInt16 value = ReadUInt16(healthOffsets[i]);
-
-                if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
-                {
-                    byte byteFlag1 = ReadByte(healthOffsets[i] - 10);
-                    byte byteFlag2 = ReadByte(healthOffsets[i] - 9);
-                    byte byteFlag3 = ReadByte(healthOffsets[i] - 8);
-
-                    if (IsKnownByteFlagPattern(byteFlag1, byteFlag2, byteFlag3))
-                    {
-                        return healthOffsets[i];
-                    }
-                }
-            }
-
-            return -1;
-        }
-
-        private void WriteSaveNumber(UInt16 value)
-        {
-            WriteUInt16(saveNumberOffset, value);
-        }
-
-        private void WriteNumSmallMedipacks(byte value)
-        {
-            WriteByte(smallMedipackOffset, value);
-        }
-
-        private void WriteNumLargeMedipacks(byte value)
-        {
-            WriteByte(largeMedipackOffset, value);
-        }
-
-        private void WriteWeaponsConfigNum(byte value)
-        {
-            WriteByte(weaponsConfigNumOffset, value);
-        }
-
-        private void WriteHealthValue(double newHealthPercentage)
-        {
-            int healthOffset = GetHealthOffset();
-
-            if (healthOffset != -1)
-            {
-                UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
-                WriteUInt16(healthOffset, newHealth);
-            }
-        }
-
-        private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
-        {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
-
-            if (isPresent && secondaryAmmoIndexMarker != -1)
-            {
-                WriteUInt16(shotgunAmmoOffset, ammo);
-                WriteUInt16(shotgunAmmoOffset2, ammo);
-            }
-            else if (!isPresent && secondaryAmmoIndexMarker != -1)
-            {
-                WriteUInt16(shotgunAmmoOffset, ammo);
-                WriteUInt16(shotgunAmmoOffset2, 0);
-            }
-            else
-            {
-                WriteUInt16(shotgunAmmoOffset, ammo);
-            }
-        }
-
-        private void WriteMagnumAmmo(bool isPresent, UInt16 ammo)
-        {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
-
-            if (isPresent && secondaryAmmoIndexMarker != -1)
-            {
-                WriteUInt16(magnumAmmoOffset, ammo);
-                WriteUInt16(magnumAmmoOffset2, ammo);
-            }
-            else if (!isPresent && secondaryAmmoIndexMarker != -1)
-            {
-                WriteUInt16(magnumAmmoOffset, ammo);
-                WriteUInt16(magnumAmmoOffset2, 0);
-            }
-            else
-            {
-                WriteUInt16(magnumAmmoOffset, ammo);
-            }
-        }
-
-        private void WriteUziAmmo(bool isPresent, UInt16 ammo)
-        {
-            int secondaryAmmoIndexMarker = GetSecondaryAmmoIndexMarker();
-
-            if (isPresent && secondaryAmmoIndexMarker != -1)
-            {
-                WriteUInt16(uziAmmoOffset, ammo);
-                WriteUInt16(uziAmmoOffset2, ammo);
-            }
-            else if (!isPresent && secondaryAmmoIndexMarker != -1)
-            {
-                WriteUInt16(uziAmmoOffset, ammo);
-                WriteUInt16(uziAmmoOffset2, 0);
-            }
-            else
-            {
-                WriteUInt16(uziAmmoOffset, ammo);
             }
         }
 
@@ -432,9 +259,17 @@ namespace TR_SaveMaster
             CheckBox chkMagnums, CheckBox chkUzis, CheckBox chkShotgun, TrackBar trbHealth)
         {
             WriteSaveNumber((UInt16)nudSaveNumber.Value);
-
             WriteNumSmallMedipacks((byte)nudSmallMedipacks.Value);
             WriteNumLargeMedipacks((byte)nudLargeMedipacks.Value);
+
+            secondaryAmmoIndex = GetSecondaryAmmoIndex();
+
+            if (secondaryAmmoIndex != -1)
+            {
+                shotgunAmmoOffset2 = GetSecondaryAmmoOffset(shotgunAmmoOffset2);
+                uziAmmoOffset2 = GetSecondaryAmmoOffset(uziAmmoOffset2);
+                magnumAmmoOffset2 = GetSecondaryAmmoOffset(magnumAmmoOffset2);
+            }
 
             WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
             WriteMagnumAmmo(chkMagnums.Checked, (UInt16)nudMagnumAmmo.Value);
@@ -451,8 +286,155 @@ namespace TR_SaveMaster
 
             if (trbHealth.Enabled)
             {
-                double newHealthPercentage = (double)trbHealth.Value;
-                WriteHealthValue(newHealthPercentage);
+                WriteHealthValue((double)trbHealth.Value);
+            }
+        }
+
+        private int GetHealthOffset()
+        {
+            for (int i = 0; i < healthOffsets.Count; i++)
+            {
+                UInt16 value = ReadUInt16(healthOffsets[i]);
+
+                if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
+                {
+                    byte byteFlag1 = ReadByte(healthOffsets[i] - 10);
+                    byte byteFlag2 = ReadByte(healthOffsets[i] - 9);
+                    byte byteFlag3 = ReadByte(healthOffsets[i] - 8);
+
+                    if (IsKnownByteFlagPattern(byteFlag1, byteFlag2, byteFlag3))
+                    {
+                        return healthOffsets[i];
+                    }
+                }
+            }
+
+            return -1;
+        }
+
+        private double GetHealthPercentage(int healthOffset)
+        {
+            UInt16 health = ReadUInt16(healthOffset);
+            double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
+
+            return healthPercentage;
+        }
+
+        private bool IsKnownByteFlagPattern(byte byteFlag1, byte byteFlag2, byte byteFlag3)
+        {
+            if (byteFlag1 == 0x02 && byteFlag2 == 0x00 && byteFlag3 == 0x02) return true;       // Standing
+            if (byteFlag1 == 0x13 && byteFlag2 == 0x00 && byteFlag3 == 0x13) return true;       // Climbing
+            if (byteFlag1 == 0x21 && byteFlag2 == 0x00 && byteFlag3 == 0x21) return true;       // On water
+            if (byteFlag1 == 0x0D && byteFlag2 == 0x00 && byteFlag3 == 0x0D) return true;       // Underwater
+
+            return false;
+        }
+
+        private byte GetLevelIndex()
+        {
+            return ReadByte(levelIndexOffset);
+        }
+
+        private byte GetNumSmallMedipacks()
+        {
+            return ReadByte(smallMedipackOffset);
+        }
+
+        private byte GetNumLargeMedipacks()
+        {
+            return ReadByte(largeMedipackOffset);
+        }
+
+        private UInt16 GetSaveNumber()
+        {
+            return ReadUInt16(saveNumberOffset);
+        }
+
+        private UInt16 GetShotgunAmmo()
+        {
+            return ReadUInt16(shotgunAmmoOffset);
+        }
+
+        private UInt16 GetMagnumAmmo()
+        {
+            return ReadUInt16(magnumAmmoOffset);
+        }
+
+        private UInt16 GetUziAmmo()
+        {
+            return ReadUInt16(uziAmmoOffset);
+        }
+
+        private void WriteSaveNumber(UInt16 value)
+        {
+            WriteUInt16(saveNumberOffset, value);
+        }
+
+        private void WriteNumSmallMedipacks(byte value)
+        {
+            WriteByte(smallMedipackOffset, value);
+        }
+
+        private void WriteNumLargeMedipacks(byte value)
+        {
+            WriteByte(largeMedipackOffset, value);
+        }
+
+        private void WriteWeaponsConfigNum(byte value)
+        {
+            WriteByte(weaponsConfigNumOffset, value);
+        }
+
+        private void WriteHealthValue(double newHealthPercentage)
+        {
+            int healthOffset = GetHealthOffset();
+
+            if (healthOffset != -1)
+            {
+                UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
+                WriteUInt16(healthOffset, newHealth);
+            }
+        }
+
+        private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
+        {
+            WriteUInt16(shotgunAmmoOffset, ammo);
+
+            if (isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(shotgunAmmoOffset2, ammo);
+            }
+            else if (!isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(shotgunAmmoOffset2, 0);
+            }
+        }
+
+        private void WriteMagnumAmmo(bool isPresent, UInt16 ammo)
+        {
+            WriteUInt16(magnumAmmoOffset, ammo);
+
+            if (isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(magnumAmmoOffset2, ammo);
+            }
+            else if (!isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(magnumAmmoOffset2, 0);
+            }
+        }
+
+        private void WriteUziAmmo(bool isPresent, UInt16 ammo)
+        {
+            WriteUInt16(uziAmmoOffset, ammo);
+
+            if (isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(uziAmmoOffset2, ammo);
+            }
+            else if (!isPresent && secondaryAmmoIndex != -1)
+            {
+                WriteUInt16(uziAmmoOffset2, 0);
             }
         }
 
