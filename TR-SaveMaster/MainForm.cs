@@ -777,6 +777,7 @@ namespace TR_SaveMaster
                             isLoading = true;
 
                             TR1.SetSavegamePath(savegamesTR1[i].Path);
+
                             TR1.DetermineOffsets();
 
                             TR1.DisplayGameInfo(txtLvlNameTR1, chkPistolsTR1, chkShotgunTR1, chkUzisTR1, chkMagnumsTR1,
@@ -820,6 +821,7 @@ namespace TR_SaveMaster
                             isLoading = true;
 
                             TR1UB.SetSavegamePath(savegamesTR1UB[i].Path);
+
                             TR1UB.DetermineOffsets();
 
                             TR1UB.DisplayGameInfo(txtLevelNameTR1UB, nudSaveNumberTR1UB, nudSmallMedipacksTR1UB, nudLargeMedipacksTR1UB,
@@ -863,7 +865,12 @@ namespace TR_SaveMaster
                             isLoading = true;
 
                             TR2.SetSavegamePath(savegamesTR2[i].Path);
+
                             TR2.DetermineOffsets();
+
+                            TR2.SetLevelParams(chkPistolsTR2, chkAutomaticPistolsTR2, chkUzisTR2, chkM16TR2,
+                                chkGrenadeLauncherTR2, chkHarpoonGunTR2, nudAutomaticPistolsAmmoTR2, nudUziAmmoTR2,
+                                nudM16AmmoTR2, nudGrenadeLauncherAmmoTR2, nudHarpoonGunAmmoTR2);
 
                             TR2.DisplayGameInfo(txtLvlNameTR2, chkPistolsTR2, chkAutomaticPistolsTR2, chkUzisTR2, chkM16TR2,
                                 chkGrenadeLauncherTR2, chkHarpoonGunTR2, nudAutomaticPistolsAmmoTR2, chkShotgunTR2, nudUziAmmoTR2,
@@ -907,6 +914,7 @@ namespace TR_SaveMaster
                             isLoading = true;
 
                             TR2G.SetSavegamePath(savegamesTR2G[i].Path);
+
                             TR2G.DetermineOffsets();
 
                             TR2G.DisplayGameInfo(txtLvlNameTR2G, chkPistolsTR2G, chkAutomaticPistolsTR2G, chkUzisTR2G,
@@ -952,6 +960,7 @@ namespace TR_SaveMaster
                             isLoading = true;
 
                             TR3.SetSavegamePath(savegamesTR3[i].Path);
+
                             TR3.DetermineOffsets();
 
                             TR3.DisplayGameInfo(chkPistolsTR3, chkShotgunTR3, chkDeagleTR3, chkUziTR3, chkMP5TR3, chkRocketLauncherTR3,
@@ -997,15 +1006,14 @@ namespace TR_SaveMaster
                             isLoading = true;
 
                             TR3TLA.SetSavegamePath(savegamesTR3TLA[i].Path);
-                            TR3TLA.DetermineOffsets();
 
+                            TR3TLA.DetermineOffsets();
 
                             TR3TLA.DisplayGameInfo(chkPistolsTR3TLA, chkShotgunTR3TLA, chkDeagleTR3TLA, chkUzisTR3TLA,
                                 chkMP5TR3TLA, chkRocketLauncherTR3TLA, chkGrenadeLauncherTR3TLA, chkHarpoonGunTR3TLA, txtLvlNameTR3TLA,
                                 nudSaveNumberTR3TLA, nudSmallMedipacksTR3TLA, nudLargeMedipacksTR3TLA, nudFlaresTR3TLA, nudShotgunAmmoTR3TLA,
                                 nudDeagleAmmoTR3TLA, nudGrenadeLauncherAmmoTR3TLA, nudRocketLauncherAmmoTR3TLA, nudHarpoonGunAmmoTR3TLA,
                                 nudMP5AmmoTR3TLA, nudUziAmmoTR3TLA, trbHealthTR3TLA, lblHealthTR3TLA, lblHealthErrorTR3TLA);
-
 
                             isLoading = false;
 
