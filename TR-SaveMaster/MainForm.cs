@@ -350,6 +350,7 @@ namespace TR_SaveMaster
                         slblStatus.Text = $"{cmbSavegamesTRC.Items.Count} savegames found in \"{directoryTRC}\"";
                     }
 
+                    tsmiSave.Enabled = false;
                     UpdateDirectories();
                 }
             }
@@ -1538,10 +1539,10 @@ namespace TR_SaveMaster
         {
             if (cmbSavegamesTR1.SelectedIndex != -1)
             {
-                if (btnCancelTR1.Enabled && isFilePresent)
+                if (btnSaveTR1.Enabled && isFilePresent)
                 {
                     DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
-                        "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
@@ -1557,10 +1558,10 @@ namespace TR_SaveMaster
         {
             if (cmbSavegamesTR1UB.SelectedIndex != -1)
             {
-                if (btnCancelTR1UB.Enabled && isFilePresent)
+                if (btnSaveTR1UB.Enabled && isFilePresent)
                 {
-                    DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                        "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
@@ -1576,10 +1577,10 @@ namespace TR_SaveMaster
         {
             if (cmbSavegamesTR2.SelectedIndex != -1)
             {
-                if (btnCancelTR2.Enabled && isFilePresent)
+                if (btnSaveTR2.Enabled && isFilePresent)
                 {
-                    DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                        "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
@@ -1595,10 +1596,10 @@ namespace TR_SaveMaster
         {
             if (cmbSavegamesTR2G.SelectedIndex != -1)
             {
-                if (btnCancelTR2G.Enabled && isFilePresent)
+                if (btnSaveTR2G.Enabled && isFilePresent)
                 {
-                    DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                        "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
@@ -1614,10 +1615,11 @@ namespace TR_SaveMaster
         {
             if (cmbSavegamesTR3.SelectedIndex != -1)
             {
-                if (btnCancelTR3.Enabled && isFilePresent)
+                if (btnSaveTR3.Enabled && isFilePresent)
                 {
-                    DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                        "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
                     if (result == DialogResult.Yes)
                     {
                         WriteChangesTR3();
@@ -1632,10 +1634,11 @@ namespace TR_SaveMaster
         {
             if (cmbSavegamesTR3TLA.SelectedIndex != -1)
             {
-                if (btnCancelTR3TLA.Enabled && isFilePresent)
+                if (btnSaveTR3TLA.Enabled && isFilePresent)
                 {
-                    DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                        "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
                     if (result == DialogResult.Yes)
                     {
                         WriteChangesTR3TLA();
@@ -1650,10 +1653,11 @@ namespace TR_SaveMaster
         {
             if (cmbSavegamesTR4.SelectedIndex != -1)
             {
-                if (btnCancelTR4.Enabled && isFilePresent)
+                if (btnSaveTR4.Enabled && isFilePresent)
                 {
-                    DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                        "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
                     if (result == DialogResult.Yes)
                     {
                         WriteChangesTR4();
@@ -1668,10 +1672,10 @@ namespace TR_SaveMaster
         {
             if (cmbSavegamesTRC.SelectedIndex != -1)
             {
-                if (btnCancelTRC.Enabled && isFilePresent)
+                if (btnSaveTRC.Enabled && isFilePresent)
                 {
-                    DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                        "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
@@ -3803,42 +3807,6 @@ namespace TR_SaveMaster
             }
         }
 
-        private void UpdateSaveButtonState()
-        {
-            if (tabGame.SelectedIndex == 0)
-            {
-                tsmiSave.Enabled = btnSaveTR1.Enabled;
-            }
-            else if (tabGame.SelectedIndex == 1)
-            {
-                tsmiSave.Enabled = btnSaveTR1UB.Enabled;
-            }
-            else if (tabGame.SelectedIndex == 2)
-            {
-                tsmiSave.Enabled = btnSaveTR2.Enabled;
-            }
-            else if (tabGame.SelectedIndex == 3)
-            {
-                tsmiSave.Enabled = btnSaveTR2G.Enabled;
-            }
-            else if (tabGame.SelectedIndex == 4)
-            {
-                tsmiSave.Enabled = btnSaveTR3.Enabled;
-            }
-            else if (tabGame.SelectedIndex == 5)
-            {
-                tsmiSave.Enabled = btnSaveTR3TLA.Enabled;
-            }
-            else if (tabGame.SelectedIndex == 6)
-            {
-                tsmiSave.Enabled = btnSaveTR4.Enabled;
-            }
-            else if (tabGame.SelectedIndex == 7)
-            {
-                tsmiSave.Enabled = btnSaveTRC.Enabled;
-            }
-        }
-
         private void UpdateSavegameInfo()
         {
             if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1)
@@ -3895,16 +3863,16 @@ namespace TR_SaveMaster
                 }
             }
 
-            UpdateSaveButtonState();
+            tsmiSave.Enabled = false;
             UpdateSavegameInfo();
         }
 
         private void tabGame_Deselecting(object sender, TabControlCancelEventArgs e)
         {
-            if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1 && btnCancelTR1.Enabled)
+            if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1 && btnSaveTR1.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -3915,10 +3883,10 @@ namespace TR_SaveMaster
                     DisplayGameInfoTR1();
                 }
             }
-            else if (tabGame.SelectedIndex == 1 && cmbSavegamesTR1UB.SelectedIndex != -1 && btnCancelTR1UB.Enabled)
+            else if (tabGame.SelectedIndex == 1 && cmbSavegamesTR1UB.SelectedIndex != -1 && btnSaveTR1UB.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -3929,10 +3897,10 @@ namespace TR_SaveMaster
                     DisplayGameInfoTR1UB();
                 }
             }
-            else if (tabGame.SelectedIndex == 2 && cmbSavegamesTR2.SelectedIndex != -1 && btnCancelTR2.Enabled)
+            else if (tabGame.SelectedIndex == 2 && cmbSavegamesTR2.SelectedIndex != -1 && btnSaveTR2.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -3943,10 +3911,10 @@ namespace TR_SaveMaster
                     DisplayGameInfoTR2();
                 }
             }
-            else if (tabGame.SelectedIndex == 3 && cmbSavegamesTR2G.SelectedIndex != -1 && btnCancelTR2G.Enabled)
+            else if (tabGame.SelectedIndex == 3 && cmbSavegamesTR2G.SelectedIndex != -1 && btnSaveTR2G.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -3957,10 +3925,10 @@ namespace TR_SaveMaster
                     DisplayGameInfoTR2G();
                 }
             }
-            else if (tabGame.SelectedIndex == 4 && cmbSavegamesTR3.SelectedIndex != -1 && btnCancelTR3.Enabled)
+            else if (tabGame.SelectedIndex == 4 && cmbSavegamesTR3.SelectedIndex != -1 && btnSaveTR3.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -3971,10 +3939,10 @@ namespace TR_SaveMaster
                     DisplayGameInfoTR3();
                 }
             }
-            else if (tabGame.SelectedIndex == 5 && cmbSavegamesTR3TLA.SelectedIndex != -1 && btnCancelTR3TLA.Enabled)
+            else if (tabGame.SelectedIndex == 5 && cmbSavegamesTR3TLA.SelectedIndex != -1 && btnSaveTR3TLA.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -3985,10 +3953,10 @@ namespace TR_SaveMaster
                     DisplayGameInfoTR3TLA();
                 }
             }
-            else if (tabGame.SelectedIndex == 6 && cmbSavegamesTR4.SelectedIndex != -1 && btnCancelTR4.Enabled)
+            else if (tabGame.SelectedIndex == 6 && cmbSavegamesTR4.SelectedIndex != -1 && btnSaveTR4.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -3999,10 +3967,10 @@ namespace TR_SaveMaster
                     DisplayGameInfoTR4();
                 }
             }
-            else if (tabGame.SelectedIndex == 7 && cmbSavegamesTRC.SelectedIndex != -1 && btnCancelTRC.Enabled)
+            else if (tabGame.SelectedIndex == 7 && cmbSavegamesTRC.SelectedIndex != -1 && btnSaveTRC.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -4017,80 +3985,80 @@ namespace TR_SaveMaster
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1 && btnCancelTR1.Enabled)
+            if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1 && btnSaveTR1.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     WriteChangesTR1();
                 }
             }
-            else if (tabGame.SelectedIndex == 1 && cmbSavegamesTR1UB.SelectedIndex != -1 && btnCancelTR1UB.Enabled)
+            else if (tabGame.SelectedIndex == 1 && cmbSavegamesTR1UB.SelectedIndex != -1 && btnSaveTR1UB.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     WriteChangesTR1UB();
                 }
             }
-            else if (tabGame.SelectedIndex == 2 && cmbSavegamesTR2.SelectedIndex != -1 && btnCancelTR2.Enabled)
+            else if (tabGame.SelectedIndex == 2 && cmbSavegamesTR2.SelectedIndex != -1 && btnSaveTR2.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     WriteChangesTR2();
                 }
             }
-            else if (tabGame.SelectedIndex == 3 && cmbSavegamesTR2G.SelectedIndex != -1 && btnCancelTR2G.Enabled)
+            else if (tabGame.SelectedIndex == 3 && cmbSavegamesTR2G.SelectedIndex != -1 && btnSaveTR2G.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     WriteChangesTR2G();
                 }
             }
-            else if (tabGame.SelectedIndex == 4 && cmbSavegamesTR3.SelectedIndex != -1 && btnCancelTR3.Enabled)
+            else if (tabGame.SelectedIndex == 4 && cmbSavegamesTR3.SelectedIndex != -1 && btnSaveTR3.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     WriteChangesTR3();
                 }
             }
-            else if (tabGame.SelectedIndex == 5 && cmbSavegamesTR3TLA.SelectedIndex != -1 && btnCancelTR3TLA.Enabled)
+            else if (tabGame.SelectedIndex == 5 && cmbSavegamesTR3TLA.SelectedIndex != -1 && btnSaveTR3TLA.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     WriteChangesTR3TLA();
                 }
             }
-            else if (tabGame.SelectedIndex == 6 && cmbSavegamesTR4.SelectedIndex != -1 && btnCancelTR4.Enabled)
+            else if (tabGame.SelectedIndex == 6 && cmbSavegamesTR4.SelectedIndex != -1 && btnSaveTR4.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     WriteChangesTR4();
                 }
             }
-            else if (tabGame.SelectedIndex == 7 && cmbSavegamesTRC.SelectedIndex != -1 && btnCancelTRC.Enabled)
+            else if (tabGame.SelectedIndex == 7 && cmbSavegamesTRC.SelectedIndex != -1 && btnSaveTRC.Enabled)
             {
-                DialogResult result = MessageBox.Show("Would you like to apply changes to the savegame file?",
-                    "Tomb Raider - Savegame Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
