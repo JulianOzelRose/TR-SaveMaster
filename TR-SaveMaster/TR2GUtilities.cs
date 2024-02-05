@@ -47,7 +47,7 @@ namespace TR_SaveMaster
             savegamePath = path;
         }
 
-        public string GetLvlName()
+        private string GetLvlName()
         {
             using (FileStream saveFileStream = new FileStream(savegamePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -122,59 +122,33 @@ namespace TR_SaveMaster
             flaresOffset = 0x60 + (levelIndex * 0x2C);
             weaponsConfigNumOffset = 0x63 + (levelIndex * 0x2C);
 
+            int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
+
+            automaticPistolsAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
+            uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 24;
+            shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 20;
+            harpoonGunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
+            grenadeLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 12;
+            m16AmmoOffset2 = baseSecondaryAmmoIndexOffset - 8;
+
             if (levelIndex == 1)        // The Cold War
             {
-                m16AmmoOffset2 = 0x1C32;
-                grenadeLauncherAmmoOffset2 = 0x1C2E;
-                harpoonGunAmmoOffset2 = 0x1C2A;
-                shotgunAmmoOffset2 = 0x1C26;
-                uziAmmoOffset2 = 0x1C22;
-                automaticPistolsAmmoOffset2 = 0x1C1E;
-
-                SetHealthOffsets(0xE54, 0xE60, 0xE6C, 0xE84);
+                SetHealthOffsets(0xE54, 0xE60, 0xE6C, 0xE78, 0xE84);
             }
             else if (levelIndex == 2)   // Fool's Gold
             {
-                m16AmmoOffset2 = 0x1C3C;
-                grenadeLauncherAmmoOffset2 = 0x1C38;
-                harpoonGunAmmoOffset2 = 0x1C34;
-                shotgunAmmoOffset2 = 0x1C30;
-                uziAmmoOffset2 = 0x1C2C;
-                automaticPistolsAmmoOffset2 = 0x1C28;
-
                 SetHealthOffsets(0x12D6, 0x12E2, 0x12EE, 0x12FA);
             }
             else if (levelIndex == 3)   // Furnace of the Gods
             {
-                m16AmmoOffset2 = 0x1B2C;
-                grenadeLauncherAmmoOffset2 = 0x1B28;
-                harpoonGunAmmoOffset2 = 0x1B24;
-                shotgunAmmoOffset2 = 0x1B20;
-                uziAmmoOffset2 = 0x1B1C;
-                automaticPistolsAmmoOffset2 = 0x1B18;
-
-                SetHealthOffsets(0x1490, 0x14B4, 0x14C0, 0x14CC);
+                SetHealthOffsets(0x1490, 0x149C, 0x14A8, 0x14B4, 0x14C0, 0x14CC);
             }
             else if (levelIndex == 4)   // Kingdom
             {
-                m16AmmoOffset2 = 0x138A;
-                grenadeLauncherAmmoOffset2 = 0x1386;
-                harpoonGunAmmoOffset2 = 0x1382;
-                shotgunAmmoOffset2 = 0x137E;
-                uziAmmoOffset2 = 0x137A;
-                automaticPistolsAmmoOffset2 = 0x1376;
-
                 SetHealthOffsets(0x600);
             }
             else if (levelIndex == 5)   // Nightmare In Vegas
             {
-                m16AmmoOffset2 = 0x157C;
-                grenadeLauncherAmmoOffset2 = 0x1578;
-                harpoonGunAmmoOffset2 = 0x1574;
-                shotgunAmmoOffset2 = 0x1570;
-                uziAmmoOffset2 = 0x156C;
-                automaticPistolsAmmoOffset2 = 0x1568;
-
                 SetHealthOffsets(0x8AE, 0x8BA, 0x8C6);
             }
         }
