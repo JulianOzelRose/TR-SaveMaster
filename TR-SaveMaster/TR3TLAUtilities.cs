@@ -168,7 +168,7 @@ namespace TR_SaveMaster
             return ReadByte(harpoonGunOffset) != 0;
         }
 
-        public string GetLvlName()
+        private string GetLvlName()
         {
             using (FileStream saveFileStream = new FileStream(savegamePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -201,76 +201,38 @@ namespace TR_SaveMaster
             harpoonGunAmmoOffset = 0xAF + (levelIndex * 0x33);
             grenadeLauncherAmmoOffset = 0xB1 + (levelIndex * 0x33);
 
+            int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
+
+            deagleAmmoOffset2 = baseSecondaryAmmoIndexOffset - 32;
+            uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
+            shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 24;
+            harpoonGunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 20;
+            rocketLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
+            grenadeLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 12;
+            mp5AmmoOffset2 = baseSecondaryAmmoIndexOffset - 8;
+
             if (levelIndex == 1)        // Highland Fling
             {
-                deagleAmmoOffset2 = 0x17DF;
-                uziAmmoOffset2 = 0x17E3;
-                shotgunAmmoOffset2 = 0x17E7;
-                harpoonGunAmmoOffset2 = 0x17EB;
-                rocketLauncherAmmoOffset2 = 0x17EF;
-                grenadeLauncherAmmoOffset2 = 0x17F3;
-                mp5AmmoOffset2 = 0x17F7;
-
                 SetHealthOffsets(0x1435, 0x1447, 0x1459);
             }
             else if (levelIndex == 2)   // Willard's Lair
             {
-                deagleAmmoOffset2 = 0x1ACB;
-                uziAmmoOffset2 = 0x1ACF;
-                shotgunAmmoOffset2 = 0x1AD3;
-                harpoonGunAmmoOffset2 = 0x1AD7;
-                rocketLauncherAmmoOffset2 = 0x1ADB;
-                grenadeLauncherAmmoOffset2 = 0x1ADF;
-                mp5AmmoOffset2 = 0x1AE3;
-
                 SetHealthOffsets(0xF5B, 0xF6D);
             }
             else if (levelIndex == 3)   // Shakespeare Cliff
             {
-                deagleAmmoOffset2 = 0x1AC4;
-                uziAmmoOffset2 = 0x1AC8;
-                shotgunAmmoOffset2 = 0x1ACC;
-                harpoonGunAmmoOffset2 = 0x1AD0;
-                rocketLauncherAmmoOffset2 = 0x1AD4;
-                grenadeLauncherAmmoOffset2 = 0x1AD8;
-                mp5AmmoOffset2 = 0x1ADC;
-
                 SetHealthOffsets(0xCDB, 0xCED);
             }
             else if (levelIndex == 4)   // Sleeping with the Fishes
             {
-                deagleAmmoOffset2 = 0x19A1;
-                uziAmmoOffset2 = 0x19A5;
-                shotgunAmmoOffset2 = 0x19A9;
-                harpoonGunAmmoOffset2 = 0x19AD;
-                rocketLauncherAmmoOffset2 = 0x19B1;
-                grenadeLauncherAmmoOffset2 = 0x19B5;
-                mp5AmmoOffset2 = 0x19B9;
-
                 SetHealthOffsets(0x705);
             }
             else if (levelIndex == 5)   // It's a Madhouse!
             {
-                deagleAmmoOffset2 = 0x16EB;
-                uziAmmoOffset2 = 0x16EF;
-                shotgunAmmoOffset2 = 0x16F3;
-                harpoonGunAmmoOffset2 = 0x16F7;
-                rocketLauncherAmmoOffset2 = 0x16FB;
-                grenadeLauncherAmmoOffset2 = 0x16FF;
-                mp5AmmoOffset2 = 0x1703;
-
-                SetHealthOffsets(0xB37, 0xB5B, 0xB6D, 0xB7F, 0xB91);
+                SetHealthOffsets(0xB37, 0xB49, 0xB5B, 0xB6D, 0xB7F, 0xB91);
             }
             else if (levelIndex == 6)   // Reunion
             {
-                deagleAmmoOffset2 = 0x11F5;
-                uziAmmoOffset2 = 0x11F9;
-                shotgunAmmoOffset2 = 0x11FD;
-                harpoonGunAmmoOffset2 = 0x1201;
-                rocketLauncherAmmoOffset2 = 0x1205;
-                grenadeLauncherAmmoOffset2 = 0x1209;
-                mp5AmmoOffset2 = 0x120D;
-
                 SetHealthOffsets(0x10FB, 0x110D, 0x111F);
             }
         }
