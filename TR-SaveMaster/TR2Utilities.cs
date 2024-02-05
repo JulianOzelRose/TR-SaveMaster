@@ -47,7 +47,7 @@ namespace TR_SaveMaster
             savegamePath = path;
         }
 
-        public string GetLvlName()
+        private string GetLvlName()
         {
             using (FileStream saveFileStream = new FileStream(savegamePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -122,197 +122,85 @@ namespace TR_SaveMaster
             flaresOffset = 0x60 + (levelIndex * 0x2C);
             weaponsConfigNumOffset = 0x63 + (levelIndex * 0x2C);
 
+            int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
+
+            automaticPistolsAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
+            uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 24;
+            shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 20;
+            harpoonGunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
+            grenadeLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 12;
+            m16AmmoOffset2 = baseSecondaryAmmoIndexOffset - 8;
+
             if (levelIndex == 1)        // The Great Wall
             {
-                automaticPistolsAmmoOffset2 = 0xFC4;
-                uziAmmoOffset2 = 0xFC8;
-                shotgunAmmoOffset2 = 0xFCC;
-                harpoonGunAmmoOffset2 = 0xFD0;
-                grenadeLauncherAmmoOffset2 = 0xFD4;
-                m16AmmoOffset2 = 0xFD8;
-
                 SetHealthOffsets(0x778);
             }
             else if (levelIndex == 2)   // Venice
             {
-                automaticPistolsAmmoOffset2 = 0x10D0;
-                uziAmmoOffset2 = 0x10D4;
-                shotgunAmmoOffset2 = 0x10D8;
-                harpoonGunAmmoOffset2 = 0x10DC;
-                grenadeLauncherAmmoOffset2 = 0x10E0;
-                m16AmmoOffset2 = 0x10E4;
-
                 SetHealthOffsets(0x556);
             }
             else if (levelIndex == 3)   // Bartoli's Hideout
             {
-                automaticPistolsAmmoOffset2 = 0x1298;
-                uziAmmoOffset2 = 0x129C;
-                shotgunAmmoOffset2 = 0x12A0;
-                harpoonGunAmmoOffset2 = 0x12A4;
-                grenadeLauncherAmmoOffset2 = 0x12A8;
-                m16AmmoOffset2 = 0x12AC;
-
                 SetHealthOffsets(0xE48);
             }
             else if (levelIndex == 4)   // Opera House
             {
-                automaticPistolsAmmoOffset2 = 0x19D2;
-                uziAmmoOffset2 = 0x19D6;
-                shotgunAmmoOffset2 = 0x19DA;
-                harpoonGunAmmoOffset2 = 0x19DE;
-                grenadeLauncherAmmoOffset2 = 0x19E2;
-                m16AmmoOffset2 = 0x19E6;
-
                 SetHealthOffsets(0x12A0, 0x12AC);
             }
             else if (levelIndex == 5)   // Offshore Rig
             {
-                automaticPistolsAmmoOffset2 = 0x1004;
-                uziAmmoOffset2 = 0x1008;
-                shotgunAmmoOffset2 = 0x100C;
-                harpoonGunAmmoOffset2 = 0x1010;
-                grenadeLauncherAmmoOffset2 = 0x1014;
-                m16AmmoOffset2 = 0x1018;
-
-                SetHealthOffsets(0x6F0, 0x708);
+                SetHealthOffsets(0x6F0, 0x6FC, 0x708);
             }
             else if (levelIndex == 6)   // Diving Area
             {
-                automaticPistolsAmmoOffset2 = 0x1258;
-                uziAmmoOffset2 = 0x125C;
-                shotgunAmmoOffset2 = 0x1260;
-                harpoonGunAmmoOffset2 = 0x1264;
-                grenadeLauncherAmmoOffset2 = 0x1268;
-                m16AmmoOffset2 = 0x126C;
-
                 SetHealthOffsets(0xBD4, 0xBE0, 0xBEC);
             }
             else if (levelIndex == 7)   // 40 Fathoms
             {
-                automaticPistolsAmmoOffset2 = 0xBF2;
-                uziAmmoOffset2 = 0xBF6;
-                shotgunAmmoOffset2 = 0xBFA;
-                harpoonGunAmmoOffset2 = 0xBFE;
-                grenadeLauncherAmmoOffset2 = 0xC02;
-                m16AmmoOffset2 = 0xC06;
-
                 SetHealthOffsets(0x558);
             }
             else if (levelIndex == 8)   // Wreck of the Maria Doria
             {
-                automaticPistolsAmmoOffset2 = 0x16D8;
-                uziAmmoOffset2 = 0x16DC;
-                shotgunAmmoOffset2 = 0x16E0;
-                harpoonGunAmmoOffset2 = 0x16E4;
-                grenadeLauncherAmmoOffset2 = 0x16E8;
-                m16AmmoOffset2 = 0x16EC;
-
-                SetHealthOffsets(0x1612, 0x161E, 0x1642);
+                SetHealthOffsets(0x1612, 0x161E, 0x162A, 0x1636, 0x1642);
             }
             else if (levelIndex == 9)   // Living Quarters
             {
-                automaticPistolsAmmoOffset2 = 0xE88;
-                uziAmmoOffset2 = 0xE8C;
-                shotgunAmmoOffset2 = 0xE90;
-                harpoonGunAmmoOffset2 = 0xE94;
-                grenadeLauncherAmmoOffset2 = 0xE98;
-                m16AmmoOffset2 = 0xE9C;
-
                 SetHealthOffsets(0x5F0);
             }
             else if (levelIndex == 10)  // The Deck
             {
-                automaticPistolsAmmoOffset2 = 0x11AC;
-                uziAmmoOffset2 = 0x11B0;
-                shotgunAmmoOffset2 = 0x11B4;
-                harpoonGunAmmoOffset2 = 0x11B8;
-                grenadeLauncherAmmoOffset2 = 0x11BC;
-                m16AmmoOffset2 = 0x11C0;
-
-                SetHealthOffsets(0x7C4, 0x7E8, 0x7D0);
+                SetHealthOffsets(0x7C4, 0x7D0, 0x7DC, 0x7E8);
             }
             else if (levelIndex == 11)  // Tibetan Foothills
             {
-                automaticPistolsAmmoOffset2 = 0x13E6;
-                uziAmmoOffset2 = 0x13EA;
-                shotgunAmmoOffset2 = 0x13EE;
-                harpoonGunAmmoOffset2 = 0x13F2;
-                grenadeLauncherAmmoOffset2 = 0x13F6;
-                m16AmmoOffset2 = 0x13FA;
-
-                SetHealthOffsets(0xC8E, 0xCBE, 0xCA6);
+                SetHealthOffsets(0xC8E, 0xC9A, 0xCA6, 0xCB2, 0xCBE);
             }
             else if (levelIndex == 12)  // Barkhang Monastery
             {
-                automaticPistolsAmmoOffset2 = 0x1956;
-                uziAmmoOffset2 = 0x195A;
-                shotgunAmmoOffset2 = 0x195E;
-                harpoonGunAmmoOffset2 = 0x1962;
-                grenadeLauncherAmmoOffset2 = 0x1966;
-                m16AmmoOffset2 = 0x196A;
-
                 SetHealthOffsets(0x167A, 0x1686, 0x1692, 0x169E);
             }
             else if (levelIndex == 13)  // Catacombs of the Talion
             {
-                automaticPistolsAmmoOffset2 = 0x1506;
-                uziAmmoOffset2 = 0x150A;
-                shotgunAmmoOffset2 = 0x150E;
-                harpoonGunAmmoOffset2 = 0x1512;
-                grenadeLauncherAmmoOffset2 = 0x1516;
-                m16AmmoOffset2 = 0x151A;
-
                 SetHealthOffsets(0x554);
             }
             else if (levelIndex == 14)  // Ice Palace
             {
-                automaticPistolsAmmoOffset2 = 0x120E;
-                uziAmmoOffset2 = 0x1212;
-                shotgunAmmoOffset2 = 0x1216;
-                harpoonGunAmmoOffset2 = 0x121A;
-                grenadeLauncherAmmoOffset2 = 0x121E;
-                m16AmmoOffset2 = 0x1222;
-
-                SetHealthOffsets(0x91A, 0x932);
+                SetHealthOffsets(0x91A, 0x926, 0x932);
             }
             else if (levelIndex == 15)  // Temple of Xian
             {
-                automaticPistolsAmmoOffset2 = 0x1A4E;
-                uziAmmoOffset2 = 0x1A52;
-                shotgunAmmoOffset2 = 0x1A56;
-                harpoonGunAmmoOffset2 = 0x1A5A;
-                grenadeLauncherAmmoOffset2 = 0x1A5E;
-                m16AmmoOffset2 = 0x1A62;
-
-                SetHealthOffsets(0x196C, 0x1984, 0x19A8, 0x199C);
+                SetHealthOffsets(0x196C, 0x1978, 0x1984, 0x1990, 0x199C, 0x19A8);
             }
             else if (levelIndex == 16)  // Floating Islands
             {
-                automaticPistolsAmmoOffset2 = 0x11E8;
-                uziAmmoOffset2 = 0x11EC;
-                shotgunAmmoOffset2 = 0x11F0;
-                m16AmmoOffset2 = 0x11FC;
-                grenadeLauncherAmmoOffset2 = 0x11F8;
-                harpoonGunAmmoOffset2 = 0x11F4;
-
                 SetHealthOffsets(0x676);
             }
             else if (levelIndex == 17)  // The Dragon's Lair
             {
-                automaticPistolsAmmoOffset2 = 0xD14;
-                uziAmmoOffset2 = 0xD18;
-                shotgunAmmoOffset2 = 0xD1C;
-                harpoonGunAmmoOffset2 = 0xD20;
-                grenadeLauncherAmmoOffset2 = 0xD24;
-                m16AmmoOffset2 = 0xD28;
-
                 SetHealthOffsets(0x9F0);
             }
             else if (levelIndex == 18)  // Home Sweet Home
             {
-                shotgunAmmoOffset2 = 0x100C;
-
                 SetHealthOffsets(0x974, 0x980);
             }
         }
