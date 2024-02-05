@@ -53,7 +53,7 @@ namespace TR_SaveMaster
             savegamePath = path;
         }
 
-        public string GetLvlName()
+        private string GetLvlName()
         {
             using (FileStream saveFileStream = new FileStream(savegamePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {

@@ -408,7 +408,7 @@ namespace TR_SaveMaster
             WriteChecksum(checksum);
         }
 
-        public string GetLvlName()
+        private string GetLvlName()
         {
             using (FileStream saveFileStream = new FileStream(savegamePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
