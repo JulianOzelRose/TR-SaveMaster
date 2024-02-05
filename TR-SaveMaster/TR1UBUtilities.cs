@@ -40,7 +40,7 @@ namespace TR_SaveMaster
             savegamePath = path;
         }
 
-        public string GetLvlName()
+        private string GetLvlName()
         {
             using (FileStream saveFileStream = new FileStream(savegamePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -104,36 +104,26 @@ namespace TR_SaveMaster
         {
             byte levelIndex = GetLevelIndex();
 
+            int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
+
+            magnumAmmoOffset2 = baseSecondaryAmmoIndexOffset - 40;
+            uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
+            shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
+
             if (levelIndex == 0)        // Return to Egypt
             {
-                shotgunAmmoOffset2 = 0xC6D;
-                uziAmmoOffset2 = 0xC61;
-                magnumAmmoOffset2 = 0xC55;
-
                 SetHealthOffsets(0x165);
             }
             else if (levelIndex == 1)   // Temple of the Cat
             {
-                shotgunAmmoOffset2 = 0xFAF;
-                uziAmmoOffset2 = 0xFA3;
-                magnumAmmoOffset2 = 0xF97;
-
                 SetHealthOffsets(0x3DD, 0x3E9);
             }
             else if (levelIndex == 2)   // Atlantean Stronghold
             {
-                shotgunAmmoOffset2 = 0xB21;
-                uziAmmoOffset2 = 0xB15;
-                magnumAmmoOffset2 = 0xB09;
-
-                SetHealthOffsets(0x3C7, 0x3DF, 0x3D3);
+                SetHealthOffsets(0x3C7, 0x3D3, 0x3DF);
             }
             else if (levelIndex == 3)   // The Hive
             {
-                shotgunAmmoOffset2 = 0x1089;
-                uziAmmoOffset2 = 0x107D;
-                magnumAmmoOffset2 = 0x1071;
-
                 SetHealthOffsets(0x501);
             }
         }
