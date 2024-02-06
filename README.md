@@ -15,15 +15,15 @@ a complete list of offsets.
    - [Using bitwise to extract weapons information](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information)
    - [Using heuristics to determine the health offset](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-heuristics-to-determine-the-health-offset)
    - [**Tomb Raider I**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#tomb-raider-i)
-      - [Weapon byte flags](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#weapon-byte-flags)
+      - [Weapons](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#weapons)
       - [Ammunition](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#ammunition)
    - [**Tomb Raider II**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#tomb-raider-ii)
-      - [Weapon byte flags](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#weapon-byte-flags-1) 
-      - [Calculating secondary ammo offsets](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#calculating-secondary-ammo-offsets) 
-   - [**Tomb Raider III**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#tomb-raider-iii)
-      - [Weapon byte flags](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#weapon-byte-flags-2) 
-      - [Calculating secondary ammo offsets](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#calculating-secondary-ammo-offsets-1)
+      - [Weapons](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#weapons-1)
+      - [Ammunition](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#ammunition-1)
       - [Health](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#health)
+   - [**Tomb Raider III**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#tomb-raider-iii)
+      - [Ammunition](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#ammunition-2)
+      - [Health](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#health-1)
    - [**Tomb Raider: The Last Revelation**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#tomb-raider-the-last-revelation)
       - [Checksum algorithm](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#checksum-algorithm)
    - [**Tomb Raider: Chronicles**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#tomb-raider-chronicles)
@@ -436,12 +436,33 @@ in the [above section](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readm
 In the case of Tomb Raider II, the health offsets are stored 8, 9, and 10 bytes away from the character movement data.
 
 ## Tomb Raider III
+The savegame file structure of Tomb Raider III is very similar to that of Tomb Raider II, so the processes involved
+in reversing it are very similar. Similar to Tomb Raider II, the file offsets differ on each level, and are dynamically allocated.
+You can calculate the dynamic offsets based on the level index:
+
+```
+byte levelIndex = GetLevelIndex();
+
+smallMedipackOffset = 0xB3 + (levelIndex * 0x33);
+largeMedipackOffset = 0xB4 + (levelIndex * 0x33);
+flaresOffset = 0xB6 + (levelIndex * 0x33);
+weaponsConfigNumOffset = 0xBA + (levelIndex * 0x33);
+harpoonGunOffset = 0xBB + (levelIndex * 0x33);
+deagleAmmoOffset = 0xA5 + (levelIndex * 0x33);
+uziAmmoOffset = 0xA7 + (levelIndex * 0x33);
+shotgunAmmoOffset = 0xA9 + (levelIndex * 0x33);
+mp5AmmoOffset = 0xAB + (levelIndex * 0x33);
+rocketLauncherAmmoOffset = 0xAD + (levelIndex * 0x33);
+harpoonGunAmmoOffset = 0xAF + (levelIndex * 0x33);
+grenadeLauncherAmmoOffset = 0xB1 + (levelIndex * 0x33);
+```
+
+### Weapons
 Similar to the previous two titles, Tomb Raider III also stores weapons information on a single offset - with the exception
 of the Harpoon Gun, which is stored as a boolean on its own offset, 1 byte away from the weapons config number. Bitwise
 can be used to determine which weapons are present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information)
 on how to do this.
 
-### Weapon byte flags
 ###                                         ###
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
