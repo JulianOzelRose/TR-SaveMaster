@@ -224,8 +224,8 @@ If there are no other entities present, the secondary ammo index is 0. The there
 
 There is a 4-byte array of `{0xFF, 0xFF, 0xFF, 0xFF}` that is stored just before the null padding of the savegame file.
 Since this array shifts consistently along with the secondary ammo offsets, it can be used as a marker to determine the secondary ammo index.
-Each index corresponds with two possible offset ranges of this array. The second one is 0xA bytes from the first.
-For example, if the offset range that represents index 0 begins at 0xFE0, then the offset range that begins at 0xFEC
+Each index corresponds with two possible offset ranges of this array. The second one is 0xA bytes from the first array.
+For example, if the first array that represents index 0 begins at 0xFE0, then the array that begins at 0xFEA
 also corresponds to index 0.
 
 So, when pulling the ammo index based on this dictionary, you must account for this. Here is an example of how to pull the
