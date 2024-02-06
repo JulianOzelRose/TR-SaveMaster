@@ -22,6 +22,7 @@ a complete list of offsets.
       - [Ammunition](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#ammunition-1)
       - [Health](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#health)
    - [**Tomb Raider III**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#tomb-raider-iii)
+      - [Weapons](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#weapons-2) 
       - [Ammunition](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#ammunition-2)
       - [Health](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#health-1)
    - [**Tomb Raider: The Last Revelation**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#tomb-raider-the-last-revelation)
@@ -461,7 +462,7 @@ grenadeLauncherAmmoOffset = 0xB1 + (levelIndex * 0x33);
 Similar to the previous two titles, Tomb Raider III also stores weapons information on a single offset - with the exception
 of the Harpoon Gun, which is stored as a boolean on its own offset, 1 byte away from the weapons config number. Bitwise
 can be used to determine which weapons are present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information)
-on how to do this.
+on how to do this. Here are the weapon byte flags specific to Tomb Raider III:
 
 ###                                         ###
 | **Weapon**              | **Unique number** |
