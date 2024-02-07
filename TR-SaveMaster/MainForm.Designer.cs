@@ -3500,7 +3500,7 @@ namespace TR_SaveMaster
             // lblPistolAmmoTR4
             // 
             this.lblPistolAmmoTR4.AutoSize = true;
-            this.lblPistolAmmoTR4.Location = new System.Drawing.Point(161, 57);
+            this.lblPistolAmmoTR4.Location = new System.Drawing.Point(161, 53);
             this.lblPistolAmmoTR4.Name = "lblPistolAmmoTR4";
             this.lblPistolAmmoTR4.Size = new System.Drawing.Size(50, 13);
             this.lblPistolAmmoTR4.TabIndex = 26;
@@ -3701,7 +3701,7 @@ namespace TR_SaveMaster
             // chkRevolverTR4
             // 
             this.chkRevolverTR4.AutoSize = true;
-            this.chkRevolverTR4.Location = new System.Drawing.Point(22, 106);
+            this.chkRevolverTR4.Location = new System.Drawing.Point(22, 105);
             this.chkRevolverTR4.Name = "chkRevolverTR4";
             this.chkRevolverTR4.Size = new System.Drawing.Size(72, 17);
             this.chkRevolverTR4.TabIndex = 3;
@@ -3712,7 +3712,7 @@ namespace TR_SaveMaster
             // chkUziTR4
             // 
             this.chkUziTR4.AutoSize = true;
-            this.chkUziTR4.Location = new System.Drawing.Point(22, 80);
+            this.chkUziTR4.Location = new System.Drawing.Point(22, 79);
             this.chkUziTR4.Name = "chkUziTR4";
             this.chkUziTR4.Size = new System.Drawing.Size(44, 17);
             this.chkUziTR4.TabIndex = 2;
@@ -3723,7 +3723,7 @@ namespace TR_SaveMaster
             // chkCrossbowTR4
             // 
             this.chkCrossbowTR4.AutoSize = true;
-            this.chkCrossbowTR4.Location = new System.Drawing.Point(22, 187);
+            this.chkCrossbowTR4.Location = new System.Drawing.Point(22, 184);
             this.chkCrossbowTR4.Name = "chkCrossbowTR4";
             this.chkCrossbowTR4.Size = new System.Drawing.Size(75, 17);
             this.chkCrossbowTR4.TabIndex = 1;
