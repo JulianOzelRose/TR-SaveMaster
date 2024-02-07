@@ -16,6 +16,7 @@ namespace TR_SaveMaster
         private void MainForm_Load(object sender, EventArgs e)
         {
             GetDirectories();
+            DisplaySavegamesTR1();
 
             slblStatus.Text = !string.IsNullOrEmpty(directoryTR1) ?
                 $"{cmbSavegamesTR1.Items.Count} savegames found in \"{directoryTR1}\"" : "Ready";
@@ -60,6 +61,15 @@ namespace TR_SaveMaster
         private string directoryTR4;
         private string directoryTRC;
 
+        private const int TAB_TR1 = 0;
+        private const int TAB_TR1UB = 1;
+        private const int TAB_TR2 = 2;
+        private const int TAB_TR2G = 3;
+        private const int TAB_TR3 = 4;
+        private const int TAB_TR3TLA = 5;
+        private const int TAB_TR4 = 6;
+        private const int TAB_TRC = 7;
+
         private bool isLoading = false;
         private bool isFilePresent = true;
 
@@ -85,57 +95,41 @@ namespace TR_SaveMaster
                         {
                             directoryTR1 = value;
                             txtDirectoryTR1.Text = directoryTR1;
-
-                            DisplaySavegamesTR1();
                         }
                         else if (key.Equals("TR1UB", StringComparison.OrdinalIgnoreCase) && Directory.Exists(value))
                         {
                             directoryTR1UB = value;
                             txtDirectoryTR1UB.Text = directoryTR1UB;
-
-                            DisplaySavegamesTR1UB();
                         }
                         else if (key.Equals("TR2", StringComparison.OrdinalIgnoreCase) && Directory.Exists(value))
                         {
                             directoryTR2 = value;
                             txtDirectoryTR2.Text = directoryTR2;
-
-                            DisplaySavegamesTR2();
                         }
                         else if (key.Equals("TR2G", StringComparison.OrdinalIgnoreCase) && Directory.Exists(value))
                         {
                             directoryTR2G = value;
                             txtDirectoryTR2G.Text = directoryTR2G;
-
-                            DisplaySavegamesTR2G();
                         }
                         else if (key.Equals("TR3", StringComparison.OrdinalIgnoreCase) && Directory.Exists(value))
                         {
                             directoryTR3 = value;
                             txtDirectoryTR3.Text = directoryTR3;
-
-                            DisplaySavegamesTR3();
                         }
                         else if (key.Equals("TR3TLA", StringComparison.OrdinalIgnoreCase) && Directory.Exists(value))
                         {
                             directoryTR3TLA = value;
                             txtDirectoryTR3TLA.Text = directoryTR3TLA;
-
-                            DisplaySavegamesTR3TLA();
                         }
                         else if (key.Equals("TR4", StringComparison.OrdinalIgnoreCase) && Directory.Exists(value))
                         {
                             directoryTR4 = value;
                             txtDirectoryTR4.Text = directoryTR4;
-
-                            DisplaySavegamesTR4();
                         }
                         else if (key.Equals("TRC", StringComparison.OrdinalIgnoreCase) && Directory.Exists(value))
                         {
                             directoryTRC = value;
                             txtDirectoryTRC.Text = directoryTRC;
-
-                            DisplaySavegamesTRC();
                         }
                         else if (key.Equals("CreateBackups", StringComparison.OrdinalIgnoreCase))
                         {
@@ -285,7 +279,7 @@ namespace TR_SaveMaster
 
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (tabGame.SelectedIndex == 0)
+                    if (tabGame.SelectedIndex == TAB_TR1)
                     {
                         txtDirectoryTR1.Text = folderBrowserDialog.SelectedPath;
                         directoryTR1 = folderBrowserDialog.SelectedPath;
@@ -293,7 +287,7 @@ namespace TR_SaveMaster
 
                         slblStatus.Text = $"{cmbSavegamesTR1.Items.Count} savegames found in \"{directoryTR1}\"";
                     }
-                    else if (tabGame.SelectedIndex == 1)
+                    else if (tabGame.SelectedIndex == TAB_TR1UB)
                     {
                         txtDirectoryTR1UB.Text = folderBrowserDialog.SelectedPath;
                         directoryTR1UB = folderBrowserDialog.SelectedPath;
@@ -301,7 +295,7 @@ namespace TR_SaveMaster
 
                         slblStatus.Text = $"{cmbSavegamesTR1UB.Items.Count} savegames found in \"{directoryTR1UB}\"";
                     }
-                    else if (tabGame.SelectedIndex == 2)
+                    else if (tabGame.SelectedIndex == TAB_TR2)
                     {
                         txtDirectoryTR2.Text = folderBrowserDialog.SelectedPath;
                         directoryTR2 = folderBrowserDialog.SelectedPath;
@@ -309,7 +303,7 @@ namespace TR_SaveMaster
 
                         slblStatus.Text = $"{cmbSavegamesTR2.Items.Count} savegames found in \"{directoryTR2}\"";
                     }
-                    else if (tabGame.SelectedIndex == 3)
+                    else if (tabGame.SelectedIndex == TAB_TR2G)
                     {
                         txtDirectoryTR2G.Text = folderBrowserDialog.SelectedPath;
                         directoryTR2G = folderBrowserDialog.SelectedPath;
@@ -317,7 +311,7 @@ namespace TR_SaveMaster
 
                         slblStatus.Text = $"{cmbSavegamesTR2G.Items.Count} savegames found in \"{directoryTR2G}\"";
                     }
-                    else if (tabGame.SelectedIndex == 4)
+                    else if (tabGame.SelectedIndex == TAB_TR3)
                     {
                         txtDirectoryTR3.Text = folderBrowserDialog.SelectedPath;
                         directoryTR3 = folderBrowserDialog.SelectedPath;
@@ -325,7 +319,7 @@ namespace TR_SaveMaster
 
                         slblStatus.Text = $"{cmbSavegamesTR3.Items.Count} savegames found in \"{directoryTR3}\"";
                     }
-                    else if (tabGame.SelectedIndex == 5)
+                    else if (tabGame.SelectedIndex == TAB_TR3TLA)
                     {
                         txtDirectoryTR3TLA.Text = folderBrowserDialog.SelectedPath;
                         directoryTR3TLA = folderBrowserDialog.SelectedPath;
@@ -333,7 +327,7 @@ namespace TR_SaveMaster
 
                         slblStatus.Text = $"{cmbSavegamesTR3TLA.Items.Count} savegames found in \"{directoryTR3TLA}\"";
                     }
-                    else if (tabGame.SelectedIndex == 6)
+                    else if (tabGame.SelectedIndex == TAB_TR4)
                     {
                         txtDirectoryTR4.Text = folderBrowserDialog.SelectedPath;
                         directoryTR4 = folderBrowserDialog.SelectedPath;
@@ -341,7 +335,7 @@ namespace TR_SaveMaster
 
                         slblStatus.Text = $"{cmbSavegamesTR4.Items.Count} savegames found in \"{directoryTR4}\"";
                     }
-                    else if (tabGame.SelectedIndex == 7)
+                    else if (tabGame.SelectedIndex == TAB_TRC)
                     {
                         txtDirectoryTRC.Text = folderBrowserDialog.SelectedPath;
                         directoryTRC = folderBrowserDialog.SelectedPath;
@@ -520,6 +514,9 @@ namespace TR_SaveMaster
                 btnSaveTR1.Enabled = false;
                 btnCancelTR1.Enabled = false;
             }
+
+            slblStatus.Text = !string.IsNullOrEmpty(directoryTR1) ?
+                $"{cmbSavegamesTR1.Items.Count} savegames found in \"{directoryTR1}\"" : "Ready";
         }
 
         private void DisplaySavegamesTR1UB()
@@ -553,6 +550,9 @@ namespace TR_SaveMaster
                 btnSaveTR1UB.Enabled = false;
                 btnCancelTR1UB.Enabled = false;
             }
+
+            slblStatus.Text = !string.IsNullOrEmpty(directoryTR1UB) ?
+                $"{cmbSavegamesTR1UB.Items.Count} savegames found in \"{directoryTR1UB}\"" : "Ready";
         }
 
         private void DisplaySavegamesTR2()
@@ -586,6 +586,9 @@ namespace TR_SaveMaster
                 btnSaveTR2.Enabled = false;
                 btnCancelTR2.Enabled = false;
             }
+
+            slblStatus.Text = !string.IsNullOrEmpty(directoryTR2) ?
+                $"{cmbSavegamesTR2.Items.Count} savegames found in \"{directoryTR2}\"" : "Ready";
         }
 
         private void DisplaySavegamesTR2G()
@@ -619,6 +622,9 @@ namespace TR_SaveMaster
                 btnSaveTR2G.Enabled = false;
                 btnCancelTR2G.Enabled = false;
             }
+
+            slblStatus.Text = !string.IsNullOrEmpty(directoryTR2G) ?
+                $"{cmbSavegamesTR2G.Items.Count} savegames found in \"{directoryTR2G}\"" : "Ready";
         }
 
         private void DisplaySavegamesTR3()
@@ -652,6 +658,9 @@ namespace TR_SaveMaster
                 btnSaveTR3.Enabled = false;
                 btnCancelTR3.Enabled = false;
             }
+
+            slblStatus.Text = !string.IsNullOrEmpty(directoryTR3) ?
+                $"{cmbSavegamesTR3.Items.Count} savegames found in \"{directoryTR3}\"" : "Ready";
         }
 
         private void DisplaySavegamesTR3TLA()
@@ -685,6 +694,9 @@ namespace TR_SaveMaster
                 btnSaveTR3TLA.Enabled = false;
                 btnCancelTR3TLA.Enabled = false;
             }
+
+            slblStatus.Text = !string.IsNullOrEmpty(directoryTR3TLA) ?
+                $"{cmbSavegamesTR3TLA.Items.Count} savegames found in \"{directoryTR3TLA}\"" : "Ready";
         }
 
         private void DisplaySavegamesTR4()
@@ -718,6 +730,9 @@ namespace TR_SaveMaster
                 btnSaveTR4.Enabled = false;
                 btnCancelTR4.Enabled = false;
             }
+
+            slblStatus.Text = !string.IsNullOrEmpty(directoryTR4) ?
+                $"{cmbSavegamesTR4.Items.Count} savegames found in \"{directoryTR4}\"" : "Ready";
         }
 
         private void DisplaySavegamesTRC()
@@ -751,6 +766,9 @@ namespace TR_SaveMaster
                 btnSaveTRC.Enabled = false;
                 btnCancelTRC.Enabled = false;
             }
+
+            slblStatus.Text = !string.IsNullOrEmpty(directoryTRC) ?
+                $"{cmbSavegamesTRC.Items.Count} savegames found in \"{directoryTRC}\"" : "Ready";
         }
 
         private void DisplayGameInfoTR1()
@@ -832,7 +850,7 @@ namespace TR_SaveMaster
                         {
                             MessageBox.Show("Could not find file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             isFilePresent = false;
-                            DisplaySavegamesTRC();
+                            DisplaySavegamesTR1UB();
                         }
 
                         break;
@@ -3776,35 +3794,35 @@ namespace TR_SaveMaster
 
         private void tsmiSave_Click(object sender, EventArgs e)
         {
-            if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1)
+            if (tabGame.SelectedIndex == TAB_TR1 && cmbSavegamesTR1.SelectedIndex != -1)
             {
                 WriteChangesTR1();
             }
-            else if (tabGame.SelectedIndex == 1 && cmbSavegamesTR1UB.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR1UB && cmbSavegamesTR1UB.SelectedIndex != -1)
             {
                 WriteChangesTR1UB();
             }
-            else if (tabGame.SelectedIndex == 2 && cmbSavegamesTR2.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR2 && cmbSavegamesTR2.SelectedIndex != -1)
             {
                 WriteChangesTR2();
             }
-            else if (tabGame.SelectedIndex == 3 && cmbSavegamesTR2G.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR2G && cmbSavegamesTR2G.SelectedIndex != -1)
             {
                 WriteChangesTR2G();
             }
-            else if (tabGame.SelectedIndex == 4 && cmbSavegamesTR3.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR3 && cmbSavegamesTR3.SelectedIndex != -1)
             {
                 WriteChangesTR3();
             }
-            else if (tabGame.SelectedIndex == 5 && cmbSavegamesTR3TLA.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR3TLA && cmbSavegamesTR3TLA.SelectedIndex != -1)
             {
                 WriteChangesTR3TLA();
             }
-            else if (tabGame.SelectedIndex == 6 && cmbSavegamesTR4.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR4 && cmbSavegamesTR4.SelectedIndex != -1)
             {
                 WriteChangesTR4();
             }
-            else if (tabGame.SelectedIndex == 7 && cmbSavegamesTRC.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TRC && cmbSavegamesTRC.SelectedIndex != -1)
             {
                 WriteChangesTRC();
             }
@@ -3812,37 +3830,117 @@ namespace TR_SaveMaster
 
         private void UpdateSavegameInfo()
         {
-            if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1)
+            if (tabGame.SelectedIndex == TAB_TR1)
             {
-                DisplayGameInfoTR1();
+                if (cmbSavegamesTR1.SelectedIndex != -1)
+                {
+                    DisplayGameInfoTR1();
+                }
+                else
+                {
+                    DisplaySavegamesTR1();
+                }
+
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR1) ?
+                    $"{cmbSavegamesTR1.Items.Count} savegames found in \"{directoryTR1}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 1 && cmbSavegamesTR1UB.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR1UB)
             {
-                DisplayGameInfoTR1UB();
+                if (cmbSavegamesTR1UB.SelectedIndex != -1)
+                {
+                    DisplayGameInfoTR1UB();
+                }
+                else
+                {
+                    DisplaySavegamesTR1UB();
+                }
+
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR1UB) ?
+                    $"{cmbSavegamesTR1UB.Items.Count} savegames found in \"{directoryTR1UB}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 2 && cmbSavegamesTR2.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR2)
             {
-                DisplayGameInfoTR2();
+                if (cmbSavegamesTR2.SelectedIndex != -1)
+                {
+                    DisplayGameInfoTR2();
+                }
+                else
+                {
+                    DisplaySavegamesTR2();
+                }
+
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR2) ?
+                    $"{cmbSavegamesTR2.Items.Count} savegames found in \"{directoryTR2}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 3 && cmbSavegamesTR2G.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR2G)
             {
-                DisplayGameInfoTR2G();
+                if (cmbSavegamesTR2G.SelectedIndex != -1)
+                {
+                    DisplayGameInfoTR2G();
+                }
+                else
+                {
+                    DisplaySavegamesTR2G();
+                }
+
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR2G) ?
+                    $"{cmbSavegamesTR2G.Items.Count} savegames found in \"{directoryTR2G}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 4 && cmbSavegamesTR3.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR3)
             {
-                DisplayGameInfoTR3();
+                if (cmbSavegamesTR3.SelectedIndex != -1)
+                {
+                    DisplayGameInfoTR3();
+                }
+                else
+                {
+                    DisplaySavegamesTR3();
+                }
+
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR3) ?
+                    $"{cmbSavegamesTR3.Items.Count} savegames found in \"{directoryTR3}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 5 && cmbSavegamesTR3TLA.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR3TLA)
             {
-                DisplayGameInfoTR3TLA();
+                if (cmbSavegamesTR3TLA.SelectedIndex != -1)
+                {
+                    DisplayGameInfoTR3TLA();
+                }
+                else
+                {
+                    DisplaySavegamesTR3TLA();
+                }
+
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR3TLA) ?
+                    $"{cmbSavegamesTR3TLA.Items.Count} savegames found in \"{directoryTR3TLA}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 6 && cmbSavegamesTR4.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TR4)
             {
-                DisplayGameInfoTR4();
+                if (cmbSavegamesTR4.SelectedIndex != -1)
+                {
+                    DisplayGameInfoTR4();
+                }
+                else
+                {
+                    DisplaySavegamesTR4();
+                }
+
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTR4) ?
+                    $"{cmbSavegamesTR4.Items.Count} savegames found in \"{directoryTR4}\"" : "Ready";
             }
-            else if (tabGame.SelectedIndex == 7 && cmbSavegamesTRC.SelectedIndex != -1)
+            else if (tabGame.SelectedIndex == TAB_TRC)
             {
-                DisplayGameInfoTRC();
+                if (cmbSavegamesTRC.SelectedIndex != -1)
+                {
+                    DisplayGameInfoTRC();
+                }
+                else
+                {
+                    DisplaySavegamesTRC();
+                }
+
+                slblStatus.Text = !string.IsNullOrEmpty(directoryTRC) ?
+                    $"{cmbSavegamesTRC.Items.Count} savegames found in \"{directoryTRC}\"" : "Ready";
             }
         }
 
@@ -3852,9 +3950,9 @@ namespace TR_SaveMaster
             UpdateSavegameInfo();
         }
 
-        private void tabGame_Deselecting(object sender, TabControlCancelEventArgs e)
+        private void ConfirmChanges()
         {
-            if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1 && btnSaveTR1.Enabled)
+            if (tabGame.SelectedIndex == TAB_TR1 && cmbSavegamesTR1.SelectedIndex != -1 && btnSaveTR1.Enabled)
             {
                 DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3863,12 +3961,8 @@ namespace TR_SaveMaster
                 {
                     WriteChangesTR1();
                 }
-                else
-                {
-                    DisplayGameInfoTR1();
-                }
             }
-            else if (tabGame.SelectedIndex == 1 && cmbSavegamesTR1UB.SelectedIndex != -1 && btnSaveTR1UB.Enabled)
+            else if (tabGame.SelectedIndex == TAB_TR1UB && cmbSavegamesTR1UB.SelectedIndex != -1 && btnSaveTR1UB.Enabled)
             {
                 DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3877,12 +3971,8 @@ namespace TR_SaveMaster
                 {
                     WriteChangesTR1UB();
                 }
-                else
-                {
-                    DisplayGameInfoTR1UB();
-                }
             }
-            else if (tabGame.SelectedIndex == 2 && cmbSavegamesTR2.SelectedIndex != -1 && btnSaveTR2.Enabled)
+            else if (tabGame.SelectedIndex == TAB_TR2 && cmbSavegamesTR2.SelectedIndex != -1 && btnSaveTR2.Enabled)
             {
                 DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3891,12 +3981,8 @@ namespace TR_SaveMaster
                 {
                     WriteChangesTR2();
                 }
-                else
-                {
-                    DisplayGameInfoTR2();
-                }
             }
-            else if (tabGame.SelectedIndex == 3 && cmbSavegamesTR2G.SelectedIndex != -1 && btnSaveTR2G.Enabled)
+            else if (tabGame.SelectedIndex == TAB_TR2G && cmbSavegamesTR2G.SelectedIndex != -1 && btnSaveTR2G.Enabled)
             {
                 DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3905,12 +3991,8 @@ namespace TR_SaveMaster
                 {
                     WriteChangesTR2G();
                 }
-                else
-                {
-                    DisplayGameInfoTR2G();
-                }
             }
-            else if (tabGame.SelectedIndex == 4 && cmbSavegamesTR3.SelectedIndex != -1 && btnSaveTR3.Enabled)
+            else if (tabGame.SelectedIndex == TAB_TR3 && cmbSavegamesTR3.SelectedIndex != -1 && btnSaveTR3.Enabled)
             {
                 DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3919,12 +4001,8 @@ namespace TR_SaveMaster
                 {
                     WriteChangesTR3();
                 }
-                else
-                {
-                    DisplayGameInfoTR3();
-                }
             }
-            else if (tabGame.SelectedIndex == 5 && cmbSavegamesTR3TLA.SelectedIndex != -1 && btnSaveTR3TLA.Enabled)
+            else if (tabGame.SelectedIndex == TAB_TR3TLA && cmbSavegamesTR3TLA.SelectedIndex != -1 && btnSaveTR3TLA.Enabled)
             {
                 DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3933,12 +4011,8 @@ namespace TR_SaveMaster
                 {
                     WriteChangesTR3TLA();
                 }
-                else
-                {
-                    DisplayGameInfoTR3TLA();
-                }
             }
-            else if (tabGame.SelectedIndex == 6 && cmbSavegamesTR4.SelectedIndex != -1 && btnSaveTR4.Enabled)
+            else if (tabGame.SelectedIndex == TAB_TR4 && cmbSavegamesTR4.SelectedIndex != -1 && btnSaveTR4.Enabled)
             {
                 DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3947,12 +4021,8 @@ namespace TR_SaveMaster
                 {
                     WriteChangesTR4();
                 }
-                else
-                {
-                    DisplayGameInfoTR4();
-                }
             }
-            else if (tabGame.SelectedIndex == 7 && cmbSavegamesTRC.SelectedIndex != -1 && btnSaveTRC.Enabled)
+            else if (tabGame.SelectedIndex == TAB_TRC && cmbSavegamesTRC.SelectedIndex != -1 && btnSaveTRC.Enabled)
             {
                 DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3960,97 +4030,18 @@ namespace TR_SaveMaster
                 if (result == DialogResult.Yes)
                 {
                     WriteChangesTRC();
-                }
-                else
-                {
-                    DisplayGameInfoTRC();
                 }
             }
         }
 
+        private void tabGame_Deselecting(object sender, TabControlCancelEventArgs e)
+        {
+            ConfirmChanges();
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tabGame.SelectedIndex == 0 && cmbSavegamesTR1.SelectedIndex != -1 && btnSaveTR1.Enabled)
-            {
-                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    WriteChangesTR1();
-                }
-            }
-            else if (tabGame.SelectedIndex == 1 && cmbSavegamesTR1UB.SelectedIndex != -1 && btnSaveTR1UB.Enabled)
-            {
-                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    WriteChangesTR1UB();
-                }
-            }
-            else if (tabGame.SelectedIndex == 2 && cmbSavegamesTR2.SelectedIndex != -1 && btnSaveTR2.Enabled)
-            {
-                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    WriteChangesTR2();
-                }
-            }
-            else if (tabGame.SelectedIndex == 3 && cmbSavegamesTR2G.SelectedIndex != -1 && btnSaveTR2G.Enabled)
-            {
-                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    WriteChangesTR2G();
-                }
-            }
-            else if (tabGame.SelectedIndex == 4 && cmbSavegamesTR3.SelectedIndex != -1 && btnSaveTR3.Enabled)
-            {
-                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    WriteChangesTR3();
-                }
-            }
-            else if (tabGame.SelectedIndex == 5 && cmbSavegamesTR3TLA.SelectedIndex != -1 && btnSaveTR3TLA.Enabled)
-            {
-                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    WriteChangesTR3TLA();
-                }
-            }
-            else if (tabGame.SelectedIndex == 6 && cmbSavegamesTR4.SelectedIndex != -1 && btnSaveTR4.Enabled)
-            {
-                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    WriteChangesTR4();
-                }
-            }
-            else if (tabGame.SelectedIndex == 7 && cmbSavegamesTRC.SelectedIndex != -1 && btnSaveTRC.Enabled)
-            {
-                DialogResult result = MessageBox.Show($"Would you like to apply changes to the savegame file?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    WriteChangesTRC();
-                }
-            }
-
+            ConfirmChanges();
             UpdateDirectories();
         }
 
