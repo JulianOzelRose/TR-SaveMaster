@@ -378,10 +378,10 @@ private readonly Dictionary<byte, int[]> ammoIndexData = new Dictionary<byte, in
 };
 ```
 
-With each index marker array's location stored on the array, you can then calculate both
+With each index marker array's location stored on the dictionary, you can then calculate both
 the secondary ammo index, as well as the base secondary ammo offsets. To see how to
 calculate the secondary ammo index, see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#calculating-the-secondary-ammo-index).
-Here is how to calculate the base secondary ammo offsets based on the index data:
+Here is how to calculate the base secondary ammo offsets based on the index data for Tomb Raider II:
 
 ```
 int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
@@ -394,8 +394,8 @@ grenadeLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 12;
 m16AmmoOffset2 = baseSecondaryAmmoIndexOffset - 8;
 ```
 
-Once you have the ammo index and the base secondary ammo offset, the next step is to
-is calculate the secondary ammo offsets based on the index. This can be achieved with a simple for loop:
+Once you have the ammo index and the base secondary ammo offset, the next step is to is calculate the secondary ammo offsets based on the index
+and base offsets. Here is the function for calculating the secondary ammo offset from its index and base offset:
 
 ```
 private int GetSecondaryAmmoOffset(int baseOffset)
@@ -428,7 +428,7 @@ private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
 Health is stored dynamically on anywhere from 1-6 different offsets per level. Since the health offsets shift
 throughout a level, it is best to use the heuristic method to determine the correct health offset outlined
 in the [above section](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-heuristics-to-determine-the-health-offset).
-In the case of Tomb Raider II, the health offsets are stored 8, 9, and 10 bytes away from the character movement data.
+In the case of Tomb Raider II, the health offsets are stored 8 bytes away from the character movement data.
 
 ## Tomb Raider III
 The savegame file structure of Tomb Raider III is very similar to that of Tomb Raider II, so the processes involved
@@ -500,13 +500,27 @@ private readonly Dictionary<byte, int[]> ammoIndexData = new Dictionary<byte, in
     { 19, new int[] { 0x0B01, 0x0B02, 0x0B03, 0x0B04 } },   // Meteorite Cavern
     { 20, new int[] { 0x1045, 0x1046, 0x1047, 0x1048 } },   // All Hallows
  };
-
 ```
 
-With the base secondary ammo indices, you can then calculate both the current secondary ammo index
-as well as the base secondary ammo offset. To see how to calculate the secondary ammo index, see
-the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#calculating-the-secondary-ammo-index).
-Here is how to calculate the secondary offset from the base offset for Tomb Raider III:
+With each index marker array's location stored on the dictionary, you can then calculate both the secondary ammo index,
+as well as the base secondary ammo offsets. To see how to calculate the secondary ammo index, see the
+[section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#calculating-the-secondary-ammo-index).
+Here is how to calculate the base secondary ammo offsets based on the index data for Tomb Raider III:
+
+```
+int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
+
+deagleAmmoOffset2 = baseSecondaryAmmoIndexOffset - 32;
+uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
+shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 24;
+harpoonGunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 20;
+rocketLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
+grenadeLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 12;
+mp5AmmoOffset2 = baseSecondaryAmmoIndexOffset - 8;
+```
+
+Once you have the ammo index and the base secondary ammo offset, the next step is to is calculate the secondary ammo offsets based on the index
+and base offsets. Here is the function for calculating the secondary ammo offset from its index and base offset:
 
 ```
 private int GetSecondaryAmmoOffset(int baseOffset)
@@ -586,7 +600,7 @@ private byte CalculateChecksum()
 Similar to Tomb Raider 4, most of the savegame data in Tomb Raider 5 is stored statically. The only exception is the health data,
 which is dynamically stored on a range that varies on each level. To determine the correct health offset, it is necessary to use
 the heuristic algorithm outlined in the [above section](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-heuristics-to-determine-the-health-offset).
-For Tomb Raider 5, the character animation data is located between 6 bytes away from the health offset.
+For Tomb Raider 5, the character animation data is stored 6 bytes away from the health offset.
 
 ### Health offsets
 | **Level**           	   | **Offset range** |
