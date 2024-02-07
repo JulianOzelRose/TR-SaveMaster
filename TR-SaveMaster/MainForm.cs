@@ -512,7 +512,6 @@ namespace TR_SaveMaster
             if (savegamesTR1.Count > 0)
             {
                 cmbSavegamesTR1.SelectedIndex = 0;
-                DisplayGameInfoTR1();
             }
             else
             {
@@ -546,7 +545,6 @@ namespace TR_SaveMaster
             if (savegamesTR1UB.Count > 0)
             {
                 cmbSavegamesTR1UB.SelectedIndex = 0;
-                DisplayGameInfoTR1UB();
             }
             else
             {
@@ -580,7 +578,6 @@ namespace TR_SaveMaster
             if (savegamesTR2.Count > 0)
             {
                 cmbSavegamesTR2.SelectedIndex = 0;
-                DisplayGameInfoTR2();
             }
             else
             {
@@ -614,7 +611,6 @@ namespace TR_SaveMaster
             if (savegamesTR2G.Count > 0)
             {
                 cmbSavegamesTR2G.SelectedIndex = 0;
-                DisplayGameInfoTR2G();
             }
             else
             {
@@ -648,7 +644,6 @@ namespace TR_SaveMaster
             if (savegamesTR3.Count > 0)
             {
                 cmbSavegamesTR3.SelectedIndex = 0;
-                DisplayGameInfoTR3();
             }
             else
             {
@@ -682,7 +677,6 @@ namespace TR_SaveMaster
             if (savegamesTR3TLA.Count > 0)
             {
                 cmbSavegamesTR3TLA.SelectedIndex = 0;
-                DisplayGameInfoTR3TLA();
             }
             else
             {
@@ -716,7 +710,6 @@ namespace TR_SaveMaster
             if (savegamesTR4.Count > 0)
             {
                 cmbSavegamesTR4.SelectedIndex = 0;
-                DisplayGameInfoTR4();
             }
             else
             {
@@ -750,7 +743,6 @@ namespace TR_SaveMaster
             if (savegamesTRC.Count > 0)
             {
                 cmbSavegamesTRC.SelectedIndex = 0;
-                DisplayGameInfoTRC();
             }
             else
             {
