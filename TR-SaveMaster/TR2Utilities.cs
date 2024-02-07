@@ -267,14 +267,7 @@ namespace TR_SaveMaster
 
         private int GetSecondaryAmmoOffset(int baseOffset)
         {
-            List<int> secondaryAmmoOffsets = new List<int>();
-
-            for (int i = 0; i < 20; i++)
-            {
-                secondaryAmmoOffsets.Add(baseOffset + i * 0x6);
-            }
-
-            return secondaryAmmoOffsets[secondaryAmmoIndex];
+            return baseOffset + (secondaryAmmoIndex * 0x6);
         }
 
         private void SetHealthOffsets(params int[] offsets)

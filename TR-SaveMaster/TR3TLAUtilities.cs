@@ -384,7 +384,7 @@ namespace TR_SaveMaster
                 int[] offsets1 = new int[indexData.Length];
                 int[] offsets2 = new int[indexData.Length];
 
-                for (int index = 0; index < 15; index++)
+                for (int index = 0; index < 20; index++)
                 {
                     Array.Copy(indexData, offsets1, indexData.Length);
 
@@ -413,14 +413,7 @@ namespace TR_SaveMaster
 
         private int GetSecondaryAmmoOffset(int baseOffset)
         {
-            List<int> secondaryAmmoOffsets = new List<int>();
-
-            for (int i = 0; i < 15; i++)
-            {
-                secondaryAmmoOffsets.Add(baseOffset + i * 0x12);
-            }
-
-            return secondaryAmmoOffsets[secondaryAmmoIndex];
+            return baseOffset + (secondaryAmmoIndex * 0x12);
         }
 
         private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
