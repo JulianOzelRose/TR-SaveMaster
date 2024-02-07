@@ -3848,24 +3848,6 @@ namespace TR_SaveMaster
 
         private void tabGame_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < tabGame.TabPages.Count; i++)
-            {
-                if (tabGame.TabPages[i] == tabGame.SelectedTab)
-                {
-                    for (int j = 0; j < tabGame.TabPages[i].Controls.Count; j++)
-                    {
-                        tabGame.TabPages[i].Controls[j].Visible = true;
-                    }
-                }
-                else
-                {
-                    for (int j = 0; j < tabGame.TabPages[i].Controls.Count; j++)
-                    {
-                        tabGame.TabPages[i].Controls[j].Visible = false;
-                    }
-                }
-            }
-
             tsmiSave.Enabled = false;
             UpdateSavegameInfo();
         }
