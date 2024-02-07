@@ -43,8 +43,8 @@ a complete list of offsets.
 
 
 ## Installation and use
-To use this savegame editor, simply navigate to the [Release](https://github.com/JulianOzelRose/TR-SaveMaster/tree/master/TR-SaveMaster/bin/x64/Release) folder, then
-download `TR-SaveMaster.exe`, then open it. There is no need to install anything, and it can be run from anywhere on your computer. To toggle between the different
+To use the latest stable release of this savegame editor, simply navigate to the [Releases](https://github.com/JulianOzelRose/TR-SaveMaster/releases) section, then
+download `TR-SaveMaster-v1.20.exe`, then open it. There is no need to install anything, and it can be run from anywhere on your computer. To toggle between the different
 Tomb Raider games, click the appopriate tab on the tab control on the top. To begin savegame editing, you must first set your game directory. To do this, click "Browse",
 the navigate to your game directory on your computer. The game directory depends on whether you have a Steam installation, a CD installation, or a GOG installation.
 For GOG and CD installations, the actual directory the savegames are stored in varies based on your Windows setup. It seems that for most modern Windows installations,
@@ -123,12 +123,12 @@ Run the `takeown` command first, then run the `icals` command second. You should
 
 # Reverse engineering the Tomb Raider series
 This section details the technical aspects of reverse engineering the savegame files for the classic Tomb Raider series. You can find the offset tables for each game
-[here](https://github.com/JulianOzelRose/TR-SaveMaster/blob/master/OFFSETS.md). In general, there are many similarities between the games, as they are all built on the same engine.
-Tomb Raider 1-3 use a very similar engine, and so reversing those games involves a similar process.
+[here](https://github.com/JulianOzelRose/TR-SaveMaster/blob/master/OFFSETS.md). However, more information on how to calculate these offsets dynamically can be found
+in the sections below. In general, there are many similarities between the games, as they are all built on the same engine.
 
-Tomb Raider 4 and 5 use a markedly different engine than 1-3, but involve a simpler process nonetheless.
-This is because most of the offsets in Tomb Raider 1-3 are dynamic, while all offsets in Tomb Raider 4 and 5 are static, with the exception of the health offset.
-Interestingly, Tomb Raider 4 uses a file checksum as an anti-reverse engineering technique, while Tomb Raider 5 does not.
+Tomb Raider 1-3 use a very similar engine, and so reversing those games involves a similar process. Tomb Raider 4 and 5 use a markedly different engine than 1-3,
+but involve a simpler process nonetheless. This is because most of the offsets in Tomb Raider 1-3 are dynamic, while all offsets in Tomb Raider 4 and 5 are static,
+with the exception of the health offset. Interestingly, Tomb Raider 4 uses a file checksum as an anti-reverse engineering technique, while Tomb Raider 5 does not.
 
 ## Using bitwise to extract weapons information
 In Tomb Raider 1-3, all weapons information is stored on a single offset, which is called `weaponsConfigNum` in the editor's code. The weapons configuration variable has a base number of 1,
@@ -380,8 +380,8 @@ private readonly Dictionary<byte, int[]> ammoIndexData = new Dictionary<byte, in
 
 With each index marker array's location stored on the array, you can then calculate both
 the secondary ammo index, as well as the base secondary ammo offsets. To see how to
-calculate the secondary ammo index, see the section above. Here is how to calculate the
-base secondary ammo offsets based on the index data:
+calculate the secondary ammo index, see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#calculating-the-secondary-ammo-index).
+Here is how to calculate the base secondary ammo offsets based on the index data:
 
 ```
 int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
@@ -400,14 +400,7 @@ is calculate the secondary ammo offsets based on the index. This can be achieved
 ```
 private int GetSecondaryAmmoOffset(int baseOffset)
 {
-    List<int> secondaryAmmoOffsets = new List<int>();
-
-    for (int i = 0; i < 20; i++)
-    {
-        secondaryAmmoOffsets.Add(baseOffset + i * 0x6);
-    }
-
-    return secondaryAmmoOffsets[secondaryAmmoIndex];
+    return baseOffset + (secondaryAmmoIndex * 0x6);
 }
 ```
 
@@ -480,7 +473,8 @@ on how to do this. Here are the weapon byte flags specific to Tomb Raider III:
 Tomb Raider III also stores ammunition on a primary and secondary offset, with the same logic as the previous two titles;
 an equipped weapon stores ammo on both offsets, while a non-equipped weapon only stores ammo in the primary offset. The
 secondary ammo indices are dynamically allocated. The methods for writing to ammunition are almost identical to Tomb Raider II.
-Here is the dictionary for the base secondary ammo index arrays for Tomb Raider III:
+Once again, you will need to find and store the base location of the `{0xFF, 0xFF, 0xFF, 0xFF}` array that precedes the null
+padding of the savegame file. Here is the dictionary for the base secondary ammo index arrays for Tomb Raider III:
 
 ```
 private readonly Dictionary<byte, int[]> ammoIndexData = new Dictionary<byte, int[]>
@@ -511,19 +505,13 @@ private readonly Dictionary<byte, int[]> ammoIndexData = new Dictionary<byte, in
 
 With the base secondary ammo indices, you can then calculate both the current secondary ammo index
 as well as the base secondary ammo offset. To see how to calculate the secondary ammo index, see
-the section above. Here is how to calculate the secondary offset from the base offset for Tomb Raider III:
+the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#calculating-the-secondary-ammo-index).
+Here is how to calculate the secondary offset from the base offset for Tomb Raider III:
 
 ```
 private int GetSecondaryAmmoOffset(int baseOffset)
 {
-    List<int> secondaryAmmoOffsets = new List<int>();
-
-    for (int i = 0; i < 15; i++)
-    {
-        secondaryAmmoOffsets.Add(baseOffset + i * 0x12);
-    }
-
-    return secondaryAmmoOffsets[secondaryAmmoIndex];
+    return baseOffset + (secondaryAmmoIndex * 0x12);
 }
 ```
 
