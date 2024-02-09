@@ -266,11 +266,11 @@ namespace TR_SaveMaster
 
             if (IsATISavegame())
             {
-                byte levelIndex = GetLevelIndex();
                 secondaryAmmoIndex = GetSecondaryAmmoIndex();
 
                 if (secondaryAmmoIndex != -1)
                 {
+                    byte levelIndex = GetLevelIndex();
                     int baseSecondaryAmmoIndexOffset = ammoIndexDataATI[levelIndex][0];
 
                     magnumAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 40);
@@ -280,7 +280,6 @@ namespace TR_SaveMaster
             }
             else
             {
-                DetermineOffsets();
                 secondaryAmmoIndex = 0;
             }
 

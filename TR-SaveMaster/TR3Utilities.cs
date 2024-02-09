@@ -111,16 +111,6 @@ namespace TR_SaveMaster
             harpoonGunAmmoOffset = 0xAF + (levelIndex * 0x33);
             grenadeLauncherAmmoOffset = 0xB1 + (levelIndex * 0x33);
 
-            int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
-
-            deagleAmmoOffset2 = baseSecondaryAmmoIndexOffset - 32;
-            uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
-            shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 24;
-            harpoonGunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 20;
-            rocketLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
-            grenadeLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 12;
-            mp5AmmoOffset2 = baseSecondaryAmmoIndexOffset - 8;
-
             if (levelIndex == 1)        // Jungle
             {
                 SetHealthOffsets(0x6D3);
@@ -316,13 +306,16 @@ namespace TR_SaveMaster
 
             if (secondaryAmmoIndex != -1)
             {
-                deagleAmmoOffset2 = GetSecondaryAmmoOffset(deagleAmmoOffset2);
-                uziAmmoOffset2 = GetSecondaryAmmoOffset(uziAmmoOffset2);
-                shotgunAmmoOffset2 = GetSecondaryAmmoOffset(shotgunAmmoOffset2);
-                harpoonGunAmmoOffset2 = GetSecondaryAmmoOffset(harpoonGunAmmoOffset2);
-                rocketLauncherAmmoOffset2 = GetSecondaryAmmoOffset(rocketLauncherAmmoOffset2);
-                grenadeLauncherAmmoOffset2 = GetSecondaryAmmoOffset(grenadeLauncherAmmoOffset2);
-                mp5AmmoOffset2 = GetSecondaryAmmoOffset(mp5AmmoOffset2);
+                byte levelIndex = GetLevelIndex();
+                int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
+
+                deagleAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 32);
+                uziAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 28);
+                shotgunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 24);
+                harpoonGunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 20);
+                rocketLauncherAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 16);
+                grenadeLauncherAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 12);
+                mp5AmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 8);
             }
 
             WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));

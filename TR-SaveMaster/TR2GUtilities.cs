@@ -122,15 +122,6 @@ namespace TR_SaveMaster
             flaresOffset = 0x60 + (levelIndex * 0x2C);
             weaponsConfigNumOffset = 0x63 + (levelIndex * 0x2C);
 
-            int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
-
-            automaticPistolsAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
-            uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 24;
-            shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 20;
-            harpoonGunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
-            grenadeLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 12;
-            m16AmmoOffset2 = baseSecondaryAmmoIndexOffset - 8;
-
             if (levelIndex == 1)        // The Cold War
             {
                 SetHealthOffsets(0xE54, 0xE60, 0xE6C, 0xE78, 0xE84);
@@ -501,19 +492,22 @@ namespace TR_SaveMaster
             WriteNumLargeMedipacks((byte)nudLargeMedipacks.Value);
             WriteNumFlares((byte)nudFlares.Value);
 
+            byte levelIndex = GetLevelIndex();
             secondaryAmmoIndex = GetSecondaryAmmoIndex();
 
             if (secondaryAmmoIndex != -1)
             {
-                automaticPistolsAmmoOffset2 = GetSecondaryAmmoOffset(automaticPistolsAmmoOffset2);
-                uziAmmoOffset2 = GetSecondaryAmmoOffset(uziAmmoOffset2);
-                shotgunAmmoOffset2 = GetSecondaryAmmoOffset(shotgunAmmoOffset2);
-                harpoonGunAmmoOffset2 = GetSecondaryAmmoOffset(harpoonGunAmmoOffset2);
-                grenadeLauncherAmmoOffset2 = GetSecondaryAmmoOffset(grenadeLauncherAmmoOffset2);
-                m16AmmoOffset2 = GetSecondaryAmmoOffset(m16AmmoOffset2);
+                int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
+
+                automaticPistolsAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 28);
+                uziAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 24);
+                shotgunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 20);
+                harpoonGunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 16);
+                grenadeLauncherAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 12);
+                m16AmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 8);
             }
 
-            if (GetLevelIndex() != 5)
+            if (levelIndex != 5)
             {
                 WriteM16Ammo(chkM16.Checked, (UInt16)nudM16Ammo.Value);
                 WriteGrenadeLauncherAmmo(chkGrenadeLauncher.Checked, (UInt16)nudGrenadeLauncherAmmo.Value);
