@@ -104,31 +104,41 @@ namespace TR_SaveMaster
         {
             byte levelIndex = GetLevelIndex();
 
-            int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
-
-            magnumAmmoOffset2 = baseSecondaryAmmoIndexOffset - 40;
-            uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
-            shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
-
             if (levelIndex == 0)        // Return to Egypt
             {
+                magnumAmmoOffset2 = 0xDCF;
+                uziAmmoOffset2 = 0xDDB;
+                shotgunAmmoOffset2 = 0xDE7;
+
                 SetHealthOffsets(0x165);
             }
             else if (levelIndex == 1)   // Temple of the Cat
             {
+                magnumAmmoOffset2 = 0x1123;
+                uziAmmoOffset2 = 0x112F;
+                shotgunAmmoOffset2 = 0x113B;
+
                 SetHealthOffsets(0x3DD, 0x3E9);
             }
             else if (levelIndex == 2)   // Atlantean Stronghold
             {
+                magnumAmmoOffset2 = 0xC32;
+                uziAmmoOffset2 = 0xC3E;
+                shotgunAmmoOffset2 = 0xC4A;
+
                 SetHealthOffsets(0x3C7, 0x3D3, 0x3DF);
             }
             else if (levelIndex == 3)   // The Hive
             {
+                magnumAmmoOffset2 = 0x11E2;
+                uziAmmoOffset2 = 0x11EE;
+                shotgunAmmoOffset2 = 0x11FA;
+
                 SetHealthOffsets(0x501);
             }
         }
 
-        private readonly Dictionary<byte, int[]> ammoIndexData = new Dictionary<byte, int[]>
+        private readonly Dictionary<byte, int[]> ammoIndexDataATI = new Dictionary<byte, int[]>
         {
             { 0, new int[] { 0x0C7D, 0x0C7E, 0x0C7F, 0x0C80 } },    // Return to Egypt
             { 1, new int[] { 0x0FBF, 0x0FC0, 0x0FC1, 0x0FC2 } },    // Temple of the Cat
@@ -140,13 +150,13 @@ namespace TR_SaveMaster
         {
             byte levelIndex = GetLevelIndex();
 
-            if (ammoIndexData.ContainsKey(levelIndex))
+            if (ammoIndexDataATI.ContainsKey(levelIndex))
             {
-                int[] indexData = ammoIndexData[levelIndex];
+                int[] indexData = ammoIndexDataATI[levelIndex];
 
                 int[] offsets = new int[indexData.Length];
 
-                for (int index = 0; index < 133; index++)
+                for (int index = 0; index < 40; index++)
                 {
                     Array.Copy(indexData, offsets, indexData.Length);
 
@@ -245,19 +255,6 @@ namespace TR_SaveMaster
             WriteNumSmallMedipacks((byte)nudSmallMedipacks.Value);
             WriteNumLargeMedipacks((byte)nudLargeMedipacks.Value);
 
-            secondaryAmmoIndex = GetSecondaryAmmoIndex();
-
-            if (secondaryAmmoIndex != -1)
-            {
-                shotgunAmmoOffset2 = GetSecondaryAmmoOffset(shotgunAmmoOffset2);
-                uziAmmoOffset2 = GetSecondaryAmmoOffset(uziAmmoOffset2);
-                magnumAmmoOffset2 = GetSecondaryAmmoOffset(magnumAmmoOffset2);
-            }
-
-            WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
-            WriteMagnumAmmo(chkMagnums.Checked, (UInt16)nudMagnumAmmo.Value);
-            WriteUziAmmo(chkUzis.Checked, (UInt16)nudUziAmmo.Value);
-
             byte newWeaponsConfigNum = 1;
 
             if (chkPistols.Checked) newWeaponsConfigNum += 2;
@@ -266,6 +263,30 @@ namespace TR_SaveMaster
             if (chkShotgun.Checked) newWeaponsConfigNum += 16;
 
             WriteWeaponsConfigNum(newWeaponsConfigNum);
+
+            if (IsATISavegame())
+            {
+                byte levelIndex = GetLevelIndex();
+                secondaryAmmoIndex = GetSecondaryAmmoIndex();
+
+                if (secondaryAmmoIndex != -1)
+                {
+                    int baseSecondaryAmmoIndexOffset = ammoIndexDataATI[levelIndex][0];
+
+                    magnumAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 40);
+                    uziAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 28);
+                    shotgunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 16);
+                }
+            }
+            else
+            {
+                DetermineOffsets();
+                secondaryAmmoIndex = 0;
+            }
+
+            WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
+            WriteMagnumAmmo(chkMagnums.Checked, (UInt16)nudMagnumAmmo.Value);
+            WriteUziAmmo(chkUzis.Checked, (UInt16)nudUziAmmo.Value);
 
             if (trbHealth.Enabled)
             {
@@ -419,6 +440,13 @@ namespace TR_SaveMaster
             {
                 WriteUInt16(uziAmmoOffset2, 0);
             }
+        }
+
+        private bool IsATISavegame()
+        {
+            int[] atiSignatureOffsets = { 0x34, 0x35, 0x36, 0x37 };
+
+            return atiSignatureOffsets.All(offset => ReadByte(offset) == 0xFF);
         }
 
         private static bool IsNumericExtension(string fileName)
