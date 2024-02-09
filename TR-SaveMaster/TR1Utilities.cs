@@ -32,6 +32,9 @@ namespace TR_SaveMaster
         // Strings
         private string savegamePath;
 
+        // Ammo index
+        private int secondaryAmmoIndex = -1;
+
         public void SetSavegamePath(string path)
         {
             savegamePath = path;
@@ -115,7 +118,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0xC30;
                 shotgunAmmoOffset2 = 0xC3C;
 
-                SetHealthOffsets(0xB6C);
+                SetHealthOffsets(0xA67, 0xB6C);
             }
             else if (levelIndex == 3)   // Lost Valley
             {
@@ -131,7 +134,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0x856;
                 shotgunAmmoOffset2 = 0x862;
 
-                SetHealthOffsets(0x44E);
+                SetHealthOffsets(0x445, 0x44E);
             }
             else if (levelIndex == 5)   // St. Francis' Folly
             {
@@ -139,7 +142,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0xD7C;
                 shotgunAmmoOffset2 = 0xD88;
 
-                SetHealthOffsets(0xCB0);
+                SetHealthOffsets(0xBE7, 0xCB0);
             }
             else if (levelIndex == 6)   // Colosseum
             {
@@ -147,7 +150,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0xA62;
                 shotgunAmmoOffset2 = 0xA6E;
 
-                SetHealthOffsets(0x5A9);
+                SetHealthOffsets(0x54F, 0x5A9);
             }
             else if (levelIndex == 7)   // Palace Midas
             {
@@ -163,7 +166,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0xC96;
                 shotgunAmmoOffset2 = 0xCA2;
 
-                SetHealthOffsets(0xBE0);
+                SetHealthOffsets(0xA93, 0xAAB, 0xAC3, 0xADB, 0xAE7, 0xBE0);
             }
             else if (levelIndex == 9)   // Tomb of Tihocan
             {
@@ -195,7 +198,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0x724;
                 shotgunAmmoOffset2 = 0x730;
 
-                SetHealthOffsets(0x63D);
+                SetHealthOffsets(0x5BF, 0x5CB, 0x63D);
             }
             else if (levelIndex == 13)  // Natla's Mines
             {
@@ -203,7 +206,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0x8B4;
                 shotgunAmmoOffset2 = 0x8C0;
 
-                SetHealthOffsets(0x750);
+                SetHealthOffsets(0x735, 0x750);
             }
             else if (levelIndex == 14)  // Atlantis
             {
@@ -211,7 +214,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0x1006;
                 shotgunAmmoOffset2 = 0x1012;
 
-                SetHealthOffsets(0x447);
+                SetHealthOffsets(0x411, 0x447);
             }
             else if (levelIndex == 15)  // The Great Pyramid
             {
@@ -297,6 +300,26 @@ namespace TR_SaveMaster
 
             WriteWeaponsConfigNum(newWeaponsConfigNum);
 
+            if (IsATISavegame())
+            {
+                byte levelIndex = GetLevelIndex();
+                secondaryAmmoIndex = GetSecondaryAmmoIndex();
+
+                if (secondaryAmmoIndex != -1)
+                {
+                    int baseSecondaryAmmoIndexOffset = ammoIndexDataATI[levelIndex][0];
+
+                    magnumAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 40);
+                    uziAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 28);
+                    shotgunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 16);
+                }
+            }
+            else
+            {
+                DetermineOffsets();
+                secondaryAmmoIndex = 0;
+            }
+
             WriteUziAmmo(chkUzis.Checked, (UInt16)nudUziAmmo.Value);
             WriteMagnumAmmo(chkMagnums.Checked, (UInt16)nudMagnumAmmo.Value);
             WriteShotgunAmmo(chkShotgun.Checked, (UInt16)(nudShotgunAmmo.Value * 6));
@@ -306,6 +329,103 @@ namespace TR_SaveMaster
                 WriteHealthValue((double)trbHealth.Value);
             }
         }
+
+        private int GetSecondaryAmmoIndex()
+        {
+            byte levelIndex = GetLevelIndex();
+
+            if (ammoIndexDataATI.ContainsKey(levelIndex))
+            {
+                int[] indexData = ammoIndexDataATI[levelIndex];
+
+                int[] offsets = new int[indexData.Length];
+
+                for (int index = 0; index < 20; index++)
+                {
+                    Array.Copy(indexData, offsets, indexData.Length);
+
+                    for (int i = 0; i < indexData.Length; i++)
+                    {
+                        offsets[i] += (index * 0xC);
+                    }
+
+                    if (offsets.All(offset => ReadByte(offset) == 0xFF))
+                    {
+                        return index;
+                    }
+                }
+            }
+
+            return -1;
+        }
+
+        int GetSecondaryAmmoOffset(int baseOffset)
+        {
+            return baseOffset + (secondaryAmmoIndex * 0xC);
+        }
+
+        private readonly Dictionary<byte, int[]> ammoIndexDataATI = new Dictionary<byte, int[]>
+        {
+            {  1, new int[] { 0x05EB, 0x05EC, 0x05ED, 0x05EE,       // Caves
+                              0x05FB, 0x05FC, 0x05FD, 0x05FE,
+                              0x060B, 0x060C, 0x060D, 0x060E } },
+
+            {  2, new int[] { 0x0B47, 0x0B48, 0x0B49, 0x0B4A,       // City of Valcamba
+                              0x0B57, 0x0B58, 0x0B59, 0x0B5A,
+                              0x0B67, 0x0B68, 0x0B69, 0x0B6A } },
+
+            {  3, new int[] { 0x054B, 0x054C, 0x054D, 0x054E,       // Lost Valley
+                              0x055B, 0x055C, 0x055D, 0x055E,
+                              0x056B, 0x056C, 0x056D, 0x056E } },
+
+            {  4, new int[] { 0x0833, 0x0834, 0x0835, 0x0836,       // Tomb of Qualopec
+                              0x0843, 0x0844, 0x0845, 0x0846,
+                              0x0853, 0x0854, 0x0855, 0x0856 } },
+
+            {  5, new int[] { 0x0CB7, 0x0CB8, 0x0CB9, 0x0CBA,       // St. Francis' Folly
+                              0x0CC7, 0x0CC8, 0x0CC9, 0x0CCA,
+                              0x0CD7, 0x0CD8, 0x0CD9, 0x0CDA } },
+
+            {  6, new int[] { 0x0979, 0x097A, 0x097B, 0x097C,       // Colosseum
+                              0x0989, 0x098A, 0x098B, 0x098C,
+                              0x0999, 0x099A, 0x099B, 0x099C } },
+
+            {  7, new int[] { 0x0BED, 0x0BEE, 0x0BEE, 0x0BEE,       // Palace Midas
+                              0x0BEE, 0x0BEE, 0x0BEE, 0x0BEE,
+                              0x0C0D, 0x0C0E, 0x0C0F, 0x0C10 } },
+
+            {  8, new int[] { 0x0B65, 0x0B66, 0x0B67, 0x0B68,       // The Cistern
+                              0x0B75, 0x0B76, 0x0B77, 0x0B78,
+                              0x0B85, 0x0B86, 0x0B87, 0x0B88 } },
+
+            {  9, new int[] { 0x08C3, 0x08C4, 0x08C5, 0x08C6,       // Tomb of Tihocan
+                              0x08D3, 0x08D4, 0x08D5, 0x08D6,
+                              0x08E3, 0x08E4, 0x08E5, 0x08D6 } },
+
+            { 10, new int[] { 0x0807, 0x0808, 0x0809, 0x080A,       // City of Khamoon
+                              0x0817, 0x0818, 0x0819, 0x081A,
+                              0x0827, 0x0828, 0x0829, 0x082A } },
+
+            { 11, new int[] { 0x083B, 0x083C, 0x083D, 0x083E,       // Obelisk of Khamoon
+                              0x084B, 0x084C, 0x084D, 0x084E,
+                              0x085B, 0x085C, 0x085D, 0x085E } },
+
+            { 12, new int[] { 0x06B9, 0x06BA, 0x06BB, 0x06BC,       // Sanctuary of the Scion
+                              0x06C9, 0x06CA, 0x06CB, 0x06CC,
+                              0x06D9, 0x06DA, 0x06DB, 0x06DC } },
+
+            { 13, new int[] { 0x08B5, 0x08B6, 0x08B6, 0x08B6,       // Natla's Mines
+                              0x08B5, 0x08B6, 0x08B6, 0x08B6,
+                              0x08D5, 0x08D6, 0x08D7, 0x08D8 } },
+
+            { 14, new int[] { 0x0EF9, 0x0EFA, 0x0EFB, 0x0EFC,       // Atlantis
+                              0x0F09, 0x0F0A, 0x0F0B, 0x0F0C,
+                              0x0F19, 0x0F1A, 0x0F1B, 0x0F1C } },
+
+            { 15, new int[] { 0x08CD, 0x08CE, 0x08CF, 0x08D0,       // The Great Pyramid
+                              0x08DD, 0x08DE, 0x08DF, 0x08F0,
+                              0x08ED, 0x08EE, 0x08EF, 0x08F0 } },
+        };
 
         private UInt16 GetSaveNumber()
         {
@@ -371,11 +491,11 @@ namespace TR_SaveMaster
         {
             WriteUInt16(uziAmmoOffset, ammo);
 
-            if (isPresent)
+            if (isPresent && secondaryAmmoIndex != -1)
             {
                 WriteUInt16(uziAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndex != -1)
             {
                 WriteUInt16(uziAmmoOffset2, 0);
             }
@@ -385,11 +505,11 @@ namespace TR_SaveMaster
         {
             WriteUInt16(magnumAmmoOffset, ammo);
 
-            if (isPresent)
+            if (isPresent && secondaryAmmoIndex != -1)
             {
                 WriteUInt16(magnumAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndex != -1)
             {
                 WriteUInt16(magnumAmmoOffset2, 0);
             }
@@ -399,11 +519,11 @@ namespace TR_SaveMaster
         {
             WriteUInt16(shotgunAmmoOffset, ammo);
 
-            if (isPresent)
+            if (isPresent && secondaryAmmoIndex != -1)
             {
                 WriteUInt16(shotgunAmmoOffset2, ammo);
             }
-            else
+            else if (!isPresent && secondaryAmmoIndex != -1)
             {
                 WriteUInt16(shotgunAmmoOffset2, 0);
             }
@@ -468,6 +588,13 @@ namespace TR_SaveMaster
             if (byteFlag1 == 0x0D && byteFlag2 == 0x00 && byteFlag3 == 0x0D) return true;        // Underwater
 
             return false;
+        }
+
+        private bool IsATISavegame()
+        {
+            int[] atiSignatureOffsets = { 0x34, 0x35, 0x36, 0x37 };
+
+            return atiSignatureOffsets.All(offset => ReadByte(offset) == 0xFF);
         }
 
         private class NaturalComparer : IComparer<string>
