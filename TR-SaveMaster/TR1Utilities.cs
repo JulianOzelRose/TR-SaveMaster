@@ -142,7 +142,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0xD7C;
                 shotgunAmmoOffset2 = 0xD88;
 
-                SetHealthOffsets(0xBE7, 0xCB0);
+                SetHealthOffsets(0xBCF, 0xBDB, 0xBE7, 0xBF3, 0xCB0);
             }
             else if (levelIndex == 6)   // Colosseum
             {
@@ -150,7 +150,7 @@ namespace TR_SaveMaster
                 uziAmmoOffset2 = 0xA62;
                 shotgunAmmoOffset2 = 0xA6E;
 
-                SetHealthOffsets(0x54F, 0x5A9);
+                SetHealthOffsets(0x54F, 0x55B, 0x5A9);
             }
             else if (levelIndex == 7)   // Palace Midas
             {
