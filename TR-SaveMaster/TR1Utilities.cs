@@ -636,9 +636,11 @@ namespace TR_SaveMaster
         public bool IsValidSavegame(string path)
         {
             savegamePath = path;
-
+            string fileName = Path.GetFileName(path);
             byte levelIndex = GetLevelIndex();
-            return (levelIndex >= 1 && levelIndex <= 15) && IsSavegameFile(path);
+            bool isUBSavegame = fileName.IndexOf("uba", StringComparison.OrdinalIgnoreCase) >= 0;
+
+            return (levelIndex >= 1 && levelIndex <= 15) && IsSavegameFile(path) && !isUBSavegame;
         }
 
         private static bool IsSavegameFile(string path)
