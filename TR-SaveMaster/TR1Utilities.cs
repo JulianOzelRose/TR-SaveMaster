@@ -359,7 +359,7 @@ namespace TR_SaveMaster
             return -1;
         }
 
-        int GetSecondaryAmmoOffset(int baseOffset)
+        private int GetSecondaryAmmoOffset(int baseOffset)
         {
             return baseOffset + (secondaryAmmoIndex * 0xC);
         }
