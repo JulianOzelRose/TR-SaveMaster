@@ -1,7 +1,7 @@
 # Tomb Raider - Savegame Editor
-This is a fully-featured savegame editor for the classic Tomb Raider series. It works with Tomb Raider 1-5, including the 3 expansion packs and bonus levels.
+This is a fully-featured savegame editor for the classic Tomb Raider series. It works with Tomb Raider 1-5, including the 3 expansions and bonus levels.
 This editor is compatible with the original CD savegames as well as the Steam, ATI, GOG, and multi-patched savegames. For installation and usage instructions,
-please scroll down to the next section of this README. Additionally, technical details on reverse engineering the Tomb Raider are included, as well as
+please scroll down to the next section of this README. Additionally, technical details on reverse engineering the classic Tomb Raider series are included, as well as
 a complete list of offsets.
 
 ![TR-SaveMaster-UI](https://github.com/JulianOzelRose/TR-SaveMaster/assets/95890436/d95b20d0-ea26-431f-ab39-74c9166d791b)
@@ -53,10 +53,12 @@ option in Windows Explorer.
 
 ### Common game directories
 - **Tomb Raider I**
-  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider I\TOMBRAID\`
+  - CD: `C:\TOMBRAID\`
+  - ATI: `C:\TOMBATI\`
   - GOG: `C:\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 1\TOMBRAID`
   - Steam: `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)\TOMBRAID\`
 - **Tomb Raider I: Unfinished Business**
+  - ATI: `C:\TOMBATI\`
   - Steam (Patched): `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)\`
 - **Tomb Raider II**
   - CD: `C:\Program Files (x86)\Core Design\Tomb Raider II\`
@@ -79,8 +81,7 @@ option in Windows Explorer.
 
 ### Hidden game directories
 - **Tomb Raider I**
-   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider I\TOMBRAID\`
-   - GOG: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 1\TOMBRAID`
+   - GOG: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 1\TOMBRAID\`
 - **Tomb Raider II**
    - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider II\`
    - GOG: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 2\`
@@ -99,15 +100,15 @@ option in Windows Explorer.
 Once your game directory is selected, the editor will populate with the savegames found. To toggle between them, simply click the dropdown box labled "Savegame". You
 can then change ammunition, weapons, health, and items. Click "Save" when you are done, and your changes will be applied. This editor automatically creates backups
 of savegame files, which is enabled by default. You can toggle auto backups off, but it is highly recommended that you leave it enabled. To find this option, click
-"File" and then look for "Create backups". Under the "View" menu, you can also change the UI theme and hide the status bar, if you desire a simpler interface.
-This savegame editor will remember your game directories, so there is no need to re-enter them each time you launch it.
+"File" and then look for "Create backups". You can also change the UI theme and hide the status bar, if you desire a simpler interface. You can find these options
+under "View". This savegame editor will remember your game directories, so there is no need to re-enter them each time you launch it.
 
-For Tomb Raider: Chronicles and The Last Revelation, ammunition will be represented in the editor exactly as displayed in the game. However, for Tomb Raider 1-3 and their
+For Tomb Raider: Chronicles and The Last Revelation, ammunition will be represented in the editor exactly as displayed in the game. However, for Tomb Raider I-III and their
 expansions, the ammunition for weapons not currently equipped may appear differently than in-game. Specifically, Harpoons are grouped in bundles of 2, Desert Eagle clips
 equate to 5 bullets, MP5 clips equate to 30 bullets, Uzi clips equate to 20 bullets, and a single box of grenades is equivalent to 2 rounds of Grenade Launcher ammunition.
 
 ### Dealing with protected directories
-If you did a CD or GOG install with one of the original games or expansions on Windows 7 or later, the savegame files are likely located in a hidden and protected directory.
+If you did a CD or GOG install with one of the original games or expansions on Windows 7 or later, the savegame files are likely located in a hidden and therefore protected directory.
 This savegame editor should be able to override the read-only protection. However, if you get an "Access is denied" error when attempting to patch a savegame, you may have
 to modify the folder permissions manually to allow modification. To do this, first right-click on the Start menu, then click "Windows PowerShell (Admin)". Then, use the following commands:
 
@@ -126,12 +127,13 @@ This section details the technical aspects of reverse engineering the savegame f
 [here](https://github.com/JulianOzelRose/TR-SaveMaster/blob/master/OFFSETS.md). However, more information on how to calculate these offsets dynamically can be found
 in the sections below. In general, there are many similarities between the games, as they are all built on the same engine.
 
-Tomb Raider 1-3 use a very similar engine, and so reversing those games involves a similar process. Tomb Raider 4 and 5 use a markedly different engine than 1-3,
-but involve a simpler process nonetheless. This is because most of the offsets in Tomb Raider 1-3 are dynamic, while all offsets in Tomb Raider 4 and 5 are static,
-with the exception of the health offset. Interestingly, Tomb Raider 4 uses a file checksum as an anti-reverse engineering technique, while Tomb Raider 5 does not.
+Tomb Raider I-III use a very similar engine, and so reversing those games involves a similar process. The Last Revelation and Tomb Raider: Chronicles use a markedly
+different engine than Tomb Raider I-III, but involve a simpler process nonetheless. This is because most of the offsets in Tomb Raider I-III are dynamic, while all
+offsets in The Last Revelation and Tomb Raider: Chronicles are static, with the exception of the health offset. Interestingly, The Last Revelation uses a file checksum
+as an anti-reverse engineering technique, while Tomb Raider: Chronicles does not.
 
 ## Using bitwise to extract weapons information
-In Tomb Raider 1-3, all weapons information is stored on a single offset, which is called `weaponsConfigNum` in the editor's code. The weapons configuration variable has a base number of 1,
+In Tomb Raider I-III, all weapons information is stored on a single offset, which is referred to as `weaponsConfigNum` in the editor's code. The weapons configuration variable has a base number of 1,
 which indicates no weapons present in inventory. Each weapon adds a unique number to the variable. To determine which weapons are present in inventory, you can use
 bitwise operators. Here is an example of using bitwise to extract weapons information from Tomb Raider II savegames:
 
@@ -188,11 +190,18 @@ WriteWeaponsConfigNum(newWeaponsConfigNum);
 
 ## Using heuristics to determine the health offset
 Health is stored in a similar fashion for each game. Health is represented as a UInt16 number ranging from 0 (dead) to
-1000 (full health). In Tomb Raider 1-3, there are several offsets that store health interchangably. In Tomb Raider 5
+1000 (full health). In Tomb Raider I-III, there are several offsets that store health interchangably. In Tomb Raider: Chronicles,
 there is a health offset range. In other words, health is dynamically allocated. Since writing to the incorrect health
-offset may cause the game to crash, it is important to determine the health offset with an accurate method. Since health
-is stored right next to character movement data, is is possible to find the correct health offset by checking the surrounding
-data for character movement byte flags. Here is an example of how to implement this algorithm for Tomb Raider 5 savegames:
+offset may cause the game to crash, it is important to determine the health offset with an accurate method.
+
+The algorithm below is specific to Tomb Raider: Chronicles. First, it checks to ensure that the value is within a valid health range
+(greater than 0 and less than or equal to 1000). Next, it performs a heuristic check before returning the health offset.
+Since health is stored right next to character movement data, it checks the surrounding data for character movement byte flags.
+If the offset is determined to be next to character movement byte flags, it is returned as the valid health offset.
+
+This algorithm is able to determine the correct health offset around 96% of the time for Tomb Raider: Chronicles, with no false
+positives. Although it is theoretically possible to add more character movement byte flags and increase the deteciton rate, doing so would result
+in false positives, as certain byte flags may align with null padding or unrelated data.
 
 ```
 private int GetHealthOffset()
@@ -219,17 +228,17 @@ private int GetHealthOffset()
 
 ## Calculating the secondary ammo index
 The secondary ammo offsets in Tomb Raider II and Tomb Raider III are dynamically stored, so they must be calculated dynamically.
-While the primary offset remains constant throughout a level, the secondary offset shifts based on the number of active entities in the game.
-If there are no other entities present, the secondary ammo index is 0. The there are 2 entities, the secondary ammo index is 2, etc. 
+While the primary ammo offset remains constant throughout a level, the secondary ammo offset shifts based on the number of active entities in the game.
+If there are no other entities present, the secondary ammo index is 0. The there are 2 entities, the secondary ammo index is 2, and so on. 
 
-There is a 4-byte array of `{0xFF, 0xFF, 0xFF, 0xFF}` that is stored just before the null padding of the savegame file.
+There is a 4-byte array consisting of `{0xFF, 0xFF, 0xFF, 0xFF}` that is stored just before the null padding of the savegame file.
 Since this array shifts consistently along with the secondary ammo offsets, it can be used as a marker to determine the secondary ammo index.
 Each index corresponds with two possible offset ranges of this array. The second one is 0xA bytes from the first array.
 For example, if the first array that represents index 0 begins at 0xFE0, then the array that begins at 0xFEA
 also corresponds to index 0.
 
-So, when pulling the ammo index based on this dictionary, you must account for this. Here is an example of how to pull the
-secondary ammo index for Tomb Raider II. Note that the 0x6 iterator value is specific to it, and Tomb Raider III uses a 0x12 iterator:
+So, when pulling the secondary ammo index, you must account for this. Here is an example of how to pull the
+secondary ammo index for Tomb Raider II. Note that the 0x6 iterator value is specific to Tomb Raider II, and Tomb Raider III uses a 0x12 iterator.
 
 ```
 private int GetSecondaryAmmoIndex()
@@ -280,13 +289,13 @@ Weapons information can be extracted using
 bitwise methods, as outlined in the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information).
 Here are the weapon byte flags specific to Tomb Raider I:
 
-###                                         ###
-| **Weapon**              | **Unique number** |
-| :---                    | :---              |
-| Pistols                 | 2                 |
-| Magnums                 | 4                 |
-| Uzis                    | 8                 |
-| Shotgun                 | 16                |
+###                                     ###
+| **Weapon**              | **Byte flag** |
+| :---                    | :---          |
+| Pistols                 | 2             |
+| Magnums                 | 4             |
+| Uzis                    | 8             |
+| Shotgun                 | 16            |
 
 ### Ammunition
 Ammunition is stored on up to two offsets; a primary offset, and a secondary offset. If a weapon is not equipped,
@@ -311,7 +320,7 @@ private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
 
 ## Tomb Raider II
 Reverse engineering Tomb Raider II savegames is slightly different compared to Tomb Raider I. The file offsets
-differ on each level, and are dynamically allocated. You can calculate the dynamic offsets based on the level
+differ on each level, and are dynamically allocated. You can calculate the offsets dynamically based on the level
 index:
 
 ```
@@ -335,23 +344,23 @@ You can use the same methodology to extract weapons information outlined in the
 [above section](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information).
 Here are the weapon byte flags specific to Tomb Raider II:
 
-###                                         ###
-| **Weapon**              | **Unique number** |
-| :---                    | :---              |
-| Pistols                 | 2                 |
-| Automatic Pistols       | 4                 |
-| Uzis                    | 8                 |
-| Shotgun                 | 16                |
-| M16                     | 32                |
-| Grenade Launcher        | 64                |
-| Harpoon Gun             | 128               |
+###                                     ###
+| **Weapon**              | **Byte flag** |
+| :---                    | :---          |
+| Pistols                 | 2             |
+| Automatic Pistols       | 4             |
+| Uzis                    | 8             |
+| Shotgun                 | 16            |
+| M16                     | 32            |
+| Grenade Launcher        | 64            |
+| Harpoon Gun             | 128           |
 
 ### Ammunition
 Ammunition is stored on both a primary and a secondary offset, similar to Tomb Raider I. When the weapon
 is not equipped, ammo is only stored on the primary offset. When the weapon is equipped, ammo is stored
 on both offsets. The primary ammo offsets are static per level. However, the secondary ammo offsets are
 dynamically allocated throughout each level. To be able to dynamically calculate the secondary ammo offsets,
-you must store the base location of the `{0xFF, 0xFF, 0xFF, 0xFF}` array that precedes the null padding.
+you must store the base location of the `{0xFF, 0xFF, 0xFF, 0xFF}` array that precedes the null padding for each level.
 Here is an example of how this can be done for Tomb Raider II:
 
 ```
@@ -384,18 +393,21 @@ calculate the secondary ammo index, see the [section above](https://github.com/J
 Here is how to calculate the base secondary ammo offsets based on the index data for Tomb Raider II:
 
 ```
-int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
+if (secondaryAmmoIndex != -1)
+{
+    int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
 
-automaticPistolsAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
-uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 24;
-shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 20;
-harpoonGunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
-grenadeLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 12;
-m16AmmoOffset2 = baseSecondaryAmmoIndexOffset - 8;
+    automaticPistolsAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 28);
+    uziAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 24);
+    shotgunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 20);
+    harpoonGunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 16);
+    grenadeLauncherAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 12);
+    m16AmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 8);
+}
 ```
 
-Once you have the ammo index and the base secondary ammo offset, the next step is to is calculate the secondary ammo offsets based on the index
-and base offsets. Here is the function for calculating the secondary ammo offset from its index and base offset:
+The function that calculates the secondary ammo offset from the base offset just returns the base offset adjusted by the ammo index and iterator.
+Note that the iterator will be different for different releases of the game.
 
 ```
 private int GetSecondaryAmmoOffset(int baseOffset)
@@ -405,8 +417,8 @@ private int GetSecondaryAmmoOffset(int baseOffset)
 ```
 
 Finally, once you have the dynamically allocated secondary ammo offset, all that is left to do is to write
-to the it. Because there are edge cases where the secondary ammo index may not be found, this should be
-accounted for when writing ammo to avoid a savegame that causes a crash:
+to it. Because there are edge cases where the secondary ammo index may not be found, this should be
+accounted for when writing to ammo to avoid a savegame that causes a crash:
 
 ```
 private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
@@ -433,7 +445,7 @@ In the case of Tomb Raider II, the health offsets are stored 8 bytes away from t
 ## Tomb Raider III
 The savegame file structure of Tomb Raider III is very similar to that of Tomb Raider II, so the processes involved
 in reversing it are very similar. Similar to Tomb Raider II, the file offsets differ on each level, and are dynamically allocated.
-You can calculate the dynamic offsets based on the level index:
+You can calculate the offsets dynamically based on the level index:
 
 ```
 byte levelIndex = GetLevelIndex();
@@ -458,16 +470,16 @@ of the Harpoon Gun, which is stored as a boolean on its own offset, 1 byte away 
 can be used to determine which weapons are present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information)
 on how to do this. Here are the weapon byte flags specific to Tomb Raider III:
 
-###                                         ###
-| **Weapon**              | **Unique number** |
-| :---                    | :---              |
-| Pistols                 | 2                 |
-| Desert Eagle            | 4                 |
-| Uzis                    | 8                 |
-| Shotgun                 | 16                |
-| MP5                     | 32                |
-| Rocket Launcher         | 64                |
-| Grenade Launcher        | 128               |
+###                                     ###
+| **Weapon**              | **Byte flag** |
+| :---                    | :---          |
+| Pistols                 | 2             |
+| Desert Eagle            | 4             |
+| Uzis                    | 8             |
+| Shotgun                 | 16            |
+| MP5                     | 32            |
+| Rocket Launcher         | 64            |
+| Grenade Launcher        | 128           |
 
 ### Ammunition
 Tomb Raider III also stores ammunition on a primary and secondary offset, with the same logic as the previous two titles;
@@ -502,25 +514,29 @@ private readonly Dictionary<byte, int[]> ammoIndexData = new Dictionary<byte, in
  };
 ```
 
-With each index marker array's location stored on the dictionary, you can then calculate both the secondary ammo index,
+With each index marker array's location stored in the dictionary, you can then calculate both the secondary ammo index,
 as well as the base secondary ammo offsets. To see how to calculate the secondary ammo index, see the
 [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#calculating-the-secondary-ammo-index).
 Here is how to calculate the base secondary ammo offsets based on the index data for Tomb Raider III:
 
 ```
-int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
+if (secondaryAmmoIndex != -1)
+{
+    int baseSecondaryAmmoIndexOffset = ammoIndexData[levelIndex][0];
 
-deagleAmmoOffset2 = baseSecondaryAmmoIndexOffset - 32;
-uziAmmoOffset2 = baseSecondaryAmmoIndexOffset - 28;
-shotgunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 24;
-harpoonGunAmmoOffset2 = baseSecondaryAmmoIndexOffset - 20;
-rocketLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 16;
-grenadeLauncherAmmoOffset2 = baseSecondaryAmmoIndexOffset - 12;
-mp5AmmoOffset2 = baseSecondaryAmmoIndexOffset - 8;
+    deagleAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 32);
+    uziAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 28);
+    shotgunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 24);
+    harpoonGunAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 20);
+    rocketLauncherAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 16);
+    grenadeLauncherAmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 12);
+    mp5AmmoOffset2 = GetSecondaryAmmoOffset(baseSecondaryAmmoIndexOffset - 8);
+}
 ```
 
-Once you have the ammo index and the base secondary ammo offset, the next step is to is calculate the secondary ammo offsets based on the index
-and base offsets. Here is the function for calculating the secondary ammo offset from its index and base offset:
+The function that calculates the secondary ammo offset from the base offset here is almost identical to the one used for
+Tomb Raider II. It just takes in a base offset, and returns the offset adjusted by the index and iterator. The only difference
+is the 0x12 iterator in this case:
 
 ```
 private int GetSecondaryAmmoOffset(int baseOffset)
@@ -529,7 +545,7 @@ private int GetSecondaryAmmoOffset(int baseOffset)
 }
 ```
 
-The last step is to write the ammo. Again, just as with Tomb Raider II, since there may be edge cases where the
+The last step is to write to the ammo. Again, just as with Tomb Raider II, since there may be edge cases where the
 secondary ammo index could not be found, it is best to ensure that the secondary ammo index was found before
 attempting to write to the secondary offset:
 
@@ -556,14 +572,14 @@ writing to the incorrect health offset, it is neccessary to use the heuristic al
 In the case of Tomb Raider III, the character movement data is stored 8 bytes away from the current health offset.
 
 ## Tomb Raider: The Last Revelation
-Tomb Raider 4 is built on an engine that utilizes efficient memory management. Unlike the previous titles, Tomb Raider 4 uses
-static offsets for every variable across all levels. Also unlike the previous titles, weapons information in Tomb Raider 4 is
-not stored on a single offset; instead, it is stored on individual offsets. For weapons, a value of 0x9 indicates the weapon is
-present. A value of 0xD indicates the weapon is present with a LaserSight attached. For items such as binoculars, crowbar, and
-LaserSight, a value of 0x1 indicates it is present in inventory.
+The Last Revelation is built on an engine that utilizes efficient memory management. Unlike the previous titles, The Last Revelation uses
+static offsets for every variable across all levels. Also unlike the previous titles, weapons information in The Last Revelation is
+not stored on a single offset. Instead, each weapon is stored on its own individual offset. For weapons, a value of 0x9 indicates the weapon is
+present. A value of 0xD indicates the weapon is present with a sight attached. Lastly, a value of 0 indicates the weapon is not present.
+For items such as binoculars, crowbar, and LaserSight, a value of 0x1 indicates it is present in inventory.
 
 ### Checksum algorithm
-The biggest challenge in reversing the Tomb Raider 4 savegames is the fact that it uses a file checksum to determine if a
+The biggest challenge in reversing the The Last Revelation savegames is the fact that it uses a file checksum to determine if a
 savegame is valid or not. If a savegame's checksum does not match the game's calculation, it will show up as "Empty Slot".
 So, when modifying a savegame, you must calculate the new checksum after writing your changes. The checksum is a simple
 modulo-256 checksum. The calculation begins on offset 0x57, and ends where the file ends.
@@ -597,10 +613,10 @@ private byte CalculateChecksum()
 ```
 
 ## Tomb Raider: Chronicles
-Similar to Tomb Raider 4, most of the savegame data in Tomb Raider 5 is stored statically. The only exception is the health data,
+Similar to The Last Revelation, most of the savegame data in Tomb Raider: Chronicles is stored statically. The only exception is the health data,
 which is dynamically stored on a range that varies on each level. To determine the correct health offset, it is necessary to use
 the heuristic algorithm outlined in the [above section](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-heuristics-to-determine-the-health-offset).
-For Tomb Raider 5, the character animation data is stored 6 bytes away from the health offset.
+For Tomb Raider: Chronicles, the character animation data is stored 6 bytes away from the health offset.
 
 ### Health offsets
 | **Level**           	   | **Offset range** |
@@ -620,6 +636,6 @@ For Tomb Raider 5, the character animation data is stored 6 bytes away from the 
 | Red Alert!		         | 0x52C - 0x5D6	 |
 
 ### Weapons
-Weapons information is also stored similar to Tomb Raider 4; each weapon is stored on its own unique offset. A value of 0x9
-indicates the weapon is present, a value of 0xD indicates the weapon is present with a LaserSight attached, and a value of 0
+Weapons information is also stored similar to The Last Revelation; each weapon is stored on its own individual offset. A value of 0x9
+indicates the weapon is present. A value of 0xD indicates the weapon is present with a sight attached. Lastly, a value of 0
 indicates the weapon is not present. Ammunition data is also stored statically, and on its own individual offsets.
