@@ -45,7 +45,7 @@ a complete list of offsets.
 ## Installation and use
 To use the latest stable release of this savegame editor, simply navigate to the [Releases](https://github.com/JulianOzelRose/TR-SaveMaster/releases) section, then
 download `TR-SaveMaster-v1.20.exe`, then open it. There is no need to install anything, and it can be run from anywhere on your computer. To toggle between the different
-Tomb Raider games, click the appopriate tab on the tab control on the top. To begin savegame editing, you must first set your game directory. To do this, click "Browse",
+Tomb Raider games, click the appropriate tab on the tab control on the top. To begin savegame editing, you must first set your game directory. To do this, click "Browse",
 the navigate to your game directory on your computer. The game directory depends on whether you have a Steam installation, a CD installation, or a GOG installation.
 For GOG and CD installations, the actual directory the savegames are stored in varies based on your Windows setup. It seems that for most modern Windows installations,
 the savegames are stored in the hidden directory. Both variations are listed below. To find the hidden directories, you will need to enable the "Show hidden files, folders, and drives"
@@ -97,7 +97,7 @@ option in Windows Explorer.
 - **Tomb Raider: Chronicles**
    - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider Chronicles\`
 
-Once your game directory is selected, the editor will populate with the savegames found. To toggle between them, simply click the dropdown box labled "Savegame". You
+Once your game directory is selected, the editor will populate with the savegames found. To toggle between them, simply click the drop-down box labled "Savegame". You
 can then change ammunition, weapons, health, and items. Click "Save" when you are done, and your changes will be applied. This editor automatically creates backups
 of savegame files, which is enabled by default. You can toggle auto backups off, but it is highly recommended that you leave it enabled. To find this option, click
 "File" and then look for "Create backups". You can also change the UI theme and hide the status bar, if you desire a simpler interface. You can find these options
@@ -171,7 +171,7 @@ else
 ```
 
 When writing a new weapons configuration, perform the same operation, but in reverse. Start with the base number of 1,
-then increment the new weapons config number based on which weapons are checkmarked in the editor's UI. Here is an example
+then increment the new weapons configuration number based on which weapons are checkmarked in the editor's UI. Here is an example
 of how this is implemented for Tomb Raider II:
 
 ```
@@ -190,7 +190,7 @@ WriteWeaponsConfigNum(newWeaponsConfigNum);
 
 ## Using heuristics to determine the health offset
 Health is stored in a similar fashion for each game. Health is represented as a UInt16 number ranging from 0 (dead) to
-1000 (full health). In Tomb Raider I-III, there are several offsets that store health interchangably. In Tomb Raider: Chronicles,
+1000 (full health). In Tomb Raider I-III, there are several offsets that store health interchangeably. In Tomb Raider: Chronicles,
 there is a health offset range. In other words, health is dynamically allocated. Since writing to the incorrect health
 offset may cause the game to crash, it is important to determine the health offset with an accurate method.
 
@@ -200,7 +200,7 @@ Since health is stored right next to character movement data, it checks the surr
 If the offset is determined to be next to character movement byte flags, it is returned as the valid health offset.
 
 This algorithm is able to determine the correct health offset around 96% of the time for Tomb Raider: Chronicles, with no false
-positives. Although it is theoretically possible to add more character movement byte flags and increase the deteciton rate, doing so would result
+positives. Although it is theoretically possible to add more character movement byte flags and increase the detection rate, doing so would result
 in false positives, as certain byte flags may align with null padding or unrelated data.
 
 ```
@@ -466,7 +466,7 @@ grenadeLauncherAmmoOffset = 0xB1 + (levelIndex * 0x33);
 
 ### Weapons
 Similar to the previous two titles, Tomb Raider III also stores weapons information on a single offset - with the exception
-of the Harpoon Gun, which is stored as a boolean on its own offset, 1 byte away from the weapons config number. Bitwise
+of the Harpoon Gun, which is stored as a boolean on its own offset, 1 byte away from the weapons configuration number. Bitwise
 can be used to determine which weapons are present in inventory -- see the [section above](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-bitwise-to-extract-weapons-information)
 on how to do this. Here are the weapon byte flags specific to Tomb Raider III:
 
@@ -567,7 +567,7 @@ private void WriteShotgunAmmo(bool isPresent, UInt16 ammo)
 
 ### Health
 Health information is also stored dynamically. It can be stored on anywhere from 1-4 unique offsets per level. To avoid
-writing to the incorrect health offset, it is neccessary to use the heuristic algorithm outlined in the
+writing to the incorrect health offset, it is necessary to use the heuristic algorithm outlined in the
 [above section](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#using-heuristics-to-determine-the-health-offset).
 In the case of Tomb Raider III, the character movement data is stored 8 bytes away from the current health offset.
 
