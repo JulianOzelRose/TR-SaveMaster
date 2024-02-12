@@ -139,7 +139,7 @@ namespace TR_SaveMaster
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(74, 36);
             this.lblVersion.TabIndex = 19;
-            this.lblVersion.Text = "v1.20";
+            this.lblVersion.Text = "v1.25";
             // 
             // llbGitHub
             // 
