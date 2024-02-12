@@ -44,7 +44,7 @@ a complete list of offsets.
 
 ## Installation and use
 To use the latest stable release of this savegame editor, simply navigate to the [Releases](https://github.com/JulianOzelRose/TR-SaveMaster/releases) section, then
-download `TR-SaveMaster-v1.20.exe`, then open it. There is no need to install anything, and it can be run from anywhere on your computer. To toggle between the different
+download `TR-SaveMaster-v1.25.exe`, then open it. There is no need to install anything, and it can be run from anywhere on your computer. To toggle between the different
 Tomb Raider games, click the appropriate tab on the tab control on the top. To begin savegame editing, you must first set your game directory. To do this, click "Browse",
 the navigate to your game directory on your computer. The game directory depends on whether you have a Steam installation, a CD installation, or a GOG installation.
 For GOG and CD installations, the actual directory the savegames are stored in varies based on your Windows setup. It seems that for most modern Windows installations,
