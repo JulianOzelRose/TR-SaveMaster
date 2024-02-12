@@ -53,49 +53,49 @@ option in Windows Explorer.
 
 ### Common game directories
 - **Tomb Raider I**
-  - CD: `C:\TOMBRAID\`
-  - ATI: `C:\TOMBATI\`
+  - CD: `C:\TOMBRAID`
+  - ATI: `C:\TOMBATI`
   - GOG: `C:\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 1\TOMBRAID`
-  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)\TOMBRAID\`
+  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)\TOMBRAID`
 - **Tomb Raider I: Unfinished Business**
-  - ATI: `C:\TOMBATI\`
-  - Steam (Patched): `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)\`
+  - ATI: `C:\TOMBATI`
+  - Steam (Patched): `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (I)`
 - **Tomb Raider II**
-  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider II\`
-  - GOG: `C:\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 2\`
-  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (II)\`
+  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider II`
+  - GOG: `C:\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 2`
+  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (II)`
 - **Tomb Raider II: The Golden Mask**
-  - CD: `C:\Program Files (x86)\Tomb Raider II Gold (Full Net)\`
+  - CD: `C:\Program Files (x86)\Tomb Raider II Gold (Full Net)`
 - **Tomb Raider III** 
-  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider III\`
-  - GOG: `C:\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 3\`
-  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\TombRaider (III)\`
+  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider III`
+  - GOG: `C:\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 3`
+  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\TombRaider (III)`
 - **Tomb Raider III: The Lost Artifact**
-  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact\`
+  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact`
 - **Tomb Raider: The Last Revelation**
-  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider - The Last Revelation\`
-  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (IV) The Last Revelation\`
+  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider - The Last Revelation`
+  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (IV) The Last Revelation`
 - **Tomb Raider: Chronicles**
-  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider Chronicles\`
-  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (V) Chronicles\`
+  - CD: `C:\Program Files (x86)\Core Design\Tomb Raider Chronicles`
+  - Steam: `C:\Program Files (x86)\Steam\steamapps\common\Tomb Raider (V) Chronicles`
 
 ### Hidden game directories
 - **Tomb Raider I**
-   - GOG: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 1\TOMBRAID\`
+   - GOG: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 1\TOMBRAID`
 - **Tomb Raider II**
-   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider II\`
-   - GOG: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 2\`
+   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider II`
+   - GOG: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 2`
 - **Tomb Raider II: The Golden Mask**
-   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Tomb Raider II Gold (Full Net)\`
+   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Tomb Raider II Gold (Full Net)`
 - **Tomb Raider III**
-   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider III\`
-   - GOG: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 3\`
+   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider III`
+   - GOG: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\GOG.com\Tomb Raider 1 2 3\Tomb Raider 3`
 - **Tomb Raider III: The Lost Artifact**
-   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact\`
+   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Lost Artifact`
 - **Tomb Raider: The Last Revelation**
-   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Last Revelation\`
+   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider - The Last Revelation`
 - **Tomb Raider: Chronicles**
-   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider Chronicles\`
+   - CD: `C:\Users\USERNAME\AppData\Local\VirtualStore\Program Files (x86)\Core Design\Tomb Raider Chronicles`
 
 Once your game directory is selected, the editor will populate with the savegames found. To toggle between them, simply click the drop-down box labled "Savegame". You
 can then change ammunition, weapons, health, and items. Click "Save" when you are done, and your changes will be applied. This editor automatically creates backups
