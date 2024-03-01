@@ -137,9 +137,9 @@ namespace TR_SaveMaster
             this.lblVersion.ForeColor = System.Drawing.Color.GreenYellow;
             this.lblVersion.Location = new System.Drawing.Point(334, 33);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(74, 36);
+            this.lblVersion.Size = new System.Drawing.Size(69, 36);
             this.lblVersion.TabIndex = 19;
-            this.lblVersion.Text = "v1.25";
+            this.lblVersion.Text = "v1.27";
             // 
             // llbGitHub
             // 
@@ -154,6 +154,7 @@ namespace TR_SaveMaster
             this.llbGitHub.TabStop = true;
             this.llbGitHub.Text = "GitHub";
             this.llbGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbGitHub_LinkClicked);
+            this.llbGitHub.MouseHover += new System.EventHandler(this.llbGitHub_MouseHover);
             // 
             // lblAuthor
             // 
