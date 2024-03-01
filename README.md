@@ -5,7 +5,7 @@ savegames, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-Save
 please scroll down to the next section of this README. Additionally, technical details on reverse engineering the classic Tomb Raider series are included, as well as
 a complete list of offsets.
 
-![TR-SaveMaster-UI](https://github.com/JulianOzelRose/TR-SaveMaster/assets/95890436/d95b20d0-ea26-431f-ab39-74c9166d791b)
+![TR-SaveMaster-UI](https://github.com/JulianOzelRose/TR-SaveMaster/assets/95890436/f623cddf-b663-4fc2-b09c-afb3ce71550d)
 
 ## Table of contents
 - [**Installation and use**](https://github.com/JulianOzelRose/TR-SaveMaster?tab=readme-ov-file#installation-and-use)
@@ -211,7 +211,7 @@ private int GetHealthOffset()
     {
         UInt16 value = ReadUInt16(offset);
 
-        if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
+        if (value >= MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
         {
             byte byteFlag1 = ReadByte(offset - 7);
             byte byteFlag2 = ReadByte(offset - 6);
