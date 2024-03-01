@@ -10,7 +10,7 @@ namespace TR_SaveMaster
     class TR1Utilities
     {
         // Static offsets
-        private const int saveNumberOffset = 0x4B;
+        private const int saveNumberOffset = 0x04B;
         private const int magnumAmmoOffset = 0x18C;
         private const int uziAmmoOffset = 0x18E;
         private const int shotgunAmmoOffset = 0x190;
@@ -26,7 +26,7 @@ namespace TR_SaveMaster
 
         // Health
         private const UInt16 MAX_HEALTH_VALUE = 1000;
-        private const UInt16 MIN_HEALTH_VALUE = 0;
+        private const UInt16 MIN_HEALTH_VALUE = 1;
         private List<int> healthOffsets = new List<int>();
 
         // Strings
@@ -265,8 +265,9 @@ namespace TR_SaveMaster
 
             if (healthOffset != -1)
             {
-                double healthPercentage = GetHealthPercentage(healthOffset);
-                trbHealth.Value = (UInt16)healthPercentage;
+                UInt16 health = GetHealthValue(healthOffset);
+                double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100;
+                trbHealth.Value = health;
                 trbHealth.Enabled = true;
 
                 lblHealth.Text = healthPercentage.ToString("0.0") + "%";
@@ -276,7 +277,7 @@ namespace TR_SaveMaster
             else
             {
                 trbHealth.Enabled = false;
-                trbHealth.Value = 0;
+                trbHealth.Value = 1;
                 lblHealthError.Visible = true;
                 lblHealth.Visible = false;
             }
@@ -325,7 +326,7 @@ namespace TR_SaveMaster
 
             if (trbHealth.Enabled)
             {
-                WriteHealthValue((double)trbHealth.Value);
+                WriteHealthValue((UInt16)trbHealth.Value);
             }
         }
 
@@ -528,23 +529,19 @@ namespace TR_SaveMaster
             }
         }
 
-        private void WriteHealthValue(double newHealthPercentage)
+        private void WriteHealthValue(UInt16 newHealth)
         {
             int healthOffset = GetHealthOffset();
 
             if (healthOffset != -1)
             {
-                UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
                 WriteUInt16(healthOffset, newHealth);
             }
         }
 
-        private double GetHealthPercentage(int healthOffset)
+        private UInt16 GetHealthValue(int healthOffset)
         {
-            UInt16 health = ReadUInt16(healthOffset);
-            double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
-
-            return healthPercentage;
+            return ReadUInt16(healthOffset);
         }
 
         private void SetHealthOffsets(params int[] offsets)
@@ -563,7 +560,7 @@ namespace TR_SaveMaster
             {
                 UInt16 value = ReadUInt16(healthOffsets[i]);
 
-                if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
+                if (value >= MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
                 {
                     byte byteFlag1 = ReadByte(healthOffsets[i] - 10);
                     byte byteFlag2 = ReadByte(healthOffsets[i] - 9);

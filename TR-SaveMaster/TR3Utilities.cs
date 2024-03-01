@@ -10,7 +10,7 @@ namespace TR_SaveMaster
     class TR3Utilities
     {
         // Static offsets
-        private const int saveNumberOffset = 0x4B;
+        private const int saveNumberOffset = 0x04B;
         private const int levelIndexOffset = 0x5C6;
 
         // Dynamic offsets
@@ -36,8 +36,9 @@ namespace TR_SaveMaster
 
         // Health
         private const UInt16 MAX_HEALTH_VALUE = 1000;
-        private const UInt16 MIN_HEALTH_VALUE = 0;
-        private List<int> healthOffsets = new List<int>();
+        private const UInt16 MIN_HEALTH_VALUE = 1;
+        private int MAX_HEALTH_OFFSET;
+        private int MIN_HEALTH_OFFSET;
 
         // Strings
         private string savegamePath;
@@ -113,93 +114,103 @@ namespace TR_SaveMaster
 
             if (levelIndex == 1)        // Jungle
             {
-                SetHealthOffsets(0x6D3);
+                MIN_HEALTH_OFFSET = 0x6D3;
+                MAX_HEALTH_OFFSET = 0x6D3;
             }
             else if (levelIndex == 2)   // Temple Ruins
             {
-                SetHealthOffsets(0x8F7, 0x909);
+                MIN_HEALTH_OFFSET = 0x8F7;
+                MAX_HEALTH_OFFSET = 0x909;
             }
             else if (levelIndex == 3)   // The River Ganges
             {
-                SetHealthOffsets(0x6B9);
+                MIN_HEALTH_OFFSET = 0x6B9;
+                MAX_HEALTH_OFFSET = 0x6B9;
             }
             else if (levelIndex == 4)   // Caves Of Kaliya
             {
-                SetHealthOffsets(0xB05);
+                MIN_HEALTH_OFFSET = 0xB05;
+                MAX_HEALTH_OFFSET = 0xB05;
             }
             else if (levelIndex == 13)  // Nevada Desert
             {
-                SetHealthOffsets(0x6B5);
+                MIN_HEALTH_OFFSET = 0x6B5;
+                MAX_HEALTH_OFFSET = 0x6B5;
             }
             else if (levelIndex == 14)  // High Security Compound
             {
-                SetHealthOffsets(0x6F7, 0x709);
+                MIN_HEALTH_OFFSET = 0x6F7;
+                MAX_HEALTH_OFFSET = 0x709;
             }
             else if (levelIndex == 15)  // Area 51
             {
-                SetHealthOffsets(0xC45, 0xC57);
+                MIN_HEALTH_OFFSET = 0xC45;
+                MAX_HEALTH_OFFSET = 0xC57;
             }
             else if (levelIndex == 5)   // Coastal Village
             {
-                SetHealthOffsets(0x7BB);
+                MIN_HEALTH_OFFSET = 0x7BB;
+                MAX_HEALTH_OFFSET = 0x7BB;
             }
             else if (levelIndex == 6)   // Crash Site
             {
-                SetHealthOffsets(0x1785, 0x1797, 0x17A9, 0x17BB);
+                MIN_HEALTH_OFFSET = 0x1785;
+                MAX_HEALTH_OFFSET = 0x17BB;
             }
             else if (levelIndex == 7)   // Madubu Gorge
             {
-                SetHealthOffsets(0xBE3, 0xBF5);
+                MIN_HEALTH_OFFSET = 0xBE3;
+                MAX_HEALTH_OFFSET = 0xBF5;
             }
             else if (levelIndex == 8)   // Temple Of Puna
             {
-                SetHealthOffsets(0x68F);
+                MIN_HEALTH_OFFSET = 0x68F;
+                MAX_HEALTH_OFFSET = 0x68F;
             }
             else if (levelIndex == 9)   // Thames Wharf
             {
-                SetHealthOffsets(0xB15, 0xB27, 0xB39);
+                MIN_HEALTH_OFFSET = 0xB15;
+                MAX_HEALTH_OFFSET = 0xB39;
             }
             else if (levelIndex == 10)  // Aldwych
             {
-                SetHealthOffsets(0x2135, 0x2147);
+                MIN_HEALTH_OFFSET = 0x2135;
+                MAX_HEALTH_OFFSET = 0x2147;
             }
             else if (levelIndex == 11)  // Lud's Gate
             {
-                SetHealthOffsets(0xAB1, 0xAC3, 0xAD5);
+                MIN_HEALTH_OFFSET = 0xAB1;
+                MAX_HEALTH_OFFSET = 0xAD5;
             }
             else if (levelIndex == 12)  // City
             {
-                SetHealthOffsets(0x737);
+                MIN_HEALTH_OFFSET = 0x737;
+                MAX_HEALTH_OFFSET = 0x737;
             }
             else if (levelIndex == 16)  // Antarctica
             {
-                SetHealthOffsets(0x6C5);
+                MIN_HEALTH_OFFSET = 0x6C5;
+                MAX_HEALTH_OFFSET = 0x6C5;
             }
             else if (levelIndex == 17)  // RX-Tech Mines
             {
-                SetHealthOffsets(0xA65, 0xA77);
+                MIN_HEALTH_OFFSET = 0xA65;
+                MAX_HEALTH_OFFSET = 0xA77;
             }
             else if (levelIndex == 18)  // Lost City Of Tinnos
             {
-                SetHealthOffsets(0x711);
+                MIN_HEALTH_OFFSET = 0x711;
+                MAX_HEALTH_OFFSET = 0x711;
             }
             else if (levelIndex == 19)  // Meteorite Cavern
             {
-                SetHealthOffsets(0x68D);
+                MIN_HEALTH_OFFSET = 0x68D;
+                MAX_HEALTH_OFFSET = 0x68D;
             }
             else if (levelIndex == 20)  // All Hallows
             {
-                SetHealthOffsets(0xAF5, 0xB07, 0xB19);
-            }
-        }
-
-        private void SetHealthOffsets(params int[] offsets)
-        {
-            healthOffsets.Clear();
-
-            for (int i = 0; i < offsets.Length; i++)
-            {
-                healthOffsets.Add(offsets[i]);
+                MIN_HEALTH_OFFSET = 0xAF5;
+                MAX_HEALTH_OFFSET = 0xB19;
             }
         }
 
@@ -261,8 +272,9 @@ namespace TR_SaveMaster
 
             if (healthOffset != -1)
             {
-                double healthPercentage = GetHealthPercentage(healthOffset);
-                trbHealth.Value = (UInt16)healthPercentage;
+                UInt16 health = GetHealthValue(healthOffset);
+                double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100;
+                trbHealth.Value = health;
                 trbHealth.Enabled = true;
 
                 lblHealth.Text = healthPercentage.ToString("0.0") + "%";
@@ -272,7 +284,7 @@ namespace TR_SaveMaster
             else
             {
                 trbHealth.Enabled = false;
-                trbHealth.Value = 0;
+                trbHealth.Value = 1;
                 lblHealthError.Visible = true;
                 lblHealth.Visible = false;
             }
@@ -328,7 +340,7 @@ namespace TR_SaveMaster
 
             if (trbHealth.Enabled)
             {
-                WriteHealthValue((double)trbHealth.Value);
+                WriteHealthValue((UInt16)trbHealth.Value);
             }
         }
 
@@ -428,19 +440,19 @@ namespace TR_SaveMaster
 
         private int GetHealthOffset()
         {
-            for (int i = 0; i < healthOffsets.Count; i++)
+            for (int offset = MIN_HEALTH_OFFSET; offset <= MAX_HEALTH_OFFSET; offset += 0x12)
             {
-                UInt16 value = ReadUInt16(healthOffsets[i]);
+                UInt16 value = ReadUInt16(offset);
 
-                if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
+                if (value >= MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
                 {
-                    byte byteFlag1 = ReadByte(healthOffsets[i] - 10);
-                    byte byteFlag2 = ReadByte(healthOffsets[i] - 9);
-                    byte byteFlag3 = ReadByte(healthOffsets[i] - 8);
+                    byte byteFlag1 = ReadByte(offset - 10);
+                    byte byteFlag2 = ReadByte(offset - 9);
+                    byte byteFlag3 = ReadByte(offset - 8);
 
                     if (IsKnownByteFlagPattern(byteFlag1, byteFlag2, byteFlag3))
                     {
-                        return healthOffsets[i];
+                        return offset;
                     }
                 }
             }
@@ -448,12 +460,9 @@ namespace TR_SaveMaster
             return -1;
         }
 
-        private double GetHealthPercentage(int healthOffset)
+        private UInt16 GetHealthValue(int healthOffset)
         {
-            UInt16 health = ReadUInt16(healthOffset);
-            double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
-
-            return healthPercentage;
+            return ReadUInt16(healthOffset);
         }
 
         private byte GetLevelIndex()
@@ -661,13 +670,12 @@ namespace TR_SaveMaster
             }
         }
 
-        private void WriteHealthValue(double newHealthPercentage)
+        private void WriteHealthValue(UInt16 newHealth)
         {
             int healthOffset = GetHealthOffset();
 
             if (healthOffset != -1)
             {
-                UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
                 WriteUInt16(healthOffset, newHealth);
             }
         }

@@ -10,7 +10,7 @@ namespace TR_SaveMaster
     class TR3TLAUtilities
     {
         // Static offsets
-        private const int saveNumberOffset = 0x4B;
+        private const int saveNumberOffset = 0x04B;
         private const int levelIndexOffset = 0x5C6;
 
         // Dynamic offsets
@@ -36,8 +36,9 @@ namespace TR_SaveMaster
 
         // Health
         private const UInt16 MAX_HEALTH_VALUE = 1000;
-        private const UInt16 MIN_HEALTH_VALUE = 0;
-        private List<int> healthOffsets = new List<int>();
+        private const UInt16 MIN_HEALTH_VALUE = 1;
+        private int MAX_HEALTH_OFFSET;
+        private int MIN_HEALTH_OFFSET;
 
         // Strings
         private string savegamePath;
@@ -96,19 +97,19 @@ namespace TR_SaveMaster
 
         private int GetHealthOffset()
         {
-            for (int i = 0; i < healthOffsets.Count; i++)
+            for (int offset = MIN_HEALTH_OFFSET; offset <= MAX_HEALTH_OFFSET; offset += 0x12)
             {
-                UInt16 value = ReadUInt16(healthOffsets[i]);
+                UInt16 value = ReadUInt16(offset);
 
-                if (value > MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
+                if (value >= MIN_HEALTH_VALUE && value <= MAX_HEALTH_VALUE)
                 {
-                    byte byteFlag1 = ReadByte(healthOffsets[i] - 10);
-                    byte byteFlag2 = ReadByte(healthOffsets[i] - 9);
-                    byte byteFlag3 = ReadByte(healthOffsets[i] - 8);
+                    byte byteFlag1 = ReadByte(offset - 10);
+                    byte byteFlag2 = ReadByte(offset - 9);
+                    byte byteFlag3 = ReadByte(offset - 8);
 
                     if (IsKnownByteFlagPattern(byteFlag1, byteFlag2, byteFlag3))
                     {
-                        return healthOffsets[i];
+                        return offset;
                     }
                 }
             }
@@ -116,12 +117,9 @@ namespace TR_SaveMaster
             return -1;
         }
 
-        private double GetHealthPercentage(int healthOffset)
+        private UInt16 GetHealthValue(int healthOffset)
         {
-            UInt16 health = ReadUInt16(healthOffset);
-            double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100.0;
-
-            return healthPercentage;
+            return ReadUInt16(healthOffset);
         }
 
         private bool IsKnownByteFlagPattern(byte byteFlag1, byte byteFlag2, byte byteFlag3)
@@ -203,27 +201,33 @@ namespace TR_SaveMaster
 
             if (levelIndex == 1)        // Highland Fling
             {
-                SetHealthOffsets(0x1435, 0x1447, 0x1459);
+                MIN_HEALTH_OFFSET = 0x1435;
+                MAX_HEALTH_OFFSET = 0x1459;
             }
             else if (levelIndex == 2)   // Willard's Lair
             {
-                SetHealthOffsets(0xF5B, 0xF6D);
+                MIN_HEALTH_OFFSET = 0xF5B;
+                MAX_HEALTH_OFFSET = 0xF6D;
             }
             else if (levelIndex == 3)   // Shakespeare Cliff
             {
-                SetHealthOffsets(0xCDB, 0xCED);
+                MIN_HEALTH_OFFSET = 0xCDB;
+                MAX_HEALTH_OFFSET = 0xCED;
             }
             else if (levelIndex == 4)   // Sleeping with the Fishes
             {
-                SetHealthOffsets(0x705);
+                MIN_HEALTH_OFFSET = 0x705;
+                MAX_HEALTH_OFFSET = 0x705;
             }
             else if (levelIndex == 5)   // It's a Madhouse!
             {
-                SetHealthOffsets(0xB37, 0xB49, 0xB5B, 0xB6D, 0xB7F, 0xB91);
+                MIN_HEALTH_OFFSET = 0xB37;
+                MAX_HEALTH_OFFSET = 0xB91;
             }
             else if (levelIndex == 6)   // Reunion
             {
-                SetHealthOffsets(0x10FB, 0x110D, 0x111F);
+                MIN_HEALTH_OFFSET = 0x10FB;
+                MAX_HEALTH_OFFSET = 0x111F;
             }
         }
 
@@ -285,8 +289,9 @@ namespace TR_SaveMaster
 
             if (healthOffset != -1)
             {
-                double healthPercentage = GetHealthPercentage(healthOffset);
-                trbHealth.Value = (UInt16)healthPercentage;
+                UInt16 health = GetHealthValue(healthOffset);
+                double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100;
+                trbHealth.Value = health;
                 trbHealth.Enabled = true;
 
                 lblHealth.Text = healthPercentage.ToString("0.0") + "%";
@@ -296,7 +301,7 @@ namespace TR_SaveMaster
             else
             {
                 trbHealth.Enabled = false;
-                trbHealth.Value = 0;
+                trbHealth.Value = 1;
                 lblHealthError.Visible = true;
                 lblHealth.Visible = false;
             }
@@ -352,7 +357,7 @@ namespace TR_SaveMaster
 
             if (trbHealth.Enabled)
             {
-                WriteHealthValue((double)trbHealth.Value);
+                WriteHealthValue((UInt16)trbHealth.Value);
             }
         }
 
@@ -507,24 +512,13 @@ namespace TR_SaveMaster
             }
         }
 
-        private void WriteHealthValue(double newHealthPercentage)
+        private void WriteHealthValue(UInt16 newHealth)
         {
             int healthOffset = GetHealthOffset();
 
             if (healthOffset != -1)
             {
-                UInt16 newHealth = (UInt16)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
                 WriteUInt16(healthOffset, newHealth);
-            }
-        }
-
-        private void SetHealthOffsets(params int[] offsets)
-        {
-            healthOffsets.Clear();
-
-            for (int i = 0; i < offsets.Length; i++)
-            {
-                healthOffsets.Add(offsets[i]);
             }
         }
 

@@ -34,6 +34,7 @@ namespace TR_SaveMaster
             }
         }
 
+        // Utils
         readonly TR1Utilities TR1 = new TR1Utilities();
         readonly TR1UBUtilities TR1UB = new TR1UBUtilities();
         readonly TR2Utilities TR2 = new TR2Utilities();
@@ -43,6 +44,7 @@ namespace TR_SaveMaster
         readonly TR4Utilities TR4 = new TR4Utilities();
         readonly TRCUtilities TRC = new TRCUtilities();
 
+        // Savegame
         private List<Savegame> savegamesTR1 = new List<Savegame>();
         private List<Savegame> savegamesTR1UB = new List<Savegame>();
         private List<Savegame> savegamesTR2 = new List<Savegame>();
@@ -52,6 +54,7 @@ namespace TR_SaveMaster
         private List<Savegame> savegamesTR4 = new List<Savegame>();
         private List<Savegame> savegamesTRC = new List<Savegame>();
 
+        // Directory
         private string directoryTR1;
         private string directoryTR1UB;
         private string directoryTR2;
@@ -61,6 +64,7 @@ namespace TR_SaveMaster
         private string directoryTR4;
         private string directoryTRC;
 
+        // Tabs
         private const int TAB_TR1 = 0;
         private const int TAB_TR1UB = 1;
         private const int TAB_TR2 = 2;
@@ -70,6 +74,10 @@ namespace TR_SaveMaster
         private const int TAB_TR4 = 6;
         private const int TAB_TRC = 7;
 
+        // Health
+        private const UInt16 MAX_HEALTH_VALUE = 1000;
+
+        // Misc
         private bool isLoading = false;
         private bool isFilePresent = true;
 
@@ -371,7 +379,7 @@ namespace TR_SaveMaster
                 else if (control is TrackBar trackBar)
                 {
                     trackBar.Enabled = true;
-                    trackBar.Value = 0;
+                    trackBar.Value = 1;
                 }
             }
         }
@@ -385,7 +393,7 @@ namespace TR_SaveMaster
 
             lblHealthErrorTR1.Visible = false;
             lblHealthTR1.Visible = true;
-            lblHealthTR1.Text = "0.0%";
+            lblHealthTR1.Text = "0.1%";
         }
 
         private void ClearControlsTR1UB()
@@ -397,7 +405,7 @@ namespace TR_SaveMaster
 
             lblHealthErrorTR1UB.Visible = false;
             lblHealthTR1UB.Visible = true;
-            lblHealthTR1UB.Text = "0.0%";
+            lblHealthTR1UB.Text = "0.1%";
         }
 
         private void ClearControlsTR2()
@@ -409,7 +417,7 @@ namespace TR_SaveMaster
 
             lblHealthErrorTR2.Visible = false;
             lblHealthTR2.Visible = true;
-            lblHealthTR2.Text = "0.0%";
+            lblHealthTR2.Text = "0.1%";
         }
 
         private void ClearControlsTR2G()
@@ -421,7 +429,7 @@ namespace TR_SaveMaster
 
             lblHealthErrorTR2G.Visible = false;
             lblHealthTR2G.Visible = true;
-            lblHealthTR2G.Text = "0.0%";
+            lblHealthTR2G.Text = "0.1%";
         }
 
         private void ClearControlsTR3()
@@ -433,7 +441,7 @@ namespace TR_SaveMaster
 
             lblHealthErrorTR3.Visible = false;
             lblHealthTR3.Visible = true;
-            lblHealthTR3.Text = "0.0%";
+            lblHealthTR3.Text = "0.1%";
         }
 
         private void ClearControlsTR3TLA()
@@ -445,7 +453,7 @@ namespace TR_SaveMaster
 
             lblHealthErrorTR3TLA.Visible = false;
             lblHealthTR3TLA.Visible = true;
-            lblHealthTR3TLA.Text = "0.0%";
+            lblHealthTR3TLA.Text = "0.1%";
         }
 
         private void ClearControlsTR4()
@@ -464,7 +472,7 @@ namespace TR_SaveMaster
 
             lblHealthErrorTRC.Visible = false;
             lblHealthTRC.Visible = true;
-            lblHealthTRC.Text = "0.0%";
+            lblHealthTRC.Text = "0.1%";
         }
 
         static void CreateBackup(string filePath)
@@ -1766,7 +1774,7 @@ namespace TR_SaveMaster
 
         private void trbHealthTR1_Scroll(object sender, EventArgs e)
         {
-            double healthPercentage = (double)trbHealthTR1.Value;
+            double healthPercentage = ((double)trbHealthTR1.Value / (double)MAX_HEALTH_VALUE) * 100;
             lblHealthTR1.Text = healthPercentage.ToString("0.0") + "%";
 
             if (cmbSavegamesTR1.SelectedIndex != -1)
@@ -1777,7 +1785,7 @@ namespace TR_SaveMaster
 
         private void trbHealthTR1UB_Scroll(object sender, EventArgs e)
         {
-            double healthPercentage = (double)trbHealthTR1UB.Value;
+            double healthPercentage = ((double)trbHealthTR1UB.Value / (double)MAX_HEALTH_VALUE) * 100;
             lblHealthTR1UB.Text = healthPercentage.ToString("0.0") + "%";
 
             if (cmbSavegamesTR1UB.SelectedIndex != -1)
@@ -1788,7 +1796,7 @@ namespace TR_SaveMaster
 
         private void trbHealthTR2_Scroll(object sender, EventArgs e)
         {
-            double healthPercentage = (double)trbHealthTR2.Value;
+            double healthPercentage = ((double)trbHealthTR2.Value / (double)MAX_HEALTH_VALUE) * 100;
             lblHealthTR2.Text = healthPercentage.ToString("0.0") + "%";
 
             if (cmbSavegamesTR2.SelectedIndex != -1)
@@ -1799,7 +1807,7 @@ namespace TR_SaveMaster
 
         private void trbHealthTR2G_Scroll(object sender, EventArgs e)
         {
-            double healthPercentage = (double)trbHealthTR2G.Value;
+            double healthPercentage = ((double)trbHealthTR2G.Value / (double)MAX_HEALTH_VALUE) * 100;
             lblHealthTR2G.Text = healthPercentage.ToString("0.0") + "%";
 
             if (cmbSavegamesTR2G.SelectedIndex != -1)
@@ -1810,7 +1818,7 @@ namespace TR_SaveMaster
 
         private void trbHealthTR3_Scroll(object sender, EventArgs e)
         {
-            double healthPercentage = (double)trbHealthTR3.Value;
+            double healthPercentage = ((double)trbHealthTR3.Value / (double)MAX_HEALTH_VALUE) * 100;
             lblHealthTR3.Text = healthPercentage.ToString("0.0") + "%";
 
             if (cmbSavegamesTR3.SelectedIndex != -1)
@@ -1821,7 +1829,7 @@ namespace TR_SaveMaster
 
         private void trbHealthTR3TLA_Scroll(object sender, EventArgs e)
         {
-            double healthPercentage = (double)trbHealthTR3TLA.Value;
+            double healthPercentage = ((double)trbHealthTR3TLA.Value / (double)MAX_HEALTH_VALUE) * 100;
             lblHealthTR3TLA.Text = healthPercentage.ToString("0.0") + "%";
 
             if (cmbSavegamesTR3TLA.SelectedIndex != -1)
@@ -1832,7 +1840,7 @@ namespace TR_SaveMaster
 
         private void trbHealthTRC_Scroll(object sender, EventArgs e)
         {
-            double healthPercentage = (double)trbHealthTRC.Value;
+            double healthPercentage = ((double)trbHealthTRC.Value / (double)MAX_HEALTH_VALUE) * 100;
             lblHealthTRC.Text = healthPercentage.ToString("0.0") + "%";
 
             if (cmbSavegamesTRC.SelectedIndex != -1)
