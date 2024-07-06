@@ -137,9 +137,9 @@ namespace TR_SaveMaster
             this.lblVersion.ForeColor = System.Drawing.Color.GreenYellow;
             this.lblVersion.Location = new System.Drawing.Point(334, 33);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(69, 36);
+            this.lblVersion.Size = new System.Drawing.Size(74, 36);
             this.lblVersion.TabIndex = 19;
-            this.lblVersion.Text = "v1.27";
+            this.lblVersion.Text = "v1.28";
             // 
             // llbGitHub
             // 
