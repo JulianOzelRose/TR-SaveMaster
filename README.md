@@ -1,4 +1,4 @@
-# Tomb Raider - Savegame Editor
+# Tomb Raider Savegame Editor
 This is a fully-featured savegame editor for the classic Tomb Raider series. It works with Tomb Raider 1-5, including the 3 expansions and bonus levels.
 This editor is compatible with the original CD savegames as well as the Steam, ATI, GOG, and multi-patched savegames. For Tomb Raider I-III Remastered
 savegames, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster/). For installation and usage instructions,
