@@ -632,13 +632,9 @@ namespace TR_SaveMaster
         {
             WriteUInt16(harpoonGunAmmoOffset, ammo);
 
-            if (isPresent && secondaryAmmoIndex != -1)
+            if (secondaryAmmoIndex != -1)
             {
                 WriteUInt16(harpoonGunAmmoOffset2, ammo);
-            }
-            else if (!isPresent && secondaryAmmoIndex != -1)
-            {
-                WriteUInt16(harpoonGunAmmoOffset2, 0);
             }
         }
 
