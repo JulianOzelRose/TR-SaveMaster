@@ -1,4 +1,4 @@
-# Tomb Raider Savegame Editor
+# Tomb Raider - Savegame Editor
 This is a fully-featured savegame editor for the classic Tomb Raider series. It works with Tomb Raider 1-5, including the 3 expansions and bonus levels.
 This editor is compatible with the original CD savegames as well as the Steam, ATI, GOG, and multi-patched savegames. For Tomb Raider I-III Remastered
 savegames, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster/). For installation and usage instructions,
@@ -484,8 +484,9 @@ on how to do this. Here are the weapon byte flags specific to Tomb Raider III:
 
 ### Ammunition
 Tomb Raider III also stores ammunition on a primary and secondary offset, with the same logic as the previous two titles;
-an equipped weapon stores ammo on both offsets, while a non-equipped weapon only stores ammo in the primary offset. The
-secondary ammo indices are dynamically allocated. The methods for writing to ammunition are almost identical to Tomb Raider II.
+an equipped weapon stores ammo on both offsets, while a non-equipped weapon only stores ammo in the primary offset.
+The only exception is the Harpoon Gun, which stores ammo on both offsets regardless of whether it is equipped.
+The secondary ammo indices are dynamically allocated. The methods for writing to ammunition are almost identical to Tomb Raider II.
 Once again, you will need to find and store the base location of the `{0xFF, 0xFF, 0xFF, 0xFF}` array that precedes the null
 padding of the savegame file. Here is the dictionary for the base secondary ammo index arrays for Tomb Raider III:
 
