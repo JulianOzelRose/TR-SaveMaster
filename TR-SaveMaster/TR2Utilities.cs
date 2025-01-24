@@ -224,11 +224,11 @@ namespace TR_SaveMaster
             {  5, new int[] { 0x1020, 0x1021, 0x1022, 0x1023 } },   // Offshore Rig
             {  6, new int[] { 0x1274, 0x1275, 0x1276, 0x1277 } },   // Diving Area
             {  7, new int[] { 0x0C0E, 0x0C0F, 0x0C10, 0x0C11 } },   // 40 Fathoms
-            {  8, new int[] { 0x16F4, 0x16F5, 0x16F6, 0x16F7 } },   // Wreck of the Maria Doria
-            {  9, new int[] { 0x0EA4, 0x0EA5, 0x0EA6, 0x0EA7 } },   // Living Quarters
+            {  8, new int[] { 0x16E8, 0x16E9, 0x16EA, 0x16EB } },   // Wreck of the Maria Doria
+            {  9, new int[] { 0x0E98, 0x0E99, 0x0E9A, 0x0E9B } },   // Living Quarters
             { 10, new int[] { 0x11C8, 0x11C9, 0x11CA, 0x11CB } },   // The Deck
             { 11, new int[] { 0x1402, 0x1403, 0x1404, 0x1405 } },   // Tibetan Foothills
-            { 12, new int[] { 0x1972, 0x1973, 0x1974, 0x1975 } },   // Barkhang Monastery
+            { 12, new int[] { 0x1966, 0x1967, 0x1968, 0x1969 } },   // Barkhang Monastery
             { 13, new int[] { 0x1522, 0x1523, 0x1524, 0x1525 } },   // Catacombs of the Talion
             { 14, new int[] { 0x122A, 0x122B, 0x122C, 0x122D } },   // Ice Palace
             { 15, new int[] { 0x1A6A, 0x1A6B, 0x1A6C, 0x1A6D } },   // Temple of Xian
@@ -248,7 +248,7 @@ namespace TR_SaveMaster
                 int[] offsets1 = new int[indexData.Length];
                 int[] offsets2 = new int[indexData.Length];
 
-                for (int index = 0; index < 20; index++)
+                for (int index = 0; index < 22; index++)
                 {
                     Array.Copy(indexData, offsets1, indexData.Length);
 
