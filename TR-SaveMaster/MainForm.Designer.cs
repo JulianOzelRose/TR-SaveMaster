@@ -282,6 +282,10 @@ namespace TR_SaveMaster
             this.lblLevelNameTR3TLA = new System.Windows.Forms.Label();
             this.txtLvlNameTR3TLA = new System.Windows.Forms.TextBox();
             this.tpTR4 = new System.Windows.Forms.TabPage();
+            this.grpHealthTR4 = new System.Windows.Forms.GroupBox();
+            this.lblHealthErrorTR4 = new System.Windows.Forms.Label();
+            this.lblHealthTR4 = new System.Windows.Forms.Label();
+            this.trbHealthTR4 = new System.Windows.Forms.TrackBar();
             this.label8 = new System.Windows.Forms.Label();
             this.btnExitTR4 = new System.Windows.Forms.Button();
             this.btnBrowseTR4 = new System.Windows.Forms.Button();
@@ -470,6 +474,8 @@ namespace TR_SaveMaster
             this.grpLevelTR3TLA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumberTR3TLA)).BeginInit();
             this.tpTR4.SuspendLayout();
+            this.grpHealthTR4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trbHealthTR4)).BeginInit();
             this.grpWeaponsTR4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudGrenadeGunFlashAmmoTR4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGrenadeGunSuperAmmoTR4)).BeginInit();
@@ -3419,6 +3425,7 @@ namespace TR_SaveMaster
             // tpTR4
             // 
             this.tpTR4.BackColor = System.Drawing.Color.White;
+            this.tpTR4.Controls.Add(this.grpHealthTR4);
             this.tpTR4.Controls.Add(this.label8);
             this.tpTR4.Controls.Add(this.btnExitTR4);
             this.tpTR4.Controls.Add(this.btnBrowseTR4);
@@ -3435,6 +3442,50 @@ namespace TR_SaveMaster
             this.tpTR4.Size = new System.Drawing.Size(720, 383);
             this.tpTR4.TabIndex = 4;
             this.tpTR4.Text = "The Last Revelation";
+            // 
+            // grpHealthTR4
+            // 
+            this.grpHealthTR4.Controls.Add(this.lblHealthErrorTR4);
+            this.grpHealthTR4.Controls.Add(this.lblHealthTR4);
+            this.grpHealthTR4.Controls.Add(this.trbHealthTR4);
+            this.grpHealthTR4.Location = new System.Drawing.Point(7, 269);
+            this.grpHealthTR4.Name = "grpHealthTR4";
+            this.grpHealthTR4.Size = new System.Drawing.Size(335, 76);
+            this.grpHealthTR4.TabIndex = 25;
+            this.grpHealthTR4.TabStop = false;
+            this.grpHealthTR4.Text = "Health";
+            // 
+            // lblHealthErrorTR4
+            // 
+            this.lblHealthErrorTR4.AutoSize = true;
+            this.lblHealthErrorTR4.Location = new System.Drawing.Point(93, 55);
+            this.lblHealthErrorTR4.Name = "lblHealthErrorTR4";
+            this.lblHealthErrorTR4.Size = new System.Drawing.Size(136, 13);
+            this.lblHealthErrorTR4.TabIndex = 2;
+            this.lblHealthErrorTR4.Text = "Unable to find health bytes.";
+            this.lblHealthErrorTR4.Visible = false;
+            // 
+            // lblHealthTR4
+            // 
+            this.lblHealthTR4.AutoSize = true;
+            this.lblHealthTR4.Location = new System.Drawing.Point(292, 29);
+            this.lblHealthTR4.Name = "lblHealthTR4";
+            this.lblHealthTR4.Size = new System.Drawing.Size(30, 13);
+            this.lblHealthTR4.TabIndex = 1;
+            this.lblHealthTR4.Text = "0.1%";
+            // 
+            // trbHealthTR4
+            // 
+            this.trbHealthTR4.BackColor = System.Drawing.Color.White;
+            this.trbHealthTR4.Location = new System.Drawing.Point(16, 23);
+            this.trbHealthTR4.Maximum = 1000;
+            this.trbHealthTR4.Minimum = 1;
+            this.trbHealthTR4.Name = "trbHealthTR4";
+            this.trbHealthTR4.Size = new System.Drawing.Size(272, 45);
+            this.trbHealthTR4.TabIndex = 0;
+            this.trbHealthTR4.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trbHealthTR4.Value = 1;
+            this.trbHealthTR4.Scroll += new System.EventHandler(this.trbHealthTR4_Scroll);
             // 
             // label8
             // 
@@ -3801,7 +3852,7 @@ namespace TR_SaveMaster
             this.grpItemsTR4.Controls.Add(this.nudSmallMedipacksTR4);
             this.grpItemsTR4.Location = new System.Drawing.Point(7, 121);
             this.grpItemsTR4.Name = "grpItemsTR4";
-            this.grpItemsTR4.Size = new System.Drawing.Size(335, 224);
+            this.grpItemsTR4.Size = new System.Drawing.Size(335, 144);
             this.grpItemsTR4.TabIndex = 24;
             this.grpItemsTR4.TabStop = false;
             this.grpItemsTR4.Text = "Items";
@@ -3809,7 +3860,7 @@ namespace TR_SaveMaster
             // chkLaserSightTR4
             // 
             this.chkLaserSightTR4.AutoSize = true;
-            this.chkLaserSightTR4.Location = new System.Drawing.Point(136, 184);
+            this.chkLaserSightTR4.Location = new System.Drawing.Point(135, 114);
             this.chkLaserSightTR4.Name = "chkLaserSightTR4";
             this.chkLaserSightTR4.Size = new System.Drawing.Size(76, 17);
             this.chkLaserSightTR4.TabIndex = 22;
@@ -3820,7 +3871,7 @@ namespace TR_SaveMaster
             // chkCrowbarTR4
             // 
             this.chkCrowbarTR4.AutoSize = true;
-            this.chkCrowbarTR4.Location = new System.Drawing.Point(261, 184);
+            this.chkCrowbarTR4.Location = new System.Drawing.Point(261, 114);
             this.chkCrowbarTR4.Name = "chkCrowbarTR4";
             this.chkCrowbarTR4.Size = new System.Drawing.Size(65, 17);
             this.chkCrowbarTR4.TabIndex = 21;
@@ -3831,7 +3882,7 @@ namespace TR_SaveMaster
             // chkBinocularsTR4
             // 
             this.chkBinocularsTR4.AutoSize = true;
-            this.chkBinocularsTR4.Location = new System.Drawing.Point(16, 184);
+            this.chkBinocularsTR4.Location = new System.Drawing.Point(16, 114);
             this.chkBinocularsTR4.Name = "chkBinocularsTR4";
             this.chkBinocularsTR4.Size = new System.Drawing.Size(75, 17);
             this.chkBinocularsTR4.TabIndex = 20;
@@ -3842,7 +3893,7 @@ namespace TR_SaveMaster
             // lblFlaresTR4
             // 
             this.lblFlaresTR4.AutoSize = true;
-            this.lblFlaresTR4.Location = new System.Drawing.Point(13, 136);
+            this.lblFlaresTR4.Location = new System.Drawing.Point(14, 83);
             this.lblFlaresTR4.Name = "lblFlaresTR4";
             this.lblFlaresTR4.Size = new System.Drawing.Size(38, 13);
             this.lblFlaresTR4.TabIndex = 19;
@@ -3851,7 +3902,7 @@ namespace TR_SaveMaster
             // lblLargeMedipacksTR4
             // 
             this.lblLargeMedipacksTR4.AutoSize = true;
-            this.lblLargeMedipacksTR4.Location = new System.Drawing.Point(13, 86);
+            this.lblLargeMedipacksTR4.Location = new System.Drawing.Point(13, 57);
             this.lblLargeMedipacksTR4.Name = "lblLargeMedipacksTR4";
             this.lblLargeMedipacksTR4.Size = new System.Drawing.Size(92, 13);
             this.lblLargeMedipacksTR4.TabIndex = 18;
@@ -3868,7 +3919,7 @@ namespace TR_SaveMaster
             // 
             // nudFlaresTR4
             // 
-            this.nudFlaresTR4.Location = new System.Drawing.Point(273, 129);
+            this.nudFlaresTR4.Location = new System.Drawing.Point(273, 81);
             this.nudFlaresTR4.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -3882,7 +3933,7 @@ namespace TR_SaveMaster
             // 
             // nudLargeMedipacksTR4
             // 
-            this.nudLargeMedipacksTR4.Location = new System.Drawing.Point(273, 79);
+            this.nudLargeMedipacksTR4.Location = new System.Drawing.Point(273, 55);
             this.nudLargeMedipacksTR4.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -4705,6 +4756,9 @@ namespace TR_SaveMaster
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumberTR3TLA)).EndInit();
             this.tpTR4.ResumeLayout(false);
             this.tpTR4.PerformLayout();
+            this.grpHealthTR4.ResumeLayout(false);
+            this.grpHealthTR4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trbHealthTR4)).EndInit();
             this.grpWeaponsTR4.ResumeLayout(false);
             this.grpWeaponsTR4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudGrenadeGunFlashAmmoTR4)).EndInit();
@@ -5102,6 +5156,10 @@ namespace TR_SaveMaster
         private System.Windows.Forms.ToolStripMenuItem tsmiSendFeedback;
         private System.Windows.Forms.NumericUpDown nudDeagleAmmoTRC;
         private System.Windows.Forms.CheckBox chkDeagleTRC;
+        private System.Windows.Forms.GroupBox grpHealthTR4;
+        private System.Windows.Forms.Label lblHealthErrorTR4;
+        private System.Windows.Forms.Label lblHealthTR4;
+        private System.Windows.Forms.TrackBar trbHealthTR4;
     }
 }
 

@@ -1081,7 +1081,8 @@ namespace TR_SaveMaster
                                 nudShotgunWideshotAmmoTR4, nudGrenadeGunNormalAmmoTR4, nudGrenadeGunSuperAmmoTR4,
                                 nudGrenadeGunFlashAmmoTR4, nudCrossbowNormalAmmoTR4, nudCrossbowPoisonAmmoTR4,
                                 nudCrossbowExplosiveAmmoTR4, chkBinocularsTR4, chkCrowbarTR4, chkLaserSightTR4,
-                                chkPistolsTR4, chkRevolverTR4, chkUziTR4, chkShotgunTR4, chkCrossbowTR4, chkGrenadeGunTR4);
+                                chkPistolsTR4, chkRevolverTR4, chkUziTR4, chkShotgunTR4, chkCrossbowTR4, chkGrenadeGunTR4,
+                                trbHealthTR4, lblHealthTR4, lblHealthErrorTR4);
 
                             isLoading = false;
 
@@ -1484,7 +1485,7 @@ namespace TR_SaveMaster
                                     nudGrenadeGunSuperAmmoTR4, nudGrenadeGunFlashAmmoTR4, nudCrossbowNormalAmmoTR4, nudCrossbowPoisonAmmoTR4,
                                     nudCrossbowExplosiveAmmoTR4, nudShotgunNormalAmmoTR4, nudShotgunWideshotAmmoTR4,
                                     chkPistolsTR4, chkUziTR4, chkShotgunTR4, chkCrossbowTR4, chkGrenadeGunTR4,
-                                    chkRevolverTR4, chkBinocularsTR4, chkCrowbarTR4, chkLaserSightTR4);
+                                    chkRevolverTR4, chkBinocularsTR4, chkCrowbarTR4, chkLaserSightTR4, trbHealthTR4);
 
                                 btnSaveTR4.Enabled = false;
                                 btnCancelTR4.Enabled = false;
@@ -4164,6 +4165,17 @@ namespace TR_SaveMaster
                 tsmiModernTheme.Checked = false;
                 tsmiModernTheme.Enabled = true;
                 tsmiClassicTheme.Enabled = false;
+            }
+        }
+
+        private void trbHealthTR4_Scroll(object sender, EventArgs e)
+        {
+            double healthPercentage = ((double)trbHealthTR4.Value / (double)MAX_HEALTH_VALUE) * 100;
+            lblHealthTR4.Text = healthPercentage.ToString("0.0") + "%";
+
+            if (cmbSavegamesTR4.SelectedIndex != -1)
+            {
+                EnableButtonsTR4();
             }
         }
     }

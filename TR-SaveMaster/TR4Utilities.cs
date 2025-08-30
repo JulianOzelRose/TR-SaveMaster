@@ -47,6 +47,16 @@ namespace TR_SaveMaster
         // Strings
         private string savegamePath;
 
+        // Health
+        private const UInt16 MAX_HEALTH_VALUE = 1000;
+        private const UInt16 MIN_HEALTH_VALUE = 1;
+        private const byte BASE_HEALTH_FLAG_FULL = 0x80;      // Baseline flag for full health (not stored)
+        private const byte BASE_HEALTH_FLAG_PARTIAL = 0xC0;     // Baseline flag for partial health (stored)
+        private const byte HEALTH_FLAG_DELTA = 0x40;            // Difference between full and partial health flags
+
+        private int MAX_HEALTH_OFFSET;
+        private int MIN_HEALTH_OFFSET;
+
         public void SetSavegamePath(string path)
         {
             savegamePath = path;
@@ -105,36 +115,48 @@ namespace TR_SaveMaster
                 chkBinoculars.Enabled = false;
                 chkLaserSight.Enabled = false;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x34D;
+                MAX_HEALTH_OFFSET = 0x34F;
             }
             else if (levelIndex == 2)   // Race For The Iris (also The Times Exclusive)
             {
                 chkBinoculars.Enabled = false;
                 chkLaserSight.Enabled = false;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x70E;
+                MAX_HEALTH_OFFSET = 0x70E;
             }
             else if (levelIndex == 3)   // The Tomb Of Seth
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x3FF;
+                MAX_HEALTH_OFFSET = 0x70E;
             }
             else if (levelIndex == 4)   // Burial Chambers
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x3B7;
+                MAX_HEALTH_OFFSET = 0x5EB;
             }
             else if (levelIndex == 5)   // Valley Of The Kings
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x2F9;
+                MAX_HEALTH_OFFSET = 0x33E;
             }
             else if (levelIndex == 6)   // KV5
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x5D9;
+                MAX_HEALTH_OFFSET = 0x627;
             }
             else if (levelIndex == 7)   // Temple Of Karnak
             {
@@ -159,6 +181,8 @@ namespace TR_SaveMaster
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0xF1B;
+                MAX_HEALTH_OFFSET = 0xFE2;
             }
             else if (levelIndex == 12)  // Guardian Of Semerkhet
             {
@@ -318,7 +342,7 @@ namespace TR_SaveMaster
             NumericUpDown nudGrenadeGunSuperAmmo, NumericUpDown nudGrenadeGunFlashAmmo, NumericUpDown nudCrossbowNormalAmmo,
             NumericUpDown nudCrossbowPoisonAmmo, NumericUpDown nudCrossbowExplosiveAmmo, CheckBox chkBinoculars, CheckBox chkCrowbar,
             CheckBox chkLaserSight, CheckBox chkPistols, CheckBox chkRevolver, CheckBox chkUzi, CheckBox chkShotgun, CheckBox chkCrossbow,
-            CheckBox chkGrenadeGun)
+            CheckBox chkGrenadeGun, TrackBar trbHealth, Label lblHealth, Label lblHealthError)
         {
             txtLvlName.Text = GetLvlName();
 
@@ -348,6 +372,27 @@ namespace TR_SaveMaster
             chkShotgun.Checked = GetShotgunValue() != 0;
             chkCrossbow.Checked = GetCrossbowValue() != 0;
             chkGrenadeGun.Checked = GetGrenadeGunValue() != 0;
+
+            int healthOffset = GetHealthOffset();
+
+            if (healthOffset != -1)
+            {
+                UInt16 health = GetHealthValue(healthOffset);
+                double healthPercentage = ((double)health / MAX_HEALTH_VALUE) * 100;
+                trbHealth.Value = health;
+                trbHealth.Enabled = true;
+
+                lblHealth.Text = healthPercentage.ToString("0.0") + "%";
+                lblHealthError.Visible = false;
+                lblHealth.Visible = true;
+            }
+            else
+            {
+                trbHealth.Enabled = false;
+                trbHealth.Value = 1;
+                lblHealthError.Visible = true;
+                lblHealth.Visible = false;
+            }
         }
 
         public void WriteChanges(NumericUpDown nudSaveNumber, NumericUpDown nudSecrets, NumericUpDown nudFlares,
@@ -356,7 +401,7 @@ namespace TR_SaveMaster
             NumericUpDown nudGrenadeGunFlashAmmo, NumericUpDown nudCrossbowNormalAmmo, NumericUpDown nudCrossbowPoisonAmmo,
             NumericUpDown nudCrossbowExplosiveAmmo, NumericUpDown nudShotgunNormalAmmo, NumericUpDown nudShotgunWideshotAmmo,
             CheckBox chkPistols, CheckBox chkUzi, CheckBox chkShotgun, CheckBox chkCrossbow, CheckBox chkGrenadeGun,
-            CheckBox chkRevolver, CheckBox chkBinoculars, CheckBox chkCrowbar, CheckBox chkLaserSight)
+            CheckBox chkRevolver, CheckBox chkBinoculars, CheckBox chkCrowbar, CheckBox chkLaserSight, TrackBar trbHealth)
         {
             byte prevPistolsValue = GetPistolsValue();
             byte prevUziValue = GetUziValue();
@@ -404,8 +449,153 @@ namespace TR_SaveMaster
                 WriteLaserSightPresent(chkLaserSight.Checked);
             }
 
+            if (trbHealth.Enabled)
+            {
+                WriteHealthValue((UInt16)trbHealth.Value);
+            }
+
             byte checksum = CalculateChecksum();
             WriteChecksum(checksum);
+        }
+
+        private void WriteHealthValue(UInt16 newHealth)
+        {
+            int healthOffset = GetHealthOffset();
+
+            if (healthOffset != -1)
+            {
+                byte currentFlag = ReadByte(healthOffset - 0x11);
+                // Determine current mode by checking the top two bits:
+                // Full: 0x80–0x8F (bits: 10xxxxxx)
+                // Partial: 0xC0–0xCF (bits: 11xxxxxx)
+                bool currentlyFull = ((currentFlag & BASE_HEALTH_FLAG_PARTIAL) == BASE_HEALTH_FLAG_FULL);
+                bool currentlyPartial = ((currentFlag & BASE_HEALTH_FLAG_PARTIAL) == BASE_HEALTH_FLAG_PARTIAL);
+
+                // New mode is determined by whether newHealth is less than MAX_HEALTH_VALUE.
+                bool newIsPartial = newHealth < MAX_HEALTH_VALUE;
+
+                Console.WriteLine($"Packed Byte at 0x{healthOffset - 0x11:X}: {currentFlag:X2}");
+
+                if (currentlyFull && newIsPartial)
+                {
+                    // Transition from full -> partial:
+                    // Adjust flag by adding 0x40. For example, 0x80 becomes 0xC0, 0x82 becomes 0xC2, etc.
+                    byte newFlag = (byte)(currentFlag + HEALTH_FLAG_DELTA);
+                    WriteByte(healthOffset - 0x11, newFlag); // Enable health storage
+                    WriteUInt16(healthOffset, newHealth);
+                    ShiftBytesRight(healthOffset);
+                }
+                else if (currentlyPartial && !newIsPartial)
+                {
+                    // Transition from partial -> full:
+                    // Adjust flag by subtracting 0x40. For example, 0xC6 becomes 0x86.
+                    byte newFlag = (byte)(currentFlag - HEALTH_FLAG_DELTA);
+                    WriteByte(healthOffset - 0x11, newFlag); // Disable health storage
+                    WriteUInt16(healthOffset, 0x0);  // Zero out stored health
+                    ShiftBytesLeft(healthOffset);
+                }
+                else
+                {
+                    // Same mode – update the stored health value (if partial)
+                    WriteUInt16(healthOffset, newHealth);
+                }
+            }
+        }
+
+        private void ShiftBytesLeft(int healthOffset)
+        {
+            Console.WriteLine("Shifting bytes by -0x2...");
+            string filePath = savegamePath;
+
+            byte[] saveData = File.ReadAllBytes(filePath);
+
+            for (int i = healthOffset + 2; i < saveData.Length - 2; i++)
+            {
+                saveData[i] = saveData[i + 2]; // Shift bytes left
+            }
+
+            Array.Resize(ref saveData, saveData.Length - 2);
+
+            File.WriteAllBytes(filePath, saveData);
+        }
+
+        private void ShiftBytesRight(int healthOffset)
+        {
+            Console.WriteLine("Shifting bytes by +0x2...");
+            string filePath = savegamePath;
+
+            byte[] saveData = File.ReadAllBytes(filePath);
+
+            Array.Resize(ref saveData, saveData.Length + 2);
+
+            for (int i = saveData.Length - 3; i >= healthOffset + 2; i--)
+            {
+                saveData[i + 2] = saveData[i]; // Shift bytes right
+            }
+
+            File.WriteAllBytes(filePath, saveData);
+        }
+
+        private UInt16 GetHealthValue(int healthOffset)
+        {
+            UInt16 rawHealth = ReadUInt16(healthOffset);
+
+            if (rawHealth != 0)
+            {
+                return rawHealth;
+            }
+
+            return MAX_HEALTH_VALUE;
+        }
+
+        private int GetHealthOffset()
+        {
+            for (int offset = MIN_HEALTH_OFFSET; offset <= MAX_HEALTH_OFFSET; offset++)
+            {
+                UInt16 value = ReadUInt16(offset);
+
+                if (value >= MIN_HEALTH_VALUE && value < MAX_HEALTH_VALUE || value == 0)
+                {
+                    byte byteFlag1 = ReadByte(offset - 7);
+                    byte byteFlag2 = ReadByte(offset - 6);
+                    byte byteFlag3 = ReadByte(offset - 5);
+                    byte byteFlag4 = ReadByte(offset - 4);
+
+                    bool isKnownByteFlagPattern = IsKnownByteFlagPattern(byteFlag1, byteFlag2, byteFlag3, byteFlag4);
+
+                    if (isKnownByteFlagPattern && value != 0)
+                    {
+                        Console.WriteLine($"Health offset: 0x{offset:X}, Packed byte offset: 0x{(offset - 0x11):X}");
+                        return offset;
+                    }
+                    else if (isKnownByteFlagPattern && value == 0)
+                    {
+                        // Read only the first byte.
+                        byte packedByteFlag = ReadByte(offset - 0x11);
+
+                        // Full health is indicated by the top two bits being 10 (i.e. 0x80 to 0x8F)
+                        if ((packedByteFlag & BASE_HEALTH_FLAG_PARTIAL) == BASE_HEALTH_FLAG_FULL)
+                        {
+                            Console.WriteLine($"Health offset: 0x{offset:X}, Packed byte offset: 0x{(offset - 0x11):X}");
+                            return offset;
+                        }
+                    }
+                }
+            }
+
+            return -1;
+        }
+
+        private bool IsKnownByteFlagPattern(byte byteFlag1, byte byteFlag2, byte byteFlag3, byte byteFlag4)
+        {
+            if (byteFlag1 == 0x02 && byteFlag2 == 0x02 && byteFlag3 == 0x00 && byteFlag4 == 0x52) return true;
+            if (byteFlag1 == 0x02 && byteFlag2 == 0x02 && byteFlag3 == 0x00 && byteFlag4 == 0x67) return true;
+            if (byteFlag1 == 0x02 && byteFlag2 == 0x02 && byteFlag3 == 0x47 && byteFlag4 == 0x67) return true;
+            if (byteFlag1 == 0x50 && byteFlag2 == 0x50 && byteFlag3 == 0x00 && byteFlag4 == 0x07) return true;
+            if (byteFlag1 == 0x50 && byteFlag2 == 0x50 && byteFlag3 == 0x47 && byteFlag4 == 0x07) return true;
+            if (byteFlag1 == 0x47 && byteFlag2 == 0x47 && byteFlag3 == 0x00 && byteFlag4 == 0xDE) return true;
+
+            return false;
         }
 
         private string GetLvlName()
