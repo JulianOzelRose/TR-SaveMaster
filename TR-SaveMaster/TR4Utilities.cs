@@ -50,7 +50,7 @@ namespace TR_SaveMaster
         // Health
         private const UInt16 MAX_HEALTH_VALUE = 1000;
         private const UInt16 MIN_HEALTH_VALUE = 1;
-        private const byte BASE_HEALTH_FLAG_FULL = 0x80;      // Baseline flag for full health (not stored)
+        private const byte BASE_HEALTH_FLAG_FULL = 0x80;        // Baseline flag for full health (not stored)
         private const byte BASE_HEALTH_FLAG_PARTIAL = 0xC0;     // Baseline flag for partial health (stored)
         private const byte HEALTH_FLAG_DELTA = 0x40;            // Difference between full and partial health flags
 
@@ -163,18 +163,24 @@ namespace TR_SaveMaster
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x31D;
+                MAX_HEALTH_OFFSET = 0x711;
             }
             else if (levelIndex == 8)   // The Great Hypostyle Hall
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x6BE;
+                MAX_HEALTH_OFFSET = 0x940;
             }
             else if (levelIndex == 9)   // Sacred Lake
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x7EF;
+                MAX_HEALTH_OFFSET = 0x995;
             }
             else if (levelIndex == 11)  // Tomb Of Semerkhet
             {
@@ -189,150 +195,208 @@ namespace TR_SaveMaster
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = false;
+                MIN_HEALTH_OFFSET = 0x392;
+                MAX_HEALTH_OFFSET = 0x3F5;
             }
             else if (levelIndex == 13)  // Desert Railroad
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x35D;
+                MAX_HEALTH_OFFSET = 0x36D;
             }
             else if (levelIndex == 14)  // Alexandria
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x2EB;
+                MAX_HEALTH_OFFSET = 0x2EB;
             }
             else if (levelIndex == 15)  // Coastal Ruins
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x58B;
+                MAX_HEALTH_OFFSET = 0x58B;
             }
             else if (levelIndex == 18)  // Catacombs
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x798;
+                MAX_HEALTH_OFFSET = 0x798;
             }
             else if (levelIndex == 19)  // Temple Of Poseidon
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0xC76;
+                MAX_HEALTH_OFFSET = 0xCE9;
             }
             else if (levelIndex == 20)  // The Lost Library
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x115D;
+                MAX_HEALTH_OFFSET = 0x1184;
             }
             else if (levelIndex == 21)  // Hall Of Demetrius
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x1439;
+                MAX_HEALTH_OFFSET = 0x14E9;
             }
             else if (levelIndex == 16)  // Pharos, Temple Of Isis
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x1598;
+                MAX_HEALTH_OFFSET = 0x15D0;
             }
             else if (levelIndex == 17)  // Cleopatra's Palaces
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x191E;
+                MAX_HEALTH_OFFSET = 0x192C;
             }
             else if (levelIndex == 22)  // City Of The Dead
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x324;
+                MAX_HEALTH_OFFSET = 0x354;
             }
             else if (levelIndex == 24)  // Chambers Of Tulun
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x680;
+                MAX_HEALTH_OFFSET = 0x6CA;
             }
             else if (levelIndex == 26)  // Citadel Gate
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x9C0;
+                MAX_HEALTH_OFFSET = 0x9C0;
             }
             else if (levelIndex == 23)  // Trenches
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0xCD2;
+                MAX_HEALTH_OFFSET = 0xCF2;
             }
             else if (levelIndex == 25)  // Street Bazaar
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0xEF4;
+                MAX_HEALTH_OFFSET = 0xEFB;
             }
             else if (levelIndex == 27)  // Citadel
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x44F;
+                MAX_HEALTH_OFFSET = 0x44F;
             }
             else if (levelIndex == 28)  // The Sphinx Complex
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x354;
+                MAX_HEALTH_OFFSET = 0x354;
             }
             else if (levelIndex == 30)  // Underneath The Sphinx
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x546;
+                MAX_HEALTH_OFFSET = 0x546;
             }
             else if (levelIndex == 31)  // Menkaure's Pyramid
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0xC09;
+                MAX_HEALTH_OFFSET = 0xC09;
             }
             else if (levelIndex == 32)  // Inside Menkaure's Pyramid
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0xE3A;
+                MAX_HEALTH_OFFSET = 0xE3A;
             }
             else if (levelIndex == 33)  // The Mastabas
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x1458;
+                MAX_HEALTH_OFFSET = 0x1458;
             }
             else if (levelIndex == 34)  // The Great Pyramid
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x19D4;
+                MAX_HEALTH_OFFSET = 0x19D4;
             }
             else if (levelIndex == 35)  // Khufu's Queens Pyramids
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x1B3F;
+                MAX_HEALTH_OFFSET = 0x1B3F;
             }
             else if (levelIndex == 36)  // Inside The Great Pyramid
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x1E68;
+                MAX_HEALTH_OFFSET = 0x1E68;
             }
-            else if (levelIndex == 38)  // Temple Of Horus
+            else if (levelIndex == 37)  // Temple Of Horus (Part 1)
             {
                 chkBinoculars.Enabled = true;
                 chkLaserSight.Enabled = true;
                 chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x22A9;
+                MAX_HEALTH_OFFSET = 0x22A9;
+            }
+            else if (levelIndex == 38)  // Temple Of Horus (Part 2)
+            {
+                chkBinoculars.Enabled = true;
+                chkLaserSight.Enabled = true;
+                chkCrowbar.Enabled = true;
+                MIN_HEALTH_OFFSET = 0x27D2;
+                MAX_HEALTH_OFFSET = 0x27D2;
             }
         }
 
