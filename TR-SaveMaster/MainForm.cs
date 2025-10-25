@@ -84,7 +84,7 @@ namespace TR_SaveMaster
         private void GetDirectories()
         {
             string rootFolder = AppDomain.CurrentDomain.BaseDirectory;
-            string filePath = Path.Combine(rootFolder, "TR_directories.ini");
+            string filePath = Path.Combine(rootFolder, "TR-SaveMaster.ini");
 
             if (File.Exists(filePath))
             {
@@ -196,7 +196,7 @@ namespace TR_SaveMaster
         private void UpdateDirectories()
         {
             string rootFolder = AppDomain.CurrentDomain.BaseDirectory;
-            string filePath = Path.Combine(rootFolder, "TR_directories.ini");
+            string filePath = Path.Combine(rootFolder, "TR-SaveMaster.ini");
 
             if (File.Exists(filePath))
             {
