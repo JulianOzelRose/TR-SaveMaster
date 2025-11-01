@@ -4129,6 +4129,7 @@ namespace TR_SaveMaster
                 trbHealthTR3TLA.BackColor = Color.White;
 
                 tpTR4.BackColor = Color.White;
+                trbHealthTR4.BackColor = Color.White;
 
                 tpTRC.BackColor = Color.White;
                 trbHealthTRC.BackColor = Color.White;
@@ -4158,6 +4159,7 @@ namespace TR_SaveMaster
                 trbHealthTR3TLA.BackColor = Color.WhiteSmoke;
 
                 tpTR4.BackColor = Color.WhiteSmoke;
+                trbHealthTR4.BackColor = Color.WhiteSmoke;
 
                 tpTRC.BackColor = Color.WhiteSmoke;
                 trbHealthTRC.BackColor = Color.WhiteSmoke;
